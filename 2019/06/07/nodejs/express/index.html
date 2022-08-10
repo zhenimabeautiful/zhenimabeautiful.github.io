@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>node-express框架总结 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">node-express框架总结</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2019-06-06T18:16:34.000Z" itemprop="datePublished">2019-06-07</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E5%90%8E%E7%AB%AF/">📒 后端</a></li>
+  
+    <li><a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">📒 框架</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/nodejs/">🏷️ nodejs</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><blockquote>
+<p>官网 <a target="_blank" rel="noopener" href="http://expressjs.com/zh-cn/">http://expressjs.com/zh-cn/</a></p>
+</blockquote>
+<blockquote>
+<p><code>Express</code>是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站</p>
+</blockquote>
+<p><strong>环境搭建</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.expressjs.com.cn/starter/generator.html">http://www.expressjs.com.cn/starter/generator.html</a></p>
+</blockquote>
+<blockquote>
+<p>通过应用生成器工具 <code>express-generator</code>可以快速创建一个应用的骨架</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install express-generator -g</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、运行原理"><a href="#二、运行原理" class="headerlink" title="二、运行原理"></a>二、运行原理</h2><p><strong>底层：http模块</strong></p>
+<blockquote>
+<p>Express框架建立在node.js内置的http模块上。http模块生成服务器的原始代码如下</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var http = require(&quot;http&quot;);</span><br><span class="line"></span><br><span class="line">var app = http.createServer(function(request, response) &#123;</span><br><span class="line">  response.writeHead(200, &#123;&quot;Content-Type&quot;: &quot;text/plain&quot;&#125;);</span><br><span class="line">  response.end(&quot;Hello world!&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(3000, &quot;localhost&quot;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Express框架的核心是对http模块的再包装。上面的代码用Express改写如下</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&#x27;express&#x27;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/&#x27;, function (req, res) &#123;</span><br><span class="line">  res.send(&#x27;Hello world!&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(3000);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Express框架等于在http模块之上，加了一个中间层</p>
+</blockquote>
+<p><strong>什么是中间件</strong></p>
+<blockquote>
+<ul>
+<li>简单说，中间件（middleware）就是处理HTTP请求的函数。它最大的特点就是，一个中间件处理完，再传递给下一个中间件。App实例在运行过程中，会调用一系列的中间件</li>
+<li>每个中间件可以从App实例，接收三个参数，依次为request对象（代表HTTP请求）、response对象（代表HTTP回应），next回调函数（代表下一个中间件）。每个中间件都可以对HTTP请求（request对象）进行加工，并且决定是否调用next方法，将request对象再传给下一个中间件。</li>
+</ul>
+</blockquote>
+<ul>
+<li>一个不进行任何操作、只传递<code>request</code>对象的中间件，就是下面这样</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function uselessMiddleware(req, res, next) &#123;</span><br><span class="line">  next();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上面代码的next就是下一个中间件。如果它带有参数，则代表抛出一个错误，参数为错误文本</li>
+<li>抛出错误以后，后面的中间件将不再执行，直到发现一个错误处理函数为止</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function uselessMiddleware(req, res, next) &#123;</span><br><span class="line">  next(&#x27;出错了！&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、use方法"><a href="#三、use方法" class="headerlink" title="三、use方法"></a>三、use方法</h2><blockquote>
+<p>use是express注册中间件的方法，它返回一个函数。下面是一个连续调用两个中间件的例子</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&quot;express&quot;);</span><br><span class="line">var http = require(&quot;http&quot;);</span><br><span class="line"></span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">app.use(function(request, response, next) &#123;</span><br><span class="line">  console.log(&quot;In comes a &quot; + request.method + &quot; to &quot; + request.url);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(function(request, response) &#123;</span><br><span class="line">  response.writeHead(200, &#123; &quot;Content-Type&quot;: &quot;text/plain&quot; &#125;);</span><br><span class="line">  response.end(&quot;Hello world!\n&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.createServer(app).listen(1337);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面代码使用app.use方法，注册了两个中间件。收到HTTP请求后，先调用第一个中间件，在控制台输出一行信息，然后通过next方法，将执行权传给第二个中间件，输出HTTP回应。由于第二个中间件没有调用next方法，所以request对象就不再向后传递了</p>
+</blockquote>
+<ul>
+<li>use方法内部可以对访问路径进行判断，据此就能实现简单的路由，根据不同的请求网址，返回不同的网页内容</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&quot;express&quot;);</span><br><span class="line">var http = require(&quot;http&quot;);</span><br><span class="line"></span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">app.use(function(request, response, next) &#123;</span><br><span class="line">  if (request.url == &quot;/&quot;) &#123;</span><br><span class="line">    response.writeHead(200, &#123; &quot;Content-Type&quot;: &quot;text/plain&quot; &#125;);</span><br><span class="line">    response.end(&quot;Welcome to the homepage!\n&quot;);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    next();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(function(request, response, next) &#123;</span><br><span class="line">  if (request.url == &quot;/about&quot;) &#123;</span><br><span class="line">    response.writeHead(200, &#123; &quot;Content-Type&quot;: &quot;text/plain&quot; &#125;);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    next();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(function(request, response) &#123;</span><br><span class="line">  response.writeHead(404, &#123; &quot;Content-Type&quot;: &quot;text/plain&quot; &#125;);</span><br><span class="line">  response.end(&quot;404 error!\n&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.createServer(app).listen(1337);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面代码通过<code>request.url</code>属性，判断请求的网址，从而返回不同的内容。注意，<code>app.use</code>方法一共登记了三个中间件，只要请求路径匹配，就不会将执行权交给下一个中间件。因此，最后一个中间件会返回<code>404</code>错误，即前面的中间件都没匹配请求路径，找不到所要请求的资源</p>
+</blockquote>
+<ul>
+<li>除了在回调函数内部判断请求的网址，<code>use</code>方法也允许将请求网址写在第一个参数。这代表，只有请求路径匹配这个参数，后面的中间件才会生效。无疑，这样写更加清晰和方便</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 只对根目录的请求，调用某个中间件</span><br><span class="line">app.use(&#x27;/path&#x27;, someMiddleware);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>因此，上面的代码可以写成下面的样子</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">ar express = require(&quot;express&quot;);</span><br><span class="line">var http = require(&quot;http&quot;);</span><br><span class="line"></span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">app.use(&quot;/home&quot;, function(request, response, next) &#123;</span><br><span class="line">  response.writeHead(200, &#123; &quot;Content-Type&quot;: &quot;text/plain&quot; &#125;);</span><br><span class="line">  response.end(&quot;Welcome to the homepage!\n&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(&quot;/about&quot;, function(request, response, next) &#123;</span><br><span class="line">  response.writeHead(200, &#123; &quot;Content-Type&quot;: &quot;text/plain&quot; &#125;);</span><br><span class="line">  response.end(&quot;Welcome to the about page!\n&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(function(request, response) &#123;</span><br><span class="line">  response.writeHead(404, &#123; &quot;Content-Type&quot;: &quot;text/plain&quot; &#125;);</span><br><span class="line">  response.end(&quot;404 error!\n&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.createServer(app).listen(1337)</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、Express的方法"><a href="#四、Express的方法" class="headerlink" title="四、Express的方法"></a>四、Express的方法</h2><p><strong>all方法和HTTP动词方法</strong></p>
+<blockquote>
+<p>针对不同的请求，Express提供了use方法的一些别名。比如，上面代码也可以用别名的形式来写</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&quot;express&quot;);</span><br><span class="line">var http = require(&quot;http&quot;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">app.all(&quot;*&quot;, function(request, response, next) &#123;</span><br><span class="line">  response.writeHead(200, &#123; &quot;Content-Type&quot;: &quot;text/plain&quot; &#125;);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(&quot;/&quot;, function(request, response) &#123;</span><br><span class="line">  response.end(&quot;Welcome to the homepage!&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(&quot;/about&quot;, function(request, response) &#123;</span><br><span class="line">  response.end(&quot;Welcome to the about page!&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(&quot;*&quot;, function(request, response) &#123;</span><br><span class="line">  response.end(&quot;404!&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.createServer(app).listen(1337);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>上面代码的all方法表示，所有请求都必须通过该中间件，参数中的“*”表示对所有路径有效。get方法则是只有GET动词的HTTP请求通过该中间件，它的第一个参数是请求的路径。由于get方法的回调函数没有调用next方法，所以只要有一个中间件被调用了，后面的中间件就不会再被调用了</li>
+<li>除了get方法以外，Express还提供post、put、delete方法，即HTTP动词都是Express的方法</li>
+</ul>
+</blockquote>
+<ul>
+<li>除了get方法以外，Express还提供post、put、delete方法，即HTTP动词都是Express的方法</li>
+<li>这些方法的第一个参数，都是请求的路径。除了绝对匹配以外，Express允许模式匹配</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.get(&quot;/hello/:who&quot;, function(req, res) &#123;</span><br><span class="line">  res.end(&quot;Hello, &quot; + req.params.who + &quot;.&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、set方法"><a href="#五、set方法" class="headerlink" title="五、set方法"></a>五、set方法</h2><blockquote>
+<p>set方法用于指定变量的值</p>
+</blockquote>
+<ul>
+<li><p>使用set方法，为系统变量“views”和“view engine”指定值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.set(&quot;views&quot;, __dirname + &quot;/views&quot;);</span><br><span class="line"></span><br><span class="line">app.set(&quot;view engine&quot;, &quot;jade&quot;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="六、response对象"><a href="#六、response对象" class="headerlink" title="六、response对象"></a>六、response对象</h2><p><strong>（1）response.redirect方法</strong></p>
+<blockquote>
+<p>response.redirect方法允许网址的重定向</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">response.redirect(&quot;/hello/anime&quot;);</span><br><span class="line">response.redirect(&quot;http://www.example.com&quot;);</span><br><span class="line">response.redirect(301, &quot;http://www.example.com&quot;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）response.sendFile方法</strong></p>
+<blockquote>
+<p>response.sendFile方法用于发送文件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendFile(&quot;/path/to/anime.mp4&quot;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）response.render方法</strong></p>
+<blockquote>
+<p>response.render方法用于渲染网页模板。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//  使用render方法，将message变量传入index模板，渲染成HTML网页</span><br><span class="line">app.get(&quot;/&quot;, function(request, response) &#123;</span><br><span class="line">  response.render(&quot;index&quot;, &#123; message: &quot;Hello World&quot; &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、requst对象"><a href="#七、requst对象" class="headerlink" title="七、requst对象"></a>七、requst对象</h2><p><strong>（1）request.ip</strong></p>
+<blockquote>
+<p>request.ip属性用于获得HTTP请求的IP地址</p>
+</blockquote>
+<p><strong>（2）request.files</strong></p>
+<blockquote>
+<p>request.files用于获取上传的文件</p>
+</blockquote>
+<h2 id="八、搭建HTTPs服务器"><a href="#八、搭建HTTPs服务器" class="headerlink" title="八、搭建HTTPs服务器"></a>八、搭建HTTPs服务器</h2><blockquote>
+<p>使用Express搭建HTTPs加密服务器，也很简单</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var fs = require(&#x27;fs&#x27;);</span><br><span class="line">var options = &#123;</span><br><span class="line">  key: fs.readFileSync(&#x27;E:/ssl/myserver.key&#x27;),</span><br><span class="line">  cert: fs.readFileSync(&#x27;E:/ssl/myserver.crt&#x27;),</span><br><span class="line">  passphrase: &#x27;1234&#x27;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var https = require(&#x27;https&#x27;);</span><br><span class="line">var express = require(&#x27;express&#x27;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/&#x27;, function(req, res)&#123;</span><br><span class="line">  res.send(&#x27;Hello World Expressjs&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">var server = https.createServer(options, app);</span><br><span class="line">server.listen(8084);</span><br><span class="line">console.log(&#x27;Server is running on port 8084&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="九、静态网页模板"><a href="#九、静态网页模板" class="headerlink" title="九、静态网页模板"></a>九、静态网页模板</h2><blockquote>
+<ul>
+<li>在项目目录之中，建立一个子目录views，用于存放网页模板</li>
+<li>假定这个项目有三个路径：根路径（&#x2F;）、自我介绍（&#x2F;about）和文章（&#x2F;article）。那么，app.js可以这样写</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 向服务器发送信息的方法，从send变成了sendfile，后者专门用于发送文件</span><br><span class="line">var express = require(&#x27;express&#x27;);</span><br><span class="line">var app = express();</span><br><span class="line"> </span><br><span class="line">app.get(&#x27;/&#x27;, function(req, res) &#123;</span><br><span class="line">   res.sendfile(&#x27;./views/index.html&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">app.get(&#x27;/about&#x27;, function(req, res) &#123;</span><br><span class="line">   res.sendfile(&#x27;./views/about.html&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">app.get(&#x27;/article&#x27;, function(req, res) &#123;</span><br><span class="line">   res.sendfile(&#x27;./views/article.html&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">app.listen(3000);</span><br></pre></td></tr></table></figure>
+
+<h2 id="十、动态网页模板"><a href="#十、动态网页模板" class="headerlink" title="十、动态网页模板"></a>十、动态网页模板</h2><p><strong>安装模板引擎</strong></p>
+<blockquote>
+<p>Express支持多种模板引擎，这里采用Handlebars模板引擎的服务器端版本hbs模板引擎</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hbs --save-dev</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装模板引擎之后，就要改写app.js</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// app.js文件</span><br><span class="line"></span><br><span class="line">var express = require(&#x27;express&#x27;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">// 加载hbs模块</span><br><span class="line">var hbs = require(&#x27;hbs&#x27;);</span><br><span class="line"></span><br><span class="line">// 指定模板文件的后缀名为html</span><br><span class="line">app.set(&#x27;view engine&#x27;, &#x27;html&#x27;);</span><br><span class="line"></span><br><span class="line">// 运行hbs模块</span><br><span class="line">app.engine(&#x27;html&#x27;, hbs.__express);</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/&#x27;, function (req, res)&#123;</span><br><span class="line">	res.render(&#x27;index&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/about&#x27;, function(req, res) &#123;</span><br><span class="line">	res.render(&#x27;about&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/article&#x27;, function(req, res) &#123;</span><br><span class="line">	res.render(&#x27;article&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面代码改用render方法，对网页模板进行渲染。render方法的参数就是模板的文件名，默认放在子目录views之中，后缀名已经在前面指定为html，这里可以省略。所以，res.render(‘index’) 就是指，把子目录views下面的index.html文件，交给模板引擎hbs渲染</p>
+</blockquote>
+<h2 id="十一、新建数据脚本"><a href="#十一、新建数据脚本" class="headerlink" title="十一、新建数据脚本"></a>十一、新建数据脚本</h2><blockquote>
+<ul>
+<li>渲染是指将数据代入模板的过程。实际运用中，数据都是保存在数据库之中的，这里为了简化问题，假定数据保存在一个脚本文件中</li>
+<li>在项目目录中，新建一个文件blog.js，用于存放数据。blog.js的写法符合CommonJS规范，使得它可以被require语句加载</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// blog.js文件</span><br><span class="line"></span><br><span class="line">var entries = [</span><br><span class="line">	&#123;&quot;id&quot;:1, &quot;title&quot;:&quot;第一篇&quot;, &quot;body&quot;:&quot;正文&quot;, &quot;published&quot;:&quot;6/2/2013&quot;&#125;,</span><br><span class="line">	&#123;&quot;id&quot;:2, &quot;title&quot;:&quot;第二篇&quot;, &quot;body&quot;:&quot;正文&quot;, &quot;published&quot;:&quot;6/3/2013&quot;&#125;,</span><br><span class="line">	&#123;&quot;id&quot;:3, &quot;title&quot;:&quot;第三篇&quot;, &quot;body&quot;:&quot;正文&quot;, &quot;published&quot;:&quot;6/4/2013&quot;&#125;,</span><br><span class="line">	&#123;&quot;id&quot;:4, &quot;title&quot;:&quot;第四篇&quot;, &quot;body&quot;:&quot;正文&quot;, &quot;published&quot;:&quot;6/5/2013&quot;&#125;,</span><br><span class="line">	&#123;&quot;id&quot;:5, &quot;title&quot;:&quot;第五篇&quot;, &quot;body&quot;:&quot;正文&quot;, &quot;published&quot;:&quot;6/10/2013&quot;&#125;,</span><br><span class="line">	&#123;&quot;id&quot;:6, &quot;title&quot;:&quot;第六篇&quot;, &quot;body&quot;:&quot;正文&quot;, &quot;published&quot;:&quot;6/12/2013&quot;&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">exports.getBlogEntries = function ()&#123;</span><br><span class="line">   return entries;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">exports.getBlogEntry = function (id)&#123;</span><br><span class="line">   for(var i=0; i &lt; entries.length; i++)&#123;</span><br><span class="line">      if(entries[i].id == id) return entries[i];</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="十二、新建网页模板"><a href="#十二、新建网页模板" class="headerlink" title="十二、新建网页模板"></a>十二、新建网页模板</h2><blockquote>
+<p>接着，新建模板文件<code>index.html</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- views/index.html文件 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;文章列表&lt;/h1&gt;</span><br><span class="line"> </span><br><span class="line">&#123;&#123;#each entries&#125;&#125;</span><br><span class="line">   &lt;p&gt;</span><br><span class="line">      &lt;a href=&quot;/article/&#123;&#123;id&#125;&#125;&quot;&gt;&#123;&#123;title&#125;&#125;&lt;/a&gt;&lt;br/&gt;</span><br><span class="line">      Published: &#123;&#123;published&#125;&#125;</span><br><span class="line">   &lt;/p&gt;</span><br><span class="line">&#123;&#123;/each&#125;&#125;</span><br><span class="line">&lt;!-- views/about.html文件 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;自我介绍&lt;/h1&gt;</span><br><span class="line"> </span><br><span class="line">&lt;p&gt;正文&lt;/p&gt;</span><br><span class="line">&lt;!-- views/article.html文件 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;&#123;&#123;blog.title&#125;&#125;&lt;/h1&gt;</span><br><span class="line">Published: &#123;&#123;blog.published&#125;&#125;</span><br><span class="line"> </span><br><span class="line">&lt;p/&gt;</span><br><span class="line"> </span><br><span class="line">&#123;&#123;blog.body&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以看到，上面三个模板文件都只有网页主体。因为网页布局是共享的，所以布局的部分可以单独新建一个文件<code>layout.html</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- views/layout.html文件 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line"> </span><br><span class="line">&lt;head&gt;</span><br><span class="line">   &lt;title&gt;&#123;&#123;title&#125;&#125;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"> </span><br><span class="line">&lt;body&gt;</span><br><span class="line"> </span><br><span class="line">	&#123;&#123;&#123;body&#125;&#125;&#125;</span><br><span class="line"> </span><br><span class="line">   &lt;footer&gt;</span><br><span class="line">      &lt;p&gt;</span><br><span class="line">         &lt;a href=&quot;/&quot;&gt;首页&lt;/a&gt; - &lt;a href=&quot;/about&quot;&gt;自我介绍&lt;/a&gt;</span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">   &lt;/footer&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="十三、渲染模板"><a href="#十三、渲染模板" class="headerlink" title="十三、渲染模板"></a>十三、渲染模板</h2><blockquote>
+<p>最后，改写app.js文件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// app.js文件</span><br><span class="line"></span><br><span class="line">var express = require(&#x27;express&#x27;);</span><br><span class="line">var app = express();</span><br><span class="line"> </span><br><span class="line">var hbs = require(&#x27;hbs&#x27;);</span><br><span class="line"></span><br><span class="line">// 加载数据模块</span><br><span class="line">var blogEngine = require(&#x27;./blog&#x27;);</span><br><span class="line"> </span><br><span class="line">app.set(&#x27;view engine&#x27;, &#x27;html&#x27;);</span><br><span class="line">app.engine(&#x27;html&#x27;, hbs.__express);</span><br><span class="line">app.use(express.bodyParser());</span><br><span class="line"> </span><br><span class="line">app.get(&#x27;/&#x27;, function(req, res) &#123;</span><br><span class="line">   res.render(&#x27;index&#x27;,&#123;title:&quot;最近文章&quot;, entries:blogEngine.getBlogEntries()&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">app.get(&#x27;/about&#x27;, function(req, res) &#123;</span><br><span class="line">   res.render(&#x27;about&#x27;, &#123;title:&quot;自我介绍&quot;&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">app.get(&#x27;/article/:id&#x27;, function(req, res) &#123;</span><br><span class="line">   var entry = blogEngine.getBlogEntry(req.params.id);</span><br><span class="line">   res.render(&#x27;article&#x27;,&#123;title:entry.title, blog:entry&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">app.listen(3000);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上面代码中的render方法，现在加入了第二个参数，表示模板变量绑定的数据</li>
+</ul>
+<h2 id="十四、指定静态文件目录"><a href="#十四、指定静态文件目录" class="headerlink" title="十四、指定静态文件目录"></a>十四、指定静态文件目录</h2><blockquote>
+<p>模板文件默认存放在views子目录。这时，如果要在网页中加载静态文件（比如样式表、图片等），就需要另外指定一个存放静态文件的目录</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(express.static(&#x27;public&#x27;));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面代码在文件app.js之中，指定静态文件存放的目录是public。于是，当浏览器发出非HTML文件请求时，服务器端就到public目录寻找这个文件。比如，浏览器发出如下的样式表请求：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;/bootstrap/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>服务器端就到<code>public/bootstrap/css/</code>目录中寻找<code>bootstrap.css</code>文件</li>
+</ul>
+<h2 id="十五、Express-Router用法"><a href="#十五、Express-Router用法" class="headerlink" title="十五、Express.Router用法"></a>十五、Express.Router用法</h2><blockquote>
+<p>从<code>Express 4.0</code>开始，路由器功能成了一个单独的组件<code>Express.Router</code>。它好像小型的<code>express</code>应用程序一样，有自己的<code>use</code>、<code>get</code>、<code>param</code>和<code>route</code>方法</p>
+</blockquote>
+<p><strong>基本用法</strong></p>
+<blockquote>
+<p>首先，Express.Router是一个构造函数，调用后返回一个路由器实例。然后，使用该实例的HTTP动词方法，为不同的访问路径，指定回调函数；最后，挂载到某个路径。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var router = express.Router();</span><br><span class="line"></span><br><span class="line">router.get(&#x27;/&#x27;, function(req, res) &#123;</span><br><span class="line">  res.send(&#x27;首页&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(&#x27;/about&#x27;, function(req, res) &#123;</span><br><span class="line">  res.send(&#x27;关于&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(&#x27;/&#x27;, router);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>上面代码先定义了两个访问路径，然后将它们挂载到根目录</li>
+<li>这种路由器可以自由挂载的做法，为程序带来了更大的灵活性，既可以定义多个路由器实例，也可以为将同一个路由器实例挂载到多个路径。</li>
+</ul>
+</blockquote>
+<h2 id="十六、router-route方法"><a href="#十六、router-route方法" class="headerlink" title="十六、router.route方法"></a>十六、router.route方法</h2><blockquote>
+<p>router实例对象的route方法，可以接受访问路径作为参数</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var router = express.Router();</span><br><span class="line"></span><br><span class="line">router.route(&#x27;/api&#x27;)</span><br><span class="line">	.post(function(req, res) &#123;</span><br><span class="line">		// ...</span><br><span class="line">	&#125;)</span><br><span class="line">	.get(function(req, res) &#123;</span><br><span class="line">		Bear.find(function(err, bears) &#123;</span><br><span class="line">			if (err) res.send(err);</span><br><span class="line">			res.json(bears);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">app.use(&#x27;/&#x27;, router);</span><br></pre></td></tr></table></figure>
+
+<h2 id="十七、router中间件"><a href="#十七、router中间件" class="headerlink" title="十七、router中间件"></a>十七、router中间件</h2><blockquote>
+<p>use方法为router对象指定中间件，即在数据正式发给用户之前，对数据进行处理。下面就是一个中间件的例子</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">router.use(function(req, res, next) &#123;</span><br><span class="line">	console.log(req.method, req.url);</span><br><span class="line">	next();	</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上面代码中，回调函数的next参数，表示接受其他中间件的调用。函数体中的next()，表示将数据传递给下一个中间件</li>
+<li>注意，中间件的放置顺序很重要，等同于执行顺序。而且，中间件必须放在HTTP动词方法之前，否则不会执行</li>
+</ul>
+<h2 id="十八、对路径参数的处理"><a href="#十八、对路径参数的处理" class="headerlink" title="十八、对路径参数的处理"></a>十八、对路径参数的处理</h2><blockquote>
+<p>router对象的param方法用于路径参数的处理，可以</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">router.param(&#x27;name&#x27;, function(req, res, next, name) &#123;</span><br><span class="line">	// 对name进行验证或其他处理……</span><br><span class="line">	console.log(name);</span><br><span class="line">	req.name = name;</span><br><span class="line">	next();	</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(&#x27;/hello/:name&#x27;, function(req, res) &#123;</span><br><span class="line">	res.send(&#x27;hello &#x27; + req.name + &#x27;!&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面代码中，get方法为访问路径指定了name参数，param方法则是对name参数进行处理。注意，param方法必须放在HTTP动词方法之前</p>
+</blockquote>
+<h2 id="十九、app-route"><a href="#十九、app-route" class="headerlink" title="十九、app.route"></a>十九、app.route</h2><blockquote>
+<ul>
+<li>假定app是Express的实例对象，Express 4.0为该对象提供了一个route属性。app.route实际上是express.Router()的缩写形式，直接挂载到根路径</li>
+<li>因此，对同一个路径指定get和post方法的回调函数，可以写成链式形式</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.route(&#x27;/login&#x27;)</span><br><span class="line">	.get(function(req, res) &#123;</span><br><span class="line">		res.send(&#x27;this is the login form&#x27;);</span><br><span class="line">	&#125;)</span><br><span class="line">	.post(function(req, res) &#123;</span><br><span class="line">		console.log(&#x27;processing&#x27;);</span><br><span class="line">		res.send(&#x27;processing the login form!&#x27;);</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="二十、上传文件"><a href="#二十、上传文件" class="headerlink" title="二十、上传文件"></a>二十、上传文件</h2><ul>
+<li>首先，在网页插入上传文件的表单</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;/pictures/upload&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">  Select an image to upload:</span><br><span class="line">  &lt;input type=&quot;file&quot; name=&quot;image&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;submit&quot; value=&quot;Upload Image&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后，服务器脚本建立指向&#x2F;upload目录的路由。这时可以安装multer模块，它提供了上传文件的许多功能</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&#x27;express&#x27;);</span><br><span class="line">var router = express.Router();</span><br><span class="line">var multer = require(&#x27;multer&#x27;);</span><br><span class="line"></span><br><span class="line">var uploading = multer(&#123;</span><br><span class="line">  dest: __dirname + &#x27;../public/uploads/&#x27;,</span><br><span class="line">  // 设定限制，每次最多上传1个文件，文件大小不超过1MB</span><br><span class="line">  limits: &#123;fileSize: 1000000, files:1&#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.post(&#x27;/upload&#x27;, uploading, function(req, res) &#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">module.exports = router</span><br></pre></td></tr></table></figure>
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2019/06/27/nodejs/nodejs-koa2/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">node-koa2总结</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2019/05/26/nodejs/nodejs-websocker%E4%B8%8Esocket.io%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">nodejs-websocker与socket.io的区别</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

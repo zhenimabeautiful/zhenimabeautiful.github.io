@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>前端性能优化-Performance以及动画帧数 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">前端性能优化-Performance以及动画帧数</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2021-03-16T09:43:18.000Z" itemprop="datePublished">2021-03-16</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">📒 前端性能优化</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/%E4%BC%98%E5%8C%96/">🏷️ 优化</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <blockquote>
+<p><code>Performance</code>是一个做前端性能监控离不开的<code>API</code>，最好在页面完全加载完成之后再使用，因为很多值必须在页面完全加载之后才能得到。最简单的办法是在<code>window.onload</code>事件中读取各种数据。</p>
+</blockquote>
+<h2 id="一、回顾页面加载过程"><a href="#一、回顾页面加载过程" class="headerlink" title="一、回顾页面加载过程"></a>一、回顾页面加载过程</h2><blockquote>
+<p>要学习这套<code>API</code>的使用，先简单介绍下前端的基础知识</p>
+</blockquote>
+<h3 id="1-1-页面加载"><a href="#1-1-页面加载" class="headerlink" title="1.1 页面加载"></a>1.1 页面加载</h3><blockquote>
+<p>一个页面的请求到响应再到显示出来，需要经过下面一些重要过程，当我们在浏览器输入一个<code>URL</code>或者说点击一个<code>URL</code>开始，会出现如下流程</p>
+</blockquote>
+<ul>
+<li>页面准备</li>
+<li>重定向：在<code>header</code>定义了重定向才会有这个过程，如果没有重定向，不会产生这个过程。</li>
+<li><code>app cache</code>：会先检查这个域名是否有缓存，如果有缓存就不需要DNS解析域名。这里的<code>app</code>是值应用程序<code>application</code>，不指手机<code>app</code>。</li>
+<li><code>DNS</code>解析：把域名解析成<code>IP</code>，如果直接用<code>ip</code>地址访问，不产生这个过程。</li>
+<li><code>TCP</code>连接：<code>http</code>协议是经过<code>TCP</code>来传输的，所以产生一个<code>http</code>请求就会有<code>TCP connect</code>，但是依赖于长连接，不会产生这个过程。</li>
+<li><code>request header</code>：请求头信息。</li>
+<li><code>request body</code>：请求体信息，比如<code>get</code>请求是没有请求体信息的，所以没有这个过程，这就是为什么把头跟体分开写的原因。</li>
+<li><code>response header</code>：响应头信息。</li>
+<li><code>response body</code>：响应体信息。</li>
+<li>解析<code>HTML</code>结构</li>
+<li>加载外部脚本和样式表文件：正常来说<code>JS</code>、<code>css</code>都是外部加载的，当然有不正常的人啊，比如我。</li>
+<li>解析并执行脚本代码</li>
+<li>构建与解析<code>HTML DOM</code>树：这个过程可以去了解下<code>DOM</code>树是怎样的就明白啦。</li>
+<li>加载外部图片</li>
+<li>页面加载完成，显示出来啦</li>
+</ul>
+<h3 id="1-2-重定向分析"><a href="#1-2-重定向分析" class="headerlink" title="1.2 重定向分析"></a>1.2 重定向分析</h3><ul>
+<li><code>app cach</code></li>
+<li><code>DNS</code>解析</li>
+<li><code>TCP</code>连接</li>
+<li><code>request header</code></li>
+<li>重定向</li>
+<li><code>app cach</code></li>
+<li><code>DNS</code>解析</li>
+<li><code>TCP</code>连接</li>
+<li><code>request header</code></li>
+</ul>
+<h2 id="二、performance"><a href="#二、performance" class="headerlink" title="二、performance"></a>二、performance</h2><h3 id="2-1-performance-timing"><a href="#2-1-performance-timing" class="headerlink" title="2.1 performance.timing"></a>2.1 performance.timing</h3><blockquote>
+<p>这个API能帮我们得到整个页面请求的时间，如下图，在<code>Chrome</code>的<code>Console</code>是可以直接运行的</p>
+</blockquote>
+<p><img src="https://img-blog.csdn.net/20170316140524418" alt="img"></p>
+<p>先解释下这些时间都是代表什么</p>
+<p><strong>timing 对象里边的数据比较多，梳理如下几个关键性的节点</strong></p>
+<ul>
+<li><code>fetchStart</code>：发起获取当前文档的时间点，我的理解是浏览器收到发起页面请求的时间点；</li>
+<li><code>domainLookupStart</code>：返回浏览器开始<code>DNS</code>查询的时间，如果此请求没有<code>DNS</code>查询过程，如长连接、资源<code>cache</code>、甚至是本地资源等，那么就返回<code>fetchStart</code>的值；</li>
+<li><code>domainLookupEnd</code>：返回浏览器结束<code>DNS</code>查询的时间，如果没有<code>DNS</code>查询过程，同上；</li>
+<li><code>connectStart</code>：浏览器向服务器请求文档，开始建立连接的时间，如果此连接是一个长连接，或者无需与服务器连接（命中缓存），则返回<code>domainLookupEnd</code>的值；</li>
+<li><code>connectEnd</code>：浏览器向服务器请求文档，建立连接成功的时间；</li>
+<li><code>requestStart</code>：开始请求文档的时间（注意没有<code>requestEnd</code>）;</li>
+<li><code>responseStart</code>：浏览器开始接收第一个字节数据的时间，数据可能来自于服务器、缓存、或本地资源；</li>
+<li><code>unloadEventStart</code>：卸载上一个文档开始的时间；</li>
+<li><code>unloadEventEnd</code>：卸载上一个文档结束的时间；</li>
+<li><code>domLoading</code>：浏览器把<code>document.readyState</code>设置为<code>“loading”</code>的时间点，开始构建<code>dom</code>树的时间点；</li>
+<li><code>responseEnd</code>：浏览器接收最后一个字节数据的时间，或连接被关闭的时间；</li>
+<li><code>domInteractive</code>：浏览器把<code>document.readyState设</code>置为<code>“interactive”</code>的时间点，<code>DOM</code>树创建结束；</li>
+<li><code>domContentLoadedEventStart</code>：文档发生<code>DOMContentLoaded</code>事件的时间；</li>
+<li><code>domContentLoadedEventEnd</code>：文档的<code>DOMContentLoaded</code>事件结束的时间；</li>
+<li><code>domComplete</code>：浏览器把<code>document.readyState</code>设置为<code>“complete”</code>的时间点；</li>
+<li><code>loadEventStart</code>：文档触发<code>load</code>事件的时间；</li>
+<li><code>loadEventEnd</code>：文档出发<code>load</code>事件结束后的时间</li>
+</ul>
+<blockquote>
+<p>再来一张图，表示各阶段的开始与结束对应的时间</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/8554143/33872196-d6c35844-df50-11e7-8bcc-1fdcac66ce64.png" alt="img"></p>
+<blockquote>
+<p>从以上的分析，我们就可以得到一些时间的计算</p>
+</blockquote>
+<ul>
+<li>准备新页面耗时：<code>fetchStart - navigationStart</code></li>
+<li>重定向时间：<code>redirectEnd - redirectStart</code></li>
+<li><code>App Cache</code>时间：<code>domainLookupStart - fetchStart</code></li>
+<li><code>DNS</code>解析时间：<code>domainLookupEnd -domainLookupStart</code></li>
+<li><code>TCP</code>连接时间：<code>connectEnd - connectStart</code></li>
+<li><code>request</code>时间：<code>responseEnd - requestStart</code>这个计算是代表请求响应加起来的时间</li>
+<li>请求完毕到<code>DOM</code>树加载：<code>domInteractive -responseEnd</code></li>
+<li>构建与解析<code>DOM</code>树，加载资源时间：<code>domCompleter -domInteractive</code></li>
+<li><code>load</code>时间：<code>loadEventEnd - loadEventStart</code></li>
+<li>整个页面加载时间：<code>loadEventEnd -navigationStart</code></li>
+<li>白屏时间：<code>responseStart-navigationStart</code></li>
+</ul>
+<h3 id="2-2-performance-getEntries"><a href="#2-2-performance-getEntries" class="headerlink" title="2.2 performance.getEntries()"></a>2.2 performance.getEntries()</h3><blockquote>
+<p>这个API能帮我们获得资源的请求时间，包括JS、CSS、图片等</p>
+</blockquote>
+<p><img src="https://img-blog.csdn.net/20170316155201356" alt="img"></p>
+<blockquote>
+<p>如上图可以看到这个API请求返回的是一个数组，这个数组包括整个页面所有的资源加载，上图打开了一个其中一个资源，可以看到如下信息</p>
+</blockquote>
+<ul>
+<li><code>entryType</code>：类型为<code>resource</code></li>
+<li><code>name</code>：资源的<code>url</code></li>
+<li><code>initiatorType</code>：资源是<code>link</code></li>
+<li>资源时间：<code>duration</code>的值，是<code>responseEnd - startTime</code>得到的</li>
+</ul>
+<h3 id="2-3-performance-memory"><a href="#2-3-performance-memory" class="headerlink" title="2.3 performance.memory"></a>2.3 performance.memory</h3><blockquote>
+<p>这个API主要是得到浏览器内存情况</p>
+</blockquote>
+<ul>
+<li><code>jsHeapSizeLimit</code>：内存大小限制</li>
+<li><code>totalJSHeapSize</code>：可使用的内容</li>
+<li><code>userdJSHeapSize</code>：已使用的内容</li>
+</ul>
+<blockquote>
+<p><code>userdJSHeapSize</code>表示所有被使用的JS堆栈内存，<code>totalJSHeapSize</code>可使用的JS堆栈内存，如果<code>userdJSHeapSize</code>的值大于<code>totalJSHeapSize</code>，就可能出现内存泄漏</p>
+</blockquote>
+<p><img src="https://img-blog.csdn.net/20170316155226893" alt="img"></p>
+<h2 id="三、动画帧率FPS"><a href="#三、动画帧率FPS" class="headerlink" title="三、动画帧率FPS"></a>三、动画帧率FPS</h2><h3 id="3-1-流畅动画的标准"><a href="#3-1-流畅动画的标准" class="headerlink" title="3.1 流畅动画的标准"></a>3.1 流畅动画的标准</h3><blockquote>
+<p><code>FPS</code> 表示的是每秒钟画面更新次数。我们平时所看到的连续画面都是由一幅幅静止画面组成的，每幅画面称为一帧，<code>FPS</code> 是描述“帧”变化速度的物理量</p>
+</blockquote>
+<ul>
+<li>理论上说，<code>FPS</code> 越高，动画会越流畅，目前大多数设备的屏幕刷新率为 <code>60</code> 次&#x2F;秒，所以通常来讲 <code>FPS</code> 为 <code>60 frame/s</code> 时动画效果最好，也就是每帧的消耗时间为 <code>16.6</code>7ms</li>
+</ul>
+<p><strong>不同帧率的体验</strong></p>
+<ul>
+<li>帧率能够达到 <code>50 ～ 60 FPS</code> 的动画将会相当流畅，让人倍感舒适；</li>
+<li>帧率在 <code>30 ～ 50 FPS</code> 之间的动画，因各人敏感程度不同，舒适度因人而异；</li>
+<li>帧率在 <code>30 FPS</code> 以下的动画，让人感觉到明显的卡顿和不适感；</li>
+<li>帧率波动很大的动画，亦会使人感觉到卡顿</li>
+</ul>
+<h3 id="3-2-获取我们页面动画当前的-FPS-值"><a href="#3-2-获取我们页面动画当前的-FPS-值" class="headerlink" title="3.2 获取我们页面动画当前的 FPS 值"></a>3.2 获取我们页面动画当前的 FPS 值</h3><blockquote>
+<p>那么我们该如何准确的获取我们页面动画当前的 FPS 值呢？</p>
+</blockquote>
+<h4 id="3-2-1-方法一-借助-Chrome-开发者工具"><a href="#3-2-1-方法一-借助-Chrome-开发者工具" class="headerlink" title="3.2.1 方法一 借助 Chrome 开发者工具"></a>3.2.1 方法一 借助 Chrome 开发者工具</h4><blockquote>
+<p><code>Chrome</code> 提供给开发者的功能十分强大，在开发者工具中，我们进行如下选择调出 <code>FPS meter</code> 选项：</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/8554143/33823997-e25d42dc-de97-11e7-92e3-8521ede019df.png" alt="img"></p>
+<blockquote>
+<p>通过这个按钮，可以开启页面实时 <code>Frame Rate</code> (帧率) 观测及页面 <code>GPU</code> 使用率</p>
+</blockquote>
+<p><strong>但是这个方法缺点太多了</strong></p>
+<ul>
+<li>这个只能一次观测一到几个页面，而且需要人工实时观测</li>
+<li>数据只能是主观感受，并没有一个十分精确的数据不断上报或者被收集</li>
+<li>因此，我们需要更加智能的方法。</li>
+</ul>
+<h4 id="3-2-2-方法二-借助-Frame-Timing-API"><a href="#3-2-2-方法二-借助-Frame-Timing-API" class="headerlink" title="3.2.2 方法二 借助 Frame Timing API"></a>3.2.2 方法二 借助 Frame Timing API</h4><blockquote>
+<p>Blink 内核早期架构</p>
+</blockquote>
+<ul>
+<li>以 <code>Chrome</code> 浏览器内核 <code>Blink</code> 渲染页面为例。对早期的 <code>Chrome</code> 浏览器而言，每个页面 <code>Tab</code> 对应一个独立的 <code>renderer</code> 进程，<code>Renderer</code>进程中包含了主线程和合成线程。早期 <code>Chrome</code> 内核架构</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/8554143/33830985-4ab23108-deb1-11e7-89ed-6b9f60dcb2fd.jpg" alt="img"></p>
+<p><strong>其中，主线程主要负责</strong>：</p>
+<ul>
+<li><code>Javascript</code> 的计算与执行</li>
+<li><code>CSS</code> 样式计算</li>
+<li><code>Layout</code> 计算</li>
+<li>将页面元素绘制成位图（<code>paint</code>），也就是光栅化（<code>Raster</code>）</li>
+<li>将位图给合成线程</li>
+</ul>
+<p><strong>合成线程则主要负责</strong>：</p>
+<ul>
+<li>将位图(<code>GraphicsLayer</code> 层)以纹理(<code>texture</code>)的形式上传给 <code>GPU</code></li>
+<li>计算页面的可见部分和即将可见部分（滚动）</li>
+<li><code>CSS</code> 动画处理</li>
+<li>通知 GPU 绘制位图到屏幕上</li>
+</ul>
+<blockquote>
+<p>其实知道了这两个线程之后，下一个概念是厘清 <code>CSS</code> 动画与 <code>JS</code> 动画的细微区别（当然它们都是 Web 动画）</p>
+</blockquote>
+<p><strong>JS 动画与 CSS 动画的细微区别</strong></p>
+<ul>
+<li>对于 <code>JS</code>动画而言，它们运行时的帧率即是主线程和合成线程加起来消耗的时间。对于流畅动画而言，我们希望它们每一帧的耗时保持在 <code>16.67ms</code> 之内;</li>
+<li>而对于 <code>CSS</code> 动画而言，由于其流程不受主线程的影响，所以希望能得到合成线程的消耗的时间，而合成线程的绘制频率也反映了滚动和 CSS 动画的流程性。</li>
+</ul>
+<blockquote>
+<p>上面主要想得出的一个结论是。如果我们能够知道主线程和合成线程每一帧消耗的时间，那么我们就能大致得出对应的 Web 动画的帧率。那么上面说到的 <code>Frame Timing API</code> 是否可以帮助我们拿到这个时间点呢</p>
+</blockquote>
+<p><strong>什么是 Frame Timing API ？</strong></p>
+<blockquote>
+<p><code>Frame Timing API</code> 是 <code>Web Performance Timing API</code> 标准中的其中一位成员。<code>Web Performance Timing API</code> 是 W3C 推出的一套性能 API 标准，用于帮助开发者对网站各方面的性能进行精确的分析与控制，提升 Web 网站性能</p>
+</blockquote>
+<p>它包含许多子类 API，完成不同的功能，大致如下</p>
+<p><img src="https://user-images.githubusercontent.com/8554143/33871575-0799a66a-df4e-11e7-85fd-9b40d43161da.png" alt="img"></p>
+<p>怎么使用呢？以 <code>Navigation Timing</code>, <code>Performance Timeline</code>, <code>Resource Timing</code> 为例子，对于兼容它的浏览器，它以只读属性的形式对外暴露挂载在 <code>window.performance</code> 上。</p>
+<p>我们再来回顾这张图</p>
+<p><img src="https://user-images.githubusercontent.com/8554143/33872196-d6c35844-df50-11e7-8bcc-1fdcac66ce64.png" alt="img"></p>
+<blockquote>
+<p>通过这张图以及上面的 <code>window.performance.timing</code>，我们就可以轻松的统计出页面每个重要节点的耗时，这就是 <code>Web Performance Timing API</code> 的强大之处，感兴趣的可以详细去研究研究，使用在页面统计上</p>
+</blockquote>
+<p><strong>Frame Timing API 示意</strong></p>
+<blockquote>
+<p>终于可以回归正题，借助 <code>Web Performance Timing API</code> 中的<code>Frame Timing API</code>，可以轻松的拿到每一帧中，主线程以及合成线程的时间。或者更加容易，直接拿到每一帧的耗时</p>
+</blockquote>
+<p>获取 <code>Render</code> 主线程和合成线程的记录，每条记录包含的信息基本如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var rendererEvents = window.performance.getEntriesByType(&quot;renderer&quot;);</span><br><span class="line">var compositeThreadEvents = window.performance.getEntriesByType(&quot;composite&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>或者是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ar observer = new PerformanceObserver(function(list) &#123;</span><br><span class="line">    var perfEntries = list.getEntries();</span><br><span class="line">    for (var i = 0; i &lt; perfEntries.length; i++) &#123;</span><br><span class="line">        console.log(&quot;frame: &quot;, perfEntries[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">// subscribe to Frame Timing</span><br><span class="line">observer.observe(&#123;entryTypes: [&#x27;frame&#x27;]&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>每条记录包含的信息基本如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  sourceFrameNumber: 120,</span><br><span class="line">  startTime: 1342.549374253</span><br><span class="line">  cpuTime: 6.454313323</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>每个记录都包括唯一的 <code>Frame Number</code>、<code>Frame</code> 开始时间以及 <code>cpuTime</code> 时间。通过计算每一条记录的 <code>startTime</code> ，我们就可以算出每两帧间的间隔，从而得到动画的帧率是否能够达到 <code>60 FPS</code></p>
+</blockquote>
+<p><strong>看看 Web Performance Timing API 整体的兼容性</strong></p>
+<p><img src="https://user-images.githubusercontent.com/8554143/33873788-4ad802e2-df57-11e7-9174-13913bcaa9b5.png" alt="img"></p>
+<blockquote>
+<p><code>Frame Timing API</code> 虽好，但是，现在 <code>Frame Timing API</code> 的兼容性不算很友好，额，不友好到什么程度呢。还没有任何浏览器支持，处于实验性阶段，属于面向未来编程</p>
+</blockquote>
+<h4 id="3-2-3-方法三-借助-requestAnimationFrame-API"><a href="#3-2-3-方法三-借助-requestAnimationFrame-API" class="headerlink" title="3.2.3 方法三 借助 requestAnimationFrame API"></a>3.2.3 方法三 借助 requestAnimationFrame API</h4><blockquote>
+<p>从上面的介绍，我们得知，如果我们可以到得到每一帧中的固定一个时间点，那么两者相减，也能够近似得到一帧所消耗的时间</p>
+</blockquote>
+<p>这次，我们借助兼容性不错的 <code>requestAnimationFrame API</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 语法</span><br><span class="line">window.requestAnimationFrame(callback);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>requestAnimationFrame</code> 大家应该都不陌生，方法告诉浏览器您希望执行动画并请求浏览器调用指定的函数在下一次重绘之前更新动画。</li>
+<li>当你准备好更新屏幕画面时你就应用此方法。这会要求你的动画函数在浏览器下次重绘前执行。回调的次数常是每秒 <code>60</code> 次，大多数浏览器通常匹配 <code>W3C</code> 所建议的刷新率</li>
+</ul>
+<p><strong>使用 requestAnimationFrame 计算 FPS 原理</strong></p>
+<blockquote>
+<p>原理是，正常而言 <code>requestAnimationFrame</code> 这个方法在一秒内会执行 <code>60</code> 次，也就是不掉帧的情况下。假设动画在时间 <code>A</code> 开始执行，在时间 <code>B</code> 结束，耗时 <code>x ms</code>。而中间 <code>requestAnimationFrame</code> 一共执行了 <code>n</code> 次，则此段动画的帧率大致为：<code>n / (B - A)</code></p>
+</blockquote>
+<p>核心代码如下，能近似计算每秒页面帧率，以及我们额外记录一个 <code>allFrameCount</code>，用于记录 <code>rAF</code> 的执行次数，用于计算每次动画的帧率 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">var rAF = function () &#123;</span><br><span class="line">    return (</span><br><span class="line">        window.requestAnimationFrame ||</span><br><span class="line">        window.webkitRequestAnimationFrame ||</span><br><span class="line">        function (callback) &#123;</span><br><span class="line">            window.setTimeout(callback, 1000 / 60);</span><br><span class="line">        &#125;</span><br><span class="line">    );</span><br><span class="line">&#125;();</span><br><span class="line">  </span><br><span class="line">var frame = 0;</span><br><span class="line">var allFrameCount = 0;</span><br><span class="line">var lastTime = Date.now();</span><br><span class="line">var lastFameTime = Date.now();</span><br><span class="line">  </span><br><span class="line">var loop = function () &#123;</span><br><span class="line">    var now = Date.now();</span><br><span class="line">    var fs = (now - lastFameTime);</span><br><span class="line">    var fps = Math.round(1000 / fs);</span><br><span class="line">  </span><br><span class="line">    lastFameTime = now;</span><br><span class="line">    // 不置 0，在动画的开头及结尾记录此值的差值算出 FPS</span><br><span class="line">    allFrameCount++;</span><br><span class="line">    frame++;</span><br><span class="line">  </span><br><span class="line">    if (now &gt; 1000 + lastTime) &#123;</span><br><span class="line">        var fps = Math.round((frame * 1000) / (now - lastTime));</span><br><span class="line">        console.log(`$&#123;new Date()&#125; 1S内 FPS：`, fps);</span><br><span class="line">        frame = 0;</span><br><span class="line">        lastTime = now;</span><br><span class="line">    &#125;;</span><br><span class="line">  </span><br><span class="line">    rAF(loop);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">loop();</span><br></pre></td></tr></table></figure>
+
+<p>寻找一个有动画不断运行的页面进行测试，可以看到代码运行如下：</p>
+<p><img src="https://user-images.githubusercontent.com/8554143/33877304-eae6fddc-df62-11e7-8d5f-8674dba3d1f9.png" alt="img"></p>
+<ul>
+<li>使用了我之前制作的一个页面进行了测试，使用<code>Chrome</code> 同时调出页面的 <code>FPS meter</code>，对比两边的实时 <code>FPS</code>值，基本吻合。</li>
+<li>测试页面，<code>Solar System</code>。你可以将上面的代码贴到这个页面的 <code>console</code> 中，测试一下数据</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/8554143/33877626-ed17f3c6-df63-11e7-8bae-40b9512c2645.gif" alt="img"></p>
+<ul>
+<li>对比右上角的 <code>Frame Rate</code>，帧率基本一致。在大部分情况下，这种方法可以很好的得出 Web 动画的帧率。</li>
+<li>如果我们需要统计某个特定动画过程的帧率，只需要在动画开始和结尾两处分别记录 <code>allFrameCount</code> 这个数值大小，再除以中间消耗的时间，也可以得出特定动画过程的 <code>FPS</code> 值。</li>
+<li>值得注意的是，这个方法计算的结果和真实的帧率肯定是存在误差的，因为它是将每两次主线程执行 <code>javascript</code>的时间间隔当成一帧，而非上面说的主线程加合成线程所消耗的时间为一帧。但是对于现阶段而言，算是一种可取的方法</li>
+</ul>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2021/03/22/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">前端页面性能优化</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2021/03/12/html+css+js+ts/jQuery%E6%80%BB%E7%BB%93/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">jQurty总结</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

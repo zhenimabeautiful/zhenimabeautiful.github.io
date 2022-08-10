@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>移动端适配 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">移动端适配</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2018-02-05T07:11:47.000Z" itemprop="datePublished">2018-02-05</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF/">📒 前端</a></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">📒 移动端</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/html/">🏷️ html</a></li>
+  
+    <li><a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">🏷️ 移动端</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h2 id="一、为什么要做适配"><a href="#一、为什么要做适配" class="headerlink" title="一、为什么要做适配"></a>一、为什么要做适配</h2><ul>
+<li>为了适应各种移动端设备，完美呈现应有的布局效果</li>
+<li>各个移动端设备，分辨率大小不一致，网页想铺满整个屏幕，并在各种分辨下等比缩放</li>
+</ul>
+<h2 id="二、适配方案"><a href="#二、适配方案" class="headerlink" title="二、适配方案"></a>二、适配方案</h2><ul>
+<li>固定高度，宽度百分比适配-布局非常均匀，适合百分比布局</li>
+<li>固定宽度，改变缩放比例适配-什么情况都可以</li>
+<li><code>Rem</code>适配</li>
+<li>像素比适配</li>
+</ul>
+<h2 id="三、单位"><a href="#三、单位" class="headerlink" title="三、单位"></a>三、单位</h2><ul>
+<li><code>em</code>根据元素自身的字体大小计算,元素自身 <code>16px</code> <code>1em=16px</code></li>
+<li><code>Rem</code> <code>R -&gt; root</code> 根节点( <code>html</code> ) 根据<code>html</code>的字体大小计算其他元素尺寸</li>
+</ul>
+<h2 id="四、百分比适配-常用"><a href="#四、百分比适配-常用" class="headerlink" title="四、百分比适配(常用)"></a>四、百分比适配(常用)</h2><blockquote>
+<p>固定高度，宽度百分比适配</p>
+</blockquote>
+<ul>
+<li>根据设置的大小去设置高度，单位可以用<code>px</code> 百分比 <code>auto</code></li>
+<li>常用<code>Flex</code>布局</li>
+<li>百分比宽度</li>
+</ul>
+<blockquote>
+<p>以<code>640</code>设计稿为例，在外层容器上设置最大以及最小的宽</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#wrapper &#123;</span><br><span class="line">    max-width: 640px; /*设置设计稿的宽度*/</span><br><span class="line">    min-width: 300px;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>后面的区块布局都用百分比，具体元素大小用<code>px</code>计算</p>
+</blockquote>
+<ul>
+<li>也就是宽度用百分比，高度用<code>px</code></li>
+<li>高度以及图片不要定死，让它自动撑开</li>
+</ul>
+<h2 id="五、Rem适配-常用"><a href="#五、Rem适配-常用" class="headerlink" title="五、Rem适配(常用)"></a>五、Rem适配(常用)</h2><ul>
+<li>根据屏幕的分辨率动态设置<code>html</code>的文字大小，达到等比缩放的功能</li>
+<li>保证<code>html</code>最终算出来的字体大小，不能小于<code>12px</code></li>
+<li>在不同的移动端显示不同的元素比例效果</li>
+<li>如果<code>html</code>的<code>font-size:20px</code>的时候，那么此时的<code>1rem = 20px</code></li>
+<li>把设计图的宽度分成多少分之一，根据实际情况</li>
+<li><code>rem</code>做盒子的宽度，<code>viewport</code>缩放</li>
+</ul>
+<blockquote>
+<p><code>head</code>加入常见的<code>meta</code>属性</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot;&gt;</span><br><span class="line">&lt;!--这个是关键--&gt;</span><br><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0，minimum-scale=1.0&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>把这段代码加入<code>head</code>中的<code>script</code>预先加载</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// rem适配用这段代码动态计算html的font-size大小</span><br><span class="line">(function(win) &#123;</span><br><span class="line">    var docEl = win.document.documentElement;</span><br><span class="line">    var timer = &#x27;&#x27;;</span><br><span class="line"></span><br><span class="line">    function changeRem() &#123;</span><br><span class="line">        var width = docEl.getBoundingClientRect().width;</span><br><span class="line">        if (width &gt; 750) &#123; // 750是设计稿大小</span><br><span class="line">            width = 750;</span><br><span class="line">        &#125;</span><br><span class="line">        var fontS = width / 10; // 把设备宽度十等分 1rem=10px</span><br><span class="line">        docEl.style.fontSize = fontS + &quot;px&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    win.addEventListener(&quot;resize&quot;, function() &#123;</span><br><span class="line">        clearTimeout(timer);</span><br><span class="line">        timer = setTimeout(changeRem, 30);</span><br><span class="line">    &#125;, false);</span><br><span class="line">    win.addEventListener(&quot;pageshow&quot;, function(e) &#123;</span><br><span class="line">        if (e.persisted) &#123; //清除缓存</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            timer = setTimeout(changeRem, 30);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, false);</span><br><span class="line">    changeRem();</span><br><span class="line">&#125;)(window)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>或者使用淘宝提供的库 <a target="_blank" rel="noopener" href="https://github.com/amfe/lib-flexible">https://github.com/amfe/lib-flexible</a></li>
+</ul>
+<p><strong>布局细节</strong></p>
+<ul>
+<li>结构用<code>section</code>区块划分更语义化</li>
+<li>然后在<code>body</code>设置宽度</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    width: 10rem;</span><br><span class="line">    margin: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>后面的区块都以百分比布局</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">   &lt;header&gt;&lt;header&gt;</span><br><span class="line">   &lt;section&gt;&lt;section&gt;</span><br><span class="line">   &lt;section&gt;&lt;section&gt;</span><br><span class="line">   &lt;section&gt;&lt;section&gt;</span><br><span class="line">   &lt;section&gt;&lt;section&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">section,</span><br><span class="line">header &#123;</span><br><span class="line">    width: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>把视觉稿中的 px 转换成 rem</strong></p>
+<blockquote>
+<p>首先，目前日常工作当中，视觉设计师给到前端开发人员手中的视觉稿尺寸一般是基于 <code>640px</code> 、 <code>750px</code> 以及 <code>1125px</code> 宽度为准。甚至为什么？大家应该懂的（考虑<code>Retina</code>屏）</p>
+</blockquote>
+<blockquote>
+<p>假定设计稿的大小为<code>750</code>，那么我们则将整个图分成<code>10</code>等份来看。&#96;&#96; 对应的 <code>font-size</code>为<code>75px</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">html&#123;</span><br><span class="line">	font-size: 75px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这样一来，对于视觉稿上的元素尺寸换算，只需要原始的 <code>px</code>值 除以 <code>rem</code>基准值 即可</li>
+</ul>
+<blockquote>
+<p>那么，我们现在就可以比对设计稿，比如设计稿中，有一个<code>div</code>元素，宽度，高度都为<code>20px</code>,那么我们这样写即可（可以用 <code>markman</code>标准设计稿的元素大小）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">div &#123;</span><br><span class="line">	height: 0.27rem; /*20/75*/</span><br><span class="line">	width: 0.27rem;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>动态计算的<code>rem</code>最后会帮我们动态计算元素在不同屏幕下的宽高</li>
+<li>对于设计稿上的每个元素的尺寸在设计稿大小已知的时候，我们需要测量出，然后在用测量的宽高除以设计稿<code>750</code>的十分之一也就是<code>75</code>,得到我们想要的<code>rem</code>。而<code>rem</code>是根据屏幕动态变化的，也就达到了适配的效果。也就是同一套设计稿运用在不同的设备上。</li>
+</ul>
+<blockquote>
+<p>比如当我们切换到<code>320</code>设备大小的时候，这时候<code>1rem=32px;</code> <code>div</code>的像素实际是<code>0.27*32=8.64px``0.27</code>是我们在已知设计稿是<code>750</code>的情况下计算出来的，<code>rem</code>用来动态计算而已</p>
+</blockquote>
+<ul>
+<li>对于<code>margin</code> <code>padding</code> <code>line-height</code> <code>width</code> <code>height</code>使用<code>rem</code>计算</li>
+</ul>
+<p><strong>如何快速计算</strong></p>
+<blockquote>
+<p>在实际生产当中，如果每一次计算 <code>px</code> 转换 <code>rem</code> ，或许会觉得非常麻烦</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/flashlizi/cssrem"><code>CSSREM</code></a> 是一个<code>CSS</code>的 <code>px</code> 值转 <code>rem</code> 值的<code>Sublime Text3</code>自动完成插件</li>
+<li>插件效果</li>
+</ul>
+<p><img src="https://github.com/poetries/cssrem/raw/master/cssrem.gif" alt="img"></p>
+<blockquote>
+<p>插件使用方法</p>
+</blockquote>
+<ul>
+<li><p>安装</p>
+<ul>
+<li>下载本项目，比如：git clone <a target="_blank" rel="noopener" href="https://github.com/flashlizi/cssrem">https://github.com/flashlizi/cssrem</a></li>
+<li>进入<code>packages</code>目录：<code>Sublime Text</code> -&gt; <code>Preferences</code> -&gt; <code>Browse Packages</code>…</li>
+<li>复制下载的<code>cssrem</code>目录到刚才的packges目录里。</li>
+<li>重启<code>Sublime Text</code></li>
+</ul>
+</li>
+<li><p>配置参数</p>
+<ul>
+<li><p>参数配置文件：<code>Sublime Text -&gt; Preferences -&gt; Package Settings -&gt; cssrem</code></p>
+</li>
+<li><p><code>px_to_rem</code> - <code>px</code>转<code>rem</code>的单位比例，默认为<code>40</code>【根据设计稿来设置，如设计稿<code>750</code>，我们取十分之一即<code>75</code>】。</p>
+</li>
+<li><p><code>max_rem_fraction_length</code> - <code>px</code>转<code>rem</code>的小数部分的最大长度。默认为<code>6</code>。</p>
+</li>
+<li><p><code>available_file_types</code> - 启用此插件的文件类型。默认为：[“<code>.css</code>“, “<code>.less</code>“, “<code>.sass</code>“]。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>文字适配的解决方案</strong></p>
+<ul>
+<li>对于一些标题性的文字，我们依然可以用<code>rem</code>。让他随着屏幕来进行缩放，因为标题性文字一般较大，而较大的文字，点阵对其影响就越小。这样，即使出现奇怪的尺寸，也能够让字体得到很好的渲染。</li>
+<li>对于一些正文内容的文字（即站在使用者的角度，你不希望他进行缩放的文字）。我们采用<code>px</code>来进行处理</li>
+</ul>
+<h2 id="六、缩放比适配"><a href="#六、缩放比适配" class="headerlink" title="六、缩放比适配"></a>六、缩放比适配</h2><blockquote>
+<p>固定宽度，改变缩放比例适配</p>
+</blockquote>
+<ul>
+<li>设计图的宽度就是网页显示的宽度</li>
+<li>改变视口的缩放比例</li>
+<li>页面宽度固定死</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 缩放比例适配方案--用这个代码 </span><br><span class="line">var width = window.screen.width,</span><br><span class="line">    fixedW = 320, //设计稿宽度的一半</span><br><span class="line">    scale = width / fixedW, // 缩放比例</span><br><span class="line">    meta = document.createElement(&#x27;meta&#x27;),</span><br><span class="line">    metaAttr = &#123;</span><br><span class="line">        name : &#x27;viewport&#x27;,</span><br><span class="line">        content : &#x27;width=&#x27;+fixedW+&#x27;, initial-scale=&#x27;+scale+&#x27;, maximum-scale=&#x27;+scale+&#x27;, user-scalable=0&#x27;</span><br><span class="line">    &#125;;</span><br><span class="line">    for (var key in metaAttr) &#123;</span><br><span class="line">        meta[key] = metaAttr[key];</span><br><span class="line">    &#125;</span><br><span class="line">    document.head.appendChild(meta);</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、像素比适配"><a href="#七、像素比适配" class="headerlink" title="七、像素比适配"></a>七、像素比适配</h2><ul>
+<li><code>window.devicePixelRatio</code></li>
+<li>物理像素是手机屏幕分辨率</li>
+<li>独立像素 指<code>css</code>像素 屏幕宽度</li>
+<li>像素比 &#x3D; 物理像素 &#x2F; <code>css宽度</code></li>
+<li>获取设备的像素比 <code>window.devicePixelRatio</code></li>
+</ul>
+<h2 id="八、小结"><a href="#八、小结" class="headerlink" title="八、小结"></a>八、小结</h2><blockquote>
+<p>关于移动端布局方案有很多，<code>rem</code>和百分比运用最多的</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://ymblog.net/2015/07/01/%E7%A7%BB%E5%8A%A8%E5%89%8D%E7%AB%AFmeta%E6%A0%87%E7%AD%BE%E8%BD%AC/">http://ymblog.net/2015/07/01/移动前端meta标签转/</a>)</li>
+</ul>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/02/07/html+css+js+ts/1-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">移动端像素比调试</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/02/02/html+css+js+ts/1-flex/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">flex布局</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

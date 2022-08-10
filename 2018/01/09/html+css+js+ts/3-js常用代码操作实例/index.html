@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>js-常用代码操作实例 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">js-常用代码操作实例</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2018-01-09T14:25:58.000Z" itemprop="datePublished">2018-01-09</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF/">📒 前端</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/javascript/">🏷️ javascript</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <ul>
+<li>转义特殊字符为html实体</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HtmlEncode: function(str)&#123;</span><br><span class="line">	return str.replace(/&amp;/g, &#x27;&amp;&#x27;).replace(/\&quot;/g, &#x27;&quot;&#x27;).replace(/&lt;/g, &#x27;&lt;&#x27;).replace(/&gt;/g, &#x27;&gt;&#x27;).replace(/&#x27;/g, &#x27;&#x27;&#x27;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>验证是否为有效的手机电话号码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IsMobile: function(str)&#123;</span><br><span class="line">	var rp = /^1[3|4|5|7|8][0-9]\d&#123;4,8&#125;$/;</span><br><span class="line">	return rp.test(str);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>验证是否为有效的座机电话号码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IsTel: function(str)&#123;</span><br><span class="line">	var rp = /^([0-9]&#123;3,4&#125;-)?[0-9]&#123;7,8&#125;$/;</span><br><span class="line">	return rp.test(str);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>判断是那种类型的浏览器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">WhichBrowser: function()&#123;</span><br><span class="line">	var userAgent = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">	var isOpera = userAgent.indexOf(&quot;Opera&quot;) &gt; -1;</span><br><span class="line">	var isIE = userAgent.indexOf(&quot;compatible&quot;) &gt; -1 &amp;&amp; userAgent.indexOf(&quot;MSIE&quot;) &gt; -1 &amp;&amp; !isOpera;</span><br><span class="line">	var isFF = userAgent.indexOf(&quot;Firefox&quot;) &gt; -1;</span><br><span class="line">	var isCH = userAgent.indexOf(&quot;Chrome&quot;) &gt; -1;</span><br><span class="line">	var isSafari = userAgent.indexOf(&quot;Safari&quot;) &gt; -1;</span><br><span class="line"></span><br><span class="line">	if (isIE)&#123;</span><br><span class="line">		var IE5 = IE55 = IE6 = IE7 = IE8 = false;</span><br><span class="line">		var reIE = new RegExp(&quot;MSIE (\\d+\\.\\d+);&quot;);</span><br><span class="line">		reIE.test(userAgent);</span><br><span class="line">		var fIEVersion = parseFloat(RegExp[&quot;$1&quot;]);</span><br><span class="line">		IE55 = fIEVersion == 5.5;</span><br><span class="line">		IE6 = fIEVersion == 6.0;</span><br><span class="line">		IE7 = fIEVersion == 7.0;</span><br><span class="line">		IE8 = fIEVersion == 8.0;</span><br><span class="line">		if (IE55) &#123;</span><br><span class="line">			return &quot;IE55&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">		if (IE6) &#123;</span><br><span class="line">			return &quot;IE6&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">		if (IE7) &#123;</span><br><span class="line">			return &quot;IE7&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">		if (IE8) &#123;</span><br><span class="line">			return &quot;IE8&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if (isFF) &#123;</span><br><span class="line">		return &quot;Firefox&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	if (isCH) &#123;</span><br><span class="line">		return &quot;Chrome&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	if (isOpera) &#123;</span><br><span class="line">		return &quot;Opera&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	if (isSafari) &#123;</span><br><span class="line">		return &quot;Safari&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取客户端浏览器cookie</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">GetCookie: function(c_name)&#123;</span><br><span class="line">	if(document.cookie.length&gt;0)&#123;</span><br><span class="line">		c_start = document.cookie.indexOf(c_name + &#x27;=&#x27;);</span><br><span class="line">		if(c_start != -1)&#123;</span><br><span class="line">			c_start = c_start + c_name.length + 1;</span><br><span class="line">			c_end = document.cookie.indexOf(&#x27;;&#x27;,c_start);</span><br><span class="line">			if (c_end==-1) c_end = document.cookie.length;</span><br><span class="line">			return unescape(document.cookie.substring(c_start,c_end));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return &#x27;&#x27;;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置客户端浏览器cookie</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SetCookie: function(c_name, value, expiredays)&#123;</span><br><span class="line">	var exdate = new Date();</span><br><span class="line">	exdate.setDate(exdate.getDate() + expiredays);</span><br><span class="line">	document.cookie = c_name + &quot;=&quot; + escape(value) + ((expiredays==null) ? &quot;&quot; : &quot;;expires=&quot;+exdate.toGMTString());</span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>字符串长度截取</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function cutstr(str, len) &#123;</span><br><span class="line">    var temp,</span><br><span class="line">        icount = 0,</span><br><span class="line">        patrn = /[^\x00-\xff]/，</span><br><span class="line">        strre = &quot;&quot;;</span><br><span class="line">    for (var i = 0; i &lt; str.length; i++) &#123;</span><br><span class="line">        if (icount &lt; len - 1) &#123;</span><br><span class="line">            temp = str.substr(i, 1);</span><br><span class="line">                if (patrn.exec(temp) == null) &#123;</span><br><span class="line">                   icount = icount + 1</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                icount = icount + 2</span><br><span class="line">            &#125;</span><br><span class="line">            strre += temp</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return strre + &quot;...&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>替换全部</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String.prototype.replaceAll = function(s1, s2) &#123;</span><br><span class="line">    return this.replace(new RegExp(s1, &quot;gm&quot;), s2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>清除空格</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String.prototype.trim = function() &#123;</span><br><span class="line">    var reExtraSpace = /^\s*(.*?)\s+$/;</span><br><span class="line">    return this.replace(reExtraSpace, &quot;$1&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>清除左空格&#x2F;右空格</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function ltrim(s)&#123; return s.replace( /^(\s*|　*)/, &quot;&quot;); &#125; </span><br><span class="line">function rtrim(s)&#123; return s.replace( /(\s*|　*)$/, &quot;&quot;); &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>判断是否以某个字符串开头</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String.prototype.startWith = function (s) &#123;</span><br><span class="line">    return this.indexOf(s) == 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>判断是否以某个字符串结束</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String.prototype.endWith = function (s) &#123;</span><br><span class="line">    var d = this.length - s.length;</span><br><span class="line">    return (d &gt;= 0 &amp;&amp; this.lastIndexOf(s) == d)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>转义html标签</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function HtmlEncode(text) &#123;</span><br><span class="line">    return text.replace(/&amp;/g, &#x27;&amp;&#x27;).replace(/\&quot;/g, &#x27;&quot;&#x27;).replace(/&lt;/g, &#x27;&lt;&#x27;).replace(/&gt;/g, &#x27;&gt;&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>时间日期格式转换</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Date.prototype.Format = function(formatStr) &#123;</span><br><span class="line">    var str = formatStr;</span><br><span class="line">    var Week = [&#x27;日&#x27;, &#x27;一&#x27;, &#x27;二&#x27;, &#x27;三&#x27;, &#x27;四&#x27;, &#x27;五&#x27;, &#x27;六&#x27;];</span><br><span class="line">    str = str.replace(/yyyy|YYYY/, this.getFullYear());</span><br><span class="line">    str = str.replace(/yy|YY/, (this.getYear() % 100) &gt; 9 ? (this.getYear() % 100).toString() : &#x27;0&#x27; + (this.getYear() % 100));</span><br><span class="line">    str = str.replace(/MM/, (this.getMonth() + 1) &gt; 9 ? (this.getMonth() + 1).toString() : &#x27;0&#x27; + (this.getMonth() + 1));</span><br><span class="line">    str = str.replace(/M/g, (this.getMonth() + 1));</span><br><span class="line">    str = str.replace(/w|W/g, Week[this.getDay()]);</span><br><span class="line">    str = str.replace(/dd|DD/, this.getDate() &gt; 9 ? this.getDate().toString() : &#x27;0&#x27; + this.getDate());</span><br><span class="line">    str = str.replace(/d|D/g, this.getDate());</span><br><span class="line">    str = str.replace(/hh|HH/, this.getHours() &gt; 9 ? this.getHours().toString() : &#x27;0&#x27; + this.getHours());</span><br><span class="line">    str = str.replace(/h|H/g, this.getHours());</span><br><span class="line">    str = str.replace(/mm/, this.getMinutes() &gt; 9 ? this.getMinutes().toString() : &#x27;0&#x27; + this.getMinutes());</span><br><span class="line">    str = str.replace(/m/g, this.getMinutes());</span><br><span class="line">    str = str.replace(/ss|SS/, this.getSeconds() &gt; 9 ? this.getSeconds().toString() : &#x27;0&#x27; + this.getSeconds());</span><br><span class="line">    str = str.replace(/s|S/g, this.getSeconds());</span><br><span class="line">    return str</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>判断是否为数字类型</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function isDigit(value) &#123;</span><br><span class="line">    var patrn = /^[0-9]*$/;</span><br><span class="line">    if (patrn.exec(value) == null || value == &quot;&quot;) &#123;</span><br><span class="line">        return false</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置cookie值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function setCookie(name, value, Hours) &#123;</span><br><span class="line">    var d = new Date();</span><br><span class="line">    var offset = 8;</span><br><span class="line">    var utc = d.getTime() + (d.getTimezoneOffset() * 60000);</span><br><span class="line">    var nd = utc + (3600000 * offset);</span><br><span class="line">    var exp = new Date(nd);</span><br><span class="line">    exp.setTime(exp.getTime() + Hours * 60 * 60 * 1000);</span><br><span class="line">    document.cookie = name + &quot;=&quot; + escape(value) + &quot;;path=/;expires=&quot; + exp.toGMTString() + &quot;;domain=360doc.com;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取cookie值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function getCookie(name) &#123;</span><br><span class="line">    var arr = document.cookie.match(new RegExp(&quot;(^| )&quot; + name + &quot;=([^;]*)(;|$)&quot;));</span><br><span class="line">    if (arr != null) return unescape(arr[2]);</span><br><span class="line">    return null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>加入收藏夹</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function AddFavorite(sURL, sTitle) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        window.external.addFavorite(sURL, sTitle)</span><br><span class="line">    &#125; catch(e) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            window.sidebar.addPanel(sTitle, sURL, &quot;&quot;)</span><br><span class="line">        &#125; catch(e) &#123;</span><br><span class="line">            alert(&quot;加入收藏失败，请使用Ctrl+D进行添加&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设为首页</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function setHomepage() &#123;</span><br><span class="line">    if (document.all) &#123;</span><br><span class="line">        document.body.style.behavior = &#x27;url(#default#homepage)&#x27;;</span><br><span class="line">        document.body.setHomePage(&#x27;http://w3cboy.com&#x27;)</span><br><span class="line">    &#125; else if (window.sidebar) &#123;</span><br><span class="line">        if (window.netscape) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                netscape.security.PrivilegeManager.enablePrivilege(&quot;UniversalXPConnect&quot;)</span><br><span class="line">            &#125; catch(e) &#123;</span><br><span class="line">                alert(&quot;该操作被浏览器拒绝，如果想启用该功能，请在地址栏内输入 about:config,然后将项 signed.applets.codebase_principal_support 值该为true&quot;)</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        var prefs = Components.classes[&#x27;@mozilla.org/preferences-service;1&#x27;].getService(Components.interfaces.nsIPrefBranch);</span><br><span class="line">        prefs.setCharPref(&#x27;browser.startup.homepage&#x27;, &#x27;http://w3cboy.com&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>加载样式文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function LoadStyle(url) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        document.createStyleSheet(url)</span><br><span class="line">    &#125; catch(e) &#123;</span><br><span class="line">        var cssLink = document.createElement(&#x27;link&#x27;);</span><br><span class="line">        cssLink.rel = &#x27;stylesheet&#x27;;</span><br><span class="line">        cssLink.type = &#x27;text/css&#x27;;</span><br><span class="line">        cssLink.href = url;</span><br><span class="line">        var head = document.getElementsByTagName(&#x27;head&#x27;)[0];</span><br><span class="line">        head.appendChild(cssLink)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回脚本内容</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function evalscript(s) &#123;</span><br><span class="line">    if(s.indexOf(&#x27;&lt;script&#x27;) == -1) return s;</span><br><span class="line">    var p = /&lt;script[^\&gt;]*?&gt;([^\x00]*?)&lt;\/script&gt;/ig;</span><br><span class="line">    var arr = [];</span><br><span class="line">    while(arr = p.exec(s)) &#123;</span><br><span class="line">        var p1 = /&lt;script[^\&gt;]*?src=\&quot;([^\&gt;]*?)\&quot;[^\&gt;]*?(reload=\&quot;1\&quot;)?(?:charset=\&quot;([\w\-]+?)\&quot;)?&gt;&lt;\/script&gt;/i;</span><br><span class="line">        var arr1 = [];</span><br><span class="line">        arr1 = p1.exec(arr[0]);</span><br><span class="line">        if(arr1) &#123;</span><br><span class="line">            appendscript(arr1[1], &#x27;&#x27;, arr1[2], arr1[3]);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            p1 = /&lt;script(.*?)&gt;([^\x00]+?)&lt;\/script&gt;/i;</span><br><span class="line">            arr1 = p1.exec(arr[0]);</span><br><span class="line">            appendscript(&#x27;&#x27;, arr1[2], arr1[1].indexOf(&#x27;reload=&#x27;) != -1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>清除脚本内容</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function stripscript(s) &#123;</span><br><span class="line">    return s.replace(/&lt;script.*?&gt;.*?&lt;\/script&gt;/ig, &#x27;&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>动态加载脚本文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function appendscript(src, text, reload, charset) &#123;</span><br><span class="line">    var id = hash(src + text);</span><br><span class="line">    if(!reload &amp;&amp; in_array(id, evalscripts)) return;</span><br><span class="line">    if(reload &amp;&amp; $(id)) &#123;</span><br><span class="line">        $(id).parentNode.removeChild($(id));</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    evalscripts.push(id);</span><br><span class="line">    var scriptNode = document.createElement(&quot;script&quot;);</span><br><span class="line">    scriptNode.type = &quot;text/javascript&quot;;</span><br><span class="line">    scriptNode.id = id;</span><br><span class="line">    scriptNode.charset = charset ? charset : (BROWSER.firefox ? document.characterSet : document.charset);</span><br><span class="line">    try &#123;</span><br><span class="line">        if(src) &#123;</span><br><span class="line">            scriptNode.src = src;</span><br><span class="line">            scriptNode.onloadDone = false;</span><br><span class="line">            scriptNode.onload = function () &#123;</span><br><span class="line">                scriptNode.onloadDone = true;</span><br><span class="line">                JSLOADED[src] = 1;</span><br><span class="line">             &#125;;</span><br><span class="line">             scriptNode.onreadystatechange = function () &#123;</span><br><span class="line">                 if((scriptNode.readyState == &#x27;loaded&#x27; || scriptNode.readyState == &#x27;complete&#x27;) &amp;&amp; !scriptNode.onloadDone) &#123;</span><br><span class="line">                    scriptNode.onloadDone = true;</span><br><span class="line">                    JSLOADED[src] = 1;</span><br><span class="line">                &#125;</span><br><span class="line">             &#125;;</span><br><span class="line">        &#125; else if(text)&#123;</span><br><span class="line">            scriptNode.text = text;</span><br><span class="line">        &#125;</span><br><span class="line">        document.getElementsByTagName(&#x27;head&#x27;)[0].appendChild(scriptNode);</span><br><span class="line">    &#125; catch(e) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回按ID检索的元素对象</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function $(id) &#123;</span><br><span class="line">    return !id ? null : document.getElementById(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>跨浏览器绑定事件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function addEventSamp(obj,evt,fn)&#123; </span><br><span class="line">    if(!oTarget)&#123;return;&#125;</span><br><span class="line">    if (obj.addEventListener) &#123; </span><br><span class="line">        obj.addEventListener(evt, fn, false); </span><br><span class="line">    &#125;else if(obj.attachEvent)&#123; </span><br><span class="line">        obj.attachEvent(&#x27;on&#x27;+evt,fn); </span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        oTarget[&quot;on&quot; + sEvtType] = fn;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>跨浏览器删除事件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function delEvt(obj,evt,fn)&#123;</span><br><span class="line">    if(!obj)&#123;return;&#125;</span><br><span class="line">    if(obj.addEventListener)&#123;</span><br><span class="line">        obj.addEventListener(evt,fn,false);</span><br><span class="line">    &#125;else if(oTarget.attachEvent)&#123;</span><br><span class="line">        obj.attachEvent(&quot;on&quot; + evt,fn);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        obj[&quot;on&quot; + evt] = fn;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>为元素添加on方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Element.prototype.on = Element.prototype.addEventListener;</span><br><span class="line"> </span><br><span class="line">NodeList.prototype.on = function (event, fn) &#123;、</span><br><span class="line">    [][&#x27;forEach&#x27;].call(this, function (el) &#123;</span><br><span class="line">        el.on(event, fn);</span><br><span class="line">    &#125;);</span><br><span class="line">    return this;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>为元素添加trigger方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Element.prototype.trigger = function (type, data) &#123;</span><br><span class="line">    var event = document.createEvent(&#x27;HTMLEvents&#x27;);</span><br><span class="line">    event.initEvent(type, true, true);</span><br><span class="line">    event.data = data || &#123;&#125;;</span><br><span class="line">    event.eventName = type;</span><br><span class="line">    event.target = this;</span><br><span class="line">    this.dispatchEvent(event);</span><br><span class="line">    return this;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">NodeList.prototype.trigger = function (event) &#123;</span><br><span class="line">    [][&#x27;forEach&#x27;].call(this, function (el) &#123;</span><br><span class="line">        el[&#x27;trigger&#x27;](event);</span><br><span class="line">    &#125;);</span><br><span class="line">    return this;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>检验URL链接是否有效</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function getUrlState(URL)&#123; </span><br><span class="line">    var xmlhttp = new ActiveXObject(&quot;microsoft.xmlhttp&quot;); </span><br><span class="line">    xmlhttp.Open(&quot;GET&quot;,URL, false);  </span><br><span class="line">    try&#123;  </span><br><span class="line">            xmlhttp.Send(); </span><br><span class="line">    &#125;catch(e)&#123;</span><br><span class="line">    &#125;finally&#123; </span><br><span class="line">        var result = xmlhttp.responseText; </span><br><span class="line">        if(result)&#123;</span><br><span class="line">            if(xmlhttp.Status==200)&#123; </span><br><span class="line">                return(true); </span><br><span class="line">             &#125;else&#123; </span><br><span class="line">                   return(false); </span><br><span class="line">             &#125; </span><br><span class="line">         &#125;else&#123; </span><br><span class="line">             return(false); </span><br><span class="line">         &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>格式化CSS样式代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function formatCss(s)&#123;//格式化代码</span><br><span class="line">    s = s.replace(/\s*([\&#123;\&#125;\:\;\,])\s*/g, &quot;$1&quot;);</span><br><span class="line">    s = s.replace(/;\s*;/g, &quot;;&quot;); //清除连续分号</span><br><span class="line">    s = s.replace(/\,[\s\.\#\d]*&#123;/g, &quot;&#123;&quot;);</span><br><span class="line">    s = s.replace(/([^\s])\&#123;([^\s])/g, &quot;$1 &#123;\n\t$2&quot;);</span><br><span class="line">    s = s.replace(/([^\s])\&#125;([^\n]*)/g, &quot;$1\n&#125;\n$2&quot;);</span><br><span class="line">    s = s.replace(/([^\s]);([^\s\&#125;])/g, &quot;$1;\n\t$2&quot;);</span><br><span class="line">    return s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>压缩CSS样式代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function compressCss (s) &#123;//压缩代码</span><br><span class="line">    s = s.replace(/\/\*(.|\n)*?\*\//g, &quot;&quot;); //删除注释</span><br><span class="line">    s = s.replace(/\s*([\&#123;\&#125;\:\;\,])\s*/g, &quot;$1&quot;);</span><br><span class="line">    s = s.replace(/\,[\s\.\#\d]*\&#123;/g, &quot;&#123;&quot;); //容错处理</span><br><span class="line">    s = s.replace(/;\s*;/g, &quot;;&quot;); //清除连续分号</span><br><span class="line">    s = s.match(/^\s*(\S+(\s+\S+)*)\s*$/); //去掉首尾空白</span><br><span class="line">    return (s == null) ? &quot;&quot; : s[1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取当前路径</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var currentPageUrl = &quot;&quot;;</span><br><span class="line">if (typeof this.href === &quot;undefined&quot;) &#123;</span><br><span class="line">    currentPageUrl = document.location.toString().toLowerCase();</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    currentPageUrl = this.href.toString().toLowerCase();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>判断是否移动设备</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function isMobile()&#123;</span><br><span class="line">    if (typeof this._isMobile === &#x27;boolean&#x27;)&#123;</span><br><span class="line">        return this._isMobile;</span><br><span class="line">    &#125;</span><br><span class="line">    var screenWidth = this.getScreenWidth();</span><br><span class="line">    var fixViewPortsExperiment = rendererModel.runningExperiments.FixViewport ||rendererModel.runningExperiments.fixviewport;</span><br><span class="line">    var fixViewPortsExperimentRunning = fixViewPortsExperiment &amp;&amp; (fixViewPortsExperiment.toLowerCase() === &quot;new&quot;);</span><br><span class="line">    if(!fixViewPortsExperiment)&#123;</span><br><span class="line">        if(!this.isAppleMobileDevice())&#123;</span><br><span class="line">            screenWidth = screenWidth/window.devicePixelRatio;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    var isMobileScreenSize = screenWidth &lt; 600;</span><br><span class="line">    var isMobileUserAgent = false;</span><br><span class="line">    this._isMobile = isMobileScreenSize &amp;&amp; this.isTouchScreen();</span><br><span class="line">    return this._isMobile;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>判断是否移动设备访问</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function isMobileUserAgent()&#123;</span><br><span class="line">    return (/iphone|ipod|android.*mobile|windows.*phone|blackberry.*mobile/i.test(window.navigator.userAgent.toLowerCase()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>判断是否苹果移动设备访问</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function isAppleMobileDevice()&#123;</span><br><span class="line">    return (/iphone|ipod|ipad|Macintosh/i.test(navigator.userAgent.toLowerCase()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>判断是否安卓移动设备访问</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function isAndroidMobileDevice()&#123;</span><br><span class="line">    return (/android/i.test(navigator.userAgent.toLowerCase()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>判断是否Touch屏幕</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function isTouchScreen()&#123;</span><br><span class="line">    return ((&#x27;ontouchstart&#x27; in window) || window.DocumentTouch &amp;&amp; document instanceof DocumentTouch);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>判断是否打开视窗</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function isViewportOpen() &#123;</span><br><span class="line">    return !!document.getElementById(&#x27;wixMobileViewport&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取移动设备初始化大小</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getInitZoom()&#123;</span><br><span class="line">    if(!this._initZoom)&#123;</span><br><span class="line">        var screenWidth = Math.min(screen.height, screen.width);</span><br><span class="line">        if(this.isAndroidMobileDevice() &amp;&amp; !this.isNewChromeOnAndroid())&#123;</span><br><span class="line">            screenWidth = screenWidth/window.devicePixelRatio;</span><br><span class="line">        &#125;</span><br><span class="line">            this._initZoom = screenWidth /document.body.offsetWidth;</span><br><span class="line">        &#125;</span><br><span class="line">    return this._initZoom;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取移动设备最大化大小</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function getZoom()&#123;</span><br><span class="line">    var screenWidth = (Math.abs(window.orientation) === 90) ? Math.max(screen.height, screen.width) : Math.min(screen.height, screen.width);</span><br><span class="line">    if(this.isAndroidMobileDevice() &amp;&amp; !this.isNewChromeOnAndroid())&#123;</span><br><span class="line">        screenWidth = screenWidth/window.devicePixelRatio;</span><br><span class="line">    &#125;</span><br><span class="line">    var FixViewPortsExperiment = rendererModel.runningExperiments.FixViewport || rendererModel.runningExperiments.fixviewport;</span><br><span class="line">    var FixViewPortsExperimentRunning = FixViewPortsExperiment &amp;&amp; (FixViewPortsExperiment === &quot;New&quot; || FixViewPortsExperiment === &quot;new&quot;);</span><br><span class="line">    if(FixViewPortsExperimentRunning)&#123;</span><br><span class="line">        return screenWidth / window.innerWidth;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return screenWidth / document.body.offsetWidth;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取移动设备屏幕宽度</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function getScreenWidth()&#123;</span><br><span class="line">    var smallerSide = Math.min(screen.width, screen.height);</span><br><span class="line">    var fixViewPortsExperiment = rendererModel.runningExperiments.FixViewport || rendererModel.runningExperiments.fixviewport;</span><br><span class="line">    var fixViewPortsExperimentRunning = fixViewPortsExperiment &amp;&amp; (fixViewPortsExperiment.toLowerCase() === &quot;new&quot;);</span><br><span class="line">    if(fixViewPortsExperiment)&#123;</span><br><span class="line">        if(this.isAndroidMobileDevice() &amp;&amp; !this.isNewChromeOnAndroid())&#123;</span><br><span class="line">            smallerSide = smallerSide/window.devicePixelRatio;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return smallerSide;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>完美判断是否为网址</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function IsURL(strUrl) &#123;</span><br><span class="line">    var regular = /^\b(((https?|ftp):\/\/)?[-a-z0-9]+(\.[-a-z0-9]+)*\.(?:com|edu|gov|int|mil|net|org|biz|info|name|museum|asia|coop|aero|[a-z][a-z]|((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d))\b(\/[-a-z0-9_:\@&amp;?=+,.!\/~%\$]*)?)$/i</span><br><span class="line">    if (regular.test(strUrl)) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取页面高度</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function getPageHeight()&#123;</span><br><span class="line">    var g = document, a = g.body, f = g.documentElement, d = g.compatMode == &quot;BackCompat&quot;</span><br><span class="line">                    ? a</span><br><span class="line">                    : g.documentElement;</span><br><span class="line">    return Math.max(f.scrollHeight, a.scrollHeight, d.clientHeight);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取页面scrollLeft</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function getPageScrollLeft()&#123;</span><br><span class="line">    var a = document;</span><br><span class="line">    return a.documentElement.scrollLeft || a.body.scrollLeft;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取页面可视宽度</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function getPageViewWidth()&#123;</span><br><span class="line">    var d = document, a = d.compatMode == &quot;BackCompat&quot;</span><br><span class="line">                    ? d.body</span><br><span class="line">                    : d.documentElement;</span><br><span class="line">    return a.clientWidth;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取页面宽度</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function getPageWidth()&#123;</span><br><span class="line">    var g = document, a = g.body, f = g.documentElement, d = g.compatMode == &quot;BackCompat&quot;</span><br><span class="line">                    ? a</span><br><span class="line">                    : g.documentElement;</span><br><span class="line">    return Math.max(f.scrollWidth, a.scrollWidth, d.clientWidth);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取页面scrollTop</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function getPageScrollTop()&#123;</span><br><span class="line">    var a = document;</span><br><span class="line">    return a.documentElement.scrollTop || a.body.scrollTop;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取页面可视高度</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function getPageViewHeight() &#123;</span><br><span class="line">    var d = document, a = d.compatMode == &quot;BackCompat&quot;</span><br><span class="line">                    ? d.body</span><br><span class="line">                    : d.documentElement;</span><br><span class="line">    return a.clientHeight;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>去掉url前缀</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function removeUrlPrefix(a)&#123;</span><br><span class="line">    a=a.replace(/：/g,&quot;:&quot;).replace(/．/g,&quot;.&quot;).replace(/／/g,&quot;/&quot;);</span><br><span class="line">    while(trim(a).toLowerCase().indexOf(&quot;http://&quot;)==0)&#123;</span><br><span class="line">        a=trim(a.replace(/http:\/\//i,&quot;&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">    return a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>随机数时间戳</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function uniqueId()&#123;</span><br><span class="line">    var a=Math.random,b=parseInt;</span><br><span class="line">    return Number(new Date()).toString()+b(10*a())+b(10*a())+b(10*a());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>全角半角转换</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//iCase: 0全到半，1半到全，其他不转化</span><br><span class="line">function chgCase(sStr,iCase)&#123;</span><br><span class="line">    if(typeof sStr != &quot;string&quot; || sStr.length &lt;= 0 || !(iCase === 0 || iCase == 1))&#123;</span><br><span class="line">        return sStr;</span><br><span class="line">    &#125;</span><br><span class="line">    var i,oRs=[],iCode;</span><br><span class="line">    if(iCase)&#123;/*半-&gt;全*/</span><br><span class="line">        for(i=0; i&lt;sStr.length;i+=1)&#123; </span><br><span class="line">            iCode = sStr.charCodeAt(i);</span><br><span class="line">            if(iCode == 32)&#123;</span><br><span class="line">                iCode = 12288;                                </span><br><span class="line">            &#125;else if(iCode &lt; 127)&#123;</span><br><span class="line">                iCode += 65248;</span><br><span class="line">            &#125;</span><br><span class="line">                oRs.push(String.fromCharCode(iCode)); </span><br><span class="line">            &#125;                </span><br><span class="line">    &#125;else&#123;/*全-&gt;半*/</span><br><span class="line">        for(i=0; i&lt;sStr.length;i+=1)&#123; </span><br><span class="line">            iCode = sStr.charCodeAt(i);</span><br><span class="line">            if(iCode == 12288)&#123;</span><br><span class="line">                iCode = 32;</span><br><span class="line">            &#125;else if(iCode &gt; 65280 &amp;&amp; iCode &lt; 65375)&#123;</span><br><span class="line">                iCode -= 65248;                                </span><br><span class="line">            &#125;</span><br><span class="line">                oRs.push(String.fromCharCode(iCode)); </span><br><span class="line">         &#125;                </span><br><span class="line">    &#125;                </span><br><span class="line">    return oRs.join(&quot;&quot;);                </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>确认是否键盘有效输入值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function checkKey(iKey)&#123;</span><br><span class="line">    if(iKey == 32 || iKey == 229)&#123;return true;&#125;/*空格和异常*/</span><br><span class="line">    if(iKey&gt;47 &amp;&amp; iKey &lt; 58)&#123;return true;&#125;/*数字*/</span><br><span class="line">    if(iKey&gt;64 &amp;&amp; iKey &lt; 91)&#123;return true;&#125;/*字母*/</span><br><span class="line">    if(iKey&gt;95 &amp;&amp; iKey &lt; 108)&#123;return true;&#125;/*数字键盘1*/</span><br><span class="line">    if(iKey&gt;108 &amp;&amp; iKey &lt; 112)&#123;return true;&#125;/*数字键盘2*/</span><br><span class="line">    if(iKey&gt;185 &amp;&amp; iKey &lt; 193)&#123;return true;&#125;/*符号1*/</span><br><span class="line">    if(iKey&gt;218 &amp;&amp; iKey &lt; 223)&#123;return true;&#125;/*符号2*/</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>日期格式化函数+调用方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Date.prototype.format = function(format)&#123;</span><br><span class="line">    var o = &#123;</span><br><span class="line">        &quot;M+&quot; : this.getMonth()+1, //month</span><br><span class="line">        &quot;d+&quot; : this.getDate(),    //day</span><br><span class="line">        &quot;h+&quot; : this.getHours(),   //hour</span><br><span class="line">        &quot;m+&quot; : this.getMinutes(), //minute</span><br><span class="line">        &quot;s+&quot; : this.getSeconds(), //second</span><br><span class="line">        &quot;q+&quot; : Math.floor((this.getMonth()+3)/3),  //quarter</span><br><span class="line">        &quot;S&quot; : this.getMilliseconds() //millisecond</span><br><span class="line">    &#125;;</span><br><span class="line">    if(/(y+)/.test(format)) format=format.replace(RegExp.$1,</span><br><span class="line">(this.getFullYear()+&quot;&quot;).substr(4 - RegExp.$1.length));</span><br><span class="line">    for(var k in o)&#123;</span><br><span class="line">        if(new RegExp(&quot;(&quot;+ k +&quot;)&quot;).test(format))</span><br><span class="line">            format = format.replace(RegExp.$1,RegExp.$1.length==1 ? o[k] :(&quot;00&quot;+ o[k]).substr((&quot;&quot;+ o[k]).length));</span><br><span class="line">    &#125;</span><br><span class="line">    return format;</span><br><span class="line">&#125;</span><br><span class="line">alert(new Date().format(&quot;yyyy-MM-dd hh:mm:ss&quot;));</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>常用的正则表达式</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">//正整数</span><br><span class="line">/^[0-9]*[1-9][0-9]*$/;</span><br><span class="line">//负整数</span><br><span class="line">/^-[0-9]*[1-9][0-9]*$/;</span><br><span class="line">//正浮点数</span><br><span class="line">/^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;   </span><br><span class="line">//负浮点数</span><br><span class="line">/^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/;  </span><br><span class="line">//浮点数</span><br><span class="line">/^(-?\d+)(\.\d+)?$/;</span><br><span class="line">//email地址</span><br><span class="line">/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;</span><br><span class="line">//url地址</span><br><span class="line">/^[a-zA-z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\S*)?$/;</span><br><span class="line">或：^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\&#x27;:+!]*([^&lt;&gt;\&quot;\&quot;])*$ </span><br><span class="line">//年/月/日（年-月-日、年.月.日）</span><br><span class="line">/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;</span><br><span class="line">//匹配中文字符</span><br><span class="line">/[\u4e00-\u9fa5]/;</span><br><span class="line">//匹配帐号是否合法(字母开头，允许5-10字节，允许字母数字下划线)</span><br><span class="line">/^[a-zA-Z][a-zA-Z0-9_]&#123;4,9&#125;$/;</span><br><span class="line">//匹配空白行的正则表达式</span><br><span class="line">/\n\s*\r/;</span><br><span class="line">//匹配中国邮政编码</span><br><span class="line">/[1-9]\d&#123;5&#125;(?!\d)/;</span><br><span class="line">//匹配身份证</span><br><span class="line">/\d&#123;15&#125;|\d&#123;18&#125;/;</span><br><span class="line">//匹配国内电话号码</span><br><span class="line">/(\d&#123;3&#125;-|\d&#123;4&#125;-)?(\d&#123;8&#125;|\d&#123;7&#125;)?/;</span><br><span class="line">//匹配IP地址</span><br><span class="line">/((2[0-4]\d|25[0-5]|[01]?\d\d?)\.)&#123;3&#125;(2[0-4]\d|25[0-5]|[01]?\d\d?)/;</span><br><span class="line">//匹配首尾空白字符的正则表达式</span><br><span class="line">/^\s*|\s*$/;</span><br><span class="line">//匹配HTML标记的正则表达式</span><br><span class="line">&lt; (\S*?)[^&gt;]*&gt;.*?|&lt; .*? /&gt;;</span><br><span class="line">//sql 语句</span><br><span class="line">^(select|drop|delete|create|update|insert).*$</span><br><span class="line">//提取信息中的网络链接</span><br><span class="line">(h|H)(r|R)(e|E)(f|F) *= *(&#x27;|&quot;)?(\w|\\|\/|\.)+(&#x27;|&quot;| *|&gt;)? </span><br><span class="line">//提取信息中的邮件地址</span><br><span class="line">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* </span><br><span class="line">//提取信息中的图片链接</span><br><span class="line">(s|S)(r|R)(c|C) *= *(&#x27;|&quot;)?(\w|\\|\/|\.)+(&#x27;|&quot;| *|&gt;)? </span><br><span class="line">//提取信息中的 IP 地址</span><br><span class="line">(\d+)\.(\d+)\.(\d+)\.(\d+)</span><br><span class="line">//取信息中的中国手机号码</span><br><span class="line">(86)*0*13\d&#123;9&#125; </span><br><span class="line">//提取信息中的中国邮政编码</span><br><span class="line">[1-9]&#123;1&#125;(\d+)&#123;5&#125; </span><br><span class="line">//提取信息中的浮点数（即小数）</span><br><span class="line">(-?\d*)\.?\d+ </span><br><span class="line">//提取信息中的任何数字</span><br><span class="line">(-?\d*)(\.\d+)?</span><br><span class="line">//电话区号</span><br><span class="line">^0\d&#123;2,3&#125;$</span><br><span class="line">//腾讯 QQ 号</span><br><span class="line">^[1-9]*[1-9][0-9]*$ </span><br><span class="line">//帐号（字母开头，允许 5-16 字节，允许字母数字下划线）</span><br><span class="line">^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$ </span><br><span class="line">//中文、英文、数字及下划线</span><br><span class="line">^[\u4e00-\u9fa5_a-zA-Z0-9]+$</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回顶部的通用方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function backTop(btnId) &#123;</span><br><span class="line">    var btn = document.getElementById(btnId);</span><br><span class="line">    var d = document.documentElement;</span><br><span class="line">    var b = document.body;</span><br><span class="line">    window.onscroll = set;</span><br><span class="line">    btn.style.display = &quot;none&quot;;</span><br><span class="line">    btn.onclick = function() &#123;</span><br><span class="line">        btn.style.display = &quot;none&quot;;</span><br><span class="line">        window.onscroll = null;</span><br><span class="line">        this.timer = setInterval(function() &#123;</span><br><span class="line">            d.scrollTop -= Math.ceil((d.scrollTop + b.scrollTop) * 0.1);</span><br><span class="line">            b.scrollTop -= Math.ceil((d.scrollTop + b.scrollTop) * 0.1);</span><br><span class="line">            if ((d.scrollTop + b.scrollTop) == 0) clearInterval(btn.timer, window.onscroll = set);</span><br><span class="line">            &#125;, 10);</span><br><span class="line">    &#125;;</span><br><span class="line">    function set() &#123;</span><br><span class="line">        btn.style.display = (d.scrollTop + b.scrollTop &gt; 100) ? &#x27;block&#x27;: &quot;none&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">backTop(&#x27;goTop&#x27;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获得URL中GET参数值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 用法：如果地址是 test.htm?t1=1&amp;t2=2&amp;t3=3, 那么能取得：GET[&quot;t1&quot;], GET[&quot;t2&quot;], GET[&quot;t3&quot;]</span><br><span class="line">function get_get()&#123; </span><br><span class="line">    querystr = window.location.href.split(&quot;?&quot;)</span><br><span class="line">    if(querystr[1])&#123;</span><br><span class="line">        GETs = querystr[1].split(&quot;&amp;&quot;);</span><br><span class="line">        GET = [];</span><br><span class="line">        for(i=0;i&lt;GETs.length;i++)&#123;</span><br><span class="line">              tmp_arr = GETs.split(&quot;=&quot;)</span><br><span class="line">              key=tmp_arr[0]</span><br><span class="line">              GET[key] = tmp_arr[1]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return querystr[1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开一个窗体通用方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function openWindow(url,windowName,width,height)&#123;</span><br><span class="line">    var x = parseInt(screen.width / 2.0) - (width / 2.0); </span><br><span class="line">    var y = parseInt(screen.height / 2.0) - (height / 2.0);</span><br><span class="line">    var isMSIE= (navigator.appName == &quot;Microsoft Internet Explorer&quot;);</span><br><span class="line">    if (isMSIE) &#123;</span><br><span class="line">        var p = &quot;resizable=1,location=no,scrollbars=no,width=&quot;;</span><br><span class="line">        p = p+width;</span><br><span class="line">           p = p+&quot;,height=&quot;;</span><br><span class="line">           p = p+height;</span><br><span class="line">        p = p+&quot;,left=&quot;;</span><br><span class="line">        p = p+x;</span><br><span class="line">        p = p+&quot;,top=&quot;;</span><br><span class="line">        p = p+y;</span><br><span class="line">        retval = window.open(url, windowName, p);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        var win = window.open(url, &quot;ZyiisPopup&quot;, &quot;top=&quot; + y + &quot;,left=&quot; + x + &quot;,scrollbars=&quot; + scrollbars + &quot;,dialog=yes,modal=yes,width=&quot; + width + &quot;,height=&quot; + height + &quot;,resizable=no&quot; );</span><br><span class="line">        eval(&quot;try &#123; win.resizeTo(width, height); &#125; catch(e) &#123; &#125;&quot;);</span><br><span class="line">        win.focus();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>提取页面代码中所有网址</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var aa = document.documentElement.outerHTML.match(/(url\(|src=|href=)[\&quot;\&#x27;]*([^\&quot;\&#x27;\(\)\&lt;\&gt;\[\] ]+)[\&quot;\&#x27;\)]*|(http:\/\/[\w\-\.]+[^\&quot;\&#x27;\(\)\&lt;\&gt;\[\] ]+)/ig).join(&quot;\r\n&quot;).replace(/^(src=|href=|url\()[\&quot;\&#x27;]*|[\&quot;\&#x27;\&gt;\) ]*$/igm,&quot;&quot;);</span><br><span class="line">alert(aa);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>清除相同的数组</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">String.prototype.unique=function()&#123;</span><br><span class="line">    var x=this.split(/[\r\n]+/);</span><br><span class="line">    var y=&#x27;&#x27;;</span><br><span class="line">    for(var i=0;i&lt;x.length;i++)&#123;</span><br><span class="line">        if(!new RegExp(&quot;^&quot;+x.replace(/([^\w])/ig,&quot;\\$1&quot;)+&quot;$&quot;,&quot;igm&quot;).test(y))&#123;</span><br><span class="line">            y+=x+&quot;\r\n&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return y</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>按字母排序，对每行进行数组排序</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function SetSort()&#123;</span><br><span class="line">    var text=K1.value.split(/[\r\n]/).sort().join(&quot;\r\n&quot;);//顺序</span><br><span class="line">    var test=K1.value.split(/[\r\n]/).sort().reverse().join(&quot;\r\n&quot;);//反序</span><br><span class="line">    K1.value=K1.value!=text?text:test;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>清除html代码中的脚本</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function clear_script()&#123;</span><br><span class="line">    K1.value=K1.value.replace(/&lt;script.*?&gt;[\s\S]*?&lt;\/script&gt;|\s+on[a-zA-Z]&#123;3,16&#125;\s?=\s?&quot;[\s\S]*?&quot;|\s+on[a-zA-Z]&#123;3,16&#125;\s?=\s?&#x27;[\s\S]*?&#x27;|\s+on[a-zA-Z]&#123;3,16&#125;\s?=[^ &gt;]+/ig,&quot;&quot;);</span><br><span class="line">&#125;</span><br><span class="line">动态执行JavaScript脚本</span><br><span class="line"> </span><br><span class="line">function javascript()&#123;</span><br><span class="line">    try&#123;</span><br><span class="line">      eval(K1.value);</span><br><span class="line">    &#125;catch(e)&#123;</span><br><span class="line">      alert(e.message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>金额大写转换函数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">function transform(tranvalue) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        var i = 1;</span><br><span class="line">        var dw2 = new Array(&quot;&quot;, &quot;万&quot;, &quot;亿&quot;); //大单位</span><br><span class="line">        var dw1 = new Array(&quot;拾&quot;, &quot;佰&quot;, &quot;仟&quot;); //小单位</span><br><span class="line">        var dw = new Array(&quot;零&quot;, &quot;壹&quot;, &quot;贰&quot;, &quot;叁&quot;, &quot;肆&quot;, &quot;伍&quot;, &quot;陆&quot;, &quot;柒&quot;, &quot;捌&quot;, &quot;玖&quot;); //整数部分用</span><br><span class="line">        //以下是小写转换成大写显示在合计大写的文本框中     </span><br><span class="line">        //分离整数与小数</span><br><span class="line">        var source = splits(tranvalue);</span><br><span class="line">        var num = source[0];</span><br><span class="line">        var dig = source[1];</span><br><span class="line">        //转换整数部分</span><br><span class="line">        var k1 = 0; //计小单位</span><br><span class="line">        var k2 = 0; //计大单位</span><br><span class="line">        var sum = 0;</span><br><span class="line">        var str = &quot;&quot;;</span><br><span class="line">        var len = source[0].length; //整数的长度</span><br><span class="line">        for (i = 1; i &lt;= len; i++) &#123;</span><br><span class="line">              var n = source[0].charAt(len - i); //取得某个位数上的数字</span><br><span class="line">              var bn = 0;</span><br><span class="line">              if (len - i - 1 &gt;= 0) &#123;</span><br><span class="line">                bn = source[0].charAt(len - i - 1); //取得某个位数前一位上的数字</span><br><span class="line">              &#125;</span><br><span class="line">              sum = sum + Number(n);</span><br><span class="line">              if (sum != 0) &#123;</span><br><span class="line">                str = dw[Number(n)].concat(str); //取得该数字对应的大写数字，并插入到str字符串的前面</span><br><span class="line">                if (n == &#x27;0&#x27;) sum = 0;</span><br><span class="line">              &#125;</span><br><span class="line">              if (len - i - 1 &gt;= 0) &#123; //在数字范围内</span><br><span class="line">                if (k1 != 3) &#123; //加小单位</span><br><span class="line">                      if (bn != 0) &#123;</span><br><span class="line">                        str = dw1[k1].concat(str);</span><br><span class="line">                      &#125;</span><br><span class="line">                      k1++;</span><br><span class="line">                &#125; else &#123; //不加小单位，加大单位</span><br><span class="line">                      k1 = 0;</span><br><span class="line">                      var temp = str.charAt(0);</span><br><span class="line">                      if (temp == &quot;万&quot; || temp == &quot;亿&quot;) //若大单位前没有数字则舍去大单位</span><br><span class="line">                      str = str.substr(1, str.length - 1);</span><br><span class="line">                      str = dw2[k2].concat(str);</span><br><span class="line">                      sum = 0;</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;</span><br><span class="line">              if (k1 == 3)&#123; //小单位到千则大单位进一</span><br><span class="line">                k2++;</span><br><span class="line">              &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //转换小数部分</span><br><span class="line">        var strdig = &quot;&quot;;</span><br><span class="line">        if (dig != &quot;&quot;) &#123;</span><br><span class="line">              var n = dig.charAt(0);</span><br><span class="line">              if (n != 0) &#123;</span><br><span class="line">                strdig += dw[Number(n)] + &quot;角&quot;; //加数字</span><br><span class="line">              &#125;</span><br><span class="line">              var n = dig.charAt(1);</span><br><span class="line">              if (n != 0) &#123;</span><br><span class="line">                strdig += dw[Number(n)] + &quot;分&quot;; //加数字</span><br><span class="line">              &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        str += &quot;元&quot; + strdig;</span><br><span class="line">    &#125; catch(e) &#123;</span><br><span class="line">        return &quot;0元&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    return str;</span><br><span class="line">&#125;</span><br><span class="line">//拆分整数与小数</span><br><span class="line">function splits(tranvalue) &#123;</span><br><span class="line">    var value = new Array(&#x27;&#x27;, &#x27;&#x27;);</span><br><span class="line">    temp = tranvalue.split(&quot;.&quot;);</span><br><span class="line">    for (var i = 0; i &lt; temp.length; i++) &#123;</span><br><span class="line">        value = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    return value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取窗体可见范围的宽与高</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function getViewSize()&#123;</span><br><span class="line">    var de=document.documentElement;</span><br><span class="line">    var db=document.body;</span><br><span class="line">    var viewW=de.clientWidth==0 ?  db.clientWidth : de.clientWidth;</span><br><span class="line">    var viewH=de.clientHeight==0 ?  db.clientHeight : de.clientHeight;</span><br><span class="line">    return Array(viewW ,viewH);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/01/10/html+css+js+ts/1-html-tag/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">html-tag</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/01/05/html+css+js+ts/3-js%E5%B8%B8%E7%94%A8api/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">js-api</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

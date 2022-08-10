@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>js宽高属性 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">js宽高属性</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2018-01-24T03:35:46.000Z" itemprop="datePublished">2018-01-24</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/javascript/">📒 javascript</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/javascript/">🏷️ javascript</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h2 id="第一部分-JavaScript中的宽高属性"><a href="#第一部分-JavaScript中的宽高属性" class="headerlink" title="第一部分 JavaScript中的宽高属性"></a>第一部分 JavaScript中的宽高属性</h2><hr>
+<h3 id="一、与window相关的宽高属性"><a href="#一、与window相关的宽高属性" class="headerlink" title="一、与window相关的宽高属性"></a>一、与window相关的宽高属性</h3><hr>
+<h4 id="1-1-window-location和document-location"><a href="#1-1-window-location和document-location" class="headerlink" title="1.1 window.location和document.location"></a>1.1 window.location和document.location</h4><hr>
+<ul>
+<li><p><code>window</code>对象的<code>location</code>属性引用的是<code>location</code>对象，表示该窗口中当前显示文档的<code>URL</code></p>
+</li>
+<li><p><code>document</code>的对象的<code>location</code>属性也是引用<code>location</code>对象</p>
+</li>
+<li><p>所以</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.location === document.location</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//true</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-2-window-screen"><a href="#1-2-window-screen" class="headerlink" title="1.2 window.screen"></a>1.2 window.screen</h4></li>
+</ul>
+<hr>
+<ul>
+<li>&#96;&#96;&#96;<br>window.screen<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  包含有关用户屏幕的信息。它包括：</span><br><span class="line"></span><br><span class="line">  - `window.screen.width`</span><br><span class="line">  - `window.screen.height`</span><br><span class="line">  - `window.screen.availHeight`</span><br><span class="line">  - `window.screen.availWidth`</span><br><span class="line">  - `window.screenTop`</span><br><span class="line">  - `window.screenLeft`</span><br><span class="line"></span><br><span class="line">![window.screen](http://upload-images.jianshu.io/upload_images/1480597-d7979b36ca991d9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">**1.3 与window相关的宽高**</span><br><span class="line"></span><br><span class="line">- `window.innerWidth` 内部的宽度</span><br><span class="line">- `window.innerHeight` 内部的高度</span><br><span class="line">- `window.outWidth` 外部的宽度</span><br><span class="line">- `window.outHeight` 外部的高度</span><br><span class="line"></span><br><span class="line">![与window相关的宽高](http://upload-images.jianshu.io/upload_images/1480597-7c90cc88a3355d8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">### 二、与document相关的宽高属性</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">#### 2.1与client相关的宽高</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- `document.body.clientWidth` 元素宽度（可视内容区+内边距）</span><br><span class="line">- `document.body.clientHeight`元素高度（可视内容区+内边距）</span><br><span class="line"></span><br><span class="line">该属性指的是元素的可视部分宽度和高度，即`padding+content`</span><br><span class="line">如果没有滚动条，即为元素设定的宽度和高度</span><br><span class="line">如果出现滚动条，滚动条会遮盖元素的宽高，那么该属性就是其本来宽高减去滚动条的宽高</span><br><span class="line"></span><br><span class="line">example1：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+body{<br>  border: 20px solid #000;<br>  margin: 10px;<br>  padding: 40px;<br>  background: #eee;<br>  height: 350px;<br>  width: 500px;<br>  overflow: scroll;<br>}<br>console.log(document.body.clientWidth);  &#x2F;&#x2F; 350+padding(80) &#x3D; 430<br>console.log(document.body.clientHeight);  &#x2F;&#x2F; 500 + padding(80) &#x3D; 580<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">example2: 在div中添加文字， 指导出现滚动条</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>#exp2 {<br>    width:200px;<br>    height:200px;<br>    background:red;<br>    border:1px solid #000;<br>    overflow:auto;<br>}</p>
+<p>var test &#x3D; document.getElementById(“exp2”);</p>
+<p>console,log(test.clientHeight); &#x2F;&#x2F; 200<br>console.log(test.clientWidth); &#x2F;&#x2F;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/322.png)</span><br><span class="line"></span><br><span class="line">- **小结clientWidth和clientHeight**</span><br><span class="line">  - 无`padding`无滚动 ： `clientWidth` = 盒子的`width`</span><br><span class="line">  - 有`padding`无滚动 ： `clientWidth` = 盒子的`width` + 盒子的`padding * 2`</span><br><span class="line">  - 有`padding`有滚动 ： `clientWidth` = 盒子和`width` + 盒子的`padding * 2`- 滚动轴宽度</span><br><span class="line"></span><br><span class="line">- `document.body.clientLeft`</span><br><span class="line">- `document.body.clientTop`</span><br><span class="line"></span><br><span class="line">这两个返回的是元素周围边框的厚度，如果不指定一个边框或者不定位该元素，它的值就是0</span><br><span class="line"></span><br><span class="line">例：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>body{<br>    border: 20px solid #000;<br>    margin: 10px;<br>    padding: 40px;<br>    background: #eee;<br>    height: 350px;<br>    width: 500px;<br>    overflow: scroll;<br>}<br>console.log(document.body.clientLeft);  &#x2F;&#x2F; 20<br>console.log(document.body.clientTop);  &#x2F;&#x2F; 20</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**小结clientLeft和clientTop**</span><br><span class="line"></span><br><span class="line">- 这一对属性是用来读取元素的</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>  border<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  的宽度和高度的</span><br><span class="line"></span><br><span class="line">  - `clientTop = border-top`</span><br><span class="line">  - `clientLeft = border-left`</span><br><span class="line"></span><br><span class="line">#### 2.2 与offset相关的宽高</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- **document.body.offsetWidth（元素的border+padding+content的宽度）**</span><br><span class="line">- **document.body.offsetHeight（元素的border+padding+content的高度）**</span><br><span class="line"></span><br><span class="line">该属性和其内部的内容是否超出元素大小无关，只和本来设定的border以及width和height有关</span><br><span class="line"></span><br><span class="line">例：</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>body{<br>    border: 20px solid #000;<br>    margin: 10px;<br>    padding: 40px;<br>    background: #eee;<br>    height: 350px;<br>    width: 500px;<br>    overflow: scroll;<br>}<br>console.log(document.body.offsetWidth);  &#x2F;&#x2F; 470 &#x3D; padding<em>2 + 350 + border</em>2<br>console.log(document.body.offsetHeight);  &#x2F;&#x2F; 620 &#x3D; padding<em>2 + 500 + border</em>2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**小结offsetWidth和offsetHeight**</span><br><span class="line"></span><br><span class="line">- 无padding</span><br><span class="line"></span><br><span class="line">  无滚动无border</span><br><span class="line">  </span><br><span class="line">  - offsetWidth = clientWidth = 盒子的宽度</span><br><span class="line"></span><br><span class="line">- 有padding</span><br><span class="line"></span><br><span class="line">  无滚动有border</span><br><span class="line">  </span><br><span class="line">  - offsetWidth = 盒子的宽度 + 盒子padding*2 + 盒子边框*2 = clientWidth + 边框宽度*2</span><br><span class="line"></span><br><span class="line">- 有padding</span><br><span class="line"></span><br><span class="line">  有滚动，且滚动是显示的，有border</span><br><span class="line">  </span><br><span class="line">  - offsetWidth = 盒子宽度 + 盒子padding*2 + 盒子边框*2 = clientWidth + 滚动轴宽度 + 边框宽度*2</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- **document.offsetLeft**</span><br><span class="line">- **document.offsetTop**</span><br><span class="line"></span><br><span class="line">了解这两个属性我们必须先了解它，什么是`offsetParent`</span><br><span class="line"></span><br><span class="line">- 如果当前元素的父级元素没有进行`CSS`定位（`position`为`absolute`或`relative`）,`offsetParent`为`body.`</span><br><span class="line">- 假如当前元素的父级元素中有`CSS`定位，`offsetParent`取最近的那个父级元素</span><br><span class="line"></span><br><span class="line">**offsetLeft的兼容性问题：**</span><br><span class="line"></span><br><span class="line">- 在`IE6/7`中</span><br><span class="line">  - `offsetLeft` = offsetParent的padding-left + 当前元素的margin-left</span><br><span class="line">- 在`IE8/9/10`以及`chrome`中</span><br><span class="line">  - `offsetLeft` = offsetParent的margin-left + offsetParent的border宽度 + offsetParent的padding-left + 当前元素的margin-left</span><br><span class="line">- 在`FireFox`中</span><br><span class="line">  - `offsetLeft` = offsetParent的margin-left + 当前元素的margin-left + offsetParent的padding-left</span><br><span class="line"></span><br><span class="line">例：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>body{<br>    border: 20px solid #000;<br>    margin: 10px;<br>    padding: 40px;<br>    background: #eee;<br>    height: 350px;<br>    width: 500px;<br>    overflow: scroll;<br>} </p>
+<p>#exp {<br>   width:400px;<br>   height:200px;<br>   padding:20px;<br>   margin:10px;<br>   background:red;<br>   border:20px solid #000;<br>   overflow:auto;<br>}<br>var div &#x3D; document.getElementById(“exp”);</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 在IE8/9/10以及chrome中：</span><br><span class="line">  - div.offsetLeft = 本身的margin10 + 父级元素的padding40 + margin10 + border20 = 80</span><br><span class="line">  - div.offsetTop = 本身的margin10 + 父级元素的padding40 + margin10 + border20 = 80</span><br><span class="line">- 在FireFox：（相比chrome中少了border）</span><br><span class="line">  - div.offsetLeft = 本身的margin10 + 父级元素的padding40 + margin10 = 60</span><br><span class="line">  - div.offsetTop = 本身的margin10 + 父级元素的padding40 + margin10 = 60</span><br><span class="line">- 在IE6/7中：（相比在FireFox，不但少了border还少了父级元素的margin）</span><br><span class="line">  - `div.offsetLeft` = 本身的`margin10` + 父级元素的`padding40` = 50</span><br><span class="line">  - `div.offsetTop` = 本身的`margin10` + 父级元素的`padding40` = 50</span><br><span class="line"></span><br><span class="line">#### 2.3与scroll相关的宽高 (实际项目中用的最多)</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- **document.body.scrollWidth**</span><br><span class="line">- **document.body.scrollHeight**</span><br><span class="line"></span><br><span class="line">document.body的scrollWidth和scrollHeight与div的scrollWidth和scrollHeight是有区别的</span><br><span class="line"></span><br><span class="line">例：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>body{<br>    border: 20px solid #000;<br>    margin: 10px;<br>    padding: 40px;<br>    background: #eee;<br>    height: 350px;<br>    width: 500px;<br>    overflow: scroll;<br>}</p>
+<p>document.body.scrollHeight; &#x2F;&#x2F;<br>document.body.scrollWidth; &#x2F;&#x2F;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 当给定宽高小于浏览器窗口的宽高</span><br><span class="line">  - scrollWidth = 通常是浏览器窗口的宽度</span><br><span class="line">  - scrollHeight = 通常是浏览器窗口的高度</span><br><span class="line">- 当给定宽高大于浏览器窗口的宽高，且内容小于给定宽高的时候</span><br><span class="line">  - scrollWidth = 给定宽度 + 其所有的padding + margin + border</span><br><span class="line">  - scrollHeight = 给定高度 + 其所有的padding + margin + border</span><br><span class="line">- 当给定宽高大于浏览器窗口宽高，且内容大于给定宽高</span><br><span class="line">  - scrollWidth = 内容宽度 + 其所有的padding + margin + border</span><br><span class="line">  - scrollHeight = 内容高度 + 其所有的padding + margin + border</span><br><span class="line"></span><br><span class="line">**在某div中的scrollWidth和scrollHeight**</span><br><span class="line"></span><br><span class="line">- 无滚动轴时：</span><br><span class="line">  - scrollWidth = clientWidth = 盒子宽度 + 盒子padding*2</span><br><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/323.png)</span><br><span class="line"></span><br><span class="line">- 有滚动轴时：</span><br><span class="line">  - scrollWidth = 实际内容的宽度 + padding*2</span><br><span class="line">  - scrollHeight = 实际内容的高度 + padding*2</span><br><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/324.png)</span><br><span class="line"></span><br><span class="line">- **document.body.scrollLeft**</span><br><span class="line">- **document.body.scrollTop**</span><br><span class="line"></span><br><span class="line">与前面不同的是，这对属性是可读写的，指的是当元素其中的超出其宽高的时候，元素被卷起来的高度和宽度</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>#exp {<br>   width:400px;<br>   height:200px;<br>   padding:20px;<br>   margin:10px;<br>   background:red;<br>   border:20px solid #000;<br>   overflow-y:scroll;<br>}</p>
+<p>var mydiv &#x3D; document.getElementById(“exp”);</p>
+<p>mydiv.scrollTop ;  &#x2F;&#x2F;默认情况下是0<br>mydiv.scrollLeft ; &#x2F;&#x2F;默认情况下是0 </p>
+<p>&#x2F;&#x2F;可以改写它</p>
+<p>mydiv.scrollTop &#x3D; 20;<br>console.log(mydiv.scrollTop)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/325.png)</span><br><span class="line"></span><br><span class="line">**obj.style.width和obj.style.height**</span><br><span class="line"></span><br><span class="line">对于一个`DOM`元素，它的`style`属性返回的是一个对象，这个对象的任意一个属性是可读写的，`style.width`等于`css`属性中的宽度。`style.height`等于`css`属性中的高度</span><br><span class="line"></span><br><span class="line">#### 2.4 documentElement和body的关系</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">是父子级的关系</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>body{<br>    border: 20px solid #000;<br>    margin: 10px;<br>    padding: 40px;<br>    background: #eee;<br>    height: 350px;<br>    width: 500px;<br>    overflow: scroll;<br>}</p>
+<p>#exp {<br>   width:400px;<br>   height:200px;<br>   padding:20px;<br>   margin:10px;<br>   background:red;<br>   border:20px solid #000;<br>   overflow-y:scroll;<br>}</p>
+<p>console.log(document); &#x2F;&#x2F;document<br>console.log(document.documentElement); &#x2F;&#x2F;html<br>console.log(document.body); &#x2F;&#x2F;body</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/326.png)</span><br><span class="line"></span><br><span class="line">- 兼容问题推荐使用 获取浏览器窗口可视区域大小</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>document.body.clientWidth || document.documentElement.clientWidth;<br>document.body.clientHeight || document.documentElement.clientHeight;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 三、Event对象的5种坐标</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/327.png)</span><br><span class="line"></span><br><span class="line">例：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div id="example" 
+style="width: 200px;height: 200px;background: red;margin: 100px auto;"></div>
+var example = document.getElementById("example");
+example.onclick = function(e){
+    console.log("clientX "+e.clientX + " : " + " clientY "+e.clientY);
+    console.log("screenX "+e.screenX + " : " + " screenY "+e.screenY);
+    console.log("offsetX "+e.offsetX + " : " + " offsetY "+e.offsetY);
+    console.log("pageX "+e.pageX + " : " + " pageY "+e.pageY);
+    console.log("x "+e.x + " : " + " y "+e.y);
+}
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/328.png)</span><br><span class="line"></span><br><span class="line">### 四、 js各种宽高的应用</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- **example1：可视区域加载**</span><br><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/329.png)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div id="example1" ></div>
+#example1 {
+            width: 500px;
+            height: 350px;
+            background: red;
+            margin: 1000px auto 0 auto;
+        }
+        @-webkit-keyframes fadeInLeft{
+            0%{
+                opacity: 0;
+                transform: translate3d(-100%,0,0);
+            }
+            100%{
+                opacity: 1;
+                transform: none;
+                
+<pre><code>        &#125;
+    &#125;
+        .fadeInLeft &#123;
+            animation-name: fadeInLeft;
+            animation-duration: 2s;
+        &#125;
+</code></pre>
+<p>function showDiv(){<br>            var example &#x3D; document.getElementById(“example”);<br>            var clients &#x3D; window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;&#x2F;&#x2F;可视区域的高度<br>            var divTop &#x3D; example.getBoundingClientRect().top;<br>            if(divTop &lt;&#x3D; clients){<br>                example.classList.add(“fadeInLeft”);<br>                              &#x2F;&#x2F;  这里可以通过setAttribute设置图片的src按需加载<br>            }<br>            document.title &#x3D; clients+”—“+divTop;<br>        }</p>
+<p>window.onscroll &#x3D; showDiv;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[在线演示](http://codepen.io/poetries/pen/RoeJgG)</span><br><span class="line"></span><br><span class="line">- **example2：网页滚动到顶部或者底部**</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div id="example2" ></div>
+#example2 {
+            width: 500px;
+            height: 350px;
+            background: red;
+            margin: 1000px auto 0 auto;
+}
+function scrollTopOrBottom(){
+            var example2 = document.getElementById("example");
+            var clients = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;//可视区域的高度，兼容性写法
+            var scrollTop = document.body.scrollTop;
+            var wholeHeight = document.body.scrollHeight;
+            if(clients + scrollTop >= wholeHeight){
+                alert("我已经到了底部!");
+                              // 这里可以调用Ajax分页加载到页面中，实现多页加载功能
+            }else if(scrollTop == 0){
+                alert("我已经到了顶部了!");
+                      
+<pre><code>        &#125;
+        document.title = (clients + scrollTop)+&quot;---&quot;+wholeHeight+&quot;--&quot;+scrollTop;
+    &#125;
+    
+</code></pre>
+<p>window.onscroll &#x3D; scrollTopOrBottom;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[在线演示](http://codepen.io/poetries/pen/WoayJy)</span><br><span class="line"></span><br><span class="line">- **example3：DIV滚动到底部加载**</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div id="example3" >
+            DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载
+            DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载
+            DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载
+            DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载
+            DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载
+            DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载DIV滚动到底部加载
+</div>
+#example3 {
+            width: 500px;
+            height: 400px;
+            background: red;
+            margin: 10px auto;
+            padding: 10px;
+            overflow-y: scroll;
+}
+var div = document.getElementById("example3");
+        function divScroll(){
+            
+<pre><code>        var wholeHeight = div.scrollHeight;//滚动区域高度
+        var divScrollTop = div.scrollTop;//卷上去的那部分高度
+        var divHeight = div.clientHeight; //div的可视区域的高度
+        
+        
+        if(divScrollTop + divHeight &gt;= wholeHeight)&#123;
+            alert(&quot;我已经到了底部!&quot;);
+           // 这里可以在div中通过滚动加载分页按需显示
+        &#125;else if(divScrollTop == 0)&#123;
+            alert(&quot;我已经到了顶部了!&quot;);
+        &#125;
+        document.title = (divScrollTop + divHeight)+&quot;---&quot;+wholeHeight+&quot;--&quot;+divScrollTop;
+</code></pre>
+<p>}</p>
+<p>div.onscroll &#x3D; divScroll;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[在线演示](http://codepen.io/poetries/pen/vyVrvm)</span><br><span class="line"></span><br><span class="line">- **example4：计算滚动轴的宽度**</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&#x2F;&#x2F;获取滚动轴的宽度<br>    function getScrollBar(){<br>        var el &#x3D; document.createElement(“p”);<br>        var styles &#x3D; {<br>            width:”100px”,<br>            height:”100px”,<br>            overflowY:”scroll”<br>        };<br>        for (var prop in styles){<br>            el.style[prop] &#x3D; styles[prop];&#x2F;&#x2F;把 styles上的属性全部遍历拷贝到el.style上</p>
+<pre><code>    &#125;
+    document.body.appendChild(el);
+    var scrollBarWidth = el.offsetWidth - el.clientWidth;
+    el.remove();
+    return scrollBarWidth;
+&#125;
+alert(getScrollBar());//17
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[在线演示](http://codepen.io/poetries/pen/RoeBbL)</span><br><span class="line"></span><br><span class="line">### 五、js中的宽高属性总结</span><br><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/330.png)</span><br><span class="line"></span><br><span class="line">![img](https://camo.githubusercontent.com/3318530334bbc8f5e7ce267866c43ba72fa01f32/687474703a2f2f6f61376436647871742e626b742e636c6f7564646e2e636f6d2f626c6f672f696d616765732f3038313734323039323736363338392e6a7067)</span><br><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/331.png)</span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/332.png)</span><br><span class="line"></span><br><span class="line">## 第二部分 jQuery中的宽高属性</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">### 一、jquery相关宽高介绍</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- 1.1 width()</span><br><span class="line">  - 特殊元素`window.document`只可以读，普通元素可以读写，`width()`返回结果无单位，`css(&quot;width&quot;)`的结果有单位</span><br><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/333.png)</span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/334.png)</span><br><span class="line"></span><br><span class="line">- 1.2 innerWidth()</span><br><span class="line">  - 包含padding（不推荐window,document调用）</span><br><span class="line">- **1.3 innerHeight()**</span><br><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/335.png)</span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/336.png)</span><br><span class="line"></span><br><span class="line">- 1.4 outerWidth()</span><br><span class="line">  - 包含padding和border，当传true时包含marging，不传时不包含marging（不推荐window,document调用）</span><br><span class="line">- **1.5 outerHeight()**</span><br><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/337.png)</span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/338.png)</span><br><span class="line"></span><br><span class="line">- 1.6 scrollLeft():</span><br><span class="line">  - 相对于水平滚动条左边的距离，如果滚动条非常左、或者元素不能被滚动，这个值为0；</span><br><span class="line">- **1.7 scrollTop():**</span><br><span class="line">  - 相对于垂直滚动条上边的距离，如果滚动条非常上、或者元素不能被滚动，这个值为0；</span><br><span class="line">- **1.8 .offset():**</span><br><span class="line">  - 相对于document的当前坐标值(相对于body左上角的left,top的值)；</span><br><span class="line">- 1.9 .position():</span><br><span class="line">  - 相对于offset parent的当前坐标值(相对于offset parent元素的左上角的left、top的值)</span><br><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/339.png)</span><br><span class="line"></span><br><span class="line">### 二、jquery相关宽高举例</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">**2.1 exmaple1**</span><br><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/340.png)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div class="parentDiv">
+    <div class="childrenDiv"></div>
+</div>
+html,body {
+    margin:10px;
+    border:5px solid red;
+    padding:20px;
+}
+.parentDiv {
+    width:800px;
+    height:500px;
+    margin:5px auto;
+    background:#FF6600;
+    border:5px dashed green;padding:30px;position:relative;
+
+<p>}<br>.childrenDiv {<br>    width:300px;<br>    height:500px;<br>    margin:5px auto;<br>    background:yellow;<br>    border:5px solid black;<br>    padding:5px;<br>    box-sizing:border-box;&#x2F;<em>包括padding和border的值</em>&#x2F;<br>}<br>&#x2F;&#x2F;特殊元素的高度<br>&#x2F;&#x2F;window  document<br>console.log(“$(window).height()”+$(window).height());<br>console.log(“$(document).height()”+$(document).height());</p>
+<p>&#x2F;&#x2F;innerHeight<br>console.log(“$(window).innerHeight()”+$(window).innerHeight());<br>console.log(“$(document).innerHeight()”+$(document).innerHeight());</p>
+<p>&#x2F;&#x2F;普通child元素的高度</p>
+<p>&#x2F;&#x2F;480 &#x3D; 500 - border<em>2 - padding</em>2 (因为设置了box-sizing，box-sizing把border和padding的值计算了进去)<br>console.log(‘$(“.childrenDiv”).height()’+ $(“.childrenDiv”).height());</p>
+<p>&#x2F;&#x2F;490 &#x3D; 500 - border<em>2 - padding</em>2（innerHeight不包括padding）<br>console.log(‘$(“.childrenDiv”).innerHeight()’+ $(“.childrenDiv”).innerHeight());</p>
+<p>&#x2F;&#x2F;500 &#x3D; 500  不包括margin<br>console.log(‘$(“.childrenDiv”).outerHeight()’+ $(“.childrenDiv”).outerHeight());</p>
+<p>&#x2F;&#x2F;510 &#x3D; 500 + margin true包括margin<br>console.log(‘$(“.childrenDiv”).outerHeight()’+ $(“.childrenDiv”).outerHeight(true));</p>
+<p>&#x2F;&#x2F;scrollTop</p>
+<p>$(window).scroll(function(){<br>    document.title &#x3D; “scrollTop  “+$(this).scrollTop();<br>});</p>
+<p>&#x2F;&#x2F; jquery宽高演示之offset和position</p>
+<p>console.log(‘$(“.childrenDiv”).offset().top ‘+$(“.childrenDiv”).offset().top);<br>console.log(‘$(“.childrenDiv”).offset().left ‘+$(“.childrenDiv”).offset().left);<br>console.log(‘$(“.childrenDiv”).position().top ‘+$(“.childrenDiv”).position().top);<br>console.log(‘$(“.childrenDiv”).position().top ‘+$(“.childrenDiv”).position().left);</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/341.png)</span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/342.png)</span><br><span class="line"></span><br><span class="line">[在线演示](http://codepen.io/poetries/pen/yVRqZO)</span><br><span class="line"></span><br><span class="line">### 三、jquery各种宽高应用</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">**3.1 jquery可视区域加载**</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div id="example" ></div>
+#example {
+            width: 500px;
+            height: 350px;
+            background: red;
+            margin: 1000px auto 0 auto;
+        }
+        @-webkit-keyframes fadeInLeft{
+            0%{
+                opacity: 0;
+                transform: translate3d(-100%,0,0);
+            }
+            100%{
+                opacity: 1;
+                transform: none;
+                
+<pre><code>        &#125;
+    &#125;
+        .fadeInLeft &#123;
+            animation-name: fadeInLeft;
+            animation-duration: 2s;
+        &#125;
+</code></pre>
+<p>$(window).scroll(function(){<br>    var ks_area &#x3D; $(window).height();&#x2F;&#x2F;可视区域高度<br>    var scrollHeight &#x3D; $(window).scrollTop();&#x2F;&#x2F;被卷上去的那部分<br>    var divTop &#x3D; $(“#example”).offset().top;&#x2F;&#x2F;盒子距离浏览器顶部的距离</p>
+<pre><code>if(ks_area + scrollHeight &gt;= divTop)&#123;
+    $(&quot;#example&quot;).addClass(&quot;fadeInLeft&quot;);
+&#125;
+document.title = ks_area+&#39;-&#39;+scrollHeight+&#39;-&#39;+divTop;
+</code></pre>
+<p>});</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[在线演示](http://codepen.io/poetries/pen/MbPqVE)</span><br><span class="line"></span><br><span class="line">**3.2 jquery滚动到底部和顶部加载**</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div id="example" ></div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+#example {
+            width: 500px;
+            height: 350px;
+            background: red;
+            margin: 1000px auto 0 auto;
+}
+$(window).scroll(function(){
+    var ks_area = $(window).height();
+    var scrollTop = $(window).scrollTop();
+    var wholeHeight = $(document).height();
+    
+<pre><code>if(ks_area + scrollTop &gt;=wholeHeight )&#123;
+    alert(&quot;已经到底部了&quot;);
+&#125;else if(scrollTop == 0)&#123;
+    alert(&quot;已经到头部了&quot;);
+&#125;
+</code></pre>
+<p>})<br>&#96;&#96;&#96;</p>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/01/26/html+css+js+ts/1-h5-api/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">html-api</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/01/22/html+css+js+ts/3-js-%E7%BB%A7%E6%89%BF/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">js 继承</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

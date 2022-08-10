@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>React-ant-Design-Pro总结 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">React-ant-Design-Pro总结</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2019-12-25T03:42:19.000Z" itemprop="datePublished">2019-12-25</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E6%A1%86%E6%9E%B6/">📒 框架</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/React/">🏷️ React</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><h2 id="1-1-ant-pro系统特性"><a href="#1-1-ant-pro系统特性" class="headerlink" title="1.1 ant pro系统特性"></a>1.1 ant pro系统特性</h2><ul>
+<li>基于 <code>Ant Design</code> 体系精心设计</li>
+<li>使用 <code>React/umi/dva/antd</code> 等前端前沿技术开发</li>
+<li>针对不同屏幕大小设计</li>
+<li>可配置的主题满足多样化的品牌诉求</li>
+<li><code>Mock</code> 数据实用的本地数据调试方案</li>
+</ul>
+<h2 id="1-2-模板"><a href="#1-2-模板" class="headerlink" title="1.2 模板"></a>1.2 模板</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">- Dashboard</span><br><span class="line">  - 分析页</span><br><span class="line">  - 监控页</span><br><span class="line">  - 工作台</span><br><span class="line">- 表单页</span><br><span class="line">  - 基础表单页</span><br><span class="line">  - 分步表单页</span><br><span class="line">  - 高级表单页</span><br><span class="line">- 列表页</span><br><span class="line">  - 查询表格</span><br><span class="line">  - 标准列表</span><br><span class="line">  - 卡片列表</span><br><span class="line">  - 搜索列表（项目/应用/文章）</span><br><span class="line">- 详情页</span><br><span class="line">  - 基础详情页</span><br><span class="line">  - 高级详情页</span><br><span class="line">- 结果</span><br><span class="line">  - 成功页</span><br><span class="line">  - 失败页</span><br><span class="line">- 异常</span><br><span class="line">  - 403 无权限</span><br><span class="line">  - 404 找不到</span><br><span class="line">  - 500 服务器出错</span><br><span class="line">- 个人页</span><br><span class="line">  - 个人中心</span><br><span class="line">  - 个人设置</span><br><span class="line">- 帐户</span><br><span class="line">  - 登录</span><br><span class="line">  - 注册</span><br><span class="line">  - 注册成功</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-使用"><a href="#1-3-使用" class="headerlink" title="1.3 使用"></a>1.3 使用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git clone --depth=1 https://github.com/ant-design/ant-design-pro.git my-project</span><br><span class="line">$ cd my-project</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install ant-design-pro-cli -g</span><br><span class="line">$ mkdir my-project &amp;&amp; cd my-project</span><br><span class="line">$ pro new  # 安装脚手架</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-目录结构"><a href="#1-4-目录结构" class="headerlink" title="1.4 目录结构"></a>1.4 目录结构</h2><p>整个项目的目录结构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">├── mock                     # 本地模拟数据</span><br><span class="line">├── node_modules             # 依赖库</span><br><span class="line">├── public</span><br><span class="line">│   ├── favicon.ico          # Favicon</span><br><span class="line">│   └── index.html           # HTML 入口模板</span><br><span class="line">├── src</span><br><span class="line">│   ├── common               # 应用公用配置，如导航信息</span><br><span class="line">│   ├── components           # 业务通用组件</span><br><span class="line">│   ├── e2e                  # 集成测试用例</span><br><span class="line">│   ├── layouts              # 通用布局</span><br><span class="line">│   ├── models               # dva model</span><br><span class="line">│   ├── routes               # 业务页面入口和常用模板</span><br><span class="line">│   ├── services             # 后台接口服务</span><br><span class="line">│   ├── utils                # 工具库</span><br><span class="line">│   ├── g2.js                # 可视化图形配置</span><br><span class="line">│   ├── polyfill.js          # 兼容性垫片</span><br><span class="line">│   ├── theme.js             # 主题配置</span><br><span class="line">│   ├── index.js             # 应用入口</span><br><span class="line">│   ├── index.less           # 全局样式</span><br><span class="line">│   └── router.js            # 路由入口</span><br><span class="line">├── tests                    # 测试工具</span><br><span class="line">├── .editorconfig            # 编辑器配置</span><br><span class="line">├── .eslintrc                # js代码检测工具</span><br><span class="line">├── .ga                      # 未知</span><br><span class="line">├── .gitignore               # git版本配置</span><br><span class="line">├── .roadhogrc               # roadhog配置</span><br><span class="line">├── .roadhogrc.mock.js       # roadhog的模拟配置</span><br><span class="line">├── .stylelintrc             # css代码审查配置</span><br><span class="line">├── .travis.yml              # travis持续构建工具配置</span><br><span class="line">├── package.json             # web前端项目配置文件</span><br><span class="line">├── README.md</span><br><span class="line">└──</span><br></pre></td></tr></table></figure>
+
+<h2 id="roadhog摘要介绍"><a href="#roadhog摘要介绍" class="headerlink" title="roadhog摘要介绍"></a>roadhog摘要介绍</h2><ul>
+<li><code>roadhog</code> 是一个 <code>cli</code> 工具，提供 <code>server</code>、 <code>build</code> 和 test 三个命令，分别用于本地调试和构建，并且提供了特别易用的 mock 功能。命令行体验和 <code>create-react-app</code> 一致，配置略有不同，比如默认开启 <code>css``modules</code>，然后还提供了 <code>JSON</code> 格式的配置方式。</li>
+<li>重点介绍<code>roadhog</code>有关的几个配置项，主要是在<code>ant design pro</code>的代码中用到了这些配置项</li>
+</ul>
+<p><strong>entry</strong></p>
+<ul>
+<li>指定 <code>webpack</code> 入口文件，支持 <code>glob</code>格式。</li>
+<li>如果你的项目是多页类型，会希望把 <code>src/pages</code>的文件作为入口。可以这样配：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;entry&quot;: &quot;src/pages/\*.js&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>env</strong></p>
+<blockquote>
+<p>针对特定的环境进行配置。<code>server</code> 的环境变量是 <code>development</code>，<code>build</code> 的环境变量是<code>production</code>。</p>
+</blockquote>
+<p>比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;extraBabelPlugins&quot;: [&quot;transform-runtime&quot;],</span><br><span class="line">&quot;env&quot;: &#123;</span><br><span class="line">  &quot;development&quot;: &#123;</span><br><span class="line">    &quot;extraBabelPlugins&quot;: [&quot;dva-hmr&quot;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这样，开发环境下的 <code>extraBabelPlugins</code> 是 <code>[&quot;transform-runtime&quot;, &quot;dva-hmr&quot;]</code>，而生产环境下是 <code>[&quot;transform-runtime&quot;]</code>。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&quot;env&quot;: &#123;</span><br><span class="line">  &quot;development&quot;: &#123;</span><br><span class="line">    &quot;extraBabelPlugins&quot;: [</span><br><span class="line">      &quot;dva-hmr&quot;,</span><br><span class="line">      &quot;transform-runtime&quot;,</span><br><span class="line">      &quot;transform-decorators-legacy&quot;,</span><br><span class="line">      &quot;transform-class-properties&quot;,</span><br><span class="line">      [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;antd&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;production&quot;: &#123;</span><br><span class="line">    &quot;extraBabelPlugins&quot;: [</span><br><span class="line">      &quot;transform-runtime&quot;,</span><br><span class="line">      &quot;transform-decorators-legacy&quot;,</span><br><span class="line">      &quot;transform-class-properties&quot;,</span><br><span class="line">      [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;antd&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在这段代码中，开发环境和生产环境分别配置，其中开发环境使用了<code>dva-hmr</code>插件</p>
+</blockquote>
+<h1 id="二、布局"><a href="#二、布局" class="headerlink" title="二、布局"></a>二、布局</h1><blockquote>
+<p>页面整体布局是一个产品最外层的框架结构，往往会包含导航、页脚、侧边栏、通知栏以及内容等。在页面之中，也有很多区块的布局结构。在真实项目中，页面布局通常统领整个应用的界面，有非常重要的作用</p>
+</blockquote>
+<h2 id="2-1-Ant-Design-Pro-的布局"><a href="#2-1-Ant-Design-Pro-的布局" class="headerlink" title="2.1 Ant Design Pro 的布局"></a>2.1 Ant Design Pro 的布局</h2><blockquote>
+<p>在 Ant Design Pro 中，我们抽离了使用过程中的通用布局，都放在 <code>layouts</code> 目录中，分别为</p>
+</blockquote>
+<p><strong>BasicLayout：基础页面布局，包含了头部导航，侧边栏和通知栏</strong></p>
+<p><img src="https://gw.alipayobjects.com/zos/rmsportal/oXmyfmffJVvdbmDoGvuF.png" alt="img"></p>
+<p><strong>UserLayout：抽离出用于登陆注册页面的通用布局</strong></p>
+<p><img src="https://gw.alipayobjects.com/zos/rmsportal/mXsydBXvLqBVEZLMssEy.png" alt="img"></p>
+<p><strong>BlankLayout：空白的布局</strong></p>
+<h2 id="2-2-如何使用-Ant-Design-Pro-布局"><a href="#2-2-如何使用-Ant-Design-Pro-布局" class="headerlink" title="2.2 如何使用 Ant Design Pro 布局"></a>2.2 如何使用 Ant Design Pro 布局</h2><blockquote>
+<p>通常布局是和路由系统紧密结合的，Ant Design Pro 的路由使用了 <code>Umi</code> 的路由方案，为了统一方便的管理路由和页面的关系，我们将配置信息统一抽离到 <code>config/router.config.js</code> 下，通过如下配置定义每个页面的布局</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">module.exports = [&#123;</span><br><span class="line">  path: &#x27;/&#x27;,</span><br><span class="line">  component: &#x27;../layouts/BasicLayout&#x27;,  // 指定以下页面的布局</span><br><span class="line">  routes: [</span><br><span class="line">    // dashboard</span><br><span class="line">    &#123; path: &#x27;/&#x27;, redirect: &#x27;/dashboard/analysis&#x27; &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &#x27;/dashboard&#x27;,</span><br><span class="line">      name: &#x27;dashboard&#x27;,</span><br><span class="line">      icon: &#x27;dashboard&#x27;,</span><br><span class="line">      routes: [</span><br><span class="line">        &#123; path: &#x27;/dashboard/analysis&#x27;, name: &#x27;analysis&#x27;, component: &#x27;./Dashboard/Analysis&#x27; &#125;,</span><br><span class="line">        &#123; path: &#x27;/dashboard/monitor&#x27;, name: &#x27;monitor&#x27;, component: &#x27;./Dashboard/Monitor&#x27; &#125;,</span><br><span class="line">        &#123; path: &#x27;/dashboard/workplace&#x27;, name: &#x27;workplace&#x27;, component: &#x27;./Dashboard/Workplace&#x27; &#125;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>更多 Umi 的路由配置方式可以参考：<a target="_blank" rel="noopener" href="https://umijs.org/guide/router.html#%E9%85%8D%E7%BD%AE%E5%BC%8F%E8%B7%AF%E7%94%B1">Umi 配置式路由</a></p>
+</blockquote>
+<h2 id="2-3-Pro-扩展配置"><a href="#2-3-Pro-扩展配置" class="headerlink" title="2.3 Pro 扩展配置"></a>2.3 Pro 扩展配置</h2><blockquote>
+<p>我们在 <code>router.config.js</code> 扩展了一些关于 <code>pro</code> 全局菜单的配置</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  name: &#x27;dashboard&#x27;,</span><br><span class="line">  icon: &#x27;dashboard&#x27;,</span><br><span class="line">  hideInMenu: true,</span><br><span class="line">  hideChildrenInMenu: true,</span><br><span class="line">  hideInBreadcrumb: true,</span><br><span class="line">  authority: [&#x27;admin&#x27;],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>name</code>: 当前路由在菜单和面包屑中的名称，注意这里是国际化配置的 <code>key</code>，具体展示菜单名可以在 <code>/src/locales/zh-CN.js</code> 进行配置。</li>
+<li><code>icon</code>: 当前路由在菜单下的图标名。</li>
+<li><code>hideInMenu</code>: 当前路由在菜单中不展现，默认 <code>false</code>。</li>
+<li><code>hideChildrenInMenu</code>: 当前路由的子级在菜单中不展现，默认 <code>false</code>。</li>
+<li><code>hideInBreadcrumb</code>: 当前路由在面包屑中不展现，默认 <code>false</code>。</li>
+<li><code>authority</code>: 允许展示的权限，不设则都可见，详见：权限管理</li>
+</ul>
+<h2 id="2-4-Ant-Design-布局组件"><a href="#2-4-Ant-Design-布局组件" class="headerlink" title="2.4 Ant Design 布局组件"></a>2.4 Ant Design 布局组件</h2><blockquote>
+<p>除了 Pro 里的内建布局以为，在一些页面中需要进行布局，可以使用 Ant Design 目前提供的两套布局组件工具：<code>Layout</code> 和 <code>Grid</code></p>
+</blockquote>
+<p><strong>Grid 组件</strong></p>
+<blockquote>
+<ul>
+<li>栅格布局是网页中最常用的布局，其特点就是按照一定比例划分页面，能够随着屏幕的变化依旧保持比例，从而具有弹性布局的特点。</li>
+<li>而 Ant Design 的栅格组件提供的功能更为强大，能够设置间距、具有支持响应式的比例设置，以及支持 flex 模式，基本上涵盖了大部分的布局场景 <a target="_blank" rel="noopener" href="https://ant.design/components/grid/">https://ant.design/components/grid/</a></li>
+</ul>
+</blockquote>
+<p><strong>Layout 组件</strong></p>
+<blockquote>
+<p>如果你需要辅助页面框架级别的布局设计，那么 Layout 则是你最佳的选择，它抽象了大部分框架布局结构，使得只需要填空就可以开发规范专业的页面整体布局 <a target="_blank" rel="noopener" href="https://ant.design/components/layout-cn/">https://ant.design/components/layout-cn/</a></p>
+</blockquote>
+<ul>
+<li>根据不同场景区分抽离布局组件#<br>在大部分场景下，我们需要基于上面两个组件封装一些适用于当下具体业务的组件，包含了通用的导航、侧边栏、顶部通知、页面标题等元素。例如 Ant Design Pro 的 <code>BasicLayout</code>。</li>
+<li>通常，我们会把抽象出来的布局组件，放到跟 pages、 components 平行的 layouts 文件夹中方便管理。需要注意的是，这些布局组件和我们平时使用的其它组件并没有什么不同，只不过功能性上是为了处理布局问题</li>
+</ul>
+<h1 id="四、路由和菜单"><a href="#四、路由和菜单" class="headerlink" title="四、路由和菜单"></a>四、路由和菜单</h1><blockquote>
+<p>路由和菜单是组织起一个应用的关键骨架，pro 中的路由为了方便管理，使用了中心化的方式，在 <code>router.config.js</code> 统一配置和管理</p>
+</blockquote>
+<h2 id="4-1-基本结构"><a href="#4-1-基本结构" class="headerlink" title="4.1 基本结构"></a>4.1 基本结构</h2><ul>
+<li><strong>路由管理</strong> 通过约定的语法根据在 <code>router.config.js</code> 中配置路由。</li>
+<li><strong>菜单生成</strong> 根据路由配置来生成菜单。菜单项名称，嵌套路径与路由高度耦合。</li>
+<li><strong>面包屑</strong> 组件 <a target="_blank" rel="noopener" href="https://pro.ant.design/components/PageHeader-cn">PageHeader</a> 中内置的面包屑也可由脚手架提供的配置信息自动生成</li>
+</ul>
+<h3 id="4-1-1-路由"><a href="#4-1-1-路由" class="headerlink" title="4.1.1 路由"></a>4.1.1 路由</h3><blockquote>
+<p>目前脚手架中所有的路由都通过 <code>router.config.js</code> 来统一管理，在 <code>umi</code> 的配置中我们增加了一些参数，如<code>name</code>,<code>icon</code>,<code>hideChildren</code>,<code>authority</code>，来辅助生成菜单。其中</p>
+</blockquote>
+<ul>
+<li><code>name</code> 和 <code>icon</code>分别代表生成菜单项的图标和文本。</li>
+<li><code>hideChildren</code> 用于隐藏不需要在菜单中展示的子路由。用法可以查看 分步表单 的配置。</li>
+<li><code>hideInMenu</code> 可以在菜单中不展示这个路由，包括子路由。效果可以查看 <code>exception/trigger</code>页面。</li>
+<li><code>authority</code> 用来配置这个路由的权限，如果配置了将会验证当前用户的权限，并决定是否展示</li>
+</ul>
+<h3 id="4-1-2-菜单"><a href="#4-1-2-菜单" class="headerlink" title="4.1.2 菜单"></a>4.1.2 菜单</h3><blockquote>
+<p>菜单根据 <code>router.config.js</code> 生成，具体逻辑在 <code>src/layouts/BasicLayout</code> 中的 <code>formatter</code> 方法实现</p>
+</blockquote>
+<ul>
+<li>如果你的项目并不需要菜单，你可以直接在<code>BasicLayout</code> 中删除 <code>SiderMenu</code> 组件的挂载。并在 <code>src/layouts/BasicLayout</code> 中 设置 <code>const MenuData = []</code>。</li>
+<li>如果你需要从服务器请求菜单，可以将<code>menuData</code>设置为 <code>state</code>，然后通过网络获取来修改了 <code>state</code></li>
+</ul>
+<h3 id="4-1-3-面包屑"><a href="#4-1-3-面包屑" class="headerlink" title="4.1.3 面包屑"></a>4.1.3 面包屑</h3><blockquote>
+<p>面包屑由 <code>PageHeaderLayout</code> 实现，<code>MenuContext</code> 将 根据 <code>MenuData</code> 生成的 <code>breadcrumbNameMap</code> 通过<code>props</code> 传递给了 <code>PageHeader</code>，如果你要做自定义的面包屑，可以通过修改传入的 <code>breadcrumbNameMap</code> 来解决</p>
+</blockquote>
+<p><code>breadcrumbNameMap</code> 示例数据如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &#x27;/&#x27;: &#123; path: &#x27;/&#x27;, redirect: &#x27;/dashboard/analysis&#x27;, locale: &#x27;menu&#x27; &#125;,</span><br><span class="line">  &#x27;/dashboard/analysis&#x27;: &#123;</span><br><span class="line">    name: &#x27;analysis&#x27;,</span><br><span class="line">    component: &#x27;./Dashboard/Analysis&#x27;,</span><br><span class="line">    locale: &#x27;menu.dashboard.analysis&#x27;,</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-2-需求实例"><a href="#4-2-需求实例" class="headerlink" title="4.2 需求实例"></a>4.2 需求实例</h2><h3 id="4-2-1-新增页面"><a href="#4-2-1-新增页面" class="headerlink" title="4.2.1 新增页面"></a>4.2.1 新增页面</h3><blockquote>
+<p>脚手架默认提供了两种布局模板：基础布局 - <code>BasicLayout</code> 以及 账户相关布局 - <code>UserLayout</code></p>
+</blockquote>
+<p><img src="https://gw.alipayobjects.com/zos/rmsportal/oXmyfmffJVvdbmDoGvuF.png" alt="img"></p>
+<p><img src="https://gw.alipayobjects.com/zos/rmsportal/mXsydBXvLqBVEZLMssEy.png" alt="img"></p>
+<p>如果你的页面可以利用这两种布局，那么只需要在路由配置中增加一条即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> // app</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#x27;/&#x27;,</span><br><span class="line">    component: &#x27;../layouts/BasicLayout&#x27;,</span><br><span class="line">    routes: [</span><br><span class="line">      // dashboard</span><br><span class="line">      &#123; path: &#x27;/&#x27;, redirect: &#x27;/dashboard/analysis&#x27; &#125;,</span><br><span class="line">      &#123; path :&#x27;/dashboard/test&#x27;,component:&quot;./Dashboard/Test&quot;&#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>加好后，会默认生成相关的路由及导航</p>
+</blockquote>
+<h3 id="4-2-2-新增布局"><a href="#4-2-2-新增布局" class="headerlink" title="4.2.2 新增布局"></a>4.2.2 新增布局</h3><blockquote>
+<p>在脚手架中我们通过嵌套路由来实现布局模板。<code>router.config.js</code> 是一个数组，其中第一级数据就是我们的布局，如果你需要新增布局可以在直接增加一个新的一级数组</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">module.exports = [</span><br><span class="line">   // user</span><br><span class="line">   &#123;</span><br><span class="line">    path: &#x27;/user&#x27;,</span><br><span class="line">    component: &#x27;../layouts/UserLayout&#x27;,</span><br><span class="line">    routes:[...]</span><br><span class="line">   &#125;,</span><br><span class="line">   // app</span><br><span class="line">   &#123;</span><br><span class="line">    path: &#x27;/&#x27;,</span><br><span class="line">    component: &#x27;../layouts/BasicLayout&#x27;,</span><br><span class="line">    routes:[...]</span><br><span class="line">   &#125;,</span><br><span class="line">   // new</span><br><span class="line">   &#123;</span><br><span class="line">    path: &#x27;/new&#x27;,</span><br><span class="line">    component: &#x27;../layouts/new_page&#x27;,</span><br><span class="line">    routes:[...]</span><br><span class="line">   &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-3-带参数的路由"><a href="#4-2-3-带参数的路由" class="headerlink" title="4.2.3 带参数的路由"></a>4.2.3 带参数的路由</h3><blockquote>
+<p>脚手架默认支持带参数的路由,但是在菜单中显示带参数的路由并不是个好主意，我们并不会自动的帮你注入一个参数，你可能需要在代码中自行处理</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">    path: &#x27;/dashboard/:page&#x27;,</span><br><span class="line">    hideInMenu:true, </span><br><span class="line">    name: &#x27;analysis&#x27;, </span><br><span class="line">    component: &#x27;./Dashboard/Analysis&#x27; </span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>你可以通过以下代码来跳转到这个路由</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import router from &#x27;umi/router&#x27;;</span><br><span class="line"></span><br><span class="line">router.push(&#x27;/dashboard/anyParams&#x27;)</span><br><span class="line"></span><br><span class="line">//or</span><br><span class="line"></span><br><span class="line">import Link from &#x27;umi/link&#x27;;</span><br><span class="line"></span><br><span class="line">&lt;Link to=&quot;/dashboard/anyParams&quot;&gt;go&lt;/Link&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在路由组件中，可以通过<code>this.props.match.params</code> 来获得路由参数</p>
+</blockquote>
+<h1 id="五、新增页面"><a href="#五、新增页面" class="headerlink" title="五、新增页面"></a>五、新增页面</h1><blockquote>
+<p>这里的『页面』指配置了路由，能够通过链接直接访问的模块，要新建一个页面，通常只需要在脚手架的基础上进行简单的配置</p>
+</blockquote>
+<h2 id="5-1-新增-js、less"><a href="#5-1-新增-js、less" class="headerlink" title="5.1 新增 js、less"></a>5.1 新增 js、less</h2><blockquote>
+<p>在 <code>src/pages</code> 下新建页面的 <code>js</code> 及 <code>less</code> 文件，如果相关页面有多个，可以新建一个文件夹来放置相关文件</p>
+</blockquote>
+<p><img src="https://gw.alipayobjects.com/zos/rmsportal/hjDyFTVOgRwDzAIHApMO.png" alt="img"></p>
+<blockquote>
+<p>样式文件默认使用 CSS Modules，如果需要，你可以在样式文件的头部引入 antd 样式变量文件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;~antd/lib/style/themes/default.less&quot;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2-将文件加入菜单和路由"><a href="#5-2-将文件加入菜单和路由" class="headerlink" title="5.2 将文件加入菜单和路由"></a>5.2 将文件加入菜单和路由</h2><blockquote>
+<p>加入菜单和路由的方式请参照 路由和菜单 - 添加路由&#x2F;菜单 中的介绍完成。加好后，访问 <code>http://localhost:8000/#/new</code> 就可以看到新增的页面了 <a target="_blank" rel="noopener" href="https://pro.ant.design/docs/router-and-nav-cn#%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1/%E8%8F%9C%E5%8D%95">https://pro.ant.design/docs/router-and-nav-cn#%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1/%E8%8F%9C%E5%8D%95</a></p>
+</blockquote>
+<p><img src="https://gw.alipayobjects.com/zos/rmsportal/xZIqExWKhdnzDBjajnZg.png" alt="img"></p>
+<h2 id="5-3-新增-model、service"><a href="#5-3-新增-model、service" class="headerlink" title="5.3 新增 model、service"></a>5.3 新增 model、service</h2><blockquote>
+<p>布局及路由都配置好之后，回到之前新建的 <code>NewPage.js</code>，可以开始写业务代码了！如果需要用到 <code>dva</code>中的数据流，还需要在 <code>src/models src/services</code> 中建立相应的<code>model</code> 和 service，具体可以参考脚手架内置页面的写法</p>
+</blockquote>
+<h1 id="六、新增业务组件"><a href="#六、新增业务组件" class="headerlink" title="六、新增业务组件"></a>六、新增业务组件</h1><blockquote>
+<p>对于一些可能被多处引用的功能模块，建议提炼成业务组件统一管理。这些组件一般有以下特征：</p>
+</blockquote>
+<ul>
+<li>只负责一块相对独立，稳定的功能；</li>
+<li>没有单独的路由配置；</li>
+<li>可能是纯静态的，也可能包含自己的 state，但不涉及 dva 的数据流，仅受父组件（通常是一个页面）传递的参数控制。</li>
+</ul>
+<p><strong>新建文件</strong></p>
+<blockquote>
+<p>在 <code>src/components</code> 下新建一个以组件名命名的文件夹，注意首字母大写，命名尽量体现组件的功能，这里就叫 <code>ImageWrapper</code>。在此文件夹下新增 js 文件及样式文件（如果需要），命名为 <code>index.js</code>和 <code>index.less</code></p>
+</blockquote>
+<ul>
+<li>在使用组件时，默认会在 <code>index.js</code> 中寻找 <code>export</code> 的对象，如果你的组件比较复杂，可以分为多个文件，最后在 <code>index.js</code>中统一 <code>export</code>，就像这样</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// MainComponent.js</span><br><span class="line">export default (&#123; ... &#125;) =&gt; (...);</span><br><span class="line"></span><br><span class="line">// SubComponent1.js</span><br><span class="line">export default (&#123; ... &#125;) =&gt; (...);</span><br><span class="line"></span><br><span class="line">// SubComponent2.js</span><br><span class="line">export default (&#123; ... &#125;) =&gt; (...);</span><br><span class="line"></span><br><span class="line">// index.js</span><br><span class="line">import MainComponent from &#x27;./MainComponent&#x27;;</span><br><span class="line">import SubComponent1 from &#x27;./SubComponent1&#x27;;</span><br><span class="line">import SubComponent2 from &#x27;./SubComponent2&#x27;;</span><br><span class="line"></span><br><span class="line">MainComponent.SubComponent1 = SubComponent1;</span><br><span class="line">MainComponent.SubComponent2 = SubComponent2;</span><br><span class="line">export default MainComponent;</span><br></pre></td></tr></table></figure>
+
+<p>你的代码大概是这个样子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// index.js</span><br><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line">import styles from &#x27;./index.less&#x27;;    // 按照 CSS Modules 的方式引入样式文件。</span><br><span class="line"></span><br><span class="line">export default (&#123; src, desc, style &#125;) =&gt; (</span><br><span class="line">  &lt;div style=&#123;style&#125; className=&#123;styles.imageWrapper&#125;&gt;</span><br><span class="line">    &lt;img className=&#123;styles.img&#125; src=&#123;src&#125; alt=&#123;desc&#125; /&gt;</span><br><span class="line">    &#123;desc &amp;&amp; &lt;div className=&#123;styles.desc&#125;&gt;&#123;desc&#125;&lt;/div&gt;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">);</span><br><span class="line">// index.less</span><br><span class="line">.imageWrapper &#123;</span><br><span class="line">  padding: 0 20px 8px;</span><br><span class="line">  background: #f2f4f5;</span><br><span class="line">  width: 400px;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.img &#123;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">  max-width: calc(100% - 32px);</span><br><span class="line">  margin: 2.4em 1em;</span><br><span class="line">  box-shadow: 0 8px 20px rgba(143, 168, 191, 0.35);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用</strong></p>
+<blockquote>
+<p>在要使用这个组件的地方，按照组件定义的 <code>API</code> 传入参数，直接使用就好，不过别忘了先引入</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line">import ImageWrapper from &#x27;@/components/ImageWrapper&#x27;;  // @ 表示相对于源文件根目录</span><br><span class="line"></span><br><span class="line">export default () =&gt; (</span><br><span class="line">  &lt;ImageWrapper</span><br><span class="line">    src=&quot;https://os.alipayobjects.com/rmsportal/mgesTPFxodmIwpi.png&quot;</span><br><span class="line">    desc=&quot;示意图&quot;</span><br><span class="line">  /&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h1 id="七、样式"><a href="#七、样式" class="headerlink" title="七、样式"></a>七、样式</h1><p><strong>less</strong></p>
+<blockquote>
+<p>Ant Design Pro 默认使用 less 作为样式语言</p>
+</blockquote>
+<p><strong>CSS Modules</strong></p>
+<p>在样式开发过程中，有两个问题比较突出</p>
+<ul>
+<li>全局污染 —— CSS 文件中的选择器是全局生效的，不同文件中的同名选择器，根据 build 后生成文件中的先后顺序，后面的样式会将前面的覆盖；</li>
+<li>选择器复杂 —— 为了避免上面的问题，我们在编写样式的时候不得不小心翼翼，类名里会带上限制范围的标识，变得越来越长，多人开发时还很容易导致命名风格混乱，一个元素上使用的选择器个数也可能越来越多。</li>
+</ul>
+<blockquote>
+<p>为了解决上述问题，我们的脚手架默认使用 CSS Modules 模块化方案，先来看下在这种模式下怎么写样式</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// example.js</span><br><span class="line">import styles from &#x27;./example.less&#x27;;</span><br><span class="line"></span><br><span class="line">export default (&#123; title &#125;) =&gt; &lt;div className=&#123;styles.title&#125;&gt;&#123;title&#125;&lt;/div&gt;;</span><br><span class="line">// example.less</span><br><span class="line">.title &#123;</span><br><span class="line">  color: @heading-color;</span><br><span class="line">  font-weight: 600;</span><br><span class="line">  margin-bottom: 16px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>用 less 写样式好像没什么改变，只是类名比较简单（实际项目中也是这样），js 文件的改变就是在设置 <code>className</code> 时，用一个对象属性取代了原来的字符串，属性名跟 less 文件中对应的类名相同，对象从 less 文件中引入。</li>
+<li>在上面的样式文件中，<code>.title</code> 只会在本文件生效，你可以在其他任意文件中使用同名选择器，也不会对这里造成影响。不过有的时候，我们就是想要一个全局生效的样式呢？可以使用 <code>:global</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// example.less</span><br><span class="line">.title &#123;</span><br><span class="line">  color: @heading-color;</span><br><span class="line">  font-weight: 600;</span><br><span class="line">  margin-bottom: 16px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 定义全局样式 */</span><br><span class="line">:global(.text) &#123;</span><br><span class="line">  font-size: 16px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 定义多个全局样式 */</span><br><span class="line">:global &#123;</span><br><span class="line">  .footer &#123;</span><br><span class="line">    color: #ccc;</span><br><span class="line">  &#125;</span><br><span class="line">  .sider &#123;</span><br><span class="line">    background: #ebebeb;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>CSS Modules 的基本原理很简单，就是对每个类名（非 <code>:global</code> 声明的）按照一定规则进行转换，保证它的唯一性。如果在浏览器里查看这个示例的 dom 结构，你会发现实际渲染出来是这样的</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;title___3TqAx&quot;&gt;title&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>类名被自动添加了一个 <code>hash</code> 值，这保证了它的唯一性</li>
+</ul>
+<p><strong>样式文件类别</strong></p>
+<blockquote>
+<p>在一个项目中，样式文件根据功能不同，可以划分为不同的类别</p>
+</blockquote>
+<ul>
+<li><code>src/index.less#</code></li>
+</ul>
+<blockquote>
+<p>全局样式文件，在这里你可以进行一些通用设置，比如脚手架中自带的</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">html, body, :global(#root) &#123;</span><br><span class="line">  height: 100%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">  text-rendering: optimizeLegibility;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// temporary font size patch</span><br><span class="line">:global(.ant-tag) &#123;</span><br><span class="line">  font-size: 12px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>src/utils/utils.less#</code></li>
+</ul>
+<blockquote>
+<p>这里可以放置一些工具函数供调用，比如清除浮动 <code>.clearfix</code></p>
+</blockquote>
+<ul>
+<li>模块样式</li>
+</ul>
+<blockquote>
+<p>针对某个模块&#x2F;页面生效的文件</p>
+</blockquote>
+<h1 id="八、和服务端进行交互"><a href="#八、和服务端进行交互" class="headerlink" title="八、和服务端进行交互"></a>八、和服务端进行交互</h1><p><strong>前端请求流程</strong></p>
+<blockquote>
+<p>在 Ant Design Pro 中，一个完整的前端 UI 交互到服务端处理流程是这样的</p>
+</blockquote>
+<ul>
+<li>UI 组件交互操作；</li>
+<li>调用 <code>model</code> 的 <code>effect</code>；</li>
+<li>调用统一管理的 <code>service</code> 请求函数；</li>
+<li>使用封装的 <code>request.js</code>发送请求；</li>
+<li>获取服务端返回；</li>
+<li>然后调用<code>reducer</code>改变 <code>state</code>；</li>
+<li>更新 <code>model</code></li>
+</ul>
+<blockquote>
+<p>为了方便管理维护，统一的请求处理都放在 services 文件夹中，并且一般按照 model 维度进行拆分文件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">services/</span><br><span class="line">  user.js</span><br><span class="line">  api.js</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其中，<code>utils/request.js</code>是基于 <code>fetch</code> 的封装，便于统一处理 POST，GET 等请求参数，请求头，以及错误提示信息等</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// services/user.js</span><br><span class="line">import request from &#x27;../utils/request&#x27;;</span><br><span class="line"></span><br><span class="line">export async function query() &#123;</span><br><span class="line">  return request(&#x27;/api/users&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export async function queryCurrent() &#123;</span><br><span class="line">  return request(&#x27;/api/currentUser&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// models/user.js</span><br><span class="line">import &#123; queryCurrent &#125; from &#x27;../services/user&#x27;;</span><br><span class="line">...</span><br><span class="line">effects: &#123;</span><br><span class="line">  *fetch(&#123; payload &#125;, &#123; call, put &#125;) &#123;</span><br><span class="line">    ...</span><br><span class="line">    const response = yield call(queryUsers);</span><br><span class="line">    ...</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>处理异步请求</strong></p>
+<blockquote>
+<p>在处理复杂的异步请求的时候，很容易让逻辑混乱，陷入嵌套陷阱，所以 <code>Ant Design Pro</code> 的底层基础框架 <code>dva</code>使用 <code>effect</code> 的方式来管理同步化异步请求</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">effects: &#123;</span><br><span class="line">  *fetch(&#123; payload &#125;, &#123; call, put &#125;) &#123;</span><br><span class="line">    yield put(&#123;</span><br><span class="line">      type: &#x27;changeLoading&#x27;,</span><br><span class="line">      payload: true,</span><br><span class="line">    &#125;);</span><br><span class="line">    // 异步请求 1</span><br><span class="line">    const response = yield call(queryFakeList, payload);</span><br><span class="line">    yield put(&#123;</span><br><span class="line">      type: &#x27;save&#x27;,</span><br><span class="line">      payload: response,</span><br><span class="line">    &#125;);</span><br><span class="line">    // 异步请求 2</span><br><span class="line">    const response2 = yield call(queryFakeList2, payload);</span><br><span class="line">    yield put(&#123;</span><br><span class="line">      type: &#x27;save2&#x27;,</span><br><span class="line">      payload: response2,</span><br><span class="line">    &#125;);</span><br><span class="line">    yield put(&#123;</span><br><span class="line">      type: &#x27;changeLoading&#x27;,</span><br><span class="line">      payload: false,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h1 id="九、引入外部模块"><a href="#九、引入外部模块" class="headerlink" title="九、引入外部模块"></a>九、引入外部模块</h1><blockquote>
+<p>除了<code>antd</code>组件以及脚手架内置的业务组件，有时我们还需要引入其他外部模块，这里以引入富文本组件 <code>react-quill</code> 为例进行介绍</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$ npm install react-quill --save</span><br><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line">import &#123; Button, notification, Card &#125; from &#x27;antd&#x27;;</span><br><span class="line">import ReactQuill from &#x27;react-quill&#x27;; </span><br><span class="line">import &#x27;react-quill/dist/quill.snow.css&#x27;;</span><br><span class="line"></span><br><span class="line">export default class NewPage extends React.Component &#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    value: &#x27;test&#x27;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  handleChange = (value) =&gt; &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      value,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  prompt = () =&gt; &#123;</span><br><span class="line">    notification.open(&#123;</span><br><span class="line">      message: &#x27;We got value:&#x27;,</span><br><span class="line">      description: &lt;span dangerouslySetInnerHTML=&#123;&#123; __html: this.state.value &#125;&#125;&gt;&lt;/span&gt;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;Card title=&quot;富文本编辑器&quot;&gt;</span><br><span class="line">        &lt;ReactQuill value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line">        &lt;Button style=&#123;&#123; marginTop: 16 &#125;&#125; onClick=&#123;this.prompt&#125;&gt;Prompt&lt;/Button&gt;</span><br><span class="line">      &lt;/Card&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="十、图表"><a href="#十、图表" class="headerlink" title="十、图表"></a>十、图表</h1><blockquote>
+<p>Ant Design Pro 提供了由设计师精心设计抽象的图表类型，是在 <code>BizCharts</code> 图表库基础上的二次封装，同时提供了业务中常用的图表套件，可以单独使用，也可以组合起来实现复杂的展示效果</p>
+</blockquote>
+<blockquote>
+<p>图表组件 <a target="_blank" rel="noopener" href="https://pro.ant.design/components/Charts-cn/">https://pro.ant.design/components/Charts-cn/</a></p>
+</blockquote>
+<p><strong>使用 Ant Design Pro 的图表</strong></p>
+<p>Charts 图表套件是在 <code>components/Charts</code> 包中，引用到项目就像使用其它组件一样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import &#123; ChartCard, MiniBar &#125; from &#x27;@/components/Charts&#x27;;</span><br><span class="line">import &#123; Tooltip, Icon &#125; from &#x27;antd&#x27;;</span><br><span class="line"></span><br><span class="line">const visitData = [</span><br><span class="line">  &#123;</span><br><span class="line">    x: &quot;2017-09-01&quot;,</span><br><span class="line">    y: 100</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    x: &quot;2017-09-02&quot;,</span><br><span class="line">    y: 120</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    x: &quot;2017-09-03&quot;,</span><br><span class="line">    y: 88</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    x: &quot;2017-09-04&quot;,</span><br><span class="line">    y: 65</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;ChartCard</span><br><span class="line">    title=&quot;支付笔数&quot;</span><br><span class="line">    action=&#123;</span><br><span class="line">      &lt;Tooltip title=&quot;支付笔数反应交易质量&quot;&gt;</span><br><span class="line">        &lt;Icon type=&quot;exclamation-circle-o&quot; /&gt;</span><br><span class="line">      &lt;/Tooltip&gt;</span><br><span class="line">    &#125;</span><br><span class="line">    total=&quot;6,500&quot;</span><br><span class="line">    contentHeight=&#123;46&#125;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;MiniBar height=&#123;46&#125; data=&#123;visitData&#125; /&gt;</span><br><span class="line">  &lt;/ChartCard&gt;,</span><br><span class="line">  mountNode</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/BizCharts">https://github.com/alibaba/BizCharts</a></p>
+<p><strong>使用 BizCharts 绘制图表</strong></p>
+<blockquote>
+<p>如果 <code>Ant Design Pro</code> 不能满足你的业务需求，可以直接使用 <code>BizCharts</code> 封装自己的图表组件。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">npm install bizcharts --save</span><br><span class="line">import &#123; Chart, Axis, Tooltip, Geom &#125; from &#x27;bizcharts&#x27;;</span><br><span class="line"></span><br><span class="line">const data = [...];</span><br><span class="line"></span><br><span class="line">&lt;Chart height=&#123;400&#125; data=&#123;data&#125; forceFit&gt;</span><br><span class="line">  &lt;Axis name=&quot;month&quot; /&gt;</span><br><span class="line">  &lt;Axis name=&quot;temperature&quot; label=&#123;&#123; formatter: val =&gt; `$&#123;val&#125;°C` &#125;&#125; /&gt;</span><br><span class="line">  &lt;Tooltip crosshairs=&#123;&#123; type : &quot;y&quot; &#125;&#125; /&gt;</span><br><span class="line">  &lt;Geom type=&quot;line&quot; position=&quot;month*temperature&quot; size=&#123;2&#125; color=&#123;&#x27;city&#x27;&#125; /&gt;</span><br><span class="line">  &lt;Geom type=&#x27;point&#x27; position=&quot;month*temperature&quot; size=&#123;4&#125; color=&#123;&#x27;city&#x27;&#125; /&gt;</span><br><span class="line">&lt;/Chart&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="十一、业务图标"><a href="#十一、业务图标" class="headerlink" title="十一、业务图标"></a>十一、业务图标</h1><blockquote>
+<p>通常情况下，你可以通过 <code>Ant Design</code> 提供的 &#96;&#96; 图标组件来使用 Ant Design 官方图标。基本使用方式如下：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Icon type=&quot;heart&quot; style=&#123;&#123; fontSize: &#x27;16px&#x27;, color: &#x27;hotpink&#x27; &#125;&#125; /&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果你没有在 <code>Ant Design</code> 官方图标中找到需要的图标，可以到 <code>iconfont.cn</code> 上采集并生成自己的业务图标库，再进行使用</p>
+</blockquote>
+<p><strong>生成图标库代码</strong></p>
+<ul>
+<li>首先，搜索并找到你需要的图标，将它采集到你的购物车里，在购物车里，你可以将选中的图标添加到项目中（没有的话，新建一个），后续生成的资源&#x2F;代码都是以项目为维度的。</li>
+<li>如果你已经有了设计稿，只是需要生成相关代码，可以上传你的图标后，再进行上面的操作</li>
+</ul>
+<p><img src="https://gw.alipayobjects.com/zos/rmsportal/jJQYzRyqVFBBamUOppXH.png" alt="img"></p>
+<blockquote>
+<p>来到刚才选中的项目页，点击『生成代码』的链接，会在下方生成不同引入方式的代码，下面会分别介绍</p>
+</blockquote>
+<p><img src="https://gw.alipayobjects.com/zos/rmsportal/DbDSgiRukSANKWyhULir.png" alt="img"></p>
+<p><strong>引入</strong></p>
+<ul>
+<li>有三种引入方式供你选择：<code>SVG Symbol</code>、<code>Unicode</code> 及 <code>Font class</code>。我们推荐在现代浏览器下使用 <code>SVG Symbol</code>方式引入。</li>
+</ul>
+<blockquote>
+<p>SVG 符号引入是现代浏览器未来主流的图标引入方式。其方法是预先加载符号，在合适的地方引入并渲染为矢量图形。有如下特点：</p>
+</blockquote>
+<ul>
+<li>支持多色图标，不再受到单色图标的限制</li>
+<li>通过一些技巧，支持像字体那样，通过 <code>font-size</code>、<code>color</code> 来调整样式</li>
+<li>支持IE 9+ 及现代浏览器</li>
+</ul>
+<blockquote>
+<p>切换到 <code>Symbol</code> 页签，复制项目生成的地址代码：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//at.alicdn.com/t/font_405362_lyhvoky9rc7ynwmi.js</span><br></pre></td></tr></table></figure>
+
+<p>加入图标样式代码，如果没有特殊的要求，你可以直接复用 Ant Design 图标的样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.icon &#123;</span><br><span class="line">  width: 1em;</span><br><span class="line">  height: 1em;</span><br><span class="line">  fill: currentColor;</span><br><span class="line">  vertical-align: -.125em;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>挑选相应图标并获取类名，应用于页面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;</span><br><span class="line">    &lt;use xlink:href=&quot;#icon-ali-pay&quot;&gt;&lt;/use&gt;</span><br><span class="line">&lt;/svg&gt;</span><br></pre></td></tr></table></figure>
+
+<p>你也可以通过使用 Ant Design 图标组件提供的 <code>Icon.createFromIconfontCN(&#123;...&#125;)</code> 方法来更加方便地使用图标，使用方式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Icon &#125; from &#x27;antd&#x27;;</span><br><span class="line"></span><br><span class="line">const IconFont = Icon.createFromIconfontCN(&#123;</span><br><span class="line">  scriptUrl: &#x27;//at.alicdn.com/t/font_405362_lyhvoky9rc7ynwmi.js&#x27;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default IconFont;</span><br></pre></td></tr></table></figure>
+
+<p>之后可以像使用 &#96;&#96; 组件一样方便地使用，支持配置样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;IconFont type=&quot;icon-ali-pay&quot; style=&#123;&#123; fontSize: &#x27;16px&#x27;, color: &#x27;lightblue&#x27; &#125;&#125; /&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>了解更多用法 <a target="_blank" rel="noopener" href="https://pro.ant.design/docs/biz-icon-cn#%E4%BA%8C%E3%80%81%E5%BC%95%E5%85%A5">https://pro.ant.design/docs/biz-icon-cn#%E4%BA%8C%E3%80%81%E5%BC%95%E5%85%A5</a></p>
+</blockquote>
+<h1 id="十二、Mock-和联调"><a href="#十二、Mock-和联调" class="headerlink" title="十二、Mock 和联调"></a>十二、Mock 和联调</h1><blockquote>
+<p>Mock 数据是前端开发过程中必不可少的一环，是分离前后端开发的关键链路。通过预先跟服务器端约定好的接口，模拟请求数据甚至逻辑，能够让前端开发独立自主，不会被服务端的开发所阻塞</p>
+</blockquote>
+<ul>
+<li>在 <code>Ant Design Pro</code> 中，因为我们的底层框架是 <code>umi</code>，而它自带了代理请求功能，通过代理请求就能够轻松处理数据模拟的功能</li>
+</ul>
+<p><strong>使用 umi 的 mock 功能</strong></p>
+<blockquote>
+<p>umi 里约定 mock 文件夹下的文件即 mock 文件，文件导出接口定义，支持基于 require 动态分析的实时刷新，支持 ES6 语法，以及友好的出错提示</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  // 支持值为 Object 和 Array</span><br><span class="line">  &#x27;GET /api/users&#x27;: &#123; users: [1, 2] &#125;,</span><br><span class="line"></span><br><span class="line">  // GET POST 可省略</span><br><span class="line">  &#x27;/api/users/1&#x27;: &#123; id: 1 &#125;,</span><br><span class="line"></span><br><span class="line">  // 支持自定义函数，API 参考 express@4</span><br><span class="line">  &#x27;POST /api/users/create&#x27;: (req, res) =&gt; &#123; res.end(&#x27;OK&#x27;); &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>当客户端（浏览器）发送请求，如：<code>GET /api/users</code>，那么本地启动的 umi dev 会跟此配置文件匹配请求路径以及方法，如果匹配到了，就会将请求通过配置处理，就可以像样例一样，你可以直接返回数据，也可以通过函数处理以及重定向到另一个服务器</p>
+</blockquote>
+<p>了解更多 <a target="_blank" rel="noopener" href="https://pro.ant.design/docs/mock-api-cn#%E4%BD%BF%E7%94%A8-umi-%E7%9A%84-mock-%E5%8A%9F%E8%83%BD">https://pro.ant.design/docs/mock-api-cn#%E4%BD%BF%E7%94%A8-umi-%E7%9A%84-mock-%E5%8A%9F%E8%83%BD</a></p>
+<h1 id="十三、主题定制"><a href="#十三、主题定制" class="headerlink" title="十三、主题定制"></a>十三、主题定制</h1><blockquote>
+<p>我们基于 Ant Design React 进行开发，完全支持官方提供的 less 变量定制功能. 你可以在脚手架目录中找到 <code>config/config.js</code> 代码类似这样</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">theme: &#123;</span><br><span class="line">  &#x27;font-size-base&#x27;: &#x27;14px&#x27;,</span><br><span class="line">  &#x27;badge-font-size&#x27;: &#x27;12px&#x27;,</span><br><span class="line">  &#x27;btn-font-size-lg&#x27;: &#x27;@font-size-base&#x27;,</span><br><span class="line">  &#x27;menu-dark-bg&#x27;: &#x27;#00182E&#x27;,</span><br><span class="line">  &#x27;menu-dark-submenu-bg&#x27;: &#x27;#000B14&#x27;,</span><br><span class="line">  &#x27;layout-sider-background&#x27;: &#x27;#00182E&#x27;,</span><br><span class="line">  &#x27;layout-body-background&#x27;: &#x27;#f0f2f5&#x27;,</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h1 id="十四、权限管理"><a href="#十四、权限管理" class="headerlink" title="十四、权限管理"></a>十四、权限管理</h1><blockquote>
+<p>只需要在配置菜单的时候配置上准入身份，在登录成功以后获取到登陆者身份以后更新登录人身份参数即可</p>
+</blockquote>
+<h2 id="权限组件-Authorized"><a href="#权限组件-Authorized" class="headerlink" title="权限组件 Authorized"></a>权限组件 Authorized</h2><blockquote>
+<p>这是脚手架权限管理的基础，基本思路是通过比对当前权限与准入权限，决定展示正常渲染内容还是异常内容</p>
+</blockquote>
+<p><strong>控制菜单和路由显示</strong></p>
+<blockquote>
+<p>如需对某些页面进行权限控制，只须在路由配置文件 <code>router.config.js</code> 中设置 <code>authority</code> 属性即可，代表该路由的准入权限，pro 的路由系统中会默认包裹 <code>Authorized</code> 进行判断处理。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: &#x27;/form&#x27;,</span><br><span class="line">  icon: &#x27;form&#x27;,</span><br><span class="line">  name: &#x27;form&#x27;,</span><br><span class="line">  routes:[&#123;</span><br><span class="line">    path: &#x27;/form/basic-form&#x27;,</span><br><span class="line">    name: &#x27;basicform&#x27;,</span><br><span class="line">    component: &#x27;./Forms/BasicForm&#x27;,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    path: &#x27;/form/step-form&#x27;,</span><br><span class="line">    name: &#x27;stepform&#x27;,</span><br><span class="line">    component: &#x27;./Forms/StepForm&#x27;,</span><br><span class="line">    authority: [&#x27;guest&#x27;], // 配置准入权限，可以配置多个角色</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    path: &#x27;/form/advanced-form&#x27;,</span><br><span class="line">    name: &#x27;advancedform&#x27;,</span><br><span class="line">    component: &#x27;./Forms/AdvancedForm&#x27;,</span><br><span class="line">    authority: [&#x27;admin&#x27;], // 配置准入权限，可以配置多个角色</span><br><span class="line">  &#125;],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="控制页面元素显示"><a href="#控制页面元素显示" class="headerlink" title="控制页面元素显示"></a>控制页面元素显示</h2><blockquote>
+<p>使用 <code>Authorized</code> 或<code>Authorized.Secured</code> 可以很方便地控制元素&#x2F;组件的渲染。<a target="_blank" rel="noopener" href="https://pro.ant.design/components/Authorized#Authorized.Secured">https://pro.ant.design/components/Authorized#Authorized.Secured</a></p>
+</blockquote>
+<h2 id="demo关于权限简介"><a href="#demo关于权限简介" class="headerlink" title="demo关于权限简介"></a>demo关于权限简介</h2><ul>
+<li>用邮箱自己注册账户（注册后可以登录但是没有任何权限）<code>guest</code></li>
+<li>联系管理员分配权限（分配后可以查看有权限的页面）</li>
+<li>每次登录后获取最新的权限身份（如：<code>admin</code>，<code>user</code>，<code>guest</code>）</li>
+</ul>
+<blockquote>
+<p>在<code>src/router.js</code>中会发现如下代码</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;AuthorizedRoute</span><br><span class="line">    path=&quot;/&quot;</span><br><span class="line">    render=&#123;props =&gt; &lt;BasicLayout &#123;...props&#125; /&gt;&#125;</span><br><span class="line">    authority=&#123;[&#x27;admin&#x27;, &#x27;user&#x27;, &#x27;guest&#x27;]&#125;</span><br><span class="line">    redirectPath=&quot;/user/login&quot;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其中<code>authority</code>对象就是准入身份的数组，表示只有这些身份的人可以登录，我们在配置的时候一定不要忘记在这更新我们新增的身份</p>
+</blockquote>
+<ul>
+<li>然后就是<code>menu.js</code>,如下，展示了我们在配置菜单的时候怎么配身份</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">const menuData = [&#123;</span><br><span class="line">  name: &#x27;题库管理&#x27;,</span><br><span class="line">  path: &#x27;question&#x27;,</span><br><span class="line">  icon: &#x27;warning&#x27;,</span><br><span class="line">  authority: [&#x27;admin&#x27;, &#x27;user&#x27;],</span><br><span class="line">  children: [&#123;</span><br><span class="line">    name: &#x27;题库列表&#x27;,</span><br><span class="line">    path: &#x27;list&#x27;,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    name: &#x27;编辑题目&#x27;,</span><br><span class="line">    path: &#x27;create-question&#x27;,</span><br><span class="line">    hideInMenu: true,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    name: &#x27;科目管理&#x27;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  name: &#x27;账号管理&#x27;,</span><br><span class="line">  icon: &#x27;warning&#x27;,</span><br><span class="line">  path: &#x27;account&#x27;,</span><br><span class="line">  children: [&#123;</span><br><span class="line">    name: &#x27;账号列表&#x27;,</span><br><span class="line">    path: &#x27;list&#x27;,</span><br><span class="line">    authority: &#x27;admin&#x27;,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    name: &#x27;建设中&#x27;,</span><br><span class="line">    path: &#x27;&#x27;,</span><br><span class="line">    authority: [&#x27;admin&#x27;, &#x27;user&#x27;],</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>登录成功以后怎么获取权限了</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">effects：&#123;</span><br><span class="line">* login(&#123;payload&#125;, &#123;call, put&#125;) &#123;</span><br><span class="line">      const response = yield call(login, payload);</span><br><span class="line">      yield put(&#123;</span><br><span class="line">        type: &#x27;changeLoginStatus&#x27;,</span><br><span class="line">        payload: response,</span><br><span class="line">      &#125;);</span><br><span class="line">      // 登录成功以后更新权限，跳转页面</span><br><span class="line">      if (response &amp;&amp; response.code === &#x27;0000&#x27;) &#123;</span><br><span class="line">        reloadAuthorized();</span><br><span class="line">        yield put(routerRedux.push(&#x27;/&#x27;));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;，</span><br><span class="line">reducers: &#123;</span><br><span class="line">    changeLoginStatus(state, &#123;payload&#125;) &#123;</span><br><span class="line">      let _status = &quot;ok&quot;;</span><br><span class="line">      let _user = &quot;admin&quot;;</span><br><span class="line">      setToken(&quot;token&quot;);</span><br><span class="line">      setAuthority(_user);//设置权限</span><br><span class="line">      return &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        status: _status,</span><br><span class="line">        type: &#x27;account&#x27;,</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>我们看看<code>setAuthority</code>、<code>reloadAuthorized</code>这两个方法都做了什么事儿</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//设置身份</span><br><span class="line">export function setAuthority(authority) &#123;</span><br><span class="line">  return localStorage.setItem(&#x27;antd-pro-authority&#x27;, authority);</span><br><span class="line">&#125;</span><br><span class="line">//获取身份</span><br><span class="line">export function getAuthority() &#123;</span><br><span class="line">  return localStorage.getItem(&#x27;antd-pro-authority&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如此而且，只是把新的身份值存在<code>localStorage</code>里边，注意<code>getAuthority</code>，下边会用到</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import RenderAuthorized from &#x27;../components/Authorized&#x27;;</span><br><span class="line">import &#123; getAuthority &#125; from &#x27;./authority&#x27;;</span><br><span class="line">let Authorized = RenderAuthorized(getAuthority());</span><br><span class="line">const reloadAuthorized = () =&gt; &#123;</span><br><span class="line">  Authorized = RenderAuthorized(getAuthority());</span><br><span class="line">&#125;;</span><br><span class="line">export &#123; reloadAuthorized &#125;;</span><br><span class="line">export default Authorized;</span><br><span class="line">RenderAuthorized: (currentAuthority: string | () =&gt; string) =&gt; Authorized</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>权限组件默认 <code>export RenderAuthorized</code> 函数，它接收当前权限作为参数，返回一个权限对象，该对象提供以下几种使用方式</p>
+</blockquote>
+<p><strong>Authorized</strong></p>
+<blockquote>
+<p>最基础的权限控制</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>children</code></td>
+<td align="left">正常渲染的元素，权限判断通过时展示</td>
+</tr>
+<tr>
+<td align="left"><code>authority</code></td>
+<td align="left">准入权限&#x2F;权限判断</td>
+</tr>
+<tr>
+<td align="left"><code>noMatch</code></td>
+<td align="left">权限异常渲染元素，权限判断不通过时展示</td>
+</tr>
+</tbody></table>
+<p><strong>Authorized.AuthorizedRoute</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>authority</code></td>
+<td align="left">准入权限&#x2F;权限判断</td>
+</tr>
+<tr>
+<td align="left"><code>redirectPath</code></td>
+<td align="left">权限异常时重定向的页面路由</td>
+</tr>
+</tbody></table>
+<p><strong>Authorized.Secured</strong></p>
+<blockquote>
+<p>注解方式，[<code>@Authorized.Secured](mailto:</code>@Authorized.Secured)(authority, error)&#96;</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>authority</code></td>
+<td align="left">准入权限&#x2F;权限判断</td>
+</tr>
+<tr>
+<td align="left"><code>error</code></td>
+<td align="left">权限异常时渲染元素</td>
+</tr>
+</tbody></table>
+<p><strong>Authorized.check</strong></p>
+<blockquote>
+<p>函数形式的 <code>Authorized</code>，用于某些不能被 <code>HOC</code> 包裹的组件。 <code>Authorized.check(authority, target, Exception)</code></p>
+</blockquote>
+<ul>
+<li>注意：传入一个 <code>Promise</code> 时，无论正确还是错误返回的都是一个 <code>ReactClass</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>authority</code></td>
+<td align="left">准入权限&#x2F;权限判断</td>
+</tr>
+<tr>
+<td align="left"><code>target</code></td>
+<td align="left">权限判断通过时渲染的元素</td>
+</tr>
+<tr>
+<td align="left"><code>Exception</code></td>
+<td align="left">权限异常时渲染元素</td>
+</tr>
+</tbody></table>
+<h1 id="十五、构建和发布"><a href="#十五、构建和发布" class="headerlink" title="十五、构建和发布"></a>十五、构建和发布</h1><p><strong>构建</strong></p>
+<blockquote>
+<p>当项目开发完毕，只需要运行一行命令就可以打包你的应用：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>由于 Ant Design Pro 使用的工具 Umi 已经将复杂的流程封装完毕，构建打包文件只需要一个命令 umi build，构建打包成功之后，会在根目录生成 dist 文件夹，里面就是构建打包好的文件，通常是 <em>.js、</em>.css、index.html 等静态文件</p>
+</blockquote>
+<p><strong>分析构建文件体积</strong></p>
+<blockquote>
+<p>如果你的构建文件很大，你可以通过 analyze 命令构建并分析依赖模块的体积分布，从而优化你的代码。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run analyze</span><br></pre></td></tr></table></figure>
+
+<p><strong>发布</strong></p>
+<blockquote>
+<p>对于发布来讲，只需要将最终生成的静态文件，也就是通常情况下 dist 文件夹的静态文件发布到你的 cdn 或者静态服务器即可，需要注意的是其中的 <code>index.html</code> 通常会是你后台服务的入口页面，在确定了 js 和 css 的静态之后可能需要改变页面的引入路径</p>
+</blockquote>
+<p><strong>前端路由与服务端的结合</strong></p>
+<blockquote>
+<p>Ant Design Pro 使用的 Umi 支持两种路由方式：<code>browserHistory</code> 和 <code>hashHistory</code>。</p>
+</blockquote>
+<ul>
+<li>可以在 <code>config/config.js</code> 中进行配置选择用哪个方式：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  history: &#x27;hash&#x27;, // 默认是 browser</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="十六、一些问题"><a href="#十六、一些问题" class="headerlink" title="十六、一些问题"></a>十六、一些问题</h1><h2 id="在ant-design-pro中解决跨域办法"><a href="#在ant-design-pro中解决跨域办法" class="headerlink" title="在ant-design-pro中解决跨域办法"></a>在ant-design-pro中解决跨域办法</h2><blockquote>
+<p>需要在配置文件中(<code>.webpackrc</code>)加入如下代码</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;proxy&quot;: &#123;</span><br><span class="line">  &quot;/api&quot;: &#123;</span><br><span class="line">    &quot;target&quot;: &quot;http://xxx:xx/&quot;,</span><br><span class="line">    &quot;changeOrigin&quot;: true,</span><br><span class="line">    &quot;pathRewrite&quot;: &#123; &quot;^/api&quot; : &quot;&quot; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需要注意的是此处不是将<code>/api/</code>代理到正式请求<code>/api/</code>中，（例如请求<code>/api/users</code>则会代理到<code>http://xxx:xx/users</code>）<br>如果需要多次代理且需要代理到不同的服务器则可以在配置文件中进行如下配置</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;proxy&quot;: &#123;</span><br><span class="line">      &quot;/test&quot;: &#123;</span><br><span class="line">        &quot;target&quot;: &quot;http://xxx:xx/&quot;,</span><br><span class="line">        &quot;changeOrigin&quot;: true,</span><br><span class="line">        &quot;pathRewrite&quot;: &#123; &quot;^/test&quot; : &quot;&quot; &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;/cross&quot;: &#123;</span><br><span class="line">        &quot;target&quot;: &quot;http://jsonplaceholder.typicode.com&quot;,</span><br><span class="line">        &quot;changeOrigin&quot;: true,</span><br><span class="line">        &quot;pathRewrite&quot;: &#123;&quot;^/cross&quot;: &quot;&quot;&#125;</span><br><span class="line">      &#125; // 此处有一点需要注意，不能在最后一个代理对象后面加逗号，否则会报错！！！</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="在model中怎么同时发起多次请求"><a href="#在model中怎么同时发起多次请求" class="headerlink" title="在model中怎么同时发起多次请求"></a>在model中怎么同时发起多次请求</h2><blockquote>
+<p>因为<code>yield</code>将异步请求转为同步请求了，所以请求会按照同步顺序依次执行，使请求时间延长</p>
+</blockquote>
+<p><strong>错误写法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// effects将按顺序执行</span><br><span class="line">const response = yield call(fetch, &#x27;/users&#x27;);</span><br><span class="line">const res = yield call(fetch, &#x27;/roles&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>正确写法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// effects将会同步执行</span><br><span class="line">const [response, res] = yield [</span><br><span class="line">  call(fetch, &#x27;/users&#x27;),</span><br><span class="line">  call(fetch, &#x27;/roles&#x27;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2020/01/07/React/React-Fiber/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">React Fiber</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2019/12/21/React/React-%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">React组件通信</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

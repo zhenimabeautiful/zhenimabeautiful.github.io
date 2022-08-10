@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>css-60个常见案例 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">css-60个常见案例</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2018-03-01T03:31:51.000Z" itemprop="datePublished">2018-03-01</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF/">📒 前端</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/css/">🏷️ css</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h4 id="1、垂直对齐"><a href="#1、垂直对齐" class="headerlink" title="1、垂直对齐"></a>1、垂直对齐</h4><hr>
+<p>如果你用<code>CSS</code>，则你会有困惑：我该怎么垂直对齐容器中的元素？现在，利用<code>CSS3</code>的<code>Transform</code>，可以很优雅的解决这个困惑：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.verticalcenter&#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    top: 50%;</span><br><span class="line">    -webkit-transform: translateY(-50%);</span><br><span class="line">    -o-transform: translateY(-50%);</span><br><span class="line">    transform: translateY(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用这个技巧，从单行文本、段落到box，都会垂直对齐。目前浏览器对<code>Transform</code>的支持是需要关注的，<br><code>Chrome 4</code>, <code>Opera 10</code>, <code>Safari 3</code>, <code>Firefox 3</code>, <code>and Internet Explorer 9</code>均支持该属性</p>
+<h4 id="2、伸展一个元素到窗口高度"><a href="#2、伸展一个元素到窗口高度" class="headerlink" title="2、伸展一个元素到窗口高度"></a>2、伸展一个元素到窗口高度</h4><hr>
+<p>在具体场景中，你可能想要将一个元素伸展到窗口高度，基本元素的调整只能调整容器的大小,因此要使一个元素伸展到窗口高度，<br>我们需要伸展顶层元素：<code>html</code>和<code>body</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">html, </span><br><span class="line">body &#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后将<code>100%</code>应用到任何元素的高</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">div &#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、基于文件格式使用不同的样式"><a href="#3、基于文件格式使用不同的样式" class="headerlink" title="3、基于文件格式使用不同的样式"></a>3、基于文件格式使用不同的样式</h4><hr>
+<p>为了更容易知道链接的目标，有时你想让一些链接看起来和其它的不同。下面的片段在文本链接前添加一个图标，对不同的资源使用不同的图标或图片：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">a[href^=&quot;http://&quot;]&#123;</span><br><span class="line">    padding-right: 20px;</span><br><span class="line">    background: url(external.gif) no-repeat center right;</span><br><span class="line">&#125;</span><br><span class="line">/* emails */</span><br><span class="line">a[href^=&quot;mailto:&quot;]&#123;</span><br><span class="line">    padding-right: 20px;</span><br><span class="line">    background: url(email.png) no-repeat center right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* pdfs */</span><br><span class="line">a[href$=&quot;.pdf&quot;]&#123;</span><br><span class="line">    padding-right: 20px;</span><br><span class="line">    background: url(pdf.png) no-repeat center right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://runjs.cn/code/a3uuodvh">效果演示</a></p>
+<h4 id="4、创建跨浏览器的图像灰度"><a href="#4、创建跨浏览器的图像灰度" class="headerlink" title="4、创建跨浏览器的图像灰度"></a>4、创建跨浏览器的图像灰度</h4><hr>
+<p>灰度有时看起来简约和优雅，能为网站呈现更深层次的色调。在示例中，我们将对一个SVG图像添加灰度过滤：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;</span><br><span class="line">    &lt;filter id=&quot;grayscale&quot;&gt;</span><br><span class="line">        &lt;feColorMatrix type=&quot;matrix&quot; values=&quot;0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0&quot;/&gt;</span><br><span class="line">    &lt;/filter&gt;</span><br><span class="line">&lt;/svg&gt;</span><br></pre></td></tr></table></figure>
+
+<p>为了跨浏览器，会用到<code>filter</code>属性：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">img &#123;</span><br><span class="line">    filter: url(filters.svg#grayscale); /* Firefox 3.5+ */</span><br><span class="line">    filter: gray; /* IE6-9 */</span><br><span class="line">    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ &amp; Opera 15+ */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5、背景渐变动画"><a href="#5、背景渐变动画" class="headerlink" title="5、背景渐变动画"></a>5、背景渐变动画</h4><hr>
+<p><code>CSS</code>中最具诱惑的一个功能是能添加动画效果，除了渐变，你可以给背景色、透明度、元素大小添加动画。目前，你不能为渐变添加动画，但下面的代码可能有帮助。它通过改变背景位置，让它看起来有动画效果。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">    background-image: linear-gradient(#5187c4, #1c2f45);</span><br><span class="line">    background-size: auto 200%;</span><br><span class="line">    background-position: 0 100%;</span><br><span class="line">    transition: background-position 0.5s;</span><br><span class="line">&#125;    </span><br><span class="line">button:hover &#123;</span><br><span class="line">    background-position: 0 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://runjs.cn/code/zfbvqptv">效果演示：</a></p>
+<h4 id="6、CSS：表格列宽自适用"><a href="#6、CSS：表格列宽自适用" class="headerlink" title="6、CSS：表格列宽自适用"></a>6、CSS：表格列宽自适用</h4><hr>
+<p>对于表格，当谈到调整列宽时，是比较痛苦的。然后，这里有一个可以使用的技巧：给<code>td</code>元素添加<code>white-space: nowrap;</code>能让文本正确的换行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">td &#123;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://runjs.cn/code/yghxo4ht">演示</a></p>
+<h4 id="7、只在一边或两边显示盒子阴影"><a href="#7、只在一边或两边显示盒子阴影" class="headerlink" title="7、只在一边或两边显示盒子阴影"></a>7、只在一边或两边显示盒子阴影</h4><hr>
+<p>如果你要一个盒阴影，试试这个技巧，能为任一边添加阴影。为了实现这个，首先定义一个有具体宽高的盒子，然后正确定位<code>:after</code>伪类。实现底边阴影的代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.box-shadow &#123;</span><br><span class="line">    background-color: #FF8020;</span><br><span class="line">    width: 160px;</span><br><span class="line">    height: 90px;</span><br><span class="line">    margin-top: -45px;</span><br><span class="line">    margin-left: -80px;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 50%;</span><br><span class="line">    left: 50%;</span><br><span class="line">&#125;</span><br><span class="line">.box-shadow:after &#123;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    width: 150px;</span><br><span class="line">    height: 1px;</span><br><span class="line">    margin-top: 88px;</span><br><span class="line">    margin-left: -75px;</span><br><span class="line">    display: block;</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 50%;</span><br><span class="line">    z-index: -1;</span><br><span class="line">    -webkit-box-shadow: 0px 0px 8px 2px #000000;</span><br><span class="line">       -moz-box-shadow: 0px 0px 8px 2px #000000;</span><br><span class="line">            box-shadow: 0px 0px 8px 2px #000000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://runjs.cn/code/mlynp05w">演示</a></p>
+<h4 id="8、包裹长文本"><a href="#8、包裹长文本" class="headerlink" title="8、包裹长文本"></a>8、包裹长文本</h4><hr>
+<p>如果你碰到一个比自身容器长的文本，这个技巧对你很有用。在这个示例中，默认时，不管容器的宽度，文本都将水平填充。</p>
+<p><img src="https://sfault-image.b0.upaiyun.com/352/854/3528546899-56fe3aca51c9d_articlex" alt="img"></p>
+<p>简单的<code>CSS</code>代码就能在容器中调整文本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pre &#123;</span><br><span class="line">    white-space: pre-line;</span><br><span class="line">    word-wrap: break-word;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果看起来如下：</p>
+<p><img src="https://sfault-image.b0.upaiyun.com/377/497/3774978981-56fe3acb088b0_articlex" alt="img"></p>
+<h4 id="9、制造模糊文本"><a href="#9、制造模糊文本" class="headerlink" title="9、制造模糊文本"></a>9、制造模糊文本</h4><hr>
+<p>想要让文本模糊？可以使用<code>color</code>透明和<code>text-shadow</code>实现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.blurry-text &#123;</span><br><span class="line">   color: transparent;</span><br><span class="line">   text-shadow: 0 0 5px rgba(0,0,0,0.5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://runjs.cn/code/cjwnefhi">演示</a></p>
+<h4 id="10、用CSS动画实现省略号动画"><a href="#10、用CSS动画实现省略号动画" class="headerlink" title="10、用CSS动画实现省略号动画"></a>10、用CSS动画实现省略号动画</h4><hr>
+<p>这个片段将帮助你制造一个<code>ellipsis</code>的动画，对于简单的加载状态是很有用的，而不用去使用<code>gif</code>图像。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.loading:after &#123;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    animation: ellipsis 2s infinite;</span><br><span class="line">    content: &quot;\2026&quot;; /* ascii code for the ellipsis character */</span><br><span class="line">&#125;</span><br><span class="line">@keyframes ellipsis &#123;</span><br><span class="line">    from &#123;</span><br><span class="line">        width: 2px;</span><br><span class="line">    &#125;</span><br><span class="line">    to &#123;</span><br><span class="line">        width: 15px;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://runjs.cn/code/ouap5vot">演示</a></p>
+<h4 id="11、样式重置"><a href="#11、样式重置" class="headerlink" title="11、样式重置"></a>11、样式重置</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video &#123;</span><br><span class="line">  margin: 0;</span><br><span class="line">  padding: 0;</span><br><span class="line">  border: 0;</span><br><span class="line">  font-size: 100%;</span><br><span class="line">  font: inherit;</span><br><span class="line">  vertical-align: baseline;</span><br><span class="line">  outline: none;</span><br><span class="line">  -webkit-box-sizing: border-box;</span><br><span class="line">  -moz-box-sizing: border-box;</span><br><span class="line">  box-sizing: border-box;</span><br><span class="line">&#125;</span><br><span class="line">html &#123; height: 101%; &#125;</span><br><span class="line">body &#123; font-size: 62.5%; line-height: 1; font-family: Arial, Tahoma, sans-serif; &#125;</span><br><span class="line">article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section &#123; display: block; &#125;</span><br><span class="line">ol, ul &#123; list-style: none; &#125;</span><br><span class="line">blockquote, q &#123; quotes: none; &#125;</span><br><span class="line">blockquote:before, blockquote:after, q:before, q:after &#123; content: &#x27;&#x27;; content: none; &#125;</span><br><span class="line">strong &#123; font-weight: bold; &#125; </span><br><span class="line">table &#123; border-collapse: collapse; border-spacing: 0; &#125;</span><br><span class="line">img &#123; border: 0; max-width: 100%; &#125;</span><br><span class="line">p &#123; font-size: 1.2em; line-height: 1.0em; color: #333; &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="12、典型的CSS清除浮动"><a href="#12、典型的CSS清除浮动" class="headerlink" title="12、典型的CSS清除浮动"></a>12、典型的CSS清除浮动</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:after &#123; content: &quot;.&quot;; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; &#125;</span><br><span class="line">.clearfix &#123; display: inline-block; &#125;</span><br><span class="line">html[xmlns] .clearfix &#123; display: block; &#125;</span><br><span class="line">* html .clearfix &#123; height: 1%; &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="13、新版清除浮动（2011）"><a href="#13、新版清除浮动（2011）" class="headerlink" title="13、新版清除浮动（2011）"></a>13、新版清除浮动（2011）</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.clearfix:before, .container:after &#123; content: &quot;&quot;; display: table; &#125;</span><br><span class="line">.clearfix:after &#123; clear: both; &#125;</span><br><span class="line">/* IE 6/7 */</span><br><span class="line">.clearfix &#123; zoom: 1; &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="14、跨浏览器的透明"><a href="#14、跨浏览器的透明" class="headerlink" title="14、跨浏览器的透明"></a>14、跨浏览器的透明</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.transparent &#123;</span><br><span class="line">    filter: alpha(opacity=50); /* internet explorer */</span><br><span class="line">    -khtml-opacity: 0.5;      /* khtml, old safari */</span><br><span class="line">    -moz-opacity: 0.5;       /* mozilla, netscape */</span><br><span class="line">    opacity: 0.5;           /* fx, safari, opera */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="15、CSS引用模板"><a href="#15、CSS引用模板" class="headerlink" title="15、CSS引用模板"></a>15、CSS引用模板</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">blockquote &#123;</span><br><span class="line">    background: #f9f9f9;</span><br><span class="line">    border-left: 10px solid #ccc;</span><br><span class="line">    margin: 1.5em 10px;</span><br><span class="line">    padding: .5em 10px;</span><br><span class="line">    quotes: &quot;\201C&quot;&quot;\201D&quot;&quot;\2018&quot;&quot;\2019&quot;;</span><br><span class="line">&#125;</span><br><span class="line">blockquote:before &#123;</span><br><span class="line">    color: #ccc;</span><br><span class="line">    content: open-quote;</span><br><span class="line">    font-size: 4em;</span><br><span class="line">    line-height: .1em;</span><br><span class="line">    margin-right: .25em;</span><br><span class="line">    vertical-align: -.4em;</span><br><span class="line">&#125;</span><br><span class="line">blockquote p &#123;</span><br><span class="line">    display: inline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="16、个性圆角"><a href="#16、个性圆角" class="headerlink" title="16、个性圆角"></a>16、个性圆角</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#container &#123;</span><br><span class="line">    -webkit-border-radius: 4px 3px 6px 10px;</span><br><span class="line">    -moz-border-radius: 4px 3px 6px 10px;</span><br><span class="line">    -o-border-radius: 4px 3px 6px 10px;</span><br><span class="line">    border-radius: 4px 3px 6px 10px;</span><br><span class="line">&#125;</span><br><span class="line">/* alternative syntax broken into each line */</span><br><span class="line">#container &#123;</span><br><span class="line">    -webkit-border-top-left-radius: 4px;</span><br><span class="line">    -webkit-border-top-right-radius: 3px;</span><br><span class="line">    -webkit-border-bottom-right-radius: 6px;</span><br><span class="line">    -webkit-border-bottom-left-radius: 10px;</span><br><span class="line">    -moz-border-radius-topleft: 4px;</span><br><span class="line">    -moz-border-radius-topright: 3px;</span><br><span class="line">    -moz-border-radius-bottomright: 6px;</span><br><span class="line">    -moz-border-radius-bottomleft: 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="17、通用媒体查询"><a href="#17、通用媒体查询" class="headerlink" title="17、通用媒体查询"></a>17、通用媒体查询</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/* Smartphones (portrait and landscape) ----------- */</span><br><span class="line">@media only screen </span><br><span class="line">and (min-device-width : 320px) and (max-device-width : 480px) &#123;</span><br><span class="line">  /* Styles */</span><br><span class="line">&#125;</span><br><span class="line">/* Smartphones (landscape) ----------- */</span><br><span class="line">@media only screen and (min-width : 321px) &#123;</span><br><span class="line">  /* Styles */</span><br><span class="line">&#125;</span><br><span class="line">/* Smartphones (portrait) ----------- */</span><br><span class="line">@media only screen and (max-width : 320px) &#123;</span><br><span class="line">  /* Styles */</span><br><span class="line">&#125;</span><br><span class="line">/* iPads (portrait and landscape) ----------- */</span><br><span class="line">@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) &#123;</span><br><span class="line">  /* Styles */</span><br><span class="line">&#125;</span><br><span class="line">/* iPads (landscape) ----------- */</span><br><span class="line">@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) &#123;</span><br><span class="line">  /* Styles */</span><br><span class="line">&#125;</span><br><span class="line">/* iPads (portrait) ----------- */</span><br><span class="line">@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) &#123;</span><br><span class="line">  /* Styles */</span><br><span class="line">&#125;</span><br><span class="line">/* Desktops and laptops ----------- */</span><br><span class="line">@media only screen and (min-width : 1224px) &#123;</span><br><span class="line">  /* Styles */</span><br><span class="line">&#125;</span><br><span class="line">/* Large screens ----------- */</span><br><span class="line">@media only screen and (min-width : 1824px) &#123;</span><br><span class="line">  /* Styles */</span><br><span class="line">&#125;</span><br><span class="line">/* iPhone 4 ----------- */</span><br><span class="line">@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min-device-pixel-ratio:1.5) &#123;</span><br><span class="line">  /* Styles */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="18、现代字体栈"><a href="#18、现代字体栈" class="headerlink" title="18、现代字体栈"></a>18、现代字体栈</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/* Times New Roman-based serif */</span><br><span class="line">font-family: Cambria, &quot;Hoefler Text&quot;, Utopia, &quot;Liberation Serif&quot;, &quot;Nimbus Roman No9 L Regular&quot;, Times, &quot;Times New Roman&quot;, serif;</span><br><span class="line">/* A modern Georgia-based serif */</span><br><span class="line">font-family: Constantia, &quot;Lucida Bright&quot;, Lucidabright, &quot;Lucida Serif&quot;, Lucida, &quot;DejaVu Serif,&quot; &quot;Bitstream Vera Serif&quot;, &quot;Liberation Serif&quot;, Georgia, serif;</span><br><span class="line">/*A more traditional Garamond-based serif */</span><br><span class="line">font-family: &quot;Palatino Linotype&quot;, Palatino, Palladio, &quot;URW Palladio L&quot;, &quot;Book Antiqua&quot;, Baskerville, &quot;Bookman Old Style&quot;, &quot;Bitstream Charter&quot;, &quot;Nimbus Roman No9 L&quot;, Garamond, &quot;Apple Garamond&quot;, &quot;ITC Garamond Narrow&quot;, &quot;New Century Schoolbook&quot;, &quot;Century Schoolbook&quot;, &quot;Century Schoolbook L&quot;, Georgia, serif;</span><br><span class="line">/*The Helvetica/Arial-based sans serif */</span><br><span class="line">font-family: Frutiger, &quot;Frutiger Linotype&quot;, Univers, Calibri, &quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;, &quot;Myriad Pro&quot;, Myriad, &quot;DejaVu Sans Condensed&quot;, &quot;Liberation Sans&quot;, &quot;Nimbus Sans L&quot;, Tahoma, Geneva, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;</span><br><span class="line">/*The Verdana-based sans serif */</span><br><span class="line">font-family: Corbel, &quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, &quot;Lucida Sans&quot;, &quot;DejaVu Sans&quot;, &quot;Bitstream Vera Sans&quot;, &quot;Liberation Sans&quot;, Verdana, &quot;Verdana Ref&quot;, sans-serif;</span><br><span class="line">/*The Trebuchet-based sans serif */</span><br><span class="line">font-family: &quot;Segoe UI&quot;, Candara, &quot;Bitstream Vera Sans&quot;, &quot;DejaVu Sans&quot;, &quot;Bitstream Vera Sans&quot;, &quot;Trebuchet MS&quot;, Verdana, &quot;Verdana Ref&quot;, sans-serif;</span><br><span class="line">/*The heavier &quot;Impact&quot; sans serif */</span><br><span class="line">font-family: Impact, Haettenschweiler, &quot;Franklin Gothic Bold&quot;, Charcoal, &quot;Helvetica Inserat&quot;, &quot;Bitstream Vera Sans Bold&quot;, &quot;Arial Black&quot;, sans-serif;</span><br><span class="line">/*The monospace */</span><br><span class="line">font-family: Consolas, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, Monaco, &quot;Courier New&quot;, Courier, monospace;</span><br></pre></td></tr></table></figure>
+
+<h4 id="19、自定义文本选择"><a href="#19、自定义文本选择" class="headerlink" title="19、自定义文本选择"></a>19、自定义文本选择</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">::selection &#123; background: #e2eae2; &#125;</span><br><span class="line">::-moz-selection &#123; background: #e2eae2; &#125;</span><br><span class="line">::-webkit-selection &#123; background: #e2eae2; &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="20、为logo隐藏H1"><a href="#20、为logo隐藏H1" class="headerlink" title="20、为logo隐藏H1"></a>20、为logo隐藏H1</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">h1 &#123;</span><br><span class="line">    text-indent: -9999px;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">    width: 320px;</span><br><span class="line">    height: 85px;</span><br><span class="line">    background: transparent url(&quot;images/logo.png&quot;) no-repeat scroll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="21、图片边框偏光"><a href="#21、图片边框偏光" class="headerlink" title="21、图片边框偏光"></a>21、图片边框偏光</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">img.polaroid &#123;</span><br><span class="line">    background:#000; /*Change this to a background image or remove*/</span><br><span class="line">    border:solid #fff;</span><br><span class="line">    border-width:6px 6px 20px 6px;</span><br><span class="line">    box-shadow:1px 1px 5px #333; /* Standard blur at 5px. Increase for more depth */</span><br><span class="line">    -webkit-box-shadow:1px 1px 5px #333;</span><br><span class="line">    -moz-box-shadow:1px 1px 5px #333;</span><br><span class="line">    height:200px; /*Set to height of your image or desired div*/</span><br><span class="line">    width:200px; /*Set to width of your image or desired div*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="22、锚链接伪类"><a href="#22、锚链接伪类" class="headerlink" title="22、锚链接伪类"></a>22、锚链接伪类</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a:link &#123; color: blue; &#125;</span><br><span class="line">a:visited &#123; color: purple; &#125;</span><br><span class="line">a:hover &#123; color: red; &#125;</span><br><span class="line">a:active &#123; color: yellow; &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="23、奇特的CSS引用"><a href="#23、奇特的CSS引用" class="headerlink" title="23、奇特的CSS引用"></a>23、奇特的CSS引用</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">.has-pullquote:before &#123;</span><br><span class="line">    /* Reset metrics. */</span><br><span class="line">    padding: 0;</span><br><span class="line">    border: none;</span><br><span class="line">    /* Content */</span><br><span class="line">    content: attr(data-pullquote);</span><br><span class="line">    /* Pull out to the right, modular scale based margins. */</span><br><span class="line">    float: right;</span><br><span class="line">    width: 320px;</span><br><span class="line">    margin: 12px -140px 24px 36px;</span><br><span class="line">    /* Baseline correction */</span><br><span class="line">    position: relative;</span><br><span class="line">    top: 5px;</span><br><span class="line">    /* Typography (30px line-height equals 25% incremental leading) */</span><br><span class="line">    font-size: 23px;</span><br><span class="line">    line-height: 30px;</span><br><span class="line">&#125;</span><br><span class="line">.pullquote-adelle:before &#123;</span><br><span class="line">    font-family: &quot;adelle-1&quot;, &quot;adelle-2&quot;;</span><br><span class="line">    font-weight: 100;</span><br><span class="line">    top: 10px !important;</span><br><span class="line">&#125;</span><br><span class="line">.pullquote-helvetica:before &#123;</span><br><span class="line">    font-family: &quot;Helvetica Neue&quot;, Arial, sans-serif;</span><br><span class="line">    font-weight: bold;</span><br><span class="line">    top: 7px !important;</span><br><span class="line">&#125;</span><br><span class="line">.pullquote-facit:before &#123;</span><br><span class="line">    font-family: &quot;facitweb-1&quot;, &quot;facitweb-2&quot;, Helvetica, Arial, sans-serif;</span><br><span class="line">    font-weight: bold;</span><br><span class="line">    top: 7px !important;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="24、CSS3：全屏背景"><a href="#24、CSS3：全屏背景" class="headerlink" title="24、CSS3：全屏背景"></a>24、CSS3：全屏背景</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">html &#123; </span><br><span class="line">    background: url(&#x27;images/bg.jpg&#x27;) no-repeat center center fixed; </span><br><span class="line">    -webkit-background-size: cover;</span><br><span class="line">    -moz-background-size: cover;</span><br><span class="line">    -o-background-size: cover;</span><br><span class="line">    background-size: cover;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="25、内容垂直居中"><a href="#25、内容垂直居中" class="headerlink" title="25、内容垂直居中"></a>25、内容垂直居中</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">    min-height: 6.5em;</span><br><span class="line">    display: table-cell;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="26、强制出现垂直滚动条"><a href="#26、强制出现垂直滚动条" class="headerlink" title="26、强制出现垂直滚动条"></a>26、强制出现垂直滚动条</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">html &#123; height: 101% &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="27、CSS3渐变模板"><a href="#27、CSS3渐变模板" class="headerlink" title="27、CSS3渐变模板"></a>27、CSS3渐变模板</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#colorbox &#123;</span><br><span class="line">    background: #629721;</span><br><span class="line">    background-image: -webkit-gradient(linear, left top, left bottom, from(#83b842), to(#629721));</span><br><span class="line">    background-image: -webkit-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: -moz-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: -ms-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: -o-linear-gradient(top, #83b842, #629721);</span><br><span class="line">    background-image: linear-gradient(top, #83b842, #629721);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="28、-font-face模板"><a href="#28、-font-face模板" class="headerlink" title="28、@font-face模板"></a>28、@font-face模板</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;MyWebFont&#x27;;</span><br><span class="line">    src: url(&#x27;webfont.eot&#x27;); /* IE9 Compat Modes */</span><br><span class="line">    src: url(&#x27;webfont.eot?#iefix&#x27;) format(&#x27;embedded-opentype&#x27;), /* IE6-IE8 */</span><br><span class="line">    url(&#x27;webfont.woff&#x27;) format(&#x27;woff&#x27;), /* Modern Browsers */</span><br><span class="line">    url(&#x27;webfont.ttf&#x27;)  format(&#x27;truetype&#x27;), /* Safari, Android, iOS */</span><br><span class="line">    url(&#x27;webfont.svg#svgFontName&#x27;) format(&#x27;svg&#x27;); /* Legacy iOS */</span><br><span class="line">&#125;</span><br><span class="line">body &#123;</span><br><span class="line">    font-family: &#x27;MyWebFont&#x27;, Arial, sans-serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="29、缝合CSS3元素"><a href="#29、缝合CSS3元素" class="headerlink" title="29、缝合CSS3元素"></a>29、缝合CSS3元素</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">p &#123;</span><br><span class="line">    position:relative;</span><br><span class="line">    z-index:1;</span><br><span class="line">    padding: 10px;</span><br><span class="line">    margin: 10px;</span><br><span class="line">    font-size: 21px;</span><br><span class="line">    line-height: 1.3em;</span><br><span class="line">    color: #fff;</span><br><span class="line">    background: #ff0030;</span><br><span class="line">    -webkit-box-shadow: 0 0 0 4px #ff0030, 2px 1px 4px 4px rgba(10,10,0,.5);</span><br><span class="line">    -moz-box-shadow: 0 0 0 4px #ff0030, 2px 1px 4px 4px rgba(10,10,0,.5);</span><br><span class="line">    box-shadow: 0 0 0 4px #ff0030, 2px 1px 6px 4px rgba(10,10,0,.5);</span><br><span class="line">    -webkit-border-radius: 3px;</span><br><span class="line">    -moz-border-radius: 3px;</span><br><span class="line">    border-radius: 3px;</span><br><span class="line">&#125;</span><br><span class="line">p:before &#123;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    position: absolute;</span><br><span class="line">    z-index: -1;</span><br><span class="line">    top: 3px;</span><br><span class="line">    bottom: 3px;</span><br><span class="line">    left :3px;</span><br><span class="line">    right: 3px;</span><br><span class="line">    border: 2px dashed #fff;</span><br><span class="line">&#125;</span><br><span class="line">p a &#123;</span><br><span class="line">    color: #fff;</span><br><span class="line">    text-decoration:none;</span><br><span class="line">&#125;</span><br><span class="line">p a:hover, p a:focus, p a:active &#123;</span><br><span class="line">    text-decoration:underline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="30、CSS3-斑马线"><a href="#30、CSS3-斑马线" class="headerlink" title="30、CSS3 斑马线"></a>30、CSS3 斑马线</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tbody tr:nth-child(odd) &#123;</span><br><span class="line">    background-color: #ccc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="31、有趣的-amp"><a href="#31、有趣的-amp" class="headerlink" title="31、有趣的&amp;"></a>31、有趣的&amp;</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.amp &#123;</span><br><span class="line">    font-family: Baskerville, &#x27;Goudy Old Style&#x27;, Palatino, &#x27;Book Antiqua&#x27;, serif;</span><br><span class="line">    font-style: italic;</span><br><span class="line">    font-weight: normal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="32、大字段落"><a href="#32、大字段落" class="headerlink" title="32、大字段落"></a>32、大字段落</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">p:first-letter&#123;</span><br><span class="line">    display: block;</span><br><span class="line">    margin: 5px 0 0 5px;</span><br><span class="line">    float: left;</span><br><span class="line">    color: #ff3366;</span><br><span class="line">    font-size: 5.4em;</span><br><span class="line">    font-family: Georgia, Times New Roman, serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="33、内部CSS3-盒阴影"><a href="#33、内部CSS3-盒阴影" class="headerlink" title="33、内部CSS3 盒阴影"></a>33、内部CSS3 盒阴影</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#mydiv &#123; </span><br><span class="line">    -moz-box-shadow: inset 2px 0 4px #000;</span><br><span class="line">    -webkit-box-shadow: inset 2px 0 4px #000;</span><br><span class="line">    box-shadow: inset 2px 0 4px #000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="34、外部CSS3-盒阴影"><a href="#34、外部CSS3-盒阴影" class="headerlink" title="34、外部CSS3 盒阴影"></a>34、外部CSS3 盒阴影</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#mydiv &#123; </span><br><span class="line">    -webkit-box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.52);</span><br><span class="line">    -moz-box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.52);</span><br><span class="line">    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.52);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="35、三角形列表项目符号"><a href="#35、三角形列表项目符号" class="headerlink" title="35、三角形列表项目符号"></a>35、三角形列表项目符号</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">ul &#123;</span><br><span class="line">    margin: 0.75em 0;</span><br><span class="line">    padding: 0 1em;</span><br><span class="line">    list-style: none;</span><br><span class="line">&#125;</span><br><span class="line">li:before &#123; </span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    border-color: transparent #111;</span><br><span class="line">    border-style: solid;</span><br><span class="line">    border-width: 0.35em 0 0.35em 0.45em;</span><br><span class="line">    display: block;</span><br><span class="line">    height: 0;</span><br><span class="line">    width: 0;</span><br><span class="line">    left: -1em;</span><br><span class="line">    top: 0.9em;</span><br><span class="line">    position: relative;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="36、固定宽度的居中布局"><a href="#36、固定宽度的居中布局" class="headerlink" title="36、固定宽度的居中布局"></a>36、固定宽度的居中布局</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#page-wrap &#123;</span><br><span class="line">    width: 800px;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="37、CSS3-列文本"><a href="#37、CSS3-列文本" class="headerlink" title="37、CSS3 列文本"></a>37、CSS3 列文本</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#columns-3 &#123;</span><br><span class="line">    text-align: justify;</span><br><span class="line">    -moz-column-count: 3;</span><br><span class="line">    -moz-column-gap: 12px;</span><br><span class="line">    -moz-column-rule: 1px solid #c4c8cc;</span><br><span class="line">    -webkit-column-count: 3;</span><br><span class="line">    -webkit-column-gap: 12px;</span><br><span class="line">    -webkit-column-rule: 1px solid #c4c8cc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="38、CSS固定页脚"><a href="#38、CSS固定页脚" class="headerlink" title="38、CSS固定页脚"></a>38、CSS固定页脚</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#footer &#123;</span><br><span class="line">    position: fixed;</span><br><span class="line">    left: 0px;</span><br><span class="line">    bottom: 0px;</span><br><span class="line">    height: 30px;</span><br><span class="line">    width: 100%;</span><br><span class="line">    background: #444;</span><br><span class="line">&#125;</span><br><span class="line">/* IE 6 */</span><br><span class="line">* html #footer &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+&#x27;px&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="39、IE6的PNG透明修复"><a href="#39、IE6的PNG透明修复" class="headerlink" title="39、IE6的PNG透明修复"></a>39、IE6的PNG透明修复</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.bg &#123;</span><br><span class="line">    width:200px;</span><br><span class="line">    height:100px;</span><br><span class="line">    background: url(/folder/yourimage.png) no-repeat;</span><br><span class="line">    _background:none;</span><br><span class="line">    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#x27;/folder/yourimage.png&#x27;,sizingMethod=&#x27;crop&#x27;);</span><br><span class="line">&#125;</span><br><span class="line">/* 1px gif method */</span><br><span class="line">img, .png &#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    behavior: expression((this.runtimeStyle.behavior=&quot;none&quot;)&amp;&amp;(this.pngSet?this.pngSet=true:(this.nodeName == &quot;IMG&quot; &amp;&amp; this.src.toLowerCase().indexOf(&#x27;.png&#x27;)&gt;-1?(this.runtimeStyle.backgroundImage = &quot;none&quot;,</span><br><span class="line">       this.runtimeStyle.filter = &quot;progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#x27;&quot; + this.src + &quot;&#x27;, sizingMethod=&#x27;image&#x27;)&quot;,</span><br><span class="line">       this.src = &quot;images/transparent.gif&quot;):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace(&#x27;url(&quot;&#x27;,&#x27;&#x27;).replace(&#x27;&quot;)&#x27;,&#x27;&#x27;),</span><br><span class="line">       this.runtimeStyle.filter = &quot;progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#x27;&quot; + this.origBg + &quot;&#x27;, sizingMethod=&#x27;crop&#x27;)&quot;,</span><br><span class="line">       this.runtimeStyle.backgroundImage = &quot;none&quot;)),this.pngSet=true));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="40、跨浏览器设置最小高度"><a href="#40、跨浏览器设置最小高度" class="headerlink" title="40、跨浏览器设置最小高度"></a>40、跨浏览器设置最小高度</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#container &#123;</span><br><span class="line">    min-height: 550px;</span><br><span class="line">    height: auto !important;</span><br><span class="line">    height: 550px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="41、CSS3-鲜艳的输入"><a href="#41、CSS3-鲜艳的输入" class="headerlink" title="41、CSS3 鲜艳的输入"></a>41、CSS3 鲜艳的输入</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">input[type=text], textarea &#123;</span><br><span class="line">    -webkit-transition: all 0.30s ease-in-out;</span><br><span class="line">    -moz-transition: all 0.30s ease-in-out;</span><br><span class="line">    -ms-transition: all 0.30s ease-in-out;</span><br><span class="line">    -o-transition: all 0.30s ease-in-out;</span><br><span class="line">    outline: none;</span><br><span class="line">    padding: 3px 0px 3px 3px;</span><br><span class="line">    margin: 5px 1px 3px 0px;</span><br><span class="line">    border: 1px solid #ddd;</span><br><span class="line">&#125;</span><br><span class="line">input[type=text]:focus, textarea:focus &#123;</span><br><span class="line">    box-shadow: 0 0 5px rgba(81, 203, 238, 1);</span><br><span class="line">    padding: 3px 0px 3px 3px;</span><br><span class="line">    margin: 5px 1px 3px 0px;</span><br><span class="line">    border: 1px solid rgba(81, 203, 238, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="42、基于文件类型的链接样式"><a href="#42、基于文件类型的链接样式" class="headerlink" title="42、基于文件类型的链接样式"></a>42、基于文件类型的链接样式</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/* external links */</span><br><span class="line">a[href^=&quot;http://&quot;] &#123;</span><br><span class="line">    padding-right: 13px;</span><br><span class="line">    background: url(&#x27;external.gif&#x27;) no-repeat center right;</span><br><span class="line">&#125;</span><br><span class="line">/* emails */</span><br><span class="line">a[href^=&quot;mailto:&quot;] &#123;</span><br><span class="line">    padding-right: 20px;</span><br><span class="line">    background: url(&#x27;email.png&#x27;) no-repeat center right;</span><br><span class="line">&#125;</span><br><span class="line">/* pdfs */</span><br><span class="line">a[href$=&quot;.pdf&quot;] &#123;</span><br><span class="line">    padding-right: 18px;</span><br><span class="line">    background: url(&#x27;acrobat.png&#x27;) no-repeat center right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="43、强制换行"><a href="#43、强制换行" class="headerlink" title="43、强制换行"></a>43、强制换行</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pre &#123;</span><br><span class="line">    white-space: pre-wrap;       /* css-3 */</span><br><span class="line">    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */</span><br><span class="line">    white-space: -pre-wrap;      /* Opera 4-6 */</span><br><span class="line">    white-space: -o-pre-wrap;    /* Opera 7 */</span><br><span class="line">    word-wrap: break-word;       /* Internet Explorer 5.5+ */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="44、在可点击的项目上强制手型"><a href="#44、在可点击的项目上强制手型" class="headerlink" title="44、在可点击的项目上强制手型"></a>44、在可点击的项目上强制手型</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a[href], input[type=&#x27;submit&#x27;], input[type=&#x27;image&#x27;], label[for], select, button, .pointer &#123;</span><br><span class="line">    cursor: pointer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="45、网页顶部盒阴影"><a href="#45、网页顶部盒阴影" class="headerlink" title="45、网页顶部盒阴影"></a>45、网页顶部盒阴影</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">body:before &#123;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    position: fixed;</span><br><span class="line">    top: -10px;</span><br><span class="line">    left: 0;</span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 10px;</span><br><span class="line">    -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);</span><br><span class="line">    -moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);</span><br><span class="line">    box-shadow: 0px 0px 10px rgba(0,0,0,.8);</span><br><span class="line">    z-index: 100;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="46、CSS3对话气泡"><a href="#46、CSS3对话气泡" class="headerlink" title="46、CSS3对话气泡"></a>46、CSS3对话气泡</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">.chat-bubble &#123;</span><br><span class="line">    background-color: #ededed;</span><br><span class="line">    border: 2px solid #666;</span><br><span class="line">    font-size: 35px;</span><br><span class="line">    line-height: 1.3em;</span><br><span class="line">    margin: 10px auto;</span><br><span class="line">    padding: 10px;</span><br><span class="line">    position: relative;</span><br><span class="line">    text-align: center;</span><br><span class="line">    width: 300px;</span><br><span class="line">    -moz-border-radius: 20px;</span><br><span class="line">    -webkit-border-radius: 20px;</span><br><span class="line">    -moz-box-shadow: 0 0 5px #888;</span><br><span class="line">    -webkit-box-shadow: 0 0 5px #888;</span><br><span class="line">    font-family: &#x27;Bangers&#x27;, arial, serif; </span><br><span class="line">&#125;</span><br><span class="line">.chat-bubble-arrow-border &#123;</span><br><span class="line">    border-color: #666 transparent transparent transparent;</span><br><span class="line">    border-style: solid;</span><br><span class="line">    border-width: 20px;</span><br><span class="line">    height: 0;</span><br><span class="line">    width: 0;</span><br><span class="line">    position: absolute;</span><br><span class="line">    bottom: -42px;</span><br><span class="line">    left: 30px;</span><br><span class="line">&#125;</span><br><span class="line">.chat-bubble-arrow &#123;</span><br><span class="line">    border-color: #ededed transparent transparent transparent;</span><br><span class="line">    border-style: solid;</span><br><span class="line">    border-width: 20px;</span><br><span class="line">    height: 0;</span><br><span class="line">    width: 0;</span><br><span class="line">    position: absolute;</span><br><span class="line">    bottom: -39px;</span><br><span class="line">    left: 30px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="47、H1-H5默认样式"><a href="#47、H1-H5默认样式" class="headerlink" title="47、H1-H5默认样式"></a>47、H1-H5默认样式</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">h1,h2,h3,h4,h5&#123;</span><br><span class="line">    color: #005a9c;</span><br><span class="line">&#125;</span><br><span class="line">h1&#123;</span><br><span class="line">    font-size: 2.6em;</span><br><span class="line">    line-height: 2.45em;</span><br><span class="line">&#125;</span><br><span class="line">h2&#123;</span><br><span class="line">    font-size: 2.1em;</span><br><span class="line">    line-height: 1.9em;</span><br><span class="line">&#125;</span><br><span class="line">h3&#123;</span><br><span class="line">    font-size: 1.8em;</span><br><span class="line">    line-height: 1.65em;</span><br><span class="line">&#125;</span><br><span class="line">h4&#123;</span><br><span class="line">    font-size: 1.65em;</span><br><span class="line">    line-height: 1.4em;</span><br><span class="line">&#125;</span><br><span class="line">h5&#123;</span><br><span class="line">    font-size: 1.4em;</span><br><span class="line">    line-height: 1.25em;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="48、纯CSS背景噪音"><a href="#48、纯CSS背景噪音" class="headerlink" title="48、纯CSS背景噪音"></a>48、纯CSS背景噪音</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+6hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+76pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/7gC9hesnr+7wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjs6XXOMedYm5xH2YxpV2tc0Ro2jJfxC50ApuxGob7lMsxfTbeUv07TyYxpeLucEH1gNd4IKH2LAg5TdVhlCafZvpskfncCfx8pOhJzd76bJWeYFnFciwcYfubRc12Ip/ppIhA1/mSZ/RxjFDrJC5xifFjJpY2Xl5zXdguFqYyTR1zSp1Y9p+tktDYYSNflcxI0iyO4TPBdlRcpeqjK/piF5bklq77VSEaA+z8qmJTFzIWiitbnzR794USKBUaT0NTEsVjZqLaFVqJoPN9ODG70IPbfBHKK+/q/AWR0tJzYHRULOa4MP+W/HfGadZUbfw177G7j/OGbIs8TahLyynl4X4RinF793Oz+BU0saXtUHrVBFT/DnA3ctNPoGbs4hRIjTok8i+algT1lTHi4SxFvONKNrgQFAq2/gFnWMXgwffgYMJpiKYkmW3tTg3ZQ9Jq+f8XN+A5eeUKHWvJWJ2sgJ1Sop+wwhqFVijqWaJhwtD8MNlSBeWNNWTa5Z5kPZw5+LbVT99wqTdx29lMUH4OIG/D86ruKEauBjvH5xy6um/Sfj7ei6UUVk4AIl3MyD4MSSTOFgSwsH/QJWaQ5as7ZcmgBZkzjjU1UrQ74ci1gWBCSGHtuV1H2mhSnO3Wp/3fEV5a+4wz//6qy8JxjZsmxxy5+4w9CDNJY09T072iKG0EnOS0arEYgXqYnXcYHwjTtUNAcMelOd4xpkoqiTYICWFq0JSiPfPDQdnt+4/wuqcXY47QILbgAAAABJRU5ErkJggg==);</span><br><span class="line">    background-color: #0094d0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="49、持久的列表排序"><a href="#49、持久的列表排序" class="headerlink" title="49、持久的列表排序"></a>49、持久的列表排序</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ol.chapters &#123;</span><br><span class="line">    list-style: none;</span><br><span class="line">    margin-left: 0;</span><br><span class="line">&#125;</span><br><span class="line">ol.chapters &gt; li:before &#123;</span><br><span class="line">    content: counter(chapter) &quot;. &quot;;</span><br><span class="line">    counter-increment: chapter;</span><br><span class="line">    font-weight: bold;</span><br><span class="line">    float: left;</span><br><span class="line">    width: 40px;</span><br><span class="line">&#125;</span><br><span class="line">ol.chapters li &#123;</span><br><span class="line">    clear: left;</span><br><span class="line">&#125;</span><br><span class="line">ol.start &#123;</span><br><span class="line">    counter-reset: chapter;</span><br><span class="line">&#125;</span><br><span class="line">ol.continue &#123;</span><br><span class="line">    counter-reset: chapter 11;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="50、CSS悬浮提示文本"><a href="#50、CSS悬浮提示文本" class="headerlink" title="50、CSS悬浮提示文本"></a>50、CSS悬浮提示文本</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">a &#123; </span><br><span class="line">    border-bottom:1px solid #bbb;</span><br><span class="line">    color:#666;</span><br><span class="line">    display:inline-block;</span><br><span class="line">    position:relative;</span><br><span class="line">    text-decoration:none;</span><br><span class="line">&#125;</span><br><span class="line">a:hover,</span><br><span class="line">a:focus &#123;</span><br><span class="line">    color:#36c;</span><br><span class="line">&#125;</span><br><span class="line">a:active &#123;</span><br><span class="line">    top:1px; </span><br><span class="line">&#125;</span><br><span class="line">/* Tooltip styling */</span><br><span class="line">a[data-tooltip]:after &#123;</span><br><span class="line">    border-top: 8px solid #222;</span><br><span class="line">    border-top: 8px solid hsla(0,0%,0%,.85);</span><br><span class="line">    border-left: 8px solid transparent;</span><br><span class="line">    border-right: 8px solid transparent;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    display: none;</span><br><span class="line">    height: 0;</span><br><span class="line">    width: 0;</span><br><span class="line">    left: 25%;</span><br><span class="line">    position: absolute;</span><br><span class="line">&#125;</span><br><span class="line">a[data-tooltip]:before &#123;</span><br><span class="line">    background: #222;</span><br><span class="line">    background: hsla(0,0%,0%,.85);</span><br><span class="line">    color: #f6f6f6;</span><br><span class="line">    content: attr(data-tooltip);</span><br><span class="line">    display: none;</span><br><span class="line">    font-family: sans-serif;</span><br><span class="line">    font-size: 14px;</span><br><span class="line">    height: 32px;</span><br><span class="line">    left: 0;</span><br><span class="line">    line-height: 32px;</span><br><span class="line">    padding: 0 15px;</span><br><span class="line">    position: absolute;</span><br><span class="line">    text-shadow: 0 1px 1px hsla(0,0%,0%,1);</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    -webkit-border-radius: 5px;</span><br><span class="line">    -moz-border-radius: 5px;</span><br><span class="line">    -o-border-radius: 5px;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">&#125;</span><br><span class="line">a[data-tooltip]:hover:after &#123;</span><br><span class="line">    display: block;</span><br><span class="line">    top: -9px;</span><br><span class="line">&#125;</span><br><span class="line">a[data-tooltip]:hover:before &#123;</span><br><span class="line">    display: block;</span><br><span class="line">    top: -41px;</span><br><span class="line">&#125;</span><br><span class="line">a[data-tooltip]:active:after &#123;</span><br><span class="line">    top: -10px;</span><br><span class="line">&#125;</span><br><span class="line">a[data-tooltip]:active:before &#123;</span><br><span class="line">    top: -42px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="51、深灰色的圆形按钮"><a href="#51、深灰色的圆形按钮" class="headerlink" title="51、深灰色的圆形按钮"></a>51、深灰色的圆形按钮</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">.graybtn &#123;</span><br><span class="line">    -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;</span><br><span class="line">    -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;</span><br><span class="line">    box-shadow:inset 0px 1px 0px 0px #ffffff;</span><br><span class="line">    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #d1d1d1) );</span><br><span class="line">    background:-moz-linear-gradient( center top, #ffffff 5%, #d1d1d1 100% );</span><br><span class="line">    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=&#x27;#ffffff&#x27;, endColorstr=&#x27;#d1d1d1&#x27;);</span><br><span class="line">    background-color:#ffffff;</span><br><span class="line">    -moz-border-radius:6px;</span><br><span class="line">    -webkit-border-radius:6px;</span><br><span class="line">    border-radius:6px;</span><br><span class="line">    border:1px solid #dcdcdc;</span><br><span class="line">    display:inline-block;</span><br><span class="line">    color:#777777;</span><br><span class="line">    font-family:arial;</span><br><span class="line">    font-size:15px;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">    padding:6px 24px;</span><br><span class="line">    text-decoration:none;</span><br><span class="line">    text-shadow:1px 1px 0px #ffffff;</span><br><span class="line">&#125;</span><br><span class="line">.graybtn:hover &#123;</span><br><span class="line">    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d1d1d1), color-stop(1, #ffffff) );</span><br><span class="line">    background:-moz-linear-gradient( center top, #d1d1d1 5%, #ffffff 100% );</span><br><span class="line">    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=&#x27;#d1d1d1&#x27;, endColorstr=&#x27;#ffffff&#x27;);</span><br><span class="line">    background-color:#d1d1d1;</span><br><span class="line">&#125;</span><br><span class="line">.graybtn:active &#123;</span><br><span class="line">    position:relative;</span><br><span class="line">    top:1px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="52、在可打印的网页中显示URLs"><a href="#52、在可打印的网页中显示URLs" class="headerlink" title="52、在可打印的网页中显示URLs"></a>52、在可打印的网页中显示URLs</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@media print   &#123;  </span><br><span class="line">  a:after &#123;  </span><br><span class="line">    content: &quot; [&quot; attr(href) &quot;] &quot;;  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="53、禁用移动Webkit的选择高亮"><a href="#53、禁用移动Webkit的选择高亮" class="headerlink" title="53、禁用移动Webkit的选择高亮"></a>53、禁用移动Webkit的选择高亮</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    -webkit-touch-callout: none;</span><br><span class="line">    -webkit-user-select: none;</span><br><span class="line">    -khtml-user-select: none;</span><br><span class="line">    -moz-user-select: none;</span><br><span class="line">    -ms-user-select: none;</span><br><span class="line">    user-select: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="54、CSS3-圆点图案"><a href="#54、CSS3-圆点图案" class="headerlink" title="54、CSS3 圆点图案"></a>54、CSS3 圆点图案</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background: radial-gradient(circle, white 10%, transparent 10%),</span><br><span class="line">    radial-gradient(circle, white 10%, black 10%) 50px 50px;</span><br><span class="line">    background-size: 100px 100px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="55、CSS3-方格图案"><a href="#55、CSS3-方格图案" class="headerlink" title="55、CSS3 方格图案"></a>55、CSS3 方格图案</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background-color: white;</span><br><span class="line">    background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), </span><br><span class="line">    linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black);</span><br><span class="line">    background-size: 100px 100px;</span><br><span class="line">    background-position: 0 0, 50px 50px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="56、Github的fork色带"><a href="#56、Github的fork色带" class="headerlink" title="56、Github的fork色带"></a>56、Github的fork色带</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">.ribbon &#123;</span><br><span class="line">    background-color: #a00;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    /* top left corner */</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: -3em;</span><br><span class="line">    top: 2.5em;</span><br><span class="line">    /* 45 deg ccw rotation */</span><br><span class="line">    -moz-transform: rotate(-45deg);</span><br><span class="line">    -webkit-transform: rotate(-45deg);</span><br><span class="line">    /* shadow */</span><br><span class="line">    -moz-box-shadow: 0 0 1em #888;</span><br><span class="line">    -webkit-box-shadow: 0 0 1em #888;</span><br><span class="line">&#125;</span><br><span class="line">.ribbon a &#123;</span><br><span class="line">    border: 1px solid #faa;</span><br><span class="line">    color: #fff;</span><br><span class="line">    display: block;</span><br><span class="line">    font: bold 81.25% &#x27;Helvetiva Neue&#x27;, Helvetica, Arial, sans-serif;</span><br><span class="line">    margin: 0.05em 0 0.075em 0;</span><br><span class="line">    padding: 0.5em 3.5em;</span><br><span class="line">    text-align: center;</span><br><span class="line">    text-decoration: none;</span><br><span class="line">    /* shadow */</span><br><span class="line">    text-shadow: 0 0 0.5em #444;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="57、CSS-font属性缩写"><a href="#57、CSS-font属性缩写" class="headerlink" title="57、CSS font属性缩写"></a>57、CSS font属性缩写</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p &#123;</span><br><span class="line">  font: italic small-caps bold 1.2em/1.0em Arial, Tahoma, Helvetica;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="58、论文页面的卷曲效果"><a href="#58、论文页面的卷曲效果" class="headerlink" title="58、论文页面的卷曲效果"></a>58、论文页面的卷曲效果</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">ul.box &#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    z-index: 1; /* prevent shadows falling behind containers with backgrounds */</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    list-style: none;</span><br><span class="line">    margin: 0;</span><br><span class="line">    padding: 0; </span><br><span class="line">&#125;</span><br><span class="line">ul.box li &#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    float: left;</span><br><span class="line">    width: 250px;</span><br><span class="line">    height: 150px;</span><br><span class="line">    padding: 0;</span><br><span class="line">    border: 1px solid #efefef;</span><br><span class="line">    margin: 0 30px 30px 0;</span><br><span class="line">    background: #fff;</span><br><span class="line">    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;</span><br><span class="line">    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset; </span><br><span class="line">    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset; </span><br><span class="line">&#125;</span><br><span class="line">ul.box li:before,</span><br><span class="line">ul.box li:after &#123;</span><br><span class="line">    content: &#x27;&#x27;;</span><br><span class="line">    z-index: -1;</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 10px;</span><br><span class="line">    bottom: 10px;</span><br><span class="line">    width: 70%;</span><br><span class="line">    max-width: 300px; /* avoid rotation causing ugly appearance at large container widths */</span><br><span class="line">    max-height: 100px;</span><br><span class="line">    height: 55%;</span><br><span class="line">    -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);</span><br><span class="line">    -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);</span><br><span class="line">    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);</span><br><span class="line">    -webkit-transform: skew(-15deg) rotate(-6deg);</span><br><span class="line">    -moz-transform: skew(-15deg) rotate(-6deg);</span><br><span class="line">    -ms-transform: skew(-15deg) rotate(-6deg);</span><br><span class="line">    -o-transform: skew(-15deg) rotate(-6deg);</span><br><span class="line">    transform: skew(-15deg) rotate(-6deg); </span><br><span class="line">&#125;</span><br><span class="line">ul.box li:after &#123;</span><br><span class="line">    left: auto;</span><br><span class="line">    right: 10px;</span><br><span class="line">    -webkit-transform: skew(15deg) rotate(6deg);</span><br><span class="line">    -moz-transform: skew(15deg) rotate(6deg);</span><br><span class="line">    -ms-transform: skew(15deg) rotate(6deg);</span><br><span class="line">    -o-transform: skew(15deg) rotate(6deg);</span><br><span class="line">    transform: skew(15deg) rotate(6deg); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="59、鲜艳的锚链接"><a href="#59、鲜艳的锚链接" class="headerlink" title="59、鲜艳的锚链接"></a>59、鲜艳的锚链接</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">a &#123;</span><br><span class="line">    color: #00e;</span><br><span class="line">&#125;</span><br><span class="line">a:visited &#123;</span><br><span class="line">    color: #551a8b;</span><br><span class="line">&#125;</span><br><span class="line">a:hover &#123;</span><br><span class="line">    color: #06e;</span><br><span class="line">&#125;</span><br><span class="line">a:focus &#123;</span><br><span class="line">    outline: thin dotted;</span><br><span class="line">&#125;</span><br><span class="line">a:hover, a:active &#123;</span><br><span class="line">    outline: 0;</span><br><span class="line">&#125;</span><br><span class="line">a, a:visited, a:active &#123;</span><br><span class="line">    text-decoration: none;</span><br><span class="line">    color: #fff;</span><br><span class="line">    -webkit-transition: all .3s ease-in-out;</span><br><span class="line">&#125;</span><br><span class="line">a:hover, .glow &#123;</span><br><span class="line">    color: #ff0;</span><br><span class="line">    text-shadow: 0 0 10px #ff0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="60、带CSS3特色的横幅显示"><a href="#60、带CSS3特色的横幅显示" class="headerlink" title="60、带CSS3特色的横幅显示"></a>60、带CSS3特色的横幅显示</h4><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">.featureBanner &#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    margin: 20px</span><br><span class="line">&#125;</span><br><span class="line">.featureBanner:before &#123;</span><br><span class="line">    content: &quot;Featured&quot;;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 5px;</span><br><span class="line">    left: -8px;</span><br><span class="line">    padding-right: 10px;</span><br><span class="line">    color: #232323;</span><br><span class="line">    font-weight: bold;</span><br><span class="line">    height: 0px;</span><br><span class="line">    border: 15px solid #ffa200;</span><br><span class="line">    border-right-color: transparent;</span><br><span class="line">    line-height: 0px;</span><br><span class="line">    box-shadow: -0px 5px 5px -5px #000;</span><br><span class="line">    z-index: 1;</span><br><span class="line">&#125;</span><br><span class="line">.featureBanner:after &#123;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 35px;</span><br><span class="line">    left: -8px;</span><br><span class="line">    border: 4px solid #89540c;</span><br><span class="line">    border-left-color: transparent;</span><br><span class="line">    border-bottom-color: transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/03/03/html+css+js+ts/3-js%E5%BC%82%E6%AD%A5ajax%E6%80%BB%E7%BB%93/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">js Ajax总结</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/02/28/html+css+js+ts/2-css%E5%B1%85%E4%B8%AD/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">css-居中</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

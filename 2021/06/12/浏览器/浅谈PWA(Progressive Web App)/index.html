@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>浅谈PWA(Progressive Web App) | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">浅谈PWA(Progressive Web App)</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2021-06-12T08:27:05.000Z" itemprop="datePublished">2021-06-12</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">📒 浏览器</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">🏷️ 浏览器</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h1 id="一、初识PWA"><a href="#一、初识PWA" class="headerlink" title="一、初识PWA"></a>一、初识PWA</h1><blockquote>
+<ul>
+<li><code>PWA</code>，即<code>Progressive Web App</code>, 是提升 <code>Web App</code> 的体验的一种新方法，能给用户原生应用的体验。</li>
+<li>一个 <code>PWA</code> 应用首先是一个网页, 可以通过 <code>Web</code> 技术编写出一个网页应用. 随后添加上 <code>App Manifest</code> 和 <code>Service Worker</code> 来实现<code>PWA</code> 的安装和离线等功能</li>
+</ul>
+</blockquote>
+<h2 id="1-1-PWA中的一些技术"><a href="#1-1-PWA中的一些技术" class="headerlink" title="1.1 PWA中的一些技术"></a>1.1 PWA中的一些技术</h2><blockquote>
+<p><code>PWA</code>本身其实是一个概念集合，它不是指某一项技术，而是通过一系列的<code>Web</code>技术与<code>Web</code>标准来优化<code>Web App</code>的安全、性能和体验。其中涉及到的一些技术概念包括了</p>
+</blockquote>
+<ul>
+<li><code>Web App Manifest</code></li>
+<li><code>Service Worker</code></li>
+<li><code>Cache API</code> 缓存</li>
+<li><code>Push、Notification</code> 推送与通知</li>
+<li><code>Background Sync</code>后台同步</li>
+<li>响应式设计</li>
+</ul>
+<h2 id="1-2-解决了哪些问题"><a href="#1-2-解决了哪些问题" class="headerlink" title="1.2 解决了哪些问题"></a>1.2 解决了哪些问题</h2><ul>
+<li>可以添加至主屏幕，点击主屏幕图标可以实现启动动画以及隐藏地址栏</li>
+<li>实现离线缓存功能，即使用户手机没有网络，依然可以使用一些离线功能</li>
+<li>实现了消息推送</li>
+</ul>
+<h2 id="1-3-PWA存在的问题"><a href="#1-3-PWA存在的问题" class="headerlink" title="1.3 PWA存在的问题"></a>1.3 PWA存在的问题</h2><ul>
+<li>支持率不高:现在<code>ios</code>手机端不支持<code>pwa</code>，<code>IE</code>也暂时不支持<br><code>Chrome</code>在中国桌面版占有率还是不错的，安卓移动端上的占有率却很低</li>
+<li>各大厂商还未明确支持<code>pwa</code></li>
+<li>依赖的<code>GCM</code>服务在国内无法使用</li>
+<li>微信小程序的竞争</li>
+</ul>
+<blockquote>
+<p>尽管有上述的一些缺点，PWA技术仍然有很多可以使用的点。</p>
+</blockquote>
+<ul>
+<li><code>service worker</code>技术实现离线缓存，可以将一些不经常更改的静态文件放到缓存中，提升用户体验。</li>
+<li><code>service worker</code>实现消息推送，使用浏览器推送功能，吸引用户<br>渐进式开发，尽管一些浏览器暂时不支持，可以利用上述技术给使用支持浏览器的用户带来更好的体验</li>
+</ul>
+<h1 id="二、PWA的实现"><a href="#二、PWA的实现" class="headerlink" title="二、PWA的实现"></a>二、PWA的实现</h1><h2 id="2-1-Manifest实现添加至主屏幕"><a href="#2-1-Manifest实现添加至主屏幕" class="headerlink" title="2.1 Manifest实现添加至主屏幕"></a>2.1 Manifest实现添加至主屏幕</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--index.html--&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;Minimal PWA&lt;/title&gt;</span><br><span class="line">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no&quot; /&gt;</span><br><span class="line">  &lt;link rel=&quot;manifest&quot; href=&quot;manifest.json&quot; /&gt;</span><br><span class="line">  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;main.css&quot;&gt;</span><br><span class="line">  &lt;link rel=&quot;icon&quot; href=&quot;/e.png&quot; type=&quot;image/png&quot; /&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">// manifest.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;Minimal PWA&quot;, // 必填 显示的插件名称</span><br><span class="line">  &quot;short_name&quot;: &quot;PWA Demo&quot;, // 可选  在APP launcher和新的tab页显示，如果没有设置，则使用name</span><br><span class="line">  &quot;description&quot;: &quot;The app that helps you understand PWA&quot;, //用于描述应用</span><br><span class="line">  &quot;display&quot;: &quot;standalone&quot;, // 定义开发人员对Web应用程序的首选显示模式。standalone模式会有单独的</span><br><span class="line">  &quot;start_url&quot;: &quot;/&quot;, // 应用启动时的url</span><br><span class="line">  &quot;theme_color&quot;: &quot;#313131&quot;, // 桌面图标的背景色</span><br><span class="line">  &quot;background_color&quot;: &quot;#313131&quot;, // 为web应用程序预定义的背景颜色。在启动web应用程序和加载应用程序的内容之间创建了一个平滑的过渡。</span><br><span class="line">  &quot;icons&quot;: [ // 桌面图标，是一个数组</span><br><span class="line">    &#123;</span><br><span class="line">    &quot;src&quot;: &quot;icon/lowres.webp&quot;,</span><br><span class="line">    &quot;sizes&quot;: &quot;48x48&quot;,  // 以空格分隔的图片尺寸</span><br><span class="line">    &quot;type&quot;: &quot;image/webp&quot;  // 帮助userAgent快速排除不支持的类型</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;src&quot;: &quot;icon/lowres&quot;,</span><br><span class="line">    &quot;sizes&quot;: &quot;48x48&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;src&quot;: &quot;icon/hd_hi.ico&quot;,</span><br><span class="line">    &quot;sizes&quot;: &quot;72x72 96x96 128x128 256x256&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;src&quot;: &quot;icon/hd_hi.svg&quot;,</span><br><span class="line">    &quot;sizes&quot;: &quot;72x72&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><code>Manifest</code>参考文档：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Manifest">https://developer.mozilla.org/zh-CN/docs/Web/Manifest</a></li>
+<li>如果用的是安卓手机，可以下载chrome浏览器自己操作看看</li>
+</ul>
+</blockquote>
+<h2 id="2-2-service-worker实现离线缓存"><a href="#2-2-service-worker实现离线缓存" class="headerlink" title="2.2 service worker实现离线缓存"></a>2.2 service worker实现离线缓存</h2><h3 id="2-2-1-什么是service-worker"><a href="#2-2-1-什么是service-worker" class="headerlink" title="2.2.1 什么是service worker"></a>2.2.1 什么是service worker</h3><blockquote>
+<p><code>Service Worker</code> 是 Chrome 团队提出和力推的一个 WEB API，用于给 web 应用提供高级的可持续的后台处理能力</p>
+</blockquote>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/401.png" alt="img"></p>
+<blockquote>
+<p><code>Service Workers</code> 就像介于服务器和网页之间的拦截器，能够拦截进出的HTTP 请求，从而完全控制你的网站</p>
+</blockquote>
+<h3 id="2-2-2-最主要的特点"><a href="#2-2-2-最主要的特点" class="headerlink" title="2.2.2 最主要的特点"></a>2.2.2 最主要的特点</h3><ul>
+<li>在页面中注册并安装成功后，运行于浏览器后台，不受页面刷新的影响，可以监听和截拦作用域范围内所有页面的 <code>HTTP</code> 请求。</li>
+<li>网站必须使用 <code>HTTPS</code>。除了使用本地开发环境调试时(如域名使用 <code>localhost</code>)</li>
+<li>运行于浏览器后台，可以控制打开的作用域范围下所有的页面请求</li>
+<li>单独的作用域范围，单独的运行环境和执行线程</li>
+<li>不能操作页面 <code>DOM</code>。但可以通过事件机制来处理</li>
+<li>事件驱动型服务线程</li>
+</ul>
+<blockquote>
+<p>为什么要求网站必须是<code>HTTPS</code>的，大概是因为<code>service worker</code>权限太大能拦截所有页面的请求，如果<code>http</code>的网站安装<code>service worker</code>很容易被攻击</p>
+</blockquote>
+<h3 id="2-2-3-生命周期"><a href="#2-2-3-生命周期" class="headerlink" title="2.2.3 生命周期"></a>2.2.3 生命周期</h3><p><img src="https://poetries1.gitee.io/img-repo/2019/10/402.png" alt="img"></p>
+<blockquote>
+<p>当用户首次导航至 URL 时，服务器会返回响应的网页。</p>
+</blockquote>
+<ul>
+<li>第1步:当你调用 <code>register()</code> 函数时， <code>Service Worker</code>开始下载。</li>
+<li>第2步:在注册过程中，浏览器会下载、解析并执行 <code>Service Worker ()</code>。如果在此步骤中出现任何错误，<code>register()</code>返回的 <code>promise</code> 都会执行 <code>reject</code>操作，并且 <code>Service Worker</code> 会被废弃。</li>
+<li>第3步:一旦 <code>Service Worker</code> 成功执行了，<code>install</code> 事件就会激活</li>
+<li>第4步:安装完成，<code>Service Worker</code> 便会激活，并控制在其范围内的一切。如果生命周期中的所有事件都成功了，<code>Service Worker</code>便已准备就绪，随时可以使用了！</li>
+</ul>
+<blockquote>
+<p><code>chrome://serviceworker-internals</code> 来了解当前浏览器中所有已安装<code>Service Worker</code>的详细情况</p>
+</blockquote>
+<h3 id="2-2-4-实现离线缓存"><a href="#2-2-4-实现离线缓存" class="headerlink" title="2.2.4 实现离线缓存"></a>2.2.4 实现离线缓存</h3><p><strong>HTTP缓存</strong></p>
+<ul>
+<li><code>Web</code> 服务器可以使用 <code>Expires</code> 首部来通知 <code>Web</code>客户端，它可以使用资源的当前副本，直到指定的“过期时间”。反过来，浏览器可以缓存此资源，并且只有在有效期满后才会再次检查新版本。使用 <code>HTTP</code> 缓存意味着你要依赖服务器来告诉你何时缓存资源和何时过期</li>
+</ul>
+<p><strong>service worker缓存</strong></p>
+<ul>
+<li><code>Service Workers</code>的强大在于它们拦截 HTTP 请求的能力<br>进入任何传入的<code>HTTP</code> 请求，并决定想要如何响应。在你的 <code>Service Worker</code> 中，可以编写逻辑来决定想要缓存的资源，以及需要满足什么条件和资源需要缓存多久。一切尽归你掌控！</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--index.html--&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Hello Caching World!&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;!-- Image --&gt;</span><br><span class="line">    &lt;img src=&quot;/images/hello.png&quot; /&gt;                 </span><br><span class="line">    &lt;!-- JavaScript --&gt;</span><br><span class="line">    &lt;script async src=&quot;/js/script.js&quot;&gt;&lt;/script&gt;     </span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      // 注册 service worker</span><br><span class="line">      if (&#x27;serviceWorker&#x27; in navigator) &#123;           </span><br><span class="line">        navigator.serviceWorker.register(&#x27;/service-worker.js&#x27;, &#123;scope: &#x27;/&#x27;&#125;).then(function (registration) &#123;</span><br><span class="line">          // 注册成功</span><br><span class="line">          console.log(&#x27;ServiceWorker registration successful with scope: &#x27;, registration.scope);</span><br><span class="line">        &#125;).catch(function (err) &#123;                   </span><br><span class="line">          // 注册失败 :(</span><br><span class="line">          console.log(&#x27;ServiceWorker registration failed: &#x27;, err);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注：<code>Service Worker</code>的注册路径决定了其 <code>scope</code>默认作用页面的范围。</li>
+<li>如果 <code>service-worker.js</code>是在 <code>/sw/</code> 页面路径下，这使得该 <code>Service Worker</code> 默认只会收到 页面<code>/sw/</code> 路径下的 fetch 事件。</li>
+<li>如果存放在网站的根路径下，则将会收到该网站的所有 <code>fetch</code>事件。</li>
+<li>如果希望改变它的作用域，可在第二个参数设置 <code>scope</code> 范围。示例中将其改为了根目录，即对整个站点生效。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// service-worker.js</span><br><span class="line"></span><br><span class="line">var cacheName = &#x27;helloWorld&#x27;;     // 缓存的名称  </span><br><span class="line">// install 事件，它发生在浏览器安装并注册 Service Worker 时        </span><br><span class="line">self.addEventListener(&#x27;install&#x27;, event =&gt; &#123; </span><br><span class="line">/* event.waitUtil 用于在安装成功之前执行一些预装逻辑</span><br><span class="line"> 但是建议只做一些轻量级和非常重要资源的缓存，减少安装失败的概率</span><br><span class="line"> 安装成功后 ServiceWorker 状态会从 installing 变为 installed */</span><br><span class="line">  event.waitUntil(</span><br><span class="line">    caches.open(cacheName)                  </span><br><span class="line">    .then(cache =&gt; cache.addAll([    // 如果所有的文件都成功缓存了，便会安装完成。如果任何文件下载失败了，那么安装过程也会随之失败。        </span><br><span class="line">      &#x27;/js/script.js&#x27;,</span><br><span class="line">      &#x27;/images/hello.png&#x27;</span><br><span class="line">    ]))</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line">  </span><br><span class="line">/**</span><br><span class="line">为 fetch 事件添加一个事件监听器。接下来，使用 caches.match() 函数来检查传入的请求 URL 是否匹配当前缓存中存在的任何内容。如果存在的话，返回缓存的资源。</span><br><span class="line">如果资源并不存在于缓存当中，通过网络来获取资源，并将获取到的资源添加到缓存中。</span><br><span class="line">*/</span><br><span class="line">self.addEventListener(&#x27;fetch&#x27;, function (event) &#123;</span><br><span class="line">  event.respondWith(</span><br><span class="line">    caches.match(event.request)                  </span><br><span class="line">    .then(function (response) &#123;</span><br><span class="line">      if (response) &#123;                            </span><br><span class="line">        return response;                         </span><br><span class="line">      &#125;</span><br><span class="line">      var requestToCache = event.request.clone();  //          </span><br><span class="line">      return fetch(requestToCache).then(                   </span><br><span class="line">        function (response) &#123;</span><br><span class="line">          if (!response || response.status !== 200) &#123;      </span><br><span class="line">            return response;</span><br><span class="line">          &#125;</span><br><span class="line">          var responseToCache = response.clone();          </span><br><span class="line">          caches.open(cacheName)                           </span><br><span class="line">            .then(function (cache) &#123;</span><br><span class="line">              cache.put(requestToCache, responseToCache);  </span><br><span class="line">            &#125;);</span><br><span class="line">          return response;             </span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：为什么用<code>request.clone()</code>和<code>response.clone()</code><br>需要这么做是因为<code>request</code>和<code>response</code>是一个流，它只能消耗一次。因为我们已经通过缓存消耗了一次，然后发起 <code>HTTP</code> 请求还要再消耗一次，所以我们需要在此时克隆请求<br>Clone the request—a request is a stream and can only be consumed once</p>
+</blockquote>
+<h3 id="2-2-5-调试相关"><a href="#2-2-5-调试相关" class="headerlink" title="2.2.5 调试相关"></a>2.2.5 调试相关</h3><blockquote>
+<p>chrome浏览器打开<code>https://googlechrome.github.io/samples/service-worker/basic/index.html</code>，这是一个实现了<code>service worker</code>离线缓存功能的网站，打开调试工具</p>
+</blockquote>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/403.png" alt="img"></p>
+<ul>
+<li>勾选可以模拟网站离线情况，勾选后<code>network</code>会有一个黄色警告图标，该网站已经离线。此时刷新页面，页面仍然能够正常显示</li>
+<li>当前<code>service worker</code>的<code>scope</code>。它能够拦截<code>https://googlechrome.github.i</code>…，同样也能够拦截<code>https://googlechrome.github.i.</code>..<em>&#x2F;</em>.html下的请求</li>
+</ul>
+<blockquote>
+<p>调试面板具体代表的什么参看 <code>https://x5.tencent.com/tbs/guide/serviceworker.html</code>的第三部分</p>
+</blockquote>
+<h2 id="2-3-serice-worker实现消息推送"><a href="#2-3-serice-worker实现消息推送" class="headerlink" title="2.3 serice worker实现消息推送"></a>2.3 serice worker实现消息推送</h2><p><img src="https://poetries1.gitee.io/img-repo/2019/10/404.png" alt="img"></p>
+<ul>
+<li>步骤一、提示用户并获得他们的订阅详细信息</li>
+<li>步骤二、将这些详细信息保存在服务器上</li>
+<li>步骤三、在需要时发送任何消息</li>
+</ul>
+<blockquote>
+<p>不同浏览器需要用不同的推送消息服务器。以 Chrome 上使用 <code>Google Cloud Messaging</code> 作为推送服务为例，第一步是注册 <code>applicationServerKey</code>(通过 GCM 注册获取)，并在页面上进行订阅或发起订阅。每一个会话会有一个独立的端点（<code>endpoint</code>），订阅对象的属性(<code>PushSubscription.endpoint</code>) 即为端点值。将端点发送给服务器后，服务器用这一值来发送消息给会话的激活的 Service Worker （通过 GCM 与浏览器客户端沟通</p>
+</blockquote>
+<p><strong>步骤一和步骤二</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--index.html--&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Progressive Times&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;manifest&quot; href=&quot;/manifest.json&quot;&gt;                                      </span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      var endpoint;</span><br><span class="line">      var key;</span><br><span class="line">      var authSecret;</span><br><span class="line">      var vapidPublicKey = &#x27;BAyb_WgaR0L0pODaR7wWkxJi__tWbM1MPBymyRDFEGjtDCWeRYS9EF7yGoCHLdHJi6hikYdg4MuYaK0XoD0qnoY&#x27;;</span><br><span class="line">      // 方法很复杂，但是可以不用具体看，知识用来转化vapidPublicKey用</span><br><span class="line">      function urlBase64ToUint8Array(base64String) &#123;                                  </span><br><span class="line">        const padding = &#x27;=&#x27;.repeat((4 - base64String.length % 4) % 4);</span><br><span class="line">        const base64 = (base64String + padding)</span><br><span class="line">          .replace(/\-/g, &#x27;+&#x27;)</span><br><span class="line">          .replace(/_/g, &#x27;/&#x27;);</span><br><span class="line">        const rawData = window.atob(base64);</span><br><span class="line">        const outputArray = new Uint8Array(rawData.length);</span><br><span class="line">        for (let i = 0; i &lt; rawData.length; ++i) &#123;</span><br><span class="line">          outputArray[i] = rawData.charCodeAt(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return outputArray;</span><br><span class="line">      &#125;</span><br><span class="line">      if (&#x27;serviceWorker&#x27; in navigator) &#123;</span><br><span class="line">        navigator.serviceWorker.register(&#x27;sw.js&#x27;).then(function (registration) &#123;</span><br><span class="line">          return registration.pushManager.getSubscription()                            </span><br><span class="line">            .then(function (subscription) &#123;</span><br><span class="line">              if (subscription) &#123;                                                      </span><br><span class="line">                return;</span><br><span class="line">              &#125;</span><br><span class="line">              return registration.pushManager.subscribe(&#123;                              </span><br><span class="line">                  userVisibleOnly: true,</span><br><span class="line">                  applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)</span><br><span class="line">                &#125;)</span><br><span class="line">                .then(function (subscription) &#123;</span><br><span class="line">                  var rawKey = subscription.getKey ? subscription.getKey(&#x27;p256dh&#x27;) : &#x27;&#x27;;</span><br><span class="line">                  key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : &#x27;&#x27;;</span><br><span class="line">                  var rawAuthSecret = subscription.getKey ? subscription.getKey(&#x27;auth&#x27;) : &#x27;&#x27;;</span><br><span class="line">                  authSecret = rawAuthSecret ?</span><br><span class="line">                    btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : &#x27;&#x27;;</span><br><span class="line">                  endpoint = subscription.endpoint;</span><br><span class="line">                  return fetch(&#x27;./register&#x27;, &#123;                                         </span><br><span class="line">                    method: &#x27;post&#x27;,</span><br><span class="line">                    headers: new Headers(&#123;</span><br><span class="line">                      &#x27;content-type&#x27;: &#x27;application/json&#x27;</span><br><span class="line">                    &#125;),</span><br><span class="line">                    body: JSON.stringify(&#123;</span><br><span class="line">                      endpoint: subscription.endpoint,</span><br><span class="line">                      key: key,</span><br><span class="line">                      authSecret: authSecret,</span><br><span class="line">                    &#125;),</span><br><span class="line">                  &#125;);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;).catch(function (err) &#123;</span><br><span class="line">          // 注册失败 :(</span><br><span class="line">          console.log(&#x27;ServiceWorker registration failed: &#x27;, err);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤三 服务器发送消息给service worker</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// app.js</span><br><span class="line"></span><br><span class="line">const webpush = require(&#x27;web-push&#x27;);                 </span><br><span class="line">const express = require(&#x27;express&#x27;);</span><br><span class="line">var bodyParser = require(&#x27;body-parser&#x27;);</span><br><span class="line">const app = express();</span><br><span class="line">webpush.setVapidDetails(                             </span><br><span class="line">  &#x27;mailto:contact@deanhume.com&#x27;,</span><br><span class="line">  &#x27;BAyb_WgaR0L0pODaR7wWkxJi__tWbM1MPBymyRDFEGjtDCWeRYS9EF7yGoCHLdHJi6hikYdg4MuYaK0XoD0qnoY&#x27;,</span><br><span class="line">  &#x27;p6YVD7t8HkABoez1CvVJ5bl7BnEdKUu5bSyVjyxMBh0&#x27;</span><br><span class="line">);</span><br><span class="line">app.post(&#x27;/register&#x27;, function (req, res) &#123;           </span><br><span class="line">  var endpoint = req.body.endpoint;</span><br><span class="line">  saveRegistrationDetails(endpoint, key, authSecret); </span><br><span class="line">  const pushSubscription = &#123;                          </span><br><span class="line">    endpoint: req.body.endpoint,</span><br><span class="line">    keys: &#123;</span><br><span class="line">      auth: req.body.authSecret,</span><br><span class="line">      p256dh: req.body.key</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  var body = &#x27;Thank you for registering&#x27;;</span><br><span class="line">  var iconUrl = &#x27;https://example.com/images/homescreen.png&#x27;;</span><br><span class="line">  // 发送 Web 推送消息</span><br><span class="line">  webpush.sendNotification(pushSubscription,          </span><br><span class="line">      JSON.stringify(&#123;</span><br><span class="line">        msg: body,</span><br><span class="line">        url: &#x27;http://localhost:3111/&#x27;,</span><br><span class="line">        icon: iconUrl</span><br><span class="line">      &#125;))</span><br><span class="line">    .then(result =&gt; res.sendStatus(201))</span><br><span class="line">    .catch(err =&gt; &#123;</span><br><span class="line">      console.log(err);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(3111, function () &#123;</span><br><span class="line">  console.log(&#x27;Web push app listening on port 3111!&#x27;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>service worker</code>监听push事件，将通知详情推送给用户</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// service-worker.js</span><br><span class="line"></span><br><span class="line">self.addEventListener(&#x27;push&#x27;, function (event) &#123;</span><br><span class="line"> // 检查服务端是否发来了任何有效载荷数据</span><br><span class="line">  var payload = event.data ? JSON.parse(event.data.text()) : &#x27;no payload&#x27;;</span><br><span class="line">  var title = &#x27;Progressive Times&#x27;;</span><br><span class="line">  event.waitUntil(</span><br><span class="line">    // 使用提供的信息来显示 Web 推送通知</span><br><span class="line">    self.registration.showNotification(title, &#123;                           </span><br><span class="line">      body: payload.msg,</span><br><span class="line">      url: payload.url,</span><br><span class="line">      icon: payload.icon</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、参考"><a href="#三、参考" class="headerlink" title="三、参考"></a>三、参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://lzw.me/a/pwa-service-worker.html#3.3">网站渐进式增强体验(PWA)改造：Service Worker 应用详解</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/SangKa/PWA-Book-CN">PWA实战：面向下一代的Progressive Web APP</a></li>
+<li><a target="_blank" rel="noopener" href="https://x5.tencent.com/tbs/guide/serviceworker.html">Service Worker最佳实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://fed.renren.com/2017/10/04/service-worker/">使用 Service Worker 做一个 PWA 离线网页应用</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/28461857">理解Service Worker</a></li>
+<li><a target="_blank" rel="noopener" href="http://obkoro1.com/web_accumulate/accumulate/JS/webWorker%E4%B8%8A%E6%89%8B.html">前端er来学习一下 WebWorker</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5bf3f656e51d45338e084044?utm_source=gold_browser_extension">Service Worker学习与实践（二）——PWA简介</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5bf3f6b2e51d45360069e527?utm_source=gold_browser_extension">Service Worker学习与实践（三）——消息推送</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/pwa-tutorial.md">pwa-tutoria</a></li>
+</ul>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2021/06/23/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/echart%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">echart使用小结</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2021/05/27/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%84%E6%88%90%E4%B8%8E%E6%9E%B6%E6%9E%84/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">浏览器组成与架构</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+<section class="widget-toc widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-toc" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M134.50666666 767.46666668H460.8c27.73333333 0 50.24000001 22.50666668 50.24000001 50.23999999v50.13333333c0 27.73333333-22.50666668 50.24000001-50.24000001 50.24000001H134.50666666c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.24000001v-50.13333333c0.10666668-27.73333333 22.50666668-50.24000001 50.24000001-50.24000001zM84.37333332 541.65333333h326.18666669c27.73333333 0 50.24000001 22.39999999 50.23999999 50.13333334v50.24000001c0 27.73333333-22.50666668 50.24000001-50.24000002 50.23999999H84.37333332c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.23999999v-50.24000001c0-27.73333333 22.50666668-50.13333334 50.24000001-50.13333334zM134.50666666 315.83999999H460.8c27.73333333 0 50.24000001 22.50666668 50.24000001 50.24000001v50.24000001c0 27.73333333-22.50666668 50.13333334-50.24000001 50.13333333H134.50666666c-27.73333333 0-50.24000001-22.39999999-50.23999999-50.13333333v-50.24000001c0.10666668-27.84000001 22.50666668-50.24000001 50.24000001-50.23999999zM209.81333332 89.91999999h326.18666671c27.73333333 0 50.24000001 22.39999999 50.23999997 50.13333335v50.23999999c0 27.73333333-22.50666668 50.24000001-50.24000001 50.24000001H209.81333332c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.24000001v-50.24000001c0-27.73333333 22.50666668-50.13333334 50.24000001-50.13333333zM692.05333333 623.36l274.66666669 176.00000002c23.36000001 14.93333333 30.08 45.97333334 15.14666666 69.33333332L954.77333334 910.93333333c-14.93333333 23.25333334-45.97333334 30.08-69.33333335 15.14666667l-274.66666666-176c-23.36000001-14.93333333-30.08-45.97333334-15.14666667-69.33333333l27.09333334-42.24000001c14.93333333-23.36000001 46.08000001-30.08 69.33333333-15.14666666z" fill="currentColor"></path>
+</svg>
+    <span>TOC</span>
+  </div>
+  <div class="widget-body">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-PWA%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">1.1 PWA中的一些技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E8%A7%A3%E5%86%B3%E4%BA%86%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">1.2 解决了哪些问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-PWA%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">1.3 PWA存在的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-Manifest%E5%AE%9E%E7%8E%B0%E6%B7%BB%E5%8A%A0%E8%87%B3%E4%B8%BB%E5%B1%8F%E5%B9%95"><span class="toc-number">4.</span> <span class="toc-text">2.1 Manifest实现添加至主屏幕</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-service-worker%E5%AE%9E%E7%8E%B0%E7%A6%BB%E7%BA%BF%E7%BC%93%E5%AD%98"><span class="toc-number">5.</span> <span class="toc-text">2.2 service worker实现离线缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E4%BB%80%E4%B9%88%E6%98%AFservice-worker"><span class="toc-number">5.1.</span> <span class="toc-text">2.2.1 什么是service worker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-%E6%9C%80%E4%B8%BB%E8%A6%81%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">5.2.</span> <span class="toc-text">2.2.2 最主要的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">5.3.</span> <span class="toc-text">2.2.3 生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4-%E5%AE%9E%E7%8E%B0%E7%A6%BB%E7%BA%BF%E7%BC%93%E5%AD%98"><span class="toc-number">5.4.</span> <span class="toc-text">2.2.4 实现离线缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5-%E8%B0%83%E8%AF%95%E7%9B%B8%E5%85%B3"><span class="toc-number">5.5.</span> <span class="toc-text">2.2.5 调试相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-serice-worker%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81"><span class="toc-number">6.</span> <span class="toc-text">2.3 serice worker实现消息推送</span></a></li></ol>
+  </div>
+</section>
+
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

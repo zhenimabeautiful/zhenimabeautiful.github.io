@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>eslint配置 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">eslint配置</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2018-11-09T06:55:18.000Z" itemprop="datePublished">2018-11-09</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF/">📒 前端</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/eslint/">🏷️ eslint</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <blockquote>
+<p><code>ESLint</code>是一个<code>Javascript</code>静态检查工具，它可以帮你养成良好的编程习惯</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    // 环境定义了预定义的全局变量。</span><br><span class="line">    &quot;env&quot;: &#123;</span><br><span class="line">        //环境定义了预定义的全局变量。更多在官网查看</span><br><span class="line">        &quot;browser&quot;: true,</span><br><span class="line">        &quot;node&quot;: true,</span><br><span class="line">        &quot;commonjs&quot;: true,</span><br><span class="line">        &quot;amd&quot;: true,</span><br><span class="line">        &quot;es6&quot;: true,</span><br><span class="line">        &quot;mocha&quot;: true</span><br><span class="line">    &#125;,</span><br><span class="line">    // JavaScript 语言选项</span><br><span class="line">    &quot;parserOptions&quot;: &#123;</span><br><span class="line">        // ECMAScript 版本</span><br><span class="line">        &quot;ecmaVersion&quot;: 6,</span><br><span class="line">        &quot;sourceType&quot;: &quot;module&quot;, //设置为 &quot;script&quot; (默认) 或 &quot;module&quot;（如果你的代码是 ECMAScript 模块)。</span><br><span class="line">        //想使用的额外的语言特性:</span><br><span class="line">        &quot;ecmaFeatures&quot;: &#123;</span><br><span class="line">            // 允许在全局作用域下使用 return 语句</span><br><span class="line">            &quot;globalReturn&quot;: true,</span><br><span class="line">            // impliedStric</span><br><span class="line">            &quot;impliedStrict&quot;: true,</span><br><span class="line">            // 启用 JSX</span><br><span class="line">            &quot;jsx&quot;: true,</span><br><span class="line">            &quot;modules&quot;: true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    //-----让eslint支持 JSX start</span><br><span class="line">    &quot;plugins&quot;: [</span><br><span class="line">        &quot;react&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;extends&quot;: [</span><br><span class="line">        &quot;eslint:recommended&quot;,</span><br><span class="line">        &quot;plugin:react/recommended&quot;</span><br><span class="line">    ],</span><br><span class="line">    //-----让eslint支持 JSX end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * &quot;off&quot; 或 0 - 关闭规则</span><br><span class="line">     * &quot;warn&quot; 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出),</span><br><span class="line">     * &quot;error&quot; 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)</span><br><span class="line">     */</span><br><span class="line">    &quot;rules&quot;: &#123;</span><br><span class="line"></span><br><span class="line">        ////////////////</span><br><span class="line">        // 可能的错误 //</span><br><span class="line">        ////////////////</span><br><span class="line"></span><br><span class="line">        // 禁止条件表达式中出现赋值操作符</span><br><span class="line">        &quot;no-cond-assign&quot;: 2,</span><br><span class="line">        // 禁用 console</span><br><span class="line">        &quot;no-console&quot;: 0,</span><br><span class="line">        // 禁止在条件中使用常量表达式</span><br><span class="line">        // if (false) &#123;</span><br><span class="line">        // doSomethingUnfinished();</span><br><span class="line">        // &#125; //cuowu</span><br><span class="line">        &quot;no-constant-condition&quot;: 2,</span><br><span class="line">        // 禁止在正则表达式中使用控制字符 ：new RegExp(&quot;\x1f&quot;)</span><br><span class="line">        &quot;no-control-regex&quot;: 2,</span><br><span class="line">        // 数组和对象键值对最后一个逗号， never参数：不能带末尾的逗号, always参数：必须带末尾的逗号，</span><br><span class="line">        // always-multiline：多行模式必须带逗号，单行模式不能带逗号</span><br><span class="line">        &quot;comma-dangle&quot;: [1, &quot;never&quot;],</span><br><span class="line">        // 禁用 debugger</span><br><span class="line">        &quot;no-debugger&quot;: 2,</span><br><span class="line">        // 禁止 function 定义中出现重名参数</span><br><span class="line">        &quot;no-dupe-args&quot;: 2,</span><br><span class="line">        // 禁止对象字面量中出现重复的 key</span><br><span class="line">        &quot;no-dupe-keys&quot;: 2,</span><br><span class="line">        // 禁止重复的 case 标签</span><br><span class="line">        &quot;no-duplicate-case&quot;: 2,</span><br><span class="line">        // 禁止空语句块</span><br><span class="line">        &quot;no-empty&quot;: 2,</span><br><span class="line">        // 禁止在正则表达式中使用空字符集 (/^abc[]/)</span><br><span class="line">        &quot;no-empty-character-class&quot;: 2,</span><br><span class="line">        // 禁止对 catch 子句的参数重新赋值</span><br><span class="line">        &quot;no-ex-assign&quot;: 2,</span><br><span class="line">        // 禁止不必要的布尔转换</span><br><span class="line">        &quot;no-extra-boolean-cast&quot;: 2,</span><br><span class="line">        // 禁止不必要的括号 //(a * b) + c;//报错</span><br><span class="line">        &quot;no-extra-parens&quot;: 0,</span><br><span class="line">        // 禁止不必要的分号</span><br><span class="line">        &quot;no-extra-semi&quot;: 2,</span><br><span class="line">        // 禁止对 function 声明重新赋值</span><br><span class="line">        &quot;no-func-assign&quot;: 2,</span><br><span class="line">        // 禁止在嵌套的块中出现 function 或 var 声明</span><br><span class="line">        &quot;no-inner-declarations&quot;: [2, &quot;functions&quot;],</span><br><span class="line">        // 禁止 RegExp 构造函数中无效的正则表达式字符串</span><br><span class="line">        &quot;no-invalid-regexp&quot;: 2,</span><br><span class="line">        // 禁止在字符串和注释之外不规则的空白</span><br><span class="line">        &quot;no-irregular-whitespace&quot;: 2,</span><br><span class="line">        // 禁止在 in 表达式中出现否定的左操作数</span><br><span class="line">        &quot;no-negated-in-lhs&quot;: 2,</span><br><span class="line">        // 禁止把全局对象 (Math 和 JSON) 作为函数调用 错误：var math = Math();</span><br><span class="line">        &quot;no-obj-calls&quot;: 2,</span><br><span class="line">        // 禁止直接使用 Object.prototypes 的内置属性</span><br><span class="line">        &quot;no-prototype-builtins&quot;: 0,</span><br><span class="line">        // 禁止正则表达式字面量中出现多个空格</span><br><span class="line">        &quot;no-regex-spaces&quot;: 2,</span><br><span class="line">        // 禁用稀疏数组</span><br><span class="line">        &quot;no-sparse-arrays&quot;: 2,</span><br><span class="line">        // 禁止出现令人困惑的多行表达式</span><br><span class="line">        &quot;no-unexpected-multiline&quot;: 2,</span><br><span class="line">        // 禁止在return、throw、continue 和 break语句之后出现不可达代码</span><br><span class="line">        &quot;no-unreachable&quot;: 2,</span><br><span class="line">        // 要求使用 isNaN() 检查 NaN</span><br><span class="line">        &quot;use-isnan&quot;: 2,</span><br><span class="line">        // 强制使用有效的 JSDoc 注释</span><br><span class="line">        &quot;valid-jsdoc&quot;: 1,</span><br><span class="line">        // 强制 typeof 表达式与有效的字符串进行比较</span><br><span class="line">        // typeof foo === &quot;undefimed&quot; 错误</span><br><span class="line">        &quot;valid-typeof&quot;: 2,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        //////////////</span><br><span class="line">        // 最佳实践 //</span><br><span class="line">        //////////////</span><br><span class="line"></span><br><span class="line">        // 定义对象的set存取器属性时，强制定义get</span><br><span class="line">        &quot;accessor-pairs&quot;: 2,</span><br><span class="line">        // 强制数组方法的回调函数中有 return 语句</span><br><span class="line">        &quot;array-callback-return&quot;: 0,</span><br><span class="line">        // 强制把变量的使用限制在其定义的作用域范围内</span><br><span class="line">        &quot;block-scoped-var&quot;: 0,</span><br><span class="line">        // 限制圈复杂度，也就是类似if else能连续接多少个</span><br><span class="line">        &quot;complexity&quot;: [2, 9],</span><br><span class="line">        // 要求 return 语句要么总是指定返回的值，要么不指定</span><br><span class="line">        &quot;consistent-return&quot;: 0,</span><br><span class="line">        // 强制所有控制语句使用一致的括号风格</span><br><span class="line">        &quot;curly&quot;: [2, &quot;all&quot;],</span><br><span class="line">        // switch 语句强制 default 分支，也可添加 // no default 注释取消此次警告</span><br><span class="line">        &quot;default-case&quot;: 2,</span><br><span class="line">        // 强制object.key 中 . 的位置，参数:</span><br><span class="line">        // property，&#x27;.&#x27;号应与属性在同一行</span><br><span class="line">        // object, &#x27;.&#x27; 号应与对象名在同一行</span><br><span class="line">        &quot;dot-location&quot;: [2, &quot;property&quot;],</span><br><span class="line">        // 强制使用.号取属性</span><br><span class="line">        // 参数： allowKeywords：true 使用保留字做属性名时，只能使用.方式取属性</span><br><span class="line">        // false 使用保留字做属性名时, 只能使用[]方式取属性 e.g [2, &#123;&quot;allowKeywords&quot;: false&#125;]</span><br><span class="line">        // allowPattern: 当属性名匹配提供的正则表达式时，允许使用[]方式取值,否则只能用.号取值 e.g [2, &#123;&quot;allowPattern&quot;: &quot;^[a-z]+(_[a-z]+)+$&quot;&#125;]</span><br><span class="line">        &quot;dot-notation&quot;: [2, &#123;</span><br><span class="line">            &quot;allowKeywords&quot;: false</span><br><span class="line">        &#125;],</span><br><span class="line">        // 使用 === 替代 == allow-null允许null和undefined==</span><br><span class="line">        &quot;eqeqeq&quot;: [2, &quot;allow-null&quot;],</span><br><span class="line">        // 要求 for-in 循环中有一个 if 语句</span><br><span class="line">        &quot;guard-for-in&quot;: 2,</span><br><span class="line">        // 禁用 alert、confirm 和 prompt</span><br><span class="line">        &quot;no-alert&quot;: 0,</span><br><span class="line">        // 禁用 arguments.caller 或 arguments.callee</span><br><span class="line">        &quot;no-caller&quot;: 2,</span><br><span class="line">        // 不允许在 case 子句中使用词法声明</span><br><span class="line">        &quot;no-case-declarations&quot;: 2,</span><br><span class="line">        // 禁止除法操作符显式的出现在正则表达式开始的位置</span><br><span class="line">        &quot;no-div-regex&quot;: 2,</span><br><span class="line">        // 禁止 if 语句中有 return 之后有 else</span><br><span class="line">        &quot;no-else-return&quot;: 0,</span><br><span class="line">        // 禁止出现空函数.如果一个函数包含了一条注释，它将不会被认为有问题。</span><br><span class="line">        &quot;no-empty-function&quot;: 2,</span><br><span class="line">        // 禁止使用空解构模式no-empty-pattern</span><br><span class="line">        &quot;no-empty-pattern&quot;: 2,</span><br><span class="line">        // 禁止在没有类型检查操作符的情况下与 null 进行比较</span><br><span class="line">        &quot;no-eq-null&quot;: 1,</span><br><span class="line">        // 禁用 eval()</span><br><span class="line">        &quot;no-eval&quot;: 2,</span><br><span class="line">        // 禁止扩展原生类型</span><br><span class="line">        &quot;no-extend-native&quot;: 2,</span><br><span class="line">        // 禁止不必要的 .bind() 调用</span><br><span class="line">        &quot;no-extra-bind&quot;: 2,</span><br><span class="line">        // 禁用不必要的标签</span><br><span class="line">        &quot;no-extra-label:&quot;: 0,</span><br><span class="line">        // 禁止 case 语句落空</span><br><span class="line">        &quot;no-fallthrough&quot;: 2,</span><br><span class="line">        // 禁止数字字面量中使用前导和末尾小数点</span><br><span class="line">        &quot;no-floating-decimal&quot;: 2,</span><br><span class="line">        // 禁止使用短符号进行类型转换(!!fOO)</span><br><span class="line">        &quot;no-implicit-coercion&quot;: 0,</span><br><span class="line">        // 禁止在全局范围内使用 var 和命名的 function 声明</span><br><span class="line">        &quot;no-implicit-globals&quot;: 1,</span><br><span class="line">        // 禁止使用类似 eval() 的方法</span><br><span class="line">        &quot;no-implied-eval&quot;: 2,</span><br><span class="line">        // 禁止 this 关键字出现在类和类对象之外</span><br><span class="line">        &quot;no-invalid-this&quot;: 0,</span><br><span class="line">        // 禁用 __iterator__ 属性</span><br><span class="line">        &quot;no-iterator&quot;: 2,</span><br><span class="line">        // 禁用标签语句</span><br><span class="line">        &quot;no-labels&quot;: 2,</span><br><span class="line">        // 禁用不必要的嵌套块</span><br><span class="line">        &quot;no-lone-blocks&quot;: 2,</span><br><span class="line">        // 禁止在循环中出现 function 声明和表达式</span><br><span class="line">        &quot;no-loop-func&quot;: 1,</span><br><span class="line">        // 禁用魔术数字(3.14什么的用常量代替)</span><br><span class="line">        &quot;no-magic-numbers&quot;: [1, &#123;</span><br><span class="line">            &quot;ignore&quot;: [0, -1, 1]</span><br><span class="line">        &#125;],</span><br><span class="line">        // 禁止使用多个空格</span><br><span class="line">        &quot;no-multi-spaces&quot;: 2,</span><br><span class="line">        // 禁止使用多行字符串，在 JavaScript 中，可以在新行之前使用斜线创建多行字符串</span><br><span class="line">        &quot;no-multi-str&quot;: 2,</span><br><span class="line">        // 禁止对原生对象赋值</span><br><span class="line">        &quot;no-native-reassign&quot;: 2,</span><br><span class="line">        // 禁止在非赋值或条件语句中使用 new 操作符</span><br><span class="line">        &quot;no-new&quot;: 2,</span><br><span class="line">        // 禁止对 Function 对象使用 new 操作符</span><br><span class="line">        &quot;no-new-func&quot;: 0,</span><br><span class="line">        // 禁止对 String，Number 和 Boolean 使用 new 操作符</span><br><span class="line">        &quot;no-new-wrappers&quot;: 2,</span><br><span class="line">        // 禁用八进制字面量</span><br><span class="line">        &quot;no-octal&quot;: 2,</span><br><span class="line">        // 禁止在字符串中使用八进制转义序列</span><br><span class="line">        &quot;no-octal-escape&quot;: 2,</span><br><span class="line">        // 不允许对 function 的参数进行重新赋值</span><br><span class="line">        &quot;no-param-reassign&quot;: 0,</span><br><span class="line">        // 禁用 __proto__ 属性</span><br><span class="line">        &quot;no-proto&quot;: 2,</span><br><span class="line">        // 禁止使用 var 多次声明同一变量</span><br><span class="line">        &quot;no-redeclare&quot;: 2,</span><br><span class="line">        // 禁用指定的通过 require 加载的模块</span><br><span class="line">        &quot;no-return-assign&quot;: 0,</span><br><span class="line">        // 禁止使用 javascript: url</span><br><span class="line">        &quot;no-script-url&quot;: 0,</span><br><span class="line">        // 禁止自我赋值</span><br><span class="line">        &quot;no-self-assign&quot;: 2,</span><br><span class="line">        // 禁止自身比较</span><br><span class="line">        &quot;no-self-compare&quot;: 2,</span><br><span class="line">        // 禁用逗号操作符</span><br><span class="line">        &quot;no-sequences&quot;: 2,</span><br><span class="line">        // 禁止抛出非异常字面量</span><br><span class="line">        &quot;no-throw-literal&quot;: 2,</span><br><span class="line">        // 禁用一成不变的循环条件</span><br><span class="line">        &quot;no-unmodified-loop-condition&quot;: 2,</span><br><span class="line">        // 禁止出现未使用过的表达式</span><br><span class="line">        &quot;no-unused-expressions&quot;: 0,</span><br><span class="line">        // 禁用未使用过的标签</span><br><span class="line">        &quot;no-unused-labels&quot;: 2,</span><br><span class="line">        // 禁止不必要的 .call() 和 .apply()</span><br><span class="line">        &quot;no-useless-call&quot;: 2,</span><br><span class="line">        // 禁止不必要的字符串字面量或模板字面量的连接</span><br><span class="line">        &quot;no-useless-concat&quot;: 2,</span><br><span class="line">        // 禁用不必要的转义字符</span><br><span class="line">        &quot;no-useless-escape&quot;: 0,</span><br><span class="line">        // 禁用 void 操作符</span><br><span class="line">        &quot;no-void&quot;: 0,</span><br><span class="line">        // 禁止在注释中使用特定的警告术语</span><br><span class="line">        &quot;no-warning-comments&quot;: 0,</span><br><span class="line">        // 禁用 with 语句</span><br><span class="line">        &quot;no-with&quot;: 2,</span><br><span class="line">        // 强制在parseInt()使用基数参数</span><br><span class="line">        &quot;radix&quot;: 2,</span><br><span class="line">        // 要求所有的 var 声明出现在它们所在的作用域顶部</span><br><span class="line">        &quot;vars-on-top&quot;: 0,</span><br><span class="line">        // 要求 IIFE 使用括号括起来</span><br><span class="line">        &quot;wrap-iife&quot;: [2, &quot;any&quot;],</span><br><span class="line">        // 要求或禁止 “Yoda” 条件</span><br><span class="line">        &quot;yoda&quot;: [2, &quot;never&quot;],</span><br><span class="line">        // 要求或禁止使用严格模式指令</span><br><span class="line">        &quot;strict&quot;: 0,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        //////////////</span><br><span class="line">        // 变量声明 //</span><br><span class="line">        //////////////</span><br><span class="line"></span><br><span class="line">        // 要求或禁止 var 声明中的初始化(初值)</span><br><span class="line">        &quot;init-declarations&quot;: 0,</span><br><span class="line">        // 不允许 catch 子句的参数与外层作用域中的变量同名</span><br><span class="line">        &quot;no-catch-shadow&quot;: 0,</span><br><span class="line">        // 禁止删除变量</span><br><span class="line">        &quot;no-delete-var&quot;: 2,</span><br><span class="line">        // 不允许标签与变量同名</span><br><span class="line">        &quot;no-label-var&quot;: 2,</span><br><span class="line">        // 禁用特定的全局变量</span><br><span class="line">        &quot;no-restricted-globals&quot;: 0,</span><br><span class="line">        // 禁止 var 声明 与外层作用域的变量同名</span><br><span class="line">        &quot;no-shadow&quot;: 0,</span><br><span class="line">        // 禁止覆盖受限制的标识符</span><br><span class="line">        &quot;no-shadow-restricted-names&quot;: 2,</span><br><span class="line">        // 禁用未声明的变量，除非它们在 /*global */ 注释中被提到</span><br><span class="line">        &quot;no-undef&quot;: 2,</span><br><span class="line">        // 禁止将变量初始化为 undefined</span><br><span class="line">        &quot;no-undef-init&quot;: 2,</span><br><span class="line">        // 禁止将 undefined 作为标识符</span><br><span class="line">        &quot;no-undefined&quot;: 0,</span><br><span class="line">        // 禁止出现未使用过的变量</span><br><span class="line">        &quot;no-unused-vars&quot;: [2, &#123;</span><br><span class="line">            &quot;vars&quot;: &quot;all&quot;,</span><br><span class="line">            &quot;args&quot;: &quot;none&quot;</span><br><span class="line">        &#125;],</span><br><span class="line">        // 不允许在变量定义之前使用它们</span><br><span class="line">        &quot;no-use-before-define&quot;: 0,</span><br><span class="line"></span><br><span class="line">        //////////////////////////</span><br><span class="line">        // Node.js and CommonJS //</span><br><span class="line">        //////////////////////////</span><br><span class="line"></span><br><span class="line">        // require return statements after callbacks</span><br><span class="line">        &quot;callback-return&quot;: 0,</span><br><span class="line">        // 要求 require() 出现在顶层模块作用域中</span><br><span class="line">        &quot;global-require&quot;: 1,</span><br><span class="line">        // 要求回调函数中有容错处理</span><br><span class="line">        &quot;handle-callback-err&quot;: [2, &quot;^(err|error)$&quot;],</span><br><span class="line">        // 禁止混合常规 var 声明和 require 调用</span><br><span class="line">        &quot;no-mixed-requires&quot;: 0,</span><br><span class="line">        // 禁止调用 require 时使用 new 操作符</span><br><span class="line">        &quot;no-new-require&quot;: 2,</span><br><span class="line">        // 禁止对 __dirname 和 __filename进行字符串连接</span><br><span class="line">        &quot;no-path-concat&quot;: 0,</span><br><span class="line">        // 禁用 process.env</span><br><span class="line">        &quot;no-process-env&quot;: 0,</span><br><span class="line">        // 禁用 process.exit()</span><br><span class="line">        &quot;no-process-exit&quot;: 0,</span><br><span class="line">        // 禁用同步方法</span><br><span class="line">        &quot;no-sync&quot;: 0,</span><br><span class="line"></span><br><span class="line">        //////////////</span><br><span class="line">        // 风格指南 //</span><br><span class="line">        //////////////</span><br><span class="line"></span><br><span class="line">        // 指定数组的元素之间要以空格隔开(, 后面)， never参数：[ 之前和 ] 之后不能带空格，always参数：[ 之前和 ] 之后必须带空格</span><br><span class="line">        &quot;array-bracket-spacing&quot;: [2, &quot;never&quot;],</span><br><span class="line">        // 禁止或强制在单行代码块中使用空格(禁用)</span><br><span class="line">        &quot;block-spacing&quot;: [1, &quot;never&quot;],</span><br><span class="line">        //强制使用一致的缩进 第二个参数为 &quot;tab&quot; 时，会使用tab，</span><br><span class="line">        // if while function 后面的&#123;必须与if在同一行，java风格。</span><br><span class="line">        &quot;brace-style&quot;: [2, &quot;1tbs&quot;, &#123;</span><br><span class="line">            &quot;allowSingleLine&quot;: true</span><br><span class="line">        &#125;],</span><br><span class="line">        // 双峰驼命名格式</span><br><span class="line">        &quot;camelcase&quot;: 2,</span><br><span class="line">        // 控制逗号前后的空格</span><br><span class="line">        &quot;comma-spacing&quot;: [2, &#123;</span><br><span class="line">            &quot;before&quot;: false,</span><br><span class="line">            &quot;after&quot;: true</span><br><span class="line">        &#125;],</span><br><span class="line">        // 控制逗号在行尾出现还是在行首出现 (默认行尾)</span><br><span class="line">        // http://eslint.org/docs/rules/comma-style</span><br><span class="line">        &quot;comma-style&quot;: [2, &quot;last&quot;],</span><br><span class="line">        //&quot;SwitchCase&quot; (默认：0) 强制 switch 语句中的 case 子句的缩进水平</span><br><span class="line">        // 以方括号取对象属性时，[ 后面和 ] 前面是否需要空格, 可选参数 never, always</span><br><span class="line">        &quot;computed-property-spacing&quot;: [2, &quot;never&quot;],</span><br><span class="line">        // 用于指统一在回调函数中指向this的变量名，箭头函数中的this已经可以指向外层调用者，应该没卵用了</span><br><span class="line">        // e.g [0,&quot;that&quot;] 指定只能 var that = this. that不能指向其他任何值，this也不能赋值给that以外的其他值</span><br><span class="line">        &quot;consistent-this&quot;: [1, &quot;that&quot;],</span><br><span class="line">        // 强制使用命名的 function 表达式</span><br><span class="line">        &quot;func-names&quot;: 0,</span><br><span class="line">        // 文件末尾强制换行</span><br><span class="line">        &quot;eol-last&quot;: 2,</span><br><span class="line">        &quot;indent&quot;: [2, 4, &#123;</span><br><span class="line">            &quot;SwitchCase&quot;: 1</span><br><span class="line">        &#125;],</span><br><span class="line">        // 强制在对象字面量的属性中键和值之间使用一致的间距</span><br><span class="line">        &quot;key-spacing&quot;: [2, &#123;</span><br><span class="line">            &quot;beforeColon&quot;: false,</span><br><span class="line">            &quot;afterColon&quot;: true</span><br><span class="line">        &#125;],</span><br><span class="line">        // 强制使用一致的换行风格</span><br><span class="line">        &quot;linebreak-style&quot;: [1, &quot;unix&quot;],</span><br><span class="line">        // 要求在注释周围有空行 ( 要求在块级注释之前有一空行)</span><br><span class="line">        &quot;lines-around-comment&quot;: [1, &#123;</span><br><span class="line">            &quot;beforeBlockComment&quot;: true</span><br><span class="line">        &#125;],</span><br><span class="line">        // 强制一致地使用函数声明或函数表达式，方法定义风格，参数：</span><br><span class="line">        // declaration: 强制使用方法声明的方式，function f()&#123;&#125; e.g [2, &quot;declaration&quot;]</span><br><span class="line">        // expression：强制使用方法表达式的方式，var f = function() &#123;&#125; e.g [2, &quot;expression&quot;]</span><br><span class="line">        // allowArrowFunctions: declaration风格中允许箭头函数。 e.g [2, &quot;declaration&quot;, &#123; &quot;allowArrowFunctions&quot;: true &#125;]</span><br><span class="line">        &quot;func-style&quot;: 0,</span><br><span class="line">        // 强制回调函数最大嵌套深度 5层</span><br><span class="line">        &quot;max-nested-callbacks&quot;: [1, 5],</span><br><span class="line">        // 禁止使用指定的标识符</span><br><span class="line">        &quot;id-blacklist&quot;: 0,</span><br><span class="line">        // 强制标识符的最新和最大长度</span><br><span class="line">        &quot;id-length&quot;: 0,</span><br><span class="line">        // 要求标识符匹配一个指定的正则表达式</span><br><span class="line">        &quot;id-match&quot;: 0,</span><br><span class="line">        // 强制在 JSX 属性中一致地使用双引号或单引号</span><br><span class="line">        &quot;jsx-quotes&quot;: 0,</span><br><span class="line">        // 强制在关键字前后使用一致的空格 (前后腰需要)</span><br><span class="line">        &quot;keyword-spacing&quot;: 2,</span><br><span class="line">        // 强制一行的最大长度</span><br><span class="line">        &quot;max-len&quot;: [1, 200],</span><br><span class="line">        // 强制最大行数</span><br><span class="line">        &quot;max-lines&quot;: 0,</span><br><span class="line">        // 强制 function 定义中最多允许的参数数量</span><br><span class="line">        &quot;max-params&quot;: [1, 7],</span><br><span class="line">        // 强制 function 块最多允许的的语句数量</span><br><span class="line">        &quot;max-statements&quot;: [1, 200],</span><br><span class="line">        // 强制每一行中所允许的最大语句数量</span><br><span class="line">        &quot;max-statements-per-line&quot;: 0,</span><br><span class="line">        // 要求构造函数首字母大写 （要求调用 new 操作符时有首字母大小的函数，允许调用首字母大写的函数时没有 new 操作符。）</span><br><span class="line">        &quot;new-cap&quot;: [2, &#123;</span><br><span class="line">            &quot;newIsCap&quot;: true,</span><br><span class="line">            &quot;capIsNew&quot;: false</span><br><span class="line">        &#125;],</span><br><span class="line">        // 要求调用无参构造函数时有圆括号</span><br><span class="line">        &quot;new-parens&quot;: 2,</span><br><span class="line">        // 要求或禁止 var 声明语句后有一行空行</span><br><span class="line">        &quot;newline-after-var&quot;: 0,</span><br><span class="line">        // 禁止使用 Array 构造函数</span><br><span class="line">        &quot;no-array-constructor&quot;: 2,</span><br><span class="line">        // 禁用按位运算符</span><br><span class="line">        &quot;no-bitwise&quot;: 0,</span><br><span class="line">        // 要求 return 语句之前有一空行</span><br><span class="line">        &quot;newline-before-return&quot;: 0,</span><br><span class="line">        // 要求方法链中每个调用都有一个换行符</span><br><span class="line">        &quot;newline-per-chained-call&quot;: 1,</span><br><span class="line">        // 禁用 continue 语句</span><br><span class="line">        &quot;no-continue&quot;: 0,</span><br><span class="line">        // 禁止在代码行后使用内联注释</span><br><span class="line">        &quot;no-inline-comments&quot;: 0,</span><br><span class="line">        // 禁止 if 作为唯一的语句出现在 else 语句中</span><br><span class="line">        &quot;no-lonely-if&quot;: 0,</span><br><span class="line">        // 禁止混合使用不同的操作符</span><br><span class="line">        &quot;no-mixed-operators&quot;: 0,</span><br><span class="line">        // 不允许空格和 tab 混合缩进</span><br><span class="line">        &quot;no-mixed-spaces-and-tabs&quot;: 2,</span><br><span class="line">        // 不允许多个空行</span><br><span class="line">        &quot;no-multiple-empty-lines&quot;: [2, &#123;</span><br><span class="line">            &quot;max&quot;: 2</span><br><span class="line">        &#125;],</span><br><span class="line">        // 不允许否定的表达式</span><br><span class="line">        &quot;no-negated-condition&quot;: 0,</span><br><span class="line">        // 不允许使用嵌套的三元表达式</span><br><span class="line">        &quot;no-nested-ternary&quot;: 0,</span><br><span class="line">        // 禁止使用 Object 的构造函数</span><br><span class="line">        &quot;no-new-object&quot;: 2,</span><br><span class="line">        // 禁止使用一元操作符 ++ 和 --</span><br><span class="line">        &quot;no-plusplus&quot;: 0,</span><br><span class="line">        // 禁止使用特定的语法</span><br><span class="line">        &quot;no-restricted-syntax&quot;: 0,</span><br><span class="line">        // 禁止 function 标识符和括号之间出现空格</span><br><span class="line">        &quot;no-spaced-func&quot;: 2,</span><br><span class="line">        // 不允许使用三元操作符</span><br><span class="line">        &quot;no-ternary&quot;: 0,</span><br><span class="line">        // 禁用行尾空格</span><br><span class="line">        &quot;no-trailing-spaces&quot;: 2,</span><br><span class="line">        // 禁止标识符中有悬空下划线_bar</span><br><span class="line">        &quot;no-underscore-dangle&quot;: 0,</span><br><span class="line">        // 禁止可以在有更简单的可替代的表达式时使用三元操作符</span><br><span class="line">        &quot;no-unneeded-ternary&quot;: 2,</span><br><span class="line">        // 禁止属性前有空白</span><br><span class="line">        &quot;no-whitespace-before-property&quot;: 0,</span><br><span class="line">        // 强制花括号内换行符的一致性</span><br><span class="line">        &quot;object-curly-newline&quot;: 0,</span><br><span class="line">        // 强制在花括号中使用一致的空格</span><br><span class="line">        &quot;object-curly-spacing&quot;: 0,</span><br><span class="line">        // 强制将对象的属性放在不同的行上</span><br><span class="line">        &quot;object-property-newline&quot;: 0,</span><br><span class="line">        // 强制函数中的变量要么一起声明要么分开声明</span><br><span class="line">        &quot;one-var&quot;: [2, &#123;</span><br><span class="line">            &quot;initialized&quot;: &quot;never&quot;</span><br><span class="line">        &#125;],</span><br><span class="line">        // 要求或禁止在 var 声明周围换行</span><br><span class="line">        &quot;one-var-declaration-per-line&quot;: 0,</span><br><span class="line">        // 要求或禁止在可能的情况下要求使用简化的赋值操作符</span><br><span class="line">        &quot;operator-assignment&quot;: 0,</span><br><span class="line">        // 强制操作符使用一致的换行符</span><br><span class="line">        &quot;operator-linebreak&quot;: [2, &quot;after&quot;, &#123;</span><br><span class="line">            &quot;overrides&quot;: &#123;</span><br><span class="line">                &quot;?&quot;: &quot;before&quot;,</span><br><span class="line">                &quot;:&quot;: &quot;before&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;],</span><br><span class="line">        // 要求或禁止块内填充</span><br><span class="line">        &quot;padded-blocks&quot;: 0,</span><br><span class="line">        // 要求对象字面量属性名称用引号括起来</span><br><span class="line">        &quot;quote-props&quot;: 0,</span><br><span class="line">        // 强制使用一致的反勾号、双引号或单引号</span><br><span class="line">        &quot;quotes&quot;: [2, &quot;double&quot;, &quot;avoid-escape&quot;],</span><br><span class="line">        // 要求使用 JSDoc 注释</span><br><span class="line">        &quot;require-jsdoc&quot;: 1,</span><br><span class="line">        // 要求或禁止使用分号而不是 ASI（这个才是控制行尾部分号的，）</span><br><span class="line">        &quot;semi&quot;: [2, &quot;always&quot;],</span><br><span class="line">        // 强制分号之前和之后使用一致的空格</span><br><span class="line">        &quot;semi-spacing&quot;: 0,</span><br><span class="line">        // 要求同一个声明块中的变量按顺序排列</span><br><span class="line">        &quot;sort-vars&quot;: 0,</span><br><span class="line">        // 强制在块之前使用一致的空格</span><br><span class="line">        &quot;space-before-blocks&quot;: [2, &quot;always&quot;],</span><br><span class="line">        // 强制在 function的左括号之前使用一致的空格</span><br><span class="line">        &quot;space-before-function-paren&quot;: [0, &quot;always&quot;],</span><br><span class="line">        // 强制在圆括号内使用一致的空格</span><br><span class="line">        &quot;space-in-parens&quot;: [2, &quot;never&quot;],</span><br><span class="line">        // 要求操作符周围有空格</span><br><span class="line">        &quot;space-infix-ops&quot;: 2,</span><br><span class="line">        // 强制在一元操作符前后使用一致的空格</span><br><span class="line">        &quot;space-unary-ops&quot;: [2, &#123;</span><br><span class="line">            &quot;words&quot;: true,</span><br><span class="line">            &quot;nonwords&quot;: false</span><br><span class="line">        &#125;],</span><br><span class="line">        // 强制在注释中 // 或 /* 使用一致的空格</span><br><span class="line">        &quot;spaced-comment&quot;: [2, &quot;always&quot;, &#123;</span><br><span class="line">            &quot;markers&quot;: [&quot;global&quot;, &quot;globals&quot;, &quot;eslint&quot;, &quot;eslint-disable&quot;, &quot;*package&quot;, &quot;!&quot;]</span><br><span class="line">        &#125;],</span><br><span class="line">        // 要求或禁止 Unicode BOM</span><br><span class="line">        &quot;unicode-bom&quot;: 0,</span><br><span class="line">        // 要求正则表达式被括号括起来</span><br><span class="line">        &quot;wrap-regex&quot;: 0,</span><br><span class="line"></span><br><span class="line">        //////////////</span><br><span class="line">        // ES6.相关 //</span><br><span class="line">        //////////////</span><br><span class="line"></span><br><span class="line">        // 要求箭头函数体使用大括号</span><br><span class="line">        &quot;arrow-body-style&quot;: 2,</span><br><span class="line">        // 要求箭头函数的参数使用圆括号</span><br><span class="line">        &quot;arrow-parens&quot;: 2,</span><br><span class="line">        &quot;arrow-spacing&quot;: [2, &#123;</span><br><span class="line">            &quot;before&quot;: true,</span><br><span class="line">            &quot;after&quot;: true</span><br><span class="line">        &#125;],</span><br><span class="line">        // 强制在子类构造函数中用super()调用父类构造函数，TypeScrip的编译器也会提示</span><br><span class="line">        &quot;constructor-super&quot;: 0,</span><br><span class="line">        // 强制 generator 函数中 * 号周围使用一致的空格</span><br><span class="line">        &quot;generator-star-spacing&quot;: [2, &#123;</span><br><span class="line">            &quot;before&quot;: true,</span><br><span class="line">            &quot;after&quot;: true</span><br><span class="line">        &#125;],</span><br><span class="line">        // 禁止修改类声明的变量</span><br><span class="line">        &quot;no-class-assign&quot;: 2,</span><br><span class="line">        // 不允许箭头功能，在那里他们可以混淆的比较</span><br><span class="line">        &quot;no-confusing-arrow&quot;: 0,</span><br><span class="line">        // 禁止修改 const 声明的变量</span><br><span class="line">        &quot;no-const-assign&quot;: 2,</span><br><span class="line">        // 禁止类成员中出现重复的名称</span><br><span class="line">        &quot;no-dupe-class-members&quot;: 2,</span><br><span class="line">        // 不允许复制模块的进口</span><br><span class="line">        &quot;no-duplicate-imports&quot;: 0,</span><br><span class="line">        // 禁止 Symbol 的构造函数</span><br><span class="line">        &quot;no-new-symbol&quot;: 2,</span><br><span class="line">        // 允许指定模块加载时的进口</span><br><span class="line">        &quot;no-restricted-imports&quot;: 0,</span><br><span class="line">        // 禁止在构造函数中，在调用 super() 之前使用 this 或 super</span><br><span class="line">        &quot;no-this-before-super&quot;: 2,</span><br><span class="line">        // 禁止不必要的计算性能键对象的文字</span><br><span class="line">        &quot;no-useless-computed-key&quot;: 0,</span><br><span class="line">        // 要求使用 let 或 const 而不是 var</span><br><span class="line">        &quot;no-var&quot;: 0,</span><br><span class="line">        // 要求或禁止对象字面量中方法和属性使用简写语法</span><br><span class="line">        &quot;object-shorthand&quot;: 0,</span><br><span class="line">        // 要求使用箭头函数作为回调</span><br><span class="line">        &quot;prefer-arrow-callback&quot;: 0,</span><br><span class="line">        // 要求使用 const 声明那些声明后不再被修改的变量</span><br><span class="line">        &quot;prefer-const&quot;: 0,</span><br><span class="line">        // 要求在合适的地方使用 Reflect 方法</span><br><span class="line">        &quot;prefer-reflect&quot;: 0,</span><br><span class="line">        // 要求使用扩展运算符而非 .apply()</span><br><span class="line">        &quot;prefer-spread&quot;: 0,</span><br><span class="line">        // 要求使用模板字面量而非字符串连接</span><br><span class="line">        &quot;prefer-template&quot;: 0,</span><br><span class="line">        // Suggest using the rest parameters instead of arguments</span><br><span class="line">        &quot;prefer-rest-params&quot;: 0,</span><br><span class="line">        // 要求generator 函数内有 yield</span><br><span class="line">        &quot;require-yield&quot;: 0,</span><br><span class="line">        // enforce spacing between rest and spread operators and their expressions</span><br><span class="line">        &quot;rest-spread-spacing&quot;: 0,</span><br><span class="line">        // 强制模块内的 import 排序</span><br><span class="line">        &quot;sort-imports&quot;: 0,</span><br><span class="line">        // 要求或禁止模板字符串中的嵌入表达式周围空格的使用</span><br><span class="line">        &quot;template-curly-spacing&quot;: 1,</span><br><span class="line">        // 强制在 yield* 表达式中 * 周围使用空格</span><br><span class="line">        &quot;yield-star-spacing&quot;: 2</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭段落校验</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/* eslint-disable */</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭当前行校验</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">some code // eslint-disable-line</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭下一行校验</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// eslint-disable-next-line</span><br><span class="line">some code</span><br></pre></td></tr></table></figure>
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/11/13/%E5%B7%A5%E5%85%B7/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">版本管理是什么</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/11/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F+uniapp/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9F%E5%BA%A6%E6%8F%90%E5%8D%87/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">小程序应用速度提升</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+<section class="widget-toc widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-toc" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M134.50666666 767.46666668H460.8c27.73333333 0 50.24000001 22.50666668 50.24000001 50.23999999v50.13333333c0 27.73333333-22.50666668 50.24000001-50.24000001 50.24000001H134.50666666c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.24000001v-50.13333333c0.10666668-27.73333333 22.50666668-50.24000001 50.24000001-50.24000001zM84.37333332 541.65333333h326.18666669c27.73333333 0 50.24000001 22.39999999 50.23999999 50.13333334v50.24000001c0 27.73333333-22.50666668 50.24000001-50.24000002 50.23999999H84.37333332c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.23999999v-50.24000001c0-27.73333333 22.50666668-50.13333334 50.24000001-50.13333334zM134.50666666 315.83999999H460.8c27.73333333 0 50.24000001 22.50666668 50.24000001 50.24000001v50.24000001c0 27.73333333-22.50666668 50.13333334-50.24000001 50.13333333H134.50666666c-27.73333333 0-50.24000001-22.39999999-50.23999999-50.13333333v-50.24000001c0.10666668-27.84000001 22.50666668-50.24000001 50.24000001-50.23999999zM209.81333332 89.91999999h326.18666671c27.73333333 0 50.24000001 22.39999999 50.23999997 50.13333335v50.23999999c0 27.73333333-22.50666668 50.24000001-50.24000001 50.24000001H209.81333332c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.24000001v-50.24000001c0-27.73333333 22.50666668-50.13333334 50.24000001-50.13333333zM692.05333333 623.36l274.66666669 176.00000002c23.36000001 14.93333333 30.08 45.97333334 15.14666666 69.33333332L954.77333334 910.93333333c-14.93333333 23.25333334-45.97333334 30.08-69.33333335 15.14666667l-274.66666666-176c-23.36000001-14.93333333-30.08-45.97333334-15.14666667-69.33333333l27.09333334-42.24000001c14.93333333-23.36000001 46.08000001-30.08 69.33333333-15.14666666z" fill="currentColor"></path>
+</svg>
+    <span>TOC</span>
+  </div>
+  <div class="widget-body">
+    
+  </div>
+</section>
+
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

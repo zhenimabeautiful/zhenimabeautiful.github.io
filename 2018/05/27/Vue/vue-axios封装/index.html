@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>axios封装 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">axios封装</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2018-05-27T13:46:19.000Z" itemprop="datePublished">2018-05-27</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E6%A1%86%E6%9E%B6/">📒 框架</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/vue/">🏷️ vue</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h2 id="一、axios-简介"><a href="#一、axios-简介" class="headerlink" title="一、axios 简介"></a>一、axios 简介</h2><blockquote>
+<p><code>axios</code> 是一个基于<code>Promise</code>用于浏览器和 <code>nodejs</code> 的 <code>HTTP</code> 客户端，它本身具有以下特征：</p>
+</blockquote>
+<ul>
+<li>从浏览器中创建 <code>XMLHttpRequest</code></li>
+<li>从 <code>node.js</code> 发出 <code>http</code> 请求</li>
+<li>支持<code>Promise API</code></li>
+<li>拦截请求和响应</li>
+<li>转换请求和响应数据</li>
+<li>取消请求</li>
+<li>自动转换<code>JSON</code>数据</li>
+<li>客户端支持防止<code>CSRF/XSRF</code></li>
+</ul>
+<h2 id="二、axios基础"><a href="#二、axios基础" class="headerlink" title="二、axios基础"></a>二、axios基础</h2><ul>
+<li><code>axios.request（config）</code></li>
+<li><code>axios.get（url [，config]）</code></li>
+<li><code>axios.delete（url [，config]）</code></li>
+<li><code>axios.head（url [，config]）</code></li>
+<li><code>axios.options（url [，config]）</code></li>
+<li><code>axios.post（url [，data [，config]]</code>）</li>
+<li><code>axios.put（url [，data [，config]]）</code></li>
+<li><code>axios.patch（url [，data [，config]]）</code></li>
+</ul>
+<h2 id="三、执行-GET-请求"><a href="#三、执行-GET-请求" class="headerlink" title="三、执行 GET 请求"></a>三、执行 GET 请求</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// 向具有指定ID的用户发出请求</span><br><span class="line">axios.get(&#x27;/user?ID=12345&#x27;)</span><br><span class="line">.then(function (res) &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(function (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">// 也可以通过 params 对象传递参数</span><br><span class="line">axios.get(&#x27;/user&#x27;, &#123;</span><br><span class="line">    params: &#123;</span><br><span class="line">        ID: 12345</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(function (response) &#123;</span><br><span class="line">    console.log(response);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(function (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、执行-POST-请求"><a href="#四、执行-POST-请求" class="headerlink" title="四、执行 POST 请求"></a>四、执行 POST 请求</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">axios.post(&#x27;/user&#x27;, &#123;</span><br><span class="line">    userId:&quot;123&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    headers:&#123;</span><br><span class="line">        token:&quot;abc&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(function (res) &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(function (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、通过配置方式发送请求"><a href="#五、通过配置方式发送请求" class="headerlink" title="五、通过配置方式发送请求"></a>五、通过配置方式发送请求</h2><blockquote>
+<p><code>get</code>请求是发送参数，在<code>params</code>中定义。而<code>POST</code>请求是发送<code>request body</code>,需要在<code>data</code>中定义</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// get 在params中定义</span><br><span class="line">axios(&#123;</span><br><span class="line">    url:&quot;pakage.json&quot;,</span><br><span class="line">    method:&quot;get&quot;,</span><br><span class="line">    params:&#123;</span><br><span class="line">        userId:&quot;123&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    headers:&#123;</span><br><span class="line">        token:&quot;http-test&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).then(res=&gt;&#123;</span><br><span class="line">    console.log(res.data);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// post 在data中定义</span><br><span class="line">axios(&#123;</span><br><span class="line">    url:&quot;pakage.json&quot;,</span><br><span class="line">    method:&quot;post&quot;,</span><br><span class="line">    data:&#123;</span><br><span class="line">        userId:&quot;123&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    headers:&#123;</span><br><span class="line">        token:&quot;http-test&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).then(res=&gt;&#123;</span><br><span class="line">    console.log(res.data);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、执行多个并发请求"><a href="#六、执行多个并发请求" class="headerlink" title="六、执行多个并发请求"></a>六、执行多个并发请求</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function getUserAcount()&#123;</span><br><span class="line">    // 返回一个promise对象</span><br><span class="line">    return axios.get(&quot;/user/1234&quot;);</span><br><span class="line">&#125;</span><br><span class="line">function getUserPermissions()&#123;</span><br><span class="line">    // 返回一个promise对象</span><br><span class="line">    return axios.get(&quot;/user/1234/getUserPermissions&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//一次性返回两个接口</span><br><span class="line">axios.all([getUserAccount(),getUserPerssions()]).then(axios.spread((acct, perms) =&gt; &#123;</span><br><span class="line">    // spread展开两个返回的结果</span><br><span class="line">    //两个请求现已完成</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、全局拦截"><a href="#七、全局拦截" class="headerlink" title="七、全局拦截"></a>七、全局拦截</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">    el:&quot;app&quot;,</span><br><span class="line">    data:&#123;</span><br><span class="line">        msg:&quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 初始化生命周期的一个函数</span><br><span class="line">    mounted:function()&#123;</span><br><span class="line">     //拦截请求之前</span><br><span class="line">       axios.interceptors.request.use(config=&gt;&#123;</span><br><span class="line">           //这里做一些拦截操作,拦截用户的请求 请求之前做一些loading处理</span><br><span class="line">           return config;</span><br><span class="line">       &#125;)</span><br><span class="line">       //拦截响应之后处理</span><br><span class="line">       axios.interceptors.response.use(response=&gt;&#123;</span><br><span class="line">           //这里做一些拦截操作,响应以后做什么，在返回数据</span><br><span class="line">           return response;</span><br><span class="line">       &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    methods: &#123;</span><br><span class="line">        get: function() &#123;</span><br><span class="line">        </span><br><span class="line">        &#125;,</span><br><span class="line">        post:function() &#123;</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="八、请求封装、异常统一处理"><a href="#八、请求封装、异常统一处理" class="headerlink" title="八、请求封装、异常统一处理"></a>八、请求封装、异常统一处理</h2><blockquote>
+<p>vue中采用axios处理网络请求，避免请求接口重复代码，以及各种网络情况造成的异常情况的判断，采用axios请求封装和异常拦截操作</p>
+</blockquote>
+<h3 id="8-1-axios-请求封装"><a href="#8-1-axios-请求封装" class="headerlink" title="8.1 axios 请求封装"></a>8.1 axios 请求封装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">//  引入axios文件包</span><br><span class="line">import axios from &#x27;axios&#x27;</span><br><span class="line"></span><br><span class="line">// POST 方法封装  (参数处理)</span><br><span class="line">export const postRequest = (url, params) =&gt; &#123;</span><br><span class="line">  return axios(&#123;</span><br><span class="line">    method: &#x27;post&#x27;,</span><br><span class="line">    url: url,</span><br><span class="line">    data: params,</span><br><span class="line">    transformRequest: [function (data) &#123;</span><br><span class="line">      let ret = &#x27;&#x27;</span><br><span class="line">      for (let it in data) &#123;</span><br><span class="line">        ret += encodeURIComponent(it) + &#x27;=&#x27; + encodeURIComponent(data[it]) + &#x27;&amp;&#x27;</span><br><span class="line">      &#125;</span><br><span class="line">      return ret</span><br><span class="line">    &#125;],</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// POST 方法封装  (文件上传)</span><br><span class="line">export const uploadFileRequest = (url, params) =&gt; &#123;</span><br><span class="line">  return axios(&#123;</span><br><span class="line">    method: &#x27;post&#x27;,</span><br><span class="line">    url: url,</span><br><span class="line">    data: params,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;Content-Type&#x27;: &#x27;multipart/form-data&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//  GET 方法封装</span><br><span class="line">export const getRequest = (url) =&gt; &#123;</span><br><span class="line">  return axios(&#123;</span><br><span class="line">    method: &#x27;get&#x27;,</span><br><span class="line">    url: url</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//  PUT 方法封装</span><br><span class="line">export const putRequest = (url, params) =&gt; &#123;</span><br><span class="line">  return axios(&#123;</span><br><span class="line">    method: &#x27;put&#x27;,</span><br><span class="line">    url: url,</span><br><span class="line">    data: params,</span><br><span class="line">    transformRequest: [function (data) &#123;</span><br><span class="line">      let ret = &#x27;&#x27;</span><br><span class="line">      for (let it in data) &#123;</span><br><span class="line">        ret += encodeURIComponent(it) + &#x27;=&#x27; + encodeURIComponent(data[it]) + &#x27;&amp;&#x27;</span><br><span class="line">      &#125;</span><br><span class="line">      return ret</span><br><span class="line">    &#125;],</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//  DELETE 方法封装</span><br><span class="line">export const deleteRequest = (url) =&gt; &#123;</span><br><span class="line">  return axios(&#123;</span><br><span class="line">    method: &#x27;delete&#x27;,</span><br><span class="line">    url: url</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-2-axios请求异常统一处理"><a href="#8-2-axios请求异常统一处理" class="headerlink" title="8.2 axios请求异常统一处理"></a>8.2 axios请求异常统一处理</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">// 引入依赖包</span><br><span class="line">import axios from &#x27;axios&#x27;</span><br><span class="line">import &#123;Message&#125; from &#x27;element-ui&#x27;</span><br><span class="line"></span><br><span class="line">//  REQUEST 请求异常拦截</span><br><span class="line">axios.interceptors.request.use(config=&gt; &#123;</span><br><span class="line"> //==========  所有请求之前都要执行的操作  ==============</span><br><span class="line">  return config;</span><br><span class="line">&#125;, err=&gt; &#123;</span><br><span class="line"> //==================  错误处理  ====================</span><br><span class="line">  Message.error(&#123;message: &#x27;请求超时!&#x27;&#125;);</span><br><span class="line">  return Promise.resolve(err);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//  RESPONSE 响应异常拦截</span><br><span class="line">axios.interceptors.response.use(data=&gt; &#123;</span><br><span class="line">//==============  所有请求完成后都要执行的操作  ==================</span><br><span class="line"></span><br><span class="line">// 第一种方式</span><br><span class="line"></span><br><span class="line">    // 根据返回的code值来做不同的处理（和后端约定）</span><br><span class="line">    switch (data.code) &#123;</span><br><span class="line">        case &#x27;0&#x27;:</span><br><span class="line">            // exp: 修复iPhone 6+ 微信点击返回出现页面空白的问题</span><br><span class="line">            if (isIOS()) &#123;</span><br><span class="line">                // 异步以保证数据已渲染到页面上</span><br><span class="line">                setTimeout(() =&gt; &#123;</span><br><span class="line">                    // 通过滚动强制浏览器进行页面重绘</span><br><span class="line">                    document.body.scrollTop += 1</span><br><span class="line">                &#125;, 0)</span><br><span class="line">            &#125;</span><br><span class="line">            // 这一步保证数据返回，如果没有return则会走接下来的代码，不是未登录就是报错</span><br><span class="line">            return data</span><br><span class="line"></span><br><span class="line">        // 需要重新登录</span><br><span class="line">        case &#x27;SHIRO_E5001&#x27;:</span><br><span class="line">            // 微信生产环境下授权登录</span><br><span class="line">            if (isWeChat() &amp;&amp; IS_PRODUCTION) &#123;</span><br><span class="line">                axios.get(apis.common.wechat.authorizeUrl).then((&#123; result &#125;) =&gt; &#123;</span><br><span class="line">                    location.replace(global.decodeURIComponent(result))</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // 否则跳转到h5登录并带上跳转路由</span><br><span class="line">                const search = encodeSearchParams(&#123;</span><br><span class="line">                    next: location.href,</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">                location.replace(`/user/login`)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 不显示提示消息</span><br><span class="line">            data.description = &#x27;&#x27;</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">        default:</span><br><span class="line">    &#125;</span><br><span class="line">    // 若不是正确的返回code，且已经登录，就抛出错误</span><br><span class="line">    const err = new Error(data.description)</span><br><span class="line"></span><br><span class="line">    err.data = data</span><br><span class="line">    err.response = response</span><br><span class="line"></span><br><span class="line">  // 第二种方式，仅对200和error状态处理</span><br><span class="line">  if (data.status &amp;&amp; data.status == 200 &amp;&amp; data.data.status == &#x27;error&#x27;) &#123;</span><br><span class="line">    Message.error(&#123;message: data.data.msg&#125;);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  return data;</span><br><span class="line">&#125;, err=&gt; &#123;</span><br><span class="line">//==============  错误处理  ====================</span><br><span class="line">   if (err &amp;&amp; err.response) &#123;</span><br><span class="line">        switch (err.response.status) &#123;</span><br><span class="line">            case 400: err.message = &#x27;请求错误(400)&#x27;; break;</span><br><span class="line">            case 401: err.message = &#x27;未授权，请重新登录(401)&#x27;; break;</span><br><span class="line">            case 403: err.message = &#x27;拒绝访问(403)&#x27;; break;</span><br><span class="line">            case 404: err.message = &#x27;请求出错(404)&#x27;; break;</span><br><span class="line">            case 408: err.message = &#x27;请求超时(408)&#x27;; break;</span><br><span class="line">            case 500: err.message = &#x27;服务器错误(500)&#x27;; break;</span><br><span class="line">            case 501: err.message = &#x27;服务未实现(501)&#x27;; break;</span><br><span class="line">            case 502: err.message = &#x27;网络错误(502)&#x27;; break;</span><br><span class="line">            case 503: err.message = &#x27;服务不可用(503)&#x27;; break;</span><br><span class="line">            case 504: err.message = &#x27;网络超时(504)&#x27;; break;</span><br><span class="line">            case 505: err.message = &#x27;HTTP版本不受支持(505)&#x27;; break;</span><br><span class="line">            default: err.message = `连接出错($&#123;err.response.status&#125;)!`;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        err.message = &#x27;连接服务器失败!&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  Message.err( &#123;message: err.message &#125; )</span><br><span class="line">  return Promise.resolve(err);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>请求出错的时候执行的是：<code>Promise.resolve(err)</code>;，而不是<code>Promise.reject(err)</code>;，这样无论请求成功还是失败，在成功的回调中都能收到通知</p>
+</blockquote>
+<h3 id="8-3-vue-项目中使用该方法"><a href="#8-3-vue-项目中使用该方法" class="headerlink" title="8.3 vue 项目中使用该方法"></a>8.3 vue 项目中使用该方法</h3><blockquote>
+<p>在main.js中导入所有请求方法</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//  导入所有请求方法</span><br><span class="line">import &#123;getRequest,postRequest,deleteRequest,putRequest&#125; from &#x27;./utils/api&#x27;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>将请求方法添加至 <code>Vue.prototype</code> 上</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//  向VUE的原型上添加请求方法</span><br><span class="line">Vue.prototype.getRequest = getRequest;</span><br><span class="line">Vue.prototype.postRequest = postRequest;</span><br><span class="line">Vue.prototype.deleteRequest = deleteRequest;</span><br><span class="line">Vue.prototype.putRequest = putRequest;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>发送请求（请求方法的调用）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//  发送网络请求</span><br><span class="line">this.postRequest(&#x27;/login&#x27;, &#123;userName，password&#125;).then(resp=&gt; &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="九、接口封装处理"><a href="#九、接口封装处理" class="headerlink" title="九、接口封装处理"></a>九、接口封装处理</h2><blockquote>
+<p><code>vue</code>中<code>Axios</code>的封装与<code>API</code>接口的管理详解</p>
+</blockquote>
+<h3 id="9-1-axios的封装"><a href="#9-1-axios的封装" class="headerlink" title="9.1 axios的封装"></a>9.1 axios的封装</h3><blockquote>
+<p>在<code>vue</code>项目中，和后台交互获取数据这块，我们通常使用的是<code>axios</code>库，它是基于<code>promise</code>的<code>http</code>库，可运行在浏览器端和<code>node.js</code>中。他有很多优秀的特性，例如拦截请求和响应、取消请求、转换<code>json</code>、客户端防御<code>XSRF</code>等</p>
+</blockquote>
+<ul>
+<li>一般我会在项目的<code>src</code>目录中，新建一个<code>request</code>文件夹，然后在里面新建一个<code>http.js</code>和一个<code>api.js</code>文件。<code>http.js</code>文件用来封装我们的<code>axios</code>，<code>api.js</code>用来统一管理我们的接口</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 在http.js中引入axios</span><br><span class="line">import axios from &#x27;axios&#x27;; // 引入axios</span><br><span class="line">import QS from &#x27;qs&#x27;; // 引入qs模块，用来序列化post类型的数据，后面会提到</span><br><span class="line">// vant的toast提示框组件，大家可根据自己的ui组件更改。</span><br><span class="line">import &#123; Toast &#125; from &#x27;vant&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-2-环境的切换"><a href="#9-2-环境的切换" class="headerlink" title="9.2 环境的切换"></a>9.2 环境的切换</h3><blockquote>
+<p>我们的项目环境可能有开发环境、测试环境和生产环境。我们通过<code>node</code>的环境变量来匹配我们的默认的接口<code>url</code>前缀。<code>axios.defaults.baseURL</code>可以设置<code>axios</code>的默认请求地址就不多说了</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 环境的切换</span><br><span class="line">if (process.env.NODE_ENV == &#x27;development&#x27;) &#123; </span><br><span class="line"> axios.defaults.baseURL = &#x27;https://www.baidu.com&#x27;;&#125; </span><br><span class="line">else if (process.env.NODE_ENV == &#x27;debug&#x27;) &#123; </span><br><span class="line"> axios.defaults.baseURL = &#x27;https://www.ceshi.com&#x27;;</span><br><span class="line">&#125; </span><br><span class="line">else if (process.env.NODE_ENV == &#x27;production&#x27;) &#123; </span><br><span class="line"> axios.defaults.baseURL = &#x27;https://www.production.com&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-3-设置请求超时"><a href="#9-3-设置请求超时" class="headerlink" title="9.3 设置请求超时"></a>9.3 设置请求超时</h3><blockquote>
+<p>通过<code>axios.defaults.timeout</code>设置默认的请求超时时间。例如超过了10s，就会告知用户当前请求超时，请刷新等</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">axios.defaults.timeout = 10000;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post`请求头的设置`post`请求的时候，我们需要加上一个请求头，所以可以在这里进行一个默认的设置，即设置`post`的请求头为`application/x-www-form-urlencoded;charset=UTF-8</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">axios.defaults.headers.post[&#x27;Content-Type&#x27;] = &#x27;application/x-www-form-urlencode</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-4-请求拦截"><a href="#9-4-请求拦截" class="headerlink" title="9.4 请求拦截"></a>9.4 请求拦截</h3><blockquote>
+<p>我们在发送请求前可以进行一个请求的拦截，为什么要拦截呢，我们拦截请求是用来做什么的呢？比如，有些请求是需要用户登录之后才能访问的，或者post请求的时候，我们需要序列化我们提交的数据。这时候，我们可以在请求被发送之前进行一个拦截，从而进行我们想要的操作</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 先导入vuex,因为我们要使用到里面的状态对象</span><br><span class="line">// vuex的路径根据自己的路径去写</span><br><span class="line">import store from &#x27;@/store/index&#x27;;</span><br><span class="line"></span><br><span class="line">// 请求拦截器axios.interceptors.request.use( </span><br><span class="line"> config =&gt; &#123; </span><br><span class="line"> // 每次发送请求之前判断vuex中是否存在token </span><br><span class="line"> // 如果存在，则统一在http请求的header都加上token，这样后台根据token判断你的登录情况</span><br><span class="line"> // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断 </span><br><span class="line"> const token = store.state.token; </span><br><span class="line"> token &amp;&amp; (config.headers.Authorization = token); </span><br><span class="line"> return config; </span><br><span class="line"> &#125;, </span><br><span class="line"> error =&gt; &#123; </span><br><span class="line"> return Promise.error(error); </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一般是在登录完成之后，将用户的<code>token</code>通过<code>localStorage</code>或者<code>cookie</code>存在本地，然后用户每次在进入页面的时候（即在<code>main.js</code>中），会首先从本地存储中读取<code>token</code>，如果<code>token</code>存在说明用户已经登陆过，则更新vuex中的token状态。然后，在每次请求接口的时候，都会在请求的<code>header</code>中携带<code>token</code>，后台人员就可以根据你携带的<code>token</code>来判断你的登录是否过期，如果没有携带，则说明没有登录过。这时候或许有些小伙伴会有疑问了，就是每个请求都携带<code>token</code>，那么要是一个页面不需要用户登录就可以访问的怎么办呢？其实，你前端的请求可以携带<code>token</code>，但是后台可以选择不接收啊！</p>
+</blockquote>
+<h3 id="9-5-响应的拦截"><a href="#9-5-响应的拦截" class="headerlink" title="9.5 响应的拦截"></a>9.5 响应的拦截</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">// 响应拦截器</span><br><span class="line">axios.interceptors.response.use( </span><br><span class="line"> response =&gt; &#123; </span><br><span class="line"> // 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据 </span><br><span class="line"> // 否则的话抛出错误</span><br><span class="line"> if (response.status === 200) &#123;  </span><br><span class="line">  return Promise.resolve(response); </span><br><span class="line"> &#125; else &#123;  </span><br><span class="line">  return Promise.reject(response); </span><br><span class="line"> &#125; </span><br><span class="line"> &#125;, </span><br><span class="line"> // 服务器状态码不是2开头的的情况</span><br><span class="line"> // 这里可以跟你们的后台开发人员协商好统一的错误状态码 </span><br><span class="line"> // 然后根据返回的状态码进行一些操作，例如登录过期提示，错误提示等等</span><br><span class="line"> // 下面列举几个常见的操作，其他需求可自行扩展</span><br><span class="line"> error =&gt; &#123;  </span><br><span class="line"> if (error.response.status) &#123;  </span><br><span class="line">  switch (error.response.status) &#123;  </span><br><span class="line">  // 401: 未登录</span><br><span class="line">  // 未登录则跳转登录页面，并携带当前页面的路径</span><br><span class="line">  // 在登录成功后返回当前页面，这一步需要在登录页操作。  </span><br><span class="line">  case 401:   </span><br><span class="line">   router.replace(&#123;   </span><br><span class="line">   path: &#x27;/login&#x27;,   </span><br><span class="line">   query: &#123; </span><br><span class="line">    redirect: router.currentRoute.fullPath </span><br><span class="line">   &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">   break;</span><br><span class="line"></span><br><span class="line">  // 403 token过期</span><br><span class="line">  // 登录过期对用户进行提示</span><br><span class="line">  // 清除本地token和清空vuex中token对象</span><br><span class="line">  // 跳转登录页面  </span><br><span class="line">  case 403:</span><br><span class="line">   Toast(&#123;</span><br><span class="line">   message: &#x27;登录过期，请重新登录&#x27;,</span><br><span class="line">   duration: 1000,</span><br><span class="line">   forbidClick: true</span><br><span class="line">   &#125;);</span><br><span class="line">   // 清除token</span><br><span class="line">   localStorage.removeItem(&#x27;token&#x27;);</span><br><span class="line">   store.commit(&#x27;loginSuccess&#x27;, null);</span><br><span class="line">   // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面 </span><br><span class="line">   setTimeout(() =&gt; &#123;   </span><br><span class="line">   router.replace(&#123;    </span><br><span class="line">    path: &#x27;/login&#x27;,    </span><br><span class="line">    query: &#123; </span><br><span class="line">    redirect: router.currentRoute.fullPath </span><br><span class="line">    &#125;   </span><br><span class="line">   &#125;);   </span><br><span class="line">   &#125;, 1000);   </span><br><span class="line">   break;</span><br><span class="line"></span><br><span class="line">  // 404请求不存在</span><br><span class="line">  case 404:</span><br><span class="line">   Toast(&#123;</span><br><span class="line">   message: &#x27;网络请求不存在&#x27;,</span><br><span class="line">   duration: 1500,</span><br><span class="line">   forbidClick: true</span><br><span class="line">   &#125;);</span><br><span class="line">   break;</span><br><span class="line">  // 其他错误，直接抛出错误提示</span><br><span class="line">  default:</span><br><span class="line">   Toast(&#123;</span><br><span class="line">   message: error.response.data.message,</span><br><span class="line">   duration: 1500,</span><br><span class="line">   forbidClick: true</span><br><span class="line">   &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  return Promise.reject(error.response);</span><br><span class="line"> &#125;</span><br><span class="line"> &#125; </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>响应拦截器很好理解，就是服务器返回给我们的数据，我们在拿到之前可以对他进行一些处理。例如上面的思想：如果后台返回的状态码是200，则正常返回数据，否则的根据错误的状态码类型进行一些我们需要的错误，其实这里主要就是进行了错误的统一处理和没登录或登录过期后调整登录页的一个操作</p>
+</blockquote>
+<ul>
+<li>要注意的是，上面的<code>Toast()</code>方法，是我引入的<code>vant</code>库中的<code>toast</code>轻提示组件，你根据你的<code>ui</code>库，对应使用你的一个提示组件</li>
+</ul>
+<h3 id="9-6-封装get方法和post方法"><a href="#9-6-封装get方法和post方法" class="headerlink" title="9.6 封装get方法和post方法"></a>9.6 封装get方法和post方法</h3><blockquote>
+<p>我们常用的<code>ajax</code>请求方法有<code>get</code>、<code>post</code>、<code>put</code>等方法。<code>axios</code>对应的也有很多类似的方法，不清楚的可以看下文档。但是为了简化我们的代码，我们还是要对其进行一个简单的封装。下面我们主要封装两个方法：<code>get</code>和<code>post</code></p>
+</blockquote>
+<ul>
+<li><code>get</code>方法：我们通过定义一个<code>get</code>函数，<code>get</code>函数有两个参数，第一个参数表示我们要请求的<code>url</code>地址，第二个参数是我们要携带的请求参数。<code>get</code>函数返回一个<code>promise</code>对象，当<code>axios</code>其请求成功时<code>resolve</code>服务器返回值，请求失败时<code>reject</code>错误值。最后通过<code>export</code>抛出<code>get</code>函数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * get方法，对应get请求</span><br><span class="line"> * @param &#123;String&#125; url [请求的url地址]</span><br><span class="line"> * @param &#123;Object&#125; params [请求时携带的参数]</span><br><span class="line"> */</span><br><span class="line">export function get(url, params)&#123; </span><br><span class="line"> return new Promise((resolve, reject) =&gt;&#123; </span><br><span class="line"> axios.get(url, &#123;  </span><br><span class="line">  params: params </span><br><span class="line"> &#125;).then(res =&gt; &#123;</span><br><span class="line">  resolve(res.data);</span><br><span class="line"> &#125;).catch(err =&gt;&#123;</span><br><span class="line">  reject(err.data) </span><br><span class="line"> &#125;) </span><br><span class="line">&#125;);&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>post</code>方法：原理同<code>get</code>基本一样，但是要注意的是，<code>post</code>方法必须要使用对提交从参数对象进行序列化的操作，所以这里我们通过<code>node</code>的<code>qs</code>模块来序列化我们的参数。这个很重要，如果没有序列化操作，后台是拿不到你提交的数据的</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/** </span><br><span class="line"> * post方法，对应post请求 </span><br><span class="line"> * @param &#123;String&#125; url [请求的url地址] </span><br><span class="line"> * @param &#123;Object&#125; params [请求时携带的参数] </span><br><span class="line"> */</span><br><span class="line">export function post(url, params) &#123;</span><br><span class="line"> return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  axios.post(url, QS.stringify(params))</span><br><span class="line"> .then(res =&gt; &#123;</span><br><span class="line">  resolve(res.data);</span><br><span class="line"> &#125;)</span><br><span class="line"> .catch(err =&gt;&#123;</span><br><span class="line">  reject(err.data)</span><br><span class="line"> &#125;)</span><br><span class="line"> &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>axios.get()</code>方法和<code>axios.post()</code>在提交数据时参数的书写方式还是有区别的。区别就是，<code>get</code>的第二个参数是一个<code>&#123;&#125;</code>，然后这个对象的<code>params</code>属性值是一个参数对象的。而<code>post</code>的第二个参数就是一个参数对象</p>
+</blockquote>
+<h3 id="9-7-api的统一管理"><a href="#9-7-api的统一管理" class="headerlink" title="9.7 api的统一管理"></a>9.7 api的统一管理</h3><blockquote>
+<p>首先我们在<code>api.js</code>中引入我们封装的<code>get</code>和<code>post</code>方法</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/** </span><br><span class="line"> * api接口统一管理</span><br><span class="line"> */</span><br><span class="line">import &#123; get, post &#125; from &#x27;./http&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>api.js</code>中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export const apiAddress = param =&gt; post(&#x27;api/v1/users&#x27;,param)</span><br></pre></td></tr></table></figure>
+
+<p>在我们的页面中可以这样调用我们的<code>api</code>接口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import &#123; apiAddress &#125; from &#x27;@/request/api&#x27;;// 导入我们的api接口</span><br><span class="line">export default &#123;  </span><br><span class="line"> name: &#x27;Address&#x27;, </span><br><span class="line"> created () &#123;</span><br><span class="line">  this.onLoad();</span><br><span class="line"> &#125;,</span><br><span class="line"> methods: &#123;   </span><br><span class="line">  // 获取数据   </span><br><span class="line">  onLoad() &#123;</span><br><span class="line">   // 调用api接口，并且提供了两个参数    </span><br><span class="line">   apiAddress(&#123;     </span><br><span class="line">    type: 0,     </span><br><span class="line">    sort: 1    </span><br><span class="line">   &#125;).then(res =&gt; &#123;</span><br><span class="line">    // 获取数据成功后的其他操作</span><br><span class="line">    ………………    </span><br><span class="line">   &#125;)   </span><br><span class="line">  &#125;  </span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-8-完整封装代码"><a href="#9-8-完整封装代码" class="headerlink" title="9.8 完整封装代码"></a>9.8 完整封装代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line">/**axios封装</span><br><span class="line"> * 请求拦截、相应拦截、错误统一处理</span><br><span class="line"> */</span><br><span class="line">import axios from &#x27;axios&#x27;;</span><br><span class="line">import QS from &#x27;qs&#x27;;</span><br><span class="line">import &#123;</span><br><span class="line">	Toast</span><br><span class="line">&#125;</span><br><span class="line">from &#x27;vant&#x27;;</span><br><span class="line">import store from &#x27;../store/index&#x27;</span><br><span class="line"></span><br><span class="line">// 环境的切换</span><br><span class="line">if (process.env.NODE_ENV == &#x27;development&#x27;) &#123;</span><br><span class="line">	axios.defaults.baseURL = &#x27;/api&#x27;;</span><br><span class="line">&#125; else if (process.env.NODE_ENV == &#x27;debug&#x27;) &#123;</span><br><span class="line">	axios.defaults.baseURL = &#x27;&#x27;;</span><br><span class="line">&#125; else if (process.env.NODE_ENV == &#x27;production&#x27;) &#123;</span><br><span class="line">	axios.defaults.baseURL = &#x27;http://api.123dailu.com/&#x27;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 请求超时时间</span><br><span class="line">axios.defaults.timeout = 10000;</span><br><span class="line"></span><br><span class="line">// post请求头</span><br><span class="line">axios.defaults.headers.post[&#x27;Content-Type&#x27;] = &#x27;application/x-www-form-urlencoded;charset=UTF-8&#x27;;</span><br><span class="line"></span><br><span class="line">// 请求拦截器</span><br><span class="line">axios.interceptors.request.use(</span><br><span class="line">config = &gt; &#123;</span><br><span class="line">	// 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了</span><br><span class="line">	// 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断</span><br><span class="line">	const token = store.state.token;</span><br><span class="line">	token &amp;&amp; (config.headers.Authorization = token);</span><br><span class="line">	return config;</span><br><span class="line">&#125;, error = &gt; &#123;</span><br><span class="line">	return Promise.error(error);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 响应拦截器</span><br><span class="line">axios.interceptors.response.use(</span><br><span class="line">response = &gt; &#123;</span><br><span class="line">	if (response.status === 200) &#123;</span><br><span class="line">		return Promise.resolve(response);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		return Promise.reject(response);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;,</span><br><span class="line">// 服务器状态码不是200的情况 </span><br><span class="line">error = &gt; &#123;</span><br><span class="line">	if (error.response.status) &#123;</span><br><span class="line">		switch (error.response.status) &#123;</span><br><span class="line">			// 401: 未登录    </span><br><span class="line">			// 未登录则跳转登录页面，并携带当前页面的路径    </span><br><span class="line">			// 在登录成功后返回当前页面，这一步需要在登录页操作。    </span><br><span class="line">		case 401:</span><br><span class="line">			router.replace(&#123;</span><br><span class="line">				path: &#x27;/login&#x27;,</span><br><span class="line">				query: &#123;</span><br><span class="line">					redirect: router.currentRoute.fullPath</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">			break;</span><br><span class="line">			// 403 token过期    </span><br><span class="line">			// 登录过期对用户进行提示    </span><br><span class="line">			// 清除本地token和清空vuex中token对象    </span><br><span class="line">			// 跳转登录页面    </span><br><span class="line">		case 403:</span><br><span class="line">			Toast(&#123;</span><br><span class="line">				message: &#x27;登录过期，请重新登录&#x27;,</span><br><span class="line">				duration: 1000,</span><br><span class="line">				forbidClick: true</span><br><span class="line">			&#125;);</span><br><span class="line">			// 清除token     </span><br><span class="line">			localStorage.removeItem(&#x27;token&#x27;);</span><br><span class="line">			store.commit(&#x27;loginSuccess&#x27;, null);</span><br><span class="line">			// 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面</span><br><span class="line">			setTimeout(() = &gt; &#123;</span><br><span class="line">				router.replace(&#123;</span><br><span class="line">					path: &#x27;/login&#x27;,</span><br><span class="line">					query: &#123;</span><br><span class="line">						redirect: router.currentRoute.fullPath</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;);</span><br><span class="line">			&#125;, 1000);</span><br><span class="line">			break;</span><br><span class="line">			// 404请求不存在    </span><br><span class="line">		case 404:</span><br><span class="line">			Toast(&#123;</span><br><span class="line">				message: &#x27;网络请求不存在&#x27;,</span><br><span class="line">				duration: 1500,</span><br><span class="line">				forbidClick: true</span><br><span class="line">			&#125;);</span><br><span class="line">			break;</span><br><span class="line">			// 其他错误，直接抛出错误提示    </span><br><span class="line">		default:</span><br><span class="line">			Toast(&#123;</span><br><span class="line">				message: error.response.data.message,</span><br><span class="line">				duration: 1500,</span><br><span class="line">				forbidClick: true</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		return Promise.reject(error.response);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">/** </span><br><span class="line"> * get方法，对应get请求</span><br><span class="line"> * @param &#123;String&#125; url [请求的url地址]</span><br><span class="line"> * @param &#123;Object&#125; params [请求时携带的参数]</span><br><span class="line"> */</span><br><span class="line">export</span><br><span class="line">function get(url, params) &#123;</span><br><span class="line">	return new Promise((resolve, reject) = &gt; &#123;</span><br><span class="line">		axios.get(url, &#123;</span><br><span class="line">			params: params</span><br><span class="line">		&#125;).then(res = &gt; &#123;</span><br><span class="line">			resolve(res.data);</span><br><span class="line">		&#125;).</span><br><span class="line">		catch (err = &gt; &#123;</span><br><span class="line">			reject(err.data)</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line">/** </span><br><span class="line"> * post方法，对应post请求</span><br><span class="line"> * @param &#123;String&#125; url [请求的url地址]</span><br><span class="line"> * @param &#123;Object&#125; params [请求时携带的参数]</span><br><span class="line"> */</span><br><span class="line">export</span><br><span class="line">function post(url, params) &#123;</span><br><span class="line">	return new Promise((resolve, reject) = &gt; &#123;</span><br><span class="line">		axios.post(url, QS.stringify(params)).then(res = &gt; &#123;</span><br><span class="line">			resolve(res.data);</span><br><span class="line">		&#125;).</span><br><span class="line">		catch (err = &gt; &#123;</span><br><span class="line">			reject(err.data)</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/05/31/Vue/diff%E7%AE%97%E6%B3%95/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">vue-diff算法</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/05/23/http/%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%20URL%20%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">地址栏输入 URL 敲下回车后发生了什么</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

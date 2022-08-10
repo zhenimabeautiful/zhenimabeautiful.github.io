@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>html-tag | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">html-tag</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2018-01-10T08:13:54.000Z" itemprop="datePublished">2018-01-10</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF/">📒 前端</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/html/">🏷️ html</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h4 id="第二章-html基本结构"><a href="#第二章-html基本结构" class="headerlink" title="第二章 html基本结构"></a>第二章 html基本结构</h4><hr>
+<ul>
+<li>认识HTML：<ul>
+<li><code>html</code>不是一种编程语言，是一种标志语言</li>
+<li>标记语言是由一套标识标签组成的</li>
+<li><code>html</code>使用标签来描述网页</li>
+</ul>
+</li>
+<li><code>html</code>结构：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;&lt;/head&gt;</span><br><span class="line">    &lt;body&gt;&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>不成对出现的标签<br><code> </code> <code> </code> <code> </code> <code> </code></p>
+</li>
+<li><p><strong>HTML 基本标签的讲解：</strong></p>
+<ul>
+<li><p><code> </code> &#96;&#96;标签</p>
+</li>
+<li><p><code>—-</code>仅仅用于标题文本，不要为了产生粗体文本使用它们</p>
+</li>
+<li><p>&#96;&#96;标签 段落标签</p>
+</li>
+<li><p>&#96;&#96;标签</p>
+</li>
+<li><p>都会让文字产生加粗效果</p>
+<ul>
+<li>&#96;&#96;用于强调文本，强度更深，表示重要文本—&gt;用于<code>SEO</code>优化</li>
+<li>&#96;&#96;只是视觉加粗效果—&gt;单纯为了产生加粗</li>
+</ul>
+</li>
+<li><pre><code>&lt;em&gt;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+&lt;i&gt;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">    标签</span><br><span class="line"></span><br><span class="line">    - `em`用于强调文本</span><br><span class="line">    - `i`只是视觉斜体效果</span><br><span class="line">    - ``比``强调更强</span><br><span class="line">    </span><br><span class="line">  - 特殊符号：</span><br><span class="line"></span><br><span class="line">    - `&amp;nbsp`; —-&gt;空格</span><br><span class="line">    - `&amp;gt`; —&gt;大于号</span><br><span class="line">    - `&amp;lt`；—&gt;小于号</span><br><span class="line">    - `&amp;quot`；—&gt;引号</span><br><span class="line">    - `&amp;copy`;–&gt;版权号</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">#### 第三章 html基本标签</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- `HTMl`基本标签：</span><br><span class="line"></span><br><span class="line">  - ```</span><br><span class="line">    span</span><br></pre></td></tr></table></figure>
+
+标签
+
+- 对被用来组合文档中的行内元素
+- 注意：span没有固定的格式表现，当对它应用样式时，才会产生视觉上的变化
+</code></pre>
+</li>
+<li><p>&#96;&#96;&#96;</p>
+<pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  标签</span><br><span class="line"></span><br><span class="line">  - 文字的格式按源码的排版来显示，我们称之为预处理格式</span><br><span class="line"></span><br><span class="line">- &lt;a&gt;标签—&gt;他有一个必不可少的属性 href</span><br><span class="line"></span><br><span class="line">- 创建锚点和锚链接</span><br><span class="line"></span><br><span class="line">  - 锚点也是一种超链接，是页面内进行跳转的超链接</span><br><span class="line">    - 第一步：创建锚点 ``</span><br><span class="line">    - 第二步：使用创建好的锚点名称 `[内容](#锚点名称)`</span><br><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  marquee</span><br></pre></td></tr></table></figure>
+
+标签
+
+- 可以创建一个内容滚动效果</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;marquee direction=&quot;down&quot; loop=&quot;4&quot; onmouseover=this.stop() onmouseout=this.start()&gt;&lt;/marquee&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>direction</code> 表示滚动方向，取值有（left,right,up,down,默认left）</li>
+<li><code>loop</code>表示滚动循环的次数，默认为无限循环</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onmouseover=this.stop()  onmouseover=this.start()  scrollamout=&quot;1&quot;(滚动速度)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>表示当鼠标移上区域的时候停止滚动，鼠标移开继续滚动</li>
+</ul>
+<hr>
+<h4 id="第四章-img图片标签与路径"><a href="#第四章-img图片标签与路径" class="headerlink" title="第四章 img图片标签与路径"></a>第四章 img图片标签与路径</h4><hr>
+<ul>
+<li><p>图片标签与路径：</p>
+<ul>
+<li>常见图片格式 <code>jpg</code> <code>png</code> <code>gif</code></li>
+<li><code>Gif</code> （只支持全透明）</li>
+<li><code>Jpeg</code> &#x2F;<code>jpg</code></li>
+<li><code>Png</code> 半&#x2F;全透明都支持</li>
+</ul>
+</li>
+<li><p>图片标签写法 ：</p>
+<ul>
+<li>&#96;&#96;</li>
+</ul>
+</li>
+<li><p>图片四要素：</p>
+<ul>
+<li><code>src=&quot;&quot;</code> 图片路径</li>
+<li><code>alt=&quot;&quot;</code> 图片含义</li>
+<li><code>width=&quot;&quot;</code> 图片宽度 和图片大小保持一致</li>
+<li><code>height=&quot;&quot;</code> 图片高度 和图片大小保持一致</li>
+<li><code>title=&quot;&quot;</code></li>
+</ul>
+</li>
+<li><p>路径知识：</p>
+<ul>
+<li>相对路径、绝对路径：<ul>
+<li>相对路径：(Relative Path) 相对于该文件的路径；</li>
+<li>绝对路径：(Absolute Path) 从磁盘出发的路径；</li>
+</ul>
+</li>
+<li>&lt;img src&#x3D;”” …… align&#x3D;”” &#x2F;&gt; align属性–设置图片与后面文字的位置关系值–top、bottom、middle、absmiddle、left、right</li>
+</ul>
+</li>
+<li><p>在静态页面中：</p>
+<ul>
+<li><p><code>/</code>开头表示根目录；</p>
+</li>
+<li><p><code>./</code>表示当前目录；（斜画线前面一个点）</p>
+</li>
+<li><p><code>../</code>上级目录；（斜画线前面两个点）</p>
+</li>
+<li><p>直接用文件名不带&#x2F;也表示同一目录</p>
+</li>
+<li><p>这些都是相对于当前文件的位置来说的，如果用绝对路径的话就是写全了。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="第五章-三种列表的讲解"><a href="#第五章-三种列表的讲解" class="headerlink" title="第五章 三种列表的讲解"></a>第五章 三种列表的讲解</h4><hr>
+<ul>
+<li><p>三种列表的知识讲解：</p>
+<ul>
+<li>&#96;&#96;&#96;<ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">无序列表</span><br><span class="line"></span><br><span class="line">- 无序列表是一个没有顺序项目的列表，此列表项默认粗体圆点进行标识</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<ul>
+   <li></li>
+   <li></li>
+   <li></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 1. 有序列表</span><br><span class="line"></span><br><span class="line">  2. - 有序列表也是一列项目，只是列表项目使用的是数字进行标记。 有序列表始于 `` 标签。每个列表项始于 ``标签。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol>
+   <li>内容一</li>
+   <li>内容二</li>
+   <li>内容三</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 列表符号</span><br><span class="line">  - 无序列表-列表符号:</span><br><span class="line">    - `type=&quot;circle&quot;` 空心圆 `type=“disc”` 实心圆 默认值 `type=&quot;square&quot;` 方块符</span><br><span class="line">  - 有序列表-列表符号</span><br><span class="line">    - `type=&quot;A&quot;` A B C D</span><br><span class="line">    - `type=&quot;a&quot;` a b c d</span><br><span class="line">    - `type=&quot;1&quot;` 1 2 3 4 默认值type=”I” I II III type=”i” i ii iii</span><br><span class="line">  - 列表嵌套</span><br><span class="line">  - 无序列表-嵌套</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+ <li>柚子
+  <ul>
+   <li>沙田柚</li>
+   <li>蜜柚</li>
+  </ul>
+ </li>
+ <li>荔枝</li>
+ <li>苹果</li></ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 有序列表-嵌套</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol>
+ <li>茶
+  <ul>
+   <li>红茶</li>
+   <li>绿茶</li>
+  </ul>
+ </li>
+ <li>果汁</li>
+ <li>牛奶</li></ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 定义列表</span><br><span class="line">  - 定义列表不仅仅是一列项目，而是项目及其注释的组合。定义列表以 `` 标签开始。每个定义列表项以 ``开始。每个自定义列表项的定义以 `` 开始。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<dl>  
+     <dt>pc网页制作</dt>  
+     <dd>学习DIV+CSS JS JQ 项目实战</dd>  
+     <dt>手机网页制作</dt>  
+     <dd>手机网页制作实战</dd>
+</dl>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- `dd`是对`dt`的解释</span><br><span class="line">  - `&lt; dl&gt;&lt; /dl&gt;`用来创建一个普通的列表,</span><br><span class="line">  - `&lt; dt&gt;&lt; /dt&gt;`用来创建列表中的上层项目，</span><br><span class="line">  - `&lt; dd&gt;&lt; /dd&gt;`用来创建列表中最下层项目，</span><br><span class="line">  - `&lt; dt&gt;&lt; /dt&gt;`和`&lt; dd&gt;&lt; /dd&gt;`都必须放在`&lt; dl&gt;&lt; /dl&gt;`标志对之间。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<dl>
+    <dt>中国城市</dt>
+    <dd>北京 </dd>
+    <dd>上海 </dd>
+    <dd>广州 </dd>
+    <dt>美国城市</dt>
+    <dd>华盛顿 </dd>
+    <dd>芝加哥 </dd>
+    <dd>纽约 </dd>
+</dl>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- `dl`是d`efinition list`的缩写</span><br><span class="line">- `dt`是`definition title`的缩写</span><br><span class="line">- `dd`是d`efinition description`的缩写</span><br><span class="line"></span><br><span class="line">- `list-style`属性具有三个属性分量：</span><br><span class="line">- `list-style-position` ：设置列表项图标的位置，位于文本内或者文本外</span><br><span class="line">- `list-style-type`： 设置列表项图标的类型</span><br><span class="line">- `list-style-image`：使用图像设置列表项图标</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">#### 第六章 表单元素(上)</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- 表单标签:</span><br><span class="line"></span><br><span class="line">  - ``表单标签</span><br><span class="line"></span><br><span class="line">    - ```</span><br><span class="line">      &lt;form&gt;</span><br></pre></td></tr></table></figure>
+
+<pre><code>  表单是一个包含表单元素的区域，包括起来的都是表单的内容
+
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line"> &lt;input type=&quot;text&quot;/&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<ul>
+<li><p>HTML标签 - <code>Action</code>和确认按钮：</p>
+<ul>
+<li>当用户单击确认按钮时，表单的内容会被传送到另一个文件。表单的动作属性定义了目的文件的文件名。由动作属性定义的这个文件通常会对接收到的输入数据进行相关的处理。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;html.do&quot; method=&quot;get&quot;&gt;    </span><br><span class="line">        username:  &lt;input type=&quot;text&quot; name=&quot;user&quot; /&gt;   </span><br><span class="line">        &lt;input type=&quot;submit&quot; value=&quot;提  交&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>HTML</code>标签 - 隐藏域隐藏标签：</li>
+<li>隐藏域在页面中对于用户是不可见的，在表单中插入隐藏域的目的在于收集或发送信息，以利于被处理表单的程序所使用。浏览者单击发送按钮发送表单的时候，隐藏域的信息也被一起发送到服务器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;        </span><br><span class="line">     &lt;input type=&quot;hidden&quot; name=&quot;hid&quot; value=&quot;value&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>&#96;&#96;标签的掌握</p>
+<ul>
+<li>常用<code>type</code>类型：<ul>
+<li>&#96;&#96;</li>
+<li><code>type=&quot;text&quot;</code> 单行文本输入框</li>
+<li><code>type=&quot;password&quot;</code> 密码（<code>maxlength=&quot;&quot;</code>）</li>
+<li><code>type=&quot;radio&quot;</code> 单项选择（<code>checked=&quot;checked&quot;</code>）</li>
+<li><code>type=&quot;checkbox&quot;</code> 多项选择</li>
+<li><code>type=&quot;button&quot;</code> 按钮</li>
+<li><code>type=&quot;submit&quot;</code> 提交 <code>type=&quot;image&quot;</code>图片提交</li>
+<li><code>type=&quot;file&quot;</code> 上传文件</li>
+<li><code>type=&quot;reset&quot;</code>重置</li>
+<li><code>type=&quot;hidden&quot;</code> 隐藏</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>关于表单中的设置默认值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; name=&quot;&quot; value=&quot;今天心情不错&quot; /&gt;</span><br><span class="line">&lt;input type=&quot;radio&quot; name=&quot;&quot; value=&quot;&quot; checked=&quot;checked&quot;&gt;</span><br><span class="line">&lt;input type=&quot;checkbox&quot; name=&quot;&quot; value=&quot;&quot; checked=&quot;checked&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select name=&quot;&quot; &gt;</span><br><span class="line"> &lt;option  value=&quot;&quot;&gt;&lt;/option&gt;</span><br><span class="line"> &lt;option  value=&quot;&quot; selected=&quot;selected&quot;&gt;&lt;/option&gt;</span><br><span class="line">&lt;select&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>textarea</code>没有默认值</p>
+</li>
+<li><p>&#96;&#96;标签的使用</p>
+<ul>
+<li><p>&#96;&#96;</p>
+<ul>
+<li><code>label</code> 元素不会向用户呈现任何特殊效果。</li>
+<li>不过，它为鼠标用户改进了可用性。</li>
+<li>如果您在 <code>label</code> 元素内点击文本，就会触发此控件。</li>
+<li>就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。</li>
+</ul>
+</li>
+<li><p>&#96;&#96; 标签的<code>for</code> 属性应当与相关元素的 <code>id</code>属性相同。</p>
+</li>
+<li><p>例子：（重要—注册表单–用户体验–必做）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;单向选择&lt;/p&gt;</span><br><span class="line">&lt;label for=&quot;male&quot;&gt;男：&lt;/label&gt;&lt;input type=&quot;radio&quot; name=&quot;sex&quot; id=&quot;male&quot;/&gt;</span><br><span class="line">&lt;label for=&quot;nv&quot;&gt;女：&lt;/label&gt;&lt;input type=&quot;radio&quot; name=&quot;sex&quot;checked=&quot;check&quot;/&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="第七章-表单和表格-下"><a href="#第七章-表单和表格-下" class="headerlink" title="第七章 表单和表格(下)"></a>第七章 表单和表格(下)</h4><hr>
+<ul>
+<li><p>表单和表格标签：</p>
+<ul>
+<li>&#96;&#96;文本域标签</li>
+<li>&#96;&#96;标签：</li>
+<li>&#96;&#96;是文本域标签，可以在其中插入一段文字内容，它有两个常用属性<code>rows</code>和<code>cols</code></li>
+</ul>
+</li>
+<li><p>注意：</p>
+<ul>
+<li><code>rows</code>表示这个文本域有多少行</li>
+<li><code>cols</code>表示这个文本域有多少列</li>
+</ul>
+</li>
+<li><p>除了这两个属性它还有<code>readonly</code>（只读，文本域的内容无法改变，相当于协议）和<code>title</code>（鼠标放上提示）</p>
+</li>
+<li><p>&#96;&#96;标签的掌握</p>
+<ul>
+<li><p>注：当提交表单时，浏览器会提交选定的项目，或者收集用逗号分隔的多个选项，将其合成一个单独的参数列表，并且在将</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>表单数据提交给服务器时包括</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name</span><br></pre></td></tr></table></figure>
+
+<p>属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;      </span><br><span class="line">    &lt;select name=&quot;&quot;  id=&quot;&quot;&gt;</span><br><span class="line">         &lt;option value=&quot;1&quot;&gt;1月&lt;/option&gt;  </span><br><span class="line">          &lt;option value=&quot;2&quot;&gt;2月&lt;/option&gt;      </span><br><span class="line">&lt;/select&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>常用到的属性：<code>disabled=“disabled” name=&quot;sel&quot; size=&quot;2&quot;</code></p>
+</li>
+<li><p>&#96;&#96;表格标签</p>
+</li>
+<li><table>表格标签：<table>是表格标签，可以用它定义一个表格。</li>
+<li><p>注意：&#96;&#96;的<code>border</code>属性不能少</p>
+</li>
+<li><p>&#96;标签的使用</p>
+</li>
+<li><p>行标签：</p>
+<ul>
+<li>可以定义表格中的一行，一个&lt;<code>tr&gt;</code>表示一行。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;table border=&quot;1&quot;&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line"> &lt;td&gt;姓名&lt;/td&gt;</span><br><span class="line"> &lt;td&gt;性别&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">&lt;tr&gt;</span><br><span class="line"> &lt;td&gt;姓名&lt;/td&gt;</span><br><span class="line"> &lt;td&gt;性别&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>&#96;单元格标签:</p>
+<ul>
+<li><pre><code>&lt;td&gt;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以定义表格中的一个单元格，</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+&lt;td&gt;&lt;/td&gt;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">表示一个单元格。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+&lt;table border=&quot;1&quot;&gt;
+&lt;tr&gt;
+&lt;td &gt;姓名&lt;/td&gt;
+&lt;td&gt;性别&lt;/td&gt;
+&lt;td&gt;爱好&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+</li>
+<li><p><code>border-collapse</code> 属性设置是否将表格边框折叠为单一边框：</p>
+</li>
+<li><p><code>border-collapse:collapse</code>;</p>
+</li>
+<li><p><code>colspan</code>左右合并</p>
+</li>
+<li><p><code>rowspan</code>上下合并</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>第一部分总结</strong>：</p>
+<ul>
+<li><p>非可视化标签：<code>head</code> <code>meta</code> <code>style</code> <code>scrpit.</code>..</p>
+</li>
+<li><p>可视化标签：<code>img</code> <code>div</code> <code>span</code> <code>a</code> <code>ul</code> <code>li</code>…</p>
+</li>
+<li><p>只有可视化标签，才能用<code>css</code>改变它</p>
+</li>
+<li><p>单标签：<code>meta</code> <code>link</code> <code>base</code> <code>img</code> <code>input</code> <code>br</code> <code>hr</code></p>
+</li>
+<li><p>双标签：<code>html</code> <code>head</code> <code>body</code> <code>div</code> <code>a</code> <code>p</code> <code>span</code> ..<code>ul</code> <code>li</code> <code>ol</code> <code>dl</code> ….</p>
+</li>
+<li><p><strong>常用可视化标签</strong></p>
+<ul>
+<li><p><code>div</code></p>
+<ul>
+<li>一般用它来布局</li>
+</ul>
+</li>
+<li><p>a</p>
+<p>超链接标签</p>
+<ul>
+<li><code>href</code>*属性：设置跳转的网页地址</li>
+<li><code>target</code>属性：设置跳转的目标</li>
+<li>结论：凡事页面可以点击跳转或者表单提交的文字，都用<code>a</code>标签</li>
+</ul>
+</li>
+<li><p><code>img</code></p>
+<ul>
+<li><code>src</code>*属性用来设置图片的url数据</li>
+<li><code>alt</code>提供给搜索引擎搜索的</li>
+<li><code>width</code></li>
+<li><code>height</code></li>
+<li>结论 ：显示图片</li>
+</ul>
+</li>
+<li><p>ul li</p>
+<ul>
+<li>列表</li>
+<li>结论：只要将来设计页面中有固定样式的列表，就用ul和li</li>
+</ul>
+</li>
+<li><p><code>table</code> <code>caption</code> <code>tr</code> <code>td (th)</code></p>
+<ul>
+<li>慢慢已经被淘汰了 被ul li代替</li>
+<li>如果是合并竖排的就是合并行（<code>rowspan</code>）</li>
+<li>如果是合并横排的就是合并列（<code>colspan</code>）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/01/13/html+css+js+ts/3-js%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85lodash/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">js-lodash.js</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/01/09/html+css+js+ts/3-js%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81%E6%93%8D%E4%BD%9C%E5%AE%9E%E4%BE%8B/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">js-常用代码操作实例</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

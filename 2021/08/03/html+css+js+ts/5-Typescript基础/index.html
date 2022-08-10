@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>Typescript基础总结 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">Typescript基础总结</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2021-08-03T13:18:43.000Z" itemprop="datePublished">2021-08-03</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF/">📒 前端</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/typescript/">🏷️ typescript</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h2 id="一、typescript-安装"><a href="#一、typescript-安装" class="headerlink" title="一、typescript 安装"></a>一、typescript 安装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i typescript -g</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>全局安装完成后，我们新建一个<code>hello.ts</code>的<code>ts</code>文件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// hello.ts内容</span><br><span class="line">let a = &quot;poet&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>接下来我们在命令行输入<code>tsc hello.ts</code>来编译这个<code>ts</code>文件，然后会在同级目录生成一个编译好了的<code>hello.js</code>文件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// hello.js内容</span><br><span class="line">var = &quot;poet&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>那么我们每次都要输<code>tsc hello.ts</code>命令来编译，这样很麻烦，能否让它自动编译？答案是可以的，使用<code>vscode</code>来开发，需要配置一下<code>vscode</code>就可以。</p>
+</blockquote>
+<blockquote>
+<p>首先我们在命令行执行<code>tsc --init</code>来生成配置文件，然后我们在目录下看到生成了一个<code>tsconfig.json</code>文件</p>
+</blockquote>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/545.png" alt="img"></p>
+<blockquote>
+<p>这个<code>json</code>文件里有很多选项</p>
+</blockquote>
+<ul>
+<li><code>target</code>是选择编译到什么语法</li>
+<li><code>module</code>则是模块类型</li>
+<li><code>outDir</code>则是输出目录，可以指定这个参数到指定目录</li>
+</ul>
+<blockquote>
+<p>更多细节 <a target="_blank" rel="noopener" href="https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/tsconfig.json.html">https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/tsconfig.json.html</a></p>
+</blockquote>
+<blockquote>
+<p>接下来我们需要开启监控了，在<code>vscode</code>任务栏中</p>
+</blockquote>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/546.png" alt="img"></p>
+<p><strong>Typescript在线编辑器</strong></p>
+<blockquote>
+<p>建议使用在线编辑器练习 <a target="_blank" rel="noopener" href="http://www.typescriptlang.org/play/index.html">http://www.typescriptlang.org/play/index.html</a></p>
+</blockquote>
+<h2 id="二、数据类型"><a href="#二、数据类型" class="headerlink" title="二、数据类型"></a>二、数据类型</h2><blockquote>
+<p><code>js</code>是弱类型语言，强弱类语言有什么区别呢？<code>typescript</code>最大的优点就是类型检查，可以帮你检查你定义的类型和赋值的类型。</p>
+</blockquote>
+<h3 id="2-1-布尔类型boolean"><a href="#2-1-布尔类型boolean" class="headerlink" title="2.1 布尔类型boolean"></a>2.1 布尔类型boolean</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 在js中，定义isFlag为true，为布尔类型boolean</span><br><span class="line">let isFlag = true;</span><br><span class="line">// 但是我们也可以重新给它赋值为字符串</span><br><span class="line">isFlag = &quot;hello swr&quot;;</span><br><span class="line"></span><br><span class="line">// 在ts中，定义isFlag为true，为布尔类型boolean</span><br><span class="line">// 在变量名后加冒号和类型，如  :boolean</span><br><span class="line">let isFlag:boolean = true</span><br><span class="line">// 重新赋值到字符串类型会报错</span><br><span class="line">isFlag = &quot;hello swr&quot; </span><br><span class="line"></span><br><span class="line">// 在java中，一般是这样定义，要写变量名也要写类型名</span><br><span class="line">// int a = 10; </span><br><span class="line">// string name = &quot;poetries&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-数字类型number"><a href="#2-2-数字类型number" class="headerlink" title="2.2 数字类型number"></a>2.2 数字类型number</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let age:number = 28;</span><br><span class="line">age = 29;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-字符串类型string"><a href="#2-3-字符串类型string" class="headerlink" title="2.3 字符串类型string"></a>2.3 字符串类型string</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let name:string = &quot;poetries&quot;</span><br><span class="line">name = &quot;iamswr&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以上<code>boolean</code>、<code>number</code>、<code>string</code>类型有个共性，就是可以通过<code>typeof</code>来获取到是什么类型，是基本数据类型</p>
+</blockquote>
+<p>那么复杂的数据类型是怎么处理的呢？</p>
+<h3 id="2-4-数组-Array"><a href="#2-4-数组-Array" class="headerlink" title="2.4 数组 Array"></a>2.4 数组 Array</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 数组</span><br><span class="line">// 这是一个字符串数组，只能往里面放字符串，写别的类型会报错</span><br><span class="line">let persion:string[] = [&#x27;poetries&#x27;, &#x27;jing&#x27;]</span><br><span class="line">// 另一个写法 </span><br><span class="line">let persions:Array&lt;string&gt; = [&#x27;poetries&#x27;, &#x27;jing&#x27;]</span><br><span class="line"></span><br><span class="line">// 如果数组里放对象呢</span><br><span class="line">let persionObject:Array&lt;object&gt; = [&#123;name:&#x27;poetries&#x27;,age:22&#125;]</span><br><span class="line">let persionObjects:object[] = [&#123;name:&#x27;poetries&#x27;,age:22&#125;]</span><br><span class="line"></span><br><span class="line">// 在数组中放string、number、boolean、object</span><br><span class="line">let arr:Array&lt;number|object|string|boolean&gt; = [22, &#x27;test&#x27;, true, &#123;name:&#x27;poetries&#x27;&#125;]</span><br><span class="line"></span><br><span class="line">// 数组中放什么都可以</span><br><span class="line">let arrAny:Array&lt;any&gt; = [&#x27;test&#x27;,12,false]</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-元组类型tuple"><a href="#2-5-元组类型tuple" class="headerlink" title="2.5 元组类型tuple"></a>2.5 元组类型tuple</h3><ul>
+<li>什么是元组类型？其实元组是数组的一种。</li>
+<li>有点类似解构赋值，但是又不完全是解构赋值，比如元组类型必须一一对应上</li>
+<li>元组类型是一个不可变的数组，长度、类型是不可变的</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 元组类型tuple</span><br><span class="line">// 什么是元组类型？其实元组是数组的一种</span><br><span class="line">let per :[string,number,object] = [&#x27;poetries&#x27;,22,&#123;love: &#x27;coding&#x27;&#125;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-枚举类型enum"><a href="#2-6-枚举类型enum" class="headerlink" title="2.6 枚举类型enum"></a>2.6 枚举类型enum</h3><blockquote>
+<p>什么是枚举？枚举有点类似一一列举，一个一个数出来。一般用于值是某几个固定的值</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 枚举类型enum</span><br><span class="line"></span><br><span class="line">enum sex &#123;</span><br><span class="line">    BOY=&#x27;男孩&#x27;,</span><br><span class="line">    GIRL=&#x27;女孩&#x27;</span><br><span class="line">&#125;</span><br><span class="line">console.log(sex)</span><br><span class="line">// 转化为es5语法</span><br><span class="line">// 我们顺便看看实现的原理</span><br><span class="line"></span><br><span class="line">var sex;</span><br><span class="line">(function (sex) &#123;</span><br><span class="line">// 首先这里是一个自执行函数</span><br><span class="line">// 并且把sex定义为对象，传参进给自执行函数</span><br><span class="line">// 然后给sex对象添加属性并且赋值</span><br><span class="line">    sex[&quot;BOY&quot;] = &quot;\u7537\u5B69&quot;;</span><br><span class="line">    sex[&quot;GIRL&quot;] = &quot;\u5973\u5B69&quot;;</span><br><span class="line">&#125;)(sex || (sex = &#123;&#125;));</span><br><span class="line">console.log(sex);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>比如我们实际项目中，特别是商城类，订单会存在很多状态流转，那么非常适合用枚举</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum orderStatus &#123;</span><br><span class="line">    WAIT_FOR_PAY = &quot;待支付&quot;,</span><br><span class="line">    UNDELIVERED = &quot;完成支付，待发货&quot;,</span><br><span class="line">    DELIVERED = &quot;已发货&quot;,</span><br><span class="line">    COMPLETED = &quot;已确认收货&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>到这里，我们会有一个疑虑，为什么我们不这样写呢？</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let orderStatus2 = &#123;</span><br><span class="line">    WAIT_FOR_PAY : &quot;待支付&quot;,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果我们直接写对象的键值对方式，是可以在外部修改这个值的，而我们通过<code>enum</code>则不能修改定义好的值了</p>
+</blockquote>
+<h3 id="2-7-任意类型-any"><a href="#2-7-任意类型-any" class="headerlink" title="2.7 任意类型 any"></a>2.7 任意类型 any</h3><blockquote>
+<p><code>any</code>有好处也有坏处，特别是前端，很多时候写类型的时候，几乎分不清楚类型，任意去写，写起来很爽，但是对于后续的重构、迭代等是非常不友好的，会暴露出很多问题，某种程度来说，<code>any</code>类型就是放弃了类型检查了</p>
+</blockquote>
+<p>比如我们有这样一个场景，就是需要获取某一个dom节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let btn = document.getElementById(&#x27;btn&#x27;);</span><br><span class="line">btn.style.color = &quot;blue&quot;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>此时我们发现在<code>ts</code>中会报错</p>
+</blockquote>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/547.png" alt="img"></p>
+<ul>
+<li>因为我们取这个<code>dom</code>节点，有可能取到，也有可能没取到，当没取到的时候，相当于是<code>null</code>，是没有<code>style</code>这个属性的。</li>
+<li>那么我们可以给它添加一个类型为<code>any</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 添加一个any类型，此时就不会报错了，但是也相当于放弃了类型检查了</span><br><span class="line">let btn:any = document.getElementById(&#x27;btn&#x27;);</span><br><span class="line">btn.style.color = &quot;blue&quot;;</span><br><span class="line">// 可以赋值任何类型的值</span><br><span class="line">// 跟以前我们var let声明的一模一样的</span><br><span class="line">let person:any = &quot;poetries&quot;</span><br><span class="line">person = 22</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-8-null-undefined类型"><a href="#2-8-null-undefined类型" class="headerlink" title="2.8 null undefined类型"></a>2.8 null undefined类型</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// (string | number | null | undefined) 相当于这几种类型</span><br><span class="line">// 是 string 或 number 或 null 或 undefined</span><br><span class="line"></span><br><span class="line">let str:(string | number | null | undefined)</span><br><span class="line"></span><br><span class="line">str = &#x27;poetries&#x27;</span><br><span class="line">str = 28</span><br><span class="line">str = null </span><br><span class="line">str = undefined</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-9-void类型"><a href="#2-9-void类型" class="headerlink" title="2.9 void类型"></a>2.9 void类型</h3><blockquote>
+<p><code>void</code>表示没有任何类型，一般是定义函数没有返回值</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// void 不能再函数里写return</span><br><span class="line">// 怎么理解叫没有返回值呢？此时我们给函数return一个值</span><br><span class="line">function say(name:string):void&#123;</span><br><span class="line">    console.log(&#x27;hello:&#x27;, name)</span><br><span class="line">    // return &quot;ok&quot; 会报错</span><br><span class="line">    return undefined;</span><br><span class="line">    return //不会报错</span><br><span class="line">&#125;</span><br><span class="line">say(&#x27;poetries&#x27;)</span><br><span class="line"></span><br><span class="line">// 返回一个字符串类型</span><br><span class="line">function say1(name:string):string &#123;</span><br><span class="line">    return &#x27;ok&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-10-never类型"><a href="#2-10-never类型" class="headerlink" title="2.10 never类型"></a>2.10 never类型</h3><blockquote>
+<p>这个用得很少，一般是用于抛出异常</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function error(message:string):never &#123;</span><br><span class="line">    throw new Error(message)</span><br><span class="line">&#125;</span><br><span class="line">error(&#x27;errorMsg&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-11-我们要搞明白any、never、void"><a href="#2-11-我们要搞明白any、never、void" class="headerlink" title="2.11 我们要搞明白any、never、void"></a>2.11 我们要搞明白any、never、void</h3><ul>
+<li><code>any</code>是任意的值</li>
+<li><code>void</code>是不能有任何值</li>
+<li><code>never</code>永远不会有返回值</li>
+</ul>
+<blockquote>
+<p><code>any</code>比较好理解，就是任何值都可以</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let str:any = &quot;hello poetries&quot;</span><br><span class="line">str = 28</span><br><span class="line">str = true</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>void</code>不能有任何值(返回值)</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function say():void &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>never</code>则不好理解，什么叫永远不会有返回值？</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// 除了上面举例的抛出异常以外，我们看一下这个例子</span><br><span class="line">// 这个loop函数，一旦开始执行，就永远不会结束</span><br><span class="line">// 可以看出在while中，是死循环，永远都不会有返回值，包括undefined</span><br><span class="line"></span><br><span class="line">function loop():never &#123;</span><br><span class="line">    while(true)&#123;</span><br><span class="line">        console.log(&quot;陷入死循环啦&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loop()</span><br><span class="line"></span><br><span class="line">// 包括比如JSON.parse也是使用这种 never | any</span><br><span class="line">function parse(str:string):(never | any)&#123;</span><br><span class="line">    return JSON.parse(str)</span><br><span class="line">&#125;</span><br><span class="line">// 首先在正常情况下，我们传一个JSON格式的字符串，是可以正常得到一个JSON对象的</span><br><span class="line">let json = parse(&#x27;&#123;&quot;name&quot;:&quot;poetries&quot;&#125;&#x27;)</span><br><span class="line">// 但是有时候，传进去的不一定是JSON格式的字符串，那么就会抛出异常</span><br><span class="line">// 此时就需要never了</span><br><span class="line">let json = parse(&quot;iamswr&quot;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>也就是说，当一个函数执行的时候，被抛出异常打断了，导致没有返回值或者该函数是一个死循环，永远没有返回值，这样叫做永远不会有返回值。</p>
+</blockquote>
+<p>实际开发中，是<code>never</code>和联合类型来一起用，比如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function say():(never | string) &#123;</span><br><span class="line">  return &quot;ok&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、函数"><a href="#三、函数" class="headerlink" title="三、函数"></a>三、函数</h2><h3 id="3-1-函数定义"><a href="#3-1-函数定义" class="headerlink" title="3.1 函数定义"></a>3.1 函数定义</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function sayHello(name:string):void &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-函数参数处理"><a href="#3-2-函数参数处理" class="headerlink" title="3.2 函数参数处理"></a>3.2 函数参数处理</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 函数是这样定义的</span><br><span class="line">// 形参和实参一一对应，完全一样</span><br><span class="line">function sayHello(name:string,age:number):void &#123;</span><br><span class="line">    console.log(&#x27;hello&#x27;, name, age)</span><br><span class="line">&#125;</span><br><span class="line">sayHello(&#x27;poetries&#x27;,22)</span><br><span class="line"></span><br><span class="line">// 形参和实参要完全一样，如想不一样，则需要配置可选参数，可选参数放在后面</span><br><span class="line">// 可选参数，用 ？ 处理，只能放在后面</span><br><span class="line">function sayHelloToYou(name:string,age?:number):void &#123;</span><br><span class="line">    console.log(&#x27;hello&#x27;, name, age)</span><br><span class="line">&#125;</span><br><span class="line">sayHelloToYou(&#x27;poetries&#x27;)</span><br><span class="line"></span><br><span class="line">// 那么如何设置默认参数呢？</span><br><span class="line"></span><br><span class="line">function ajax(url:string,method:string = &#x27;GET&#x27;) &#123;</span><br><span class="line">    console.log(url, method)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 那么如何设置剩余参数呢？可以利用扩展运算符</span><br><span class="line"></span><br><span class="line">function sum(...args:Array&lt;number&gt;):number &#123;</span><br><span class="line">    return eval(args.join(&quot;+&quot;))</span><br><span class="line">&#125;</span><br><span class="line">let total:number = sum(1,2,3,4,5)</span><br><span class="line">console.log(total)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-函数重载"><a href="#3-3-函数重载" class="headerlink" title="3.3 函数重载"></a>3.3 函数重载</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// 那么如何实现函数重载呢？函数重载是java中非常有名的，在java中函数的重载，是指两个或者两个以上的同名函数，参数的个数和类型不一样</span><br><span class="line"></span><br><span class="line">// 比如我们现在有两个同名函数</span><br><span class="line">// function eating(name:string) &#123;</span><br><span class="line">    </span><br><span class="line">// &#125;</span><br><span class="line">// function eating(name:string,age:number) &#123;</span><br><span class="line">    </span><br><span class="line">// &#125;</span><br><span class="line">// 那么我想达到一个效果</span><br><span class="line">// 当我传参数name时，执行name:string这个函数</span><br><span class="line">// 当我传参数name和age时，执行name:string,age:number这个函数</span><br><span class="line">// 此时该怎么办？</span><br><span class="line"></span><br><span class="line">// 接下来看一下typescript中的函数重载</span><br><span class="line"></span><br><span class="line">// 首先声明两个函数名一样的函数</span><br><span class="line">function eating(name: string):void;</span><br><span class="line">function eating(name: number):void;</span><br><span class="line"></span><br><span class="line">function eating(name:any): void &#123;</span><br><span class="line">    console.log(name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">eating(&quot;hello poetries&quot;)</span><br><span class="line">eating(22)</span><br><span class="line"></span><br><span class="line">// 在typescript中主要体现是同一个同名函数提供多个函数类型定义，函数实际上就只有一个，就是拥有函数体那个，如果想根据传入值类型的不一样执行不同逻辑，则需要在这个函数里面进行一个类型判断。</span><br><span class="line"></span><br><span class="line">// 那么这个函数重载有什么作用呢？其实在ts中，函数重载只是用来限制参数的个数和类型，用来检查类型的，而且重载不能拆开几个函数，这一点和java的处理是不一样的，需要注意。</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、类"><a href="#四、类" class="headerlink" title="四、类"></a>四、类</h2><h3 id="4-1-定义一个类"><a href="#4-1-定义一个类" class="headerlink" title="4.1 定义一个类"></a>4.1 定义一个类</h3><blockquote>
+<p>如何定义一个类？</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// ts 写法</span><br><span class="line">// 跟es6非常像 没有太大区别</span><br><span class="line">class Persion &#123;</span><br><span class="line">    // 这里声明的变量 是实例上的属性</span><br><span class="line">    name: string;</span><br><span class="line">    age:number;</span><br><span class="line"></span><br><span class="line">    constructor(name: string, age: number)&#123;</span><br><span class="line">        // this.name和this.age 必须先在前面声明好类型</span><br><span class="line">        // name: string</span><br><span class="line">        // age: number</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    // 原型方法</span><br><span class="line">    say():string &#123;</span><br><span class="line">        return &#x27;hello poetries&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let p = new Persion(&#x27;poetries&#x27;, 22)</span><br><span class="line">// 那么转为es5呢？</span><br><span class="line"></span><br><span class="line">var Persion = /** @class */ (function () &#123;</span><br><span class="line">    function Persion(name, age) &#123;</span><br><span class="line">        // this.name和this.age 必须先在前面声明好类型</span><br><span class="line">        // name: string</span><br><span class="line">        // age: number</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    // 原型方法</span><br><span class="line">    Persion.prototype.say = function () &#123;</span><br><span class="line">        return &#x27;hello poetries&#x27;;</span><br><span class="line">    &#125;;</span><br><span class="line">    return Persion;</span><br><span class="line">&#125;());</span><br><span class="line">var p = new Persion(&#x27;poetries&#x27;, 22);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-类的继承"><a href="#4-2-类的继承" class="headerlink" title="4.2 类的继承"></a>4.2 类的继承</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 和es6也是差不多</span><br><span class="line">class Parent &#123;</span><br><span class="line">    name: string;</span><br><span class="line">    age: number;</span><br><span class="line">    constructor(name:string, age: number)&#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    say():string&#123;</span><br><span class="line">        return &#x27;hello poetries&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Child extends Parent &#123;</span><br><span class="line">    childName: string;</span><br><span class="line">    constructor(name: string,age:number,childName:string) &#123;</span><br><span class="line">        super(name,age)</span><br><span class="line">        this.childName = childName</span><br><span class="line">    &#125;</span><br><span class="line">    childSay():string &#123;</span><br><span class="line">        return this.childName</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let child = new Child(&#x27;poetries&#x27;, 22, &#x27;静观流叶&#x27;)</span><br><span class="line">console.log(child)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-类的修饰符"><a href="#4-3-类的修饰符" class="headerlink" title="4.3 类的修饰符"></a>4.3 类的修饰符</h3><ul>
+<li><code>public</code>公开的，可以供自己、子类以及其它类访问</li>
+<li><code>protected</code>受保护的，可以供自己、子类访问，但是其他就访问不了</li>
+<li><code>private</code>私有的，只有自己访问，而子类、其他都访问不了</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Parents &#123;</span><br><span class="line">    public name:string;</span><br><span class="line">    protected age:number;</span><br><span class="line">    private money:number;</span><br><span class="line"></span><br><span class="line">   // 简写</span><br><span class="line">   // constructor(public name:string,protected age:number,private money:number)</span><br><span class="line"></span><br><span class="line">   constructor(name: string, age:number,money:number) &#123;</span><br><span class="line">       this.name = name;</span><br><span class="line">       this.age = age;</span><br><span class="line">       this.money = money;</span><br><span class="line">   &#125;</span><br><span class="line">   getName():string &#123;</span><br><span class="line">       return this.name</span><br><span class="line">   &#125;</span><br><span class="line">   getAge():number&#123;</span><br><span class="line">       return this.age</span><br><span class="line">   &#125;</span><br><span class="line">   getMoney():number&#123;</span><br><span class="line">       return this.money</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">let pare = new Parents(&#x27;poetries&#x27;, 22, 3000)</span><br><span class="line">console.log(pare.name)</span><br><span class="line">// console.log(pare.age)  报错</span><br><span class="line">// console.log(pare.money) 报错</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4-静态属性、静态方法"><a href="#4-4-静态属性、静态方法" class="headerlink" title="4.4 静态属性、静态方法"></a>4.4 静态属性、静态方法</h3><p>跟<code>es6</code>差不多</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Person2 &#123;</span><br><span class="line">    // 类的静态属性</span><br><span class="line">    static name1 = &#x27;poetries&#x27;</span><br><span class="line"></span><br><span class="line">    // 类的静态方法</span><br><span class="line">    static say() &#123;</span><br><span class="line">        console.log(&#x27;hello poetries&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let per2 = new Person2()</span><br><span class="line">Person2.say() // hello poetries</span><br><span class="line">// per2.say() 报错</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-5-抽象类"><a href="#4-5-抽象类" class="headerlink" title="4.5 抽象类"></a>4.5 抽象类</h3><ul>
+<li>抽象类和方法，有点类似抽取共性出来，但是又不是具体化，比如说，世界上的动物都需要吃东西，那么会把吃东西这个行为，抽象出来</li>
+<li>如果子类继承的是一个抽象类，子类必须实现父类里的抽象方法，不然的话不能实例化，会报错</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/ 关键字 abstract抽象</span><br><span class="line">// 定义抽象类</span><br><span class="line"></span><br><span class="line">abstract class Animal &#123;</span><br><span class="line">    // 实际上是使用了public修饰符</span><br><span class="line">    // 如果添加private修饰符会报错</span><br><span class="line">    abstract eat():void;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 需要注意的是这个Animal是不能实例化的</span><br><span class="line">// let animal = new Animal() // 报错</span><br><span class="line"></span><br><span class="line">// // 抽象类的抽象方法，意思就是，需要在继承这个抽象类的子类中</span><br><span class="line">// 实现这个抽象方法，不然会报错</span><br><span class="line">// 报错，因为在子类中没有实现eat抽象方法</span><br><span class="line">// class Person4 extends Animal&#123;</span><br><span class="line">//     test()&#123;</span><br><span class="line">//         console.log(&quot;吃米饭&quot;)</span><br><span class="line">//     &#125;</span><br><span class="line">// &#125;</span><br><span class="line"></span><br><span class="line">// Dog类继承Animal类后并且实现了抽象方法eat，所以不会报错</span><br><span class="line">class Dog extends Animal&#123;</span><br><span class="line">    eat()&#123;</span><br><span class="line">        console.log(&quot;吃骨头&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、接口"><a href="#五、接口" class="headerlink" title="五、接口"></a>五、接口</h2><blockquote>
+<p>这里的接口，主要是一种规范，规范某些类必须遵守规范，和抽象类有点类似，但是不局限于类，还有属性、函数等</p>
+</blockquote>
+<h3 id="5-1-接口规范对象"><a href="#5-1-接口规范对象" class="headerlink" title="5.1 接口规范对象"></a>5.1 接口规范对象</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">//假设我们需要获取用户信息</span><br><span class="line">// 我们通过这样的方式 规范必须传name和age的值</span><br><span class="line">function getUserInfo(user:&#123;name:string,age:number&#125;) &#123;</span><br><span class="line">    console.log(user.name,user.age)</span><br><span class="line">&#125;</span><br><span class="line">getUserInfo(&#123;name: &#x27;poetries&#x27;, age: 22&#125;)</span><br><span class="line"></span><br><span class="line">// 这样看挺完美的， 那么问题就出现了，如果我另外还有一个方法，也是需要这个规范呢？</span><br><span class="line"></span><br><span class="line">function getUserInfo1(user:&#123;name:string,age:number&#125;)&#123;</span><br><span class="line">    console.log(`$&#123;user.name&#125; $&#123;user.age&#125;`)</span><br><span class="line">&#125;</span><br><span class="line">function getInfo(user:&#123;name:string,age:number&#125;)&#123;</span><br><span class="line">    console.log(`$&#123;user.name&#125; $&#123;user.age&#125;`)</span><br><span class="line">&#125;</span><br><span class="line">getUserInfo1(&#123;name:&quot;poetries&quot;,age:22&#125;)</span><br><span class="line">getInfo(&#123;name:&quot;poetries&quot;,age:22&#125;)</span><br><span class="line"></span><br><span class="line">// 可以看出，函数getUserInfo和getInfo都遵循同一个规范，那么我们有办法对这个规范复用吗？</span><br><span class="line"></span><br><span class="line">// 首先把需要复用的规范，写到接口 关键字interface</span><br><span class="line">interface infoInterface &#123;</span><br><span class="line">    name: string,</span><br><span class="line">    age: number;</span><br><span class="line">&#125;</span><br><span class="line">// 然后把这个接口 替换到我们需要复用的地方</span><br><span class="line">function getUserInfo2(user:infoInterface) &#123;</span><br><span class="line">    console.log(user.name,user.age)</span><br><span class="line">&#125;</span><br><span class="line">function getInfo2(user:infoInterface) &#123;</span><br><span class="line">    console.log(user.name,user.age)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getUserInfo2(&#123;name:&quot;poetries&quot;,age:22&#125;)</span><br><span class="line">getInfo2(&#123;name:&quot;poetries&quot;,age:22&#125;)</span><br><span class="line"></span><br><span class="line">// 那么有些参数可传可不传，该怎么处理呢？</span><br><span class="line"></span><br><span class="line">interface infoInterface2&#123;</span><br><span class="line">    name: string;</span><br><span class="line">    age: number;</span><br><span class="line">    city?:string;</span><br><span class="line">&#125;</span><br><span class="line">function getUserInfo3(user:infoInterface2)&#123;</span><br><span class="line">    console.log(`$&#123;user.name&#125; $&#123;user.age&#125; $&#123;user.city&#125;`)</span><br><span class="line">&#125;</span><br><span class="line">function getInfo3(user:infoInterface)&#123;</span><br><span class="line">    console.log(`$&#123;user.name&#125; $&#123;user.age&#125;`)</span><br><span class="line">&#125;</span><br><span class="line">getUserInfo3(&#123;name:&quot;poetries&quot;,age:22,city:&quot;深圳&quot;&#125;)</span><br><span class="line">getInfo3(&#123;name:&quot;iamswr&quot;,age:22&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-接口规范函数"><a href="#5-2-接口规范函数" class="headerlink" title="5.2 接口规范函数"></a>5.2 接口规范函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 对一个函数的参数和返回值进行规范</span><br><span class="line">interface mytotal &#123;</span><br><span class="line">    // 左侧是函数的参数，右侧是函数的返回类型</span><br><span class="line">    (a:number,b:number):number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let totalSum:mytotal = function(a:number,b:number):number &#123;</span><br><span class="line">    return a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(totalSum(10, 20))</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-接口规范数组"><a href="#5-3-接口规范数组" class="headerlink" title="5.3 接口规范数组"></a>5.3 接口规范数组</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">interface userInterface &#123;</span><br><span class="line">    // index为数组索引 类型是number</span><br><span class="line">    // 右边是数组里为字符串的数组成员</span><br><span class="line">    [index: number]: string;</span><br><span class="line">&#125;</span><br><span class="line">let arrTest: userInterface = [&#x27;poetries&#x27;, &#x27;静观流叶&#x27;]</span><br><span class="line"></span><br><span class="line">console.log(arrTest)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-接口规范类"><a href="#5-4-接口规范类" class="headerlink" title="5.4 接口规范类"></a>5.4 接口规范类</h3><blockquote>
+<p>这个比较重要，因为写<code>react</code>的时候会经常使用到类</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">// 首先实现一个接口</span><br><span class="line">interface Animal2 &#123;</span><br><span class="line">    // 这个类必须有name</span><br><span class="line">    name:string;</span><br><span class="line"></span><br><span class="line">    // 这个类必须有eat方法</span><br><span class="line">    eat(any:string):void;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 关键字implements实现</span><br><span class="line">// 因为接口是抽象的，需要通过子类是实现它</span><br><span class="line"></span><br><span class="line">class Person6 implements Animal2 &#123;</span><br><span class="line">    name: string;</span><br><span class="line">    constructor(name: string) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    eat(any:string):void &#123;</span><br><span class="line">        console.log(`吃`+any)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 如果想遵循多个接口</span><br><span class="line"></span><br><span class="line">interface Animal3 &#123;</span><br><span class="line">    name: string;</span><br><span class="line">    eat(any: string):void;</span><br><span class="line">&#125;</span><br><span class="line">// 新增一个接口</span><br><span class="line">interface Animal4 &#123;</span><br><span class="line">    sleep():void;</span><br><span class="line">&#125;</span><br><span class="line">// 可以在implements后面通过逗号添加和java一样</span><br><span class="line">class Person7 implements Animal3,Animal4 &#123;</span><br><span class="line">    name: string;</span><br><span class="line">    constructor(name:string)&#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    eat(any:string) &#123;</span><br><span class="line">        console.log(`吃`+any)</span><br><span class="line">    &#125;</span><br><span class="line">    sleep() &#123;</span><br><span class="line">        console.log(&#x27;睡觉&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-5-接口继承接口"><a href="#5-5-接口继承接口" class="headerlink" title="5.5 接口继承接口"></a>5.5 接口继承接口</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">interface Animal5&#123;</span><br><span class="line">    name:string;</span><br><span class="line">    eat(any:string):void;</span><br><span class="line">&#125;</span><br><span class="line">// 像类一样 通过extends继承</span><br><span class="line">interface Animal6 extends Animal5 &#123;</span><br><span class="line">    sleep():void;</span><br><span class="line">&#125;</span><br><span class="line">// 因为Animal6类继承了Animal5</span><br><span class="line">// 所以这里遵循Animal6就相当于把Animal5也继承了</span><br><span class="line"></span><br><span class="line">class Person8 implements Animal2 &#123;</span><br><span class="line">    name: string;</span><br><span class="line">    constructor(name:string) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    eat(any:string):void&#123;</span><br><span class="line">        console.log(`吃$&#123;any&#125;`)</span><br><span class="line">    &#125;</span><br><span class="line">    sleep()&#123;</span><br><span class="line">        console.log(&#x27;睡觉&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、泛型"><a href="#六、泛型" class="headerlink" title="六、泛型"></a>六、泛型</h2><h3 id="6-1-函数的泛型"><a href="#6-1-函数的泛型" class="headerlink" title="6.1 函数的泛型"></a>6.1 函数的泛型</h3><blockquote>
+<p>泛型可以支持不特定的数据类型，什么叫不特定呢？比如我们有一个方法，里面接收参数，但是参数类型我们是不知道，但是这个类型在方法里面很多地方会用到，参数和返回值要保持一致性</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 假设我们有一个需求，我们不知道函数接收什么类型的参数，也不知道返回值的类型</span><br><span class="line">// 而我们又需要传进去的参数类型和返回值的类型保持一致，那么我们就需要用到泛型</span><br><span class="line"></span><br><span class="line">// &lt;T&gt;的意思是泛型，即generic type</span><br><span class="line">// 可以看出value的类型也为T，返回值的类型也为T</span><br><span class="line">function deal&lt;T&gt;(value:T):T&#123;</span><br><span class="line">    return value</span><br><span class="line">&#125;</span><br><span class="line">// 下面的&lt;string&gt;、&lt;number&gt;实际上用的时候再传给上面的&lt;T&gt;</span><br><span class="line">console.log(deal&lt;string&gt;(&quot;poetries&quot;))</span><br><span class="line">console.log(deal&lt;number&gt;(22))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>实际上，泛型用得还是比较少，主要是看类的泛型是如何使用的</p>
+</blockquote>
+<h3 id="6-2-类的泛型"><a href="#6-2-类的泛型" class="headerlink" title="6.2 类的泛型"></a>6.2 类的泛型</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class MyMath&lt;T&gt; &#123;</span><br><span class="line">    // 定义一个私有属性</span><br><span class="line"></span><br><span class="line">    private arr: T[] = []</span><br><span class="line"></span><br><span class="line">    // 规定传参类型</span><br><span class="line">    add(value: T) &#123;</span><br><span class="line">        this.arr.push(value)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 这里规定了类型为number</span><br><span class="line">// 相当于把T替换为number</span><br><span class="line"></span><br><span class="line">let mymath = new MyMath&lt;number&gt;()</span><br><span class="line">mymath.add(1)</span><br><span class="line">mymath.add(2)</span><br><span class="line">mymath.add(3)</span><br></pre></td></tr></table></figure>
+
+<p><strong>有了接口为什么还需要抽象类？</strong></p>
+<blockquote>
+<p>接口里面只能放定义，抽象类里面可以放普通类、普通类的方法、定义抽象的东西。</p>
+</blockquote>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2021/08/15/html+css+js+ts/5-Typescript%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93%5B%E5%9F%BA%E7%A1%80+%E5%B7%A5%E7%A8%8B+%E5%AE%9E%E8%B7%B5%5D/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Typescript实践总结[基础+工程+实践]</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2021/07/25/html+css+js+ts/5-Ts-interface%E4%B8%8Etype%E5%8C%BA%E5%88%AB/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">TS-interface与type区别</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

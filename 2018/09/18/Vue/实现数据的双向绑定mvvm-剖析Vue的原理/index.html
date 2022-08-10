@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>mvvm模式原理 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">mvvm模式原理</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2018-09-18T07:31:24.000Z" itemprop="datePublished">2018-09-18</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">📒 架构模式</a></li>
+  
+    <li><a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">📒 框架</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/vue/">🏷️ vue</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <p><strong>Vue代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;mvvm-app&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; v-model=&quot;word&quot;&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123;word&#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;button v-on:click=&quot;sayHi&quot;&gt;change model&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;observer.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;watcher.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;compile.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;mvvm.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var vm = new MVVM(&#123;</span><br><span class="line">    el: &#x27;#mvvm-app&#x27;,</span><br><span class="line">    data: &#123;</span><br><span class="line">        word: &#x27;Hello World!&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        sayHi: function() &#123;</span><br><span class="line">            this.word = &#x27;Hi, everybody!&#x27;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在 newVue() 后， Vue 会调用 _init 函数进行初始化，也就是init 过程，在 这个过程Data通过Observer转换成了getter&#x2F;setter的形式，来对数据追踪变化，当被设置的对象被读取的时候会执行 getter 函数，而在当被赋值的时候会执行 setter函数。当render function 执行的时候，因为会读取所需对象的值，所以会触发getter函数从而将Watcher添加到依赖中进行依赖收集。在修改对象的值的时候，会触发对应的 setter， setter通知之前依赖收集得到的 Dep 中的每一个 Watcher，告诉它们自己的值改变了，需要重新渲染视图。这时候这些 Watcher就会开始调用 update 来更新视图。</p>
+<h2 id="一、几种实现双向绑定的做法"><a href="#一、几种实现双向绑定的做法" class="headerlink" title="一、几种实现双向绑定的做法"></a>一、几种实现双向绑定的做法</h2><blockquote>
+<p>目前几种主流的<code>mvc(vm)</code>框架都实现了单向数据绑定，而我所理解的双向数据绑定无非就是在单向绑定的基础上给可输入元素（<code>input</code>、<code>textare</code>等）添加了<code>change(input)</code>事件，来动态修改<code>model</code>和 <code>view</code>，并没有多高深。所以无需太过介怀是实现的单向或双向绑定。</p>
+</blockquote>
+<ul>
+<li><p>发布者-订阅者模式（<code>backbone.js</code>）</p>
+</li>
+<li><p>脏值检查（<code>angular.js</code>）</p>
+</li>
+<li><p>数据劫持（<code>vue.js</code>）</p>
+<h3 id="1-1-发布者-订阅者模式"><a href="#1-1-发布者-订阅者模式" class="headerlink" title="1.1 发布者-订阅者模式"></a>1.1 发布者-订阅者模式</h3><ul>
+<li>一般通过<code>sub</code>, <code>pub</code>的方式实现数据和视图的绑定监听，更新数据方式通常做法是 <code>vm.set(&#39;property&#39;, value)</code>，<a target="_blank" rel="noopener" href="http://www.html-js.com/article/Study-of-twoway-data-binding-JavaScript-talk-about-JavaScript-every-day">这里有篇文章讲的比较详细</a></li>
+<li>这种方式现在毕竟太low了，我们更希望通过 <code>vm.property = value</code>这种方式更新数据，同时自动更新视图，于是有了下面两种方式</li>
+</ul>
+<h3 id="1-2-脏值检查"><a href="#1-2-脏值检查" class="headerlink" title="1.2 脏值检查"></a>1.2 脏值检查</h3><blockquote>
+<p><code>angular.js</code> 是通过脏值检测的方式比对数据是否有变更，来决定是否更新视图，最简单的方式就是通过 <code>setInterval()</code> 定时轮询检测数据变动，当然Google不会这么low，angular只有在指定的事件触发时进入脏值检测，大致如下：</p>
+</blockquote>
+<ul>
+<li><code>DOM</code>事件，譬如用户输入文本，点击按钮等。( <code>ng-click</code> )</li>
+<li><code>XHR</code>响应事件 ( <code>$http</code> )</li>
+<li>浏览器<code>Location</code>变更事件 ( <code>$location</code> )</li>
+<li><code>Timer</code>事件( <code>$timeout</code> , <code>$interval</code> )</li>
+<li>执行 <code>$digest()</code> 或 <code>$apply()</code></li>
+</ul>
+<h3 id="1-3-数据劫持"><a href="#1-3-数据劫持" class="headerlink" title="1.3 数据劫持"></a>1.3 数据劫持</h3><ul>
+<li><code>vue.js</code>则是采用数据劫持结合发布者-订阅者模式的方式，通过<code>Object.defineProperty()</code>来劫持各个属性的<code>setter</code>，<code>getter</code>，在数据变动时发布消息给订阅者，触发相应的监听回调。</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、实现思路"><a href="#二、实现思路" class="headerlink" title="二、实现思路"></a>二、实现思路</h2><blockquote>
+<p>已经了解到<code>vue</code>是通过数据劫持的方式来做数据绑定的，其中最核心的方法便是通过<code>Object.defineProperty()</code>来实现对属性的劫持，达到监听数据变动的目的，无疑这个方法是本文中最重要、最基础的内容之一，如果不熟悉<code>defineProperty</code>，猛戳<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">这里</a></p>
+</blockquote>
+<p><strong>要实现mvvm的双向绑定，就必须要实现以下几点</strong></p>
+<ul>
+<li>实现一个数据监听器<code>Observer</code>，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者</li>
+<li>实现一个指令解析器<code>Compile</code>，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数</li>
+<li>实现一个<code>Watcher</code>，作为连接<code>Observer</code>和<code>Compile</code>的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图</li>
+<li><code>mvvm</code>入口函数，整合以上三者</li>
+</ul>
+<h3 id="2-1-实现Observer"><a href="#2-1-实现Observer" class="headerlink" title="2.1 实现Observer"></a>2.1 实现Observer</h3><ul>
+<li>我们知道可以利用<code>Obeject.defineProperty()</code>来监听属性变动</li>
+<li>那么将需要<code>observe</code>的数据对象进行递归遍历，包括子属性对象的属性，都加上<code>setter</code>和<code>getter</code></li>
+<li>这样的话，给这个对象的某个值赋值，就会触发<code>setter</code>，那么就能监听到了数据变化。相关代码可以是这样</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var data = &#123;name: &#x27;kindeng&#x27;&#125;;</span><br><span class="line">observe(data);</span><br><span class="line">data.name = &#x27;dmq&#x27;; // 哈哈哈，监听到值变化了 kindeng --&gt; dmq</span><br><span class="line"></span><br><span class="line">function observe(data) &#123;</span><br><span class="line">    if (!data || typeof data !== &#x27;object&#x27;) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    // 取出所有属性遍历</span><br><span class="line">    Object.keys(data).forEach(function(key) &#123;</span><br><span class="line">	    defineReactive(data, key, data[key]);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function defineReactive(data, key, val) &#123;</span><br><span class="line">    observe(val); // 监听子属性</span><br><span class="line">    Object.defineProperty(data, key, &#123;</span><br><span class="line">        enumerable: true, // 可枚举</span><br><span class="line">        configurable: false, // 不能再define</span><br><span class="line">        get: function() &#123;</span><br><span class="line">            return val;</span><br><span class="line">        &#125;,</span><br><span class="line">        set: function(newVal) &#123;</span><br><span class="line">            console.log(&#x27;哈哈哈，监听到值变化了 &#x27;, val, &#x27; --&gt; &#x27;, newVal);</span><br><span class="line">            val = newVal;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>完整代码 <a target="_blank" rel="noopener" href="https://github.com/poetries/mvvm/blob/master/observer.js">https://github.com/poetries/mvvm/blob/master/observer.js</a></li>
+</ul>
+<blockquote>
+<p>这样我们已经可以监听每个数据的变化了，那么监听到变化之后就是怎么通知订阅者了，所以接下来我们需要实现一个消息订阅器，很简单，维护一个数组，用来收集订阅者，数据变动触发<code>notify</code>，再调用订阅者的<code>update</code>方法，代码改善之后是这样</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// ... 省略</span><br><span class="line">function defineReactive(data, key, val) &#123;</span><br><span class="line">	var dep = new Dep();</span><br><span class="line">    observe(val); // 监听子属性</span><br><span class="line"></span><br><span class="line">    Object.defineProperty(data, key, &#123;</span><br><span class="line">        // ... 省略</span><br><span class="line">        set: function(newVal) &#123;</span><br><span class="line">        	if (val === newVal) return;</span><br><span class="line">            console.log(&#x27;哈哈哈，监听到值变化了 &#x27;, val, &#x27; --&gt; &#x27;, newVal);</span><br><span class="line">            val = newVal;</span><br><span class="line">            dep.notify(); // 通知所有订阅者</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Dep() &#123;</span><br><span class="line">    this.subs = [];</span><br><span class="line">&#125;</span><br><span class="line">Dep.prototype = &#123;</span><br><span class="line">    addSub: function(sub) &#123;</span><br><span class="line">        this.subs.push(sub);</span><br><span class="line">    &#125;,</span><br><span class="line">    notify: function() &#123;</span><br><span class="line">        this.subs.forEach(function(sub) &#123;</span><br><span class="line">            sub.update();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>那么问题来了，谁是订阅者，怎么往订阅器添加订阅者？</li>
+<li>没错，上面的思路整理中我们已经明确订阅者应该是<code>Watcher</code>, 而且<code>var dep = new Dep();</code>是在 <code>defineReactive</code>方法内部定义的，所以想通过<code>dep</code>添加订阅者，就必须要在闭包内操作，所以我们可以在<code>getter</code>里面动手脚：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// Observer.js</span><br><span class="line">// ...省略</span><br><span class="line">Object.defineProperty(data, key, &#123;</span><br><span class="line">	get: function() &#123;</span><br><span class="line">		// 由于需要在闭包内添加watcher，所以通过Dep定义一个全局target属性，暂存watcher, 添加完移除</span><br><span class="line">		Dep.target &amp;&amp; dep.addDep(Dep.target);</span><br><span class="line">		return val;</span><br><span class="line">	&#125;</span><br><span class="line">    // ... 省略</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// Watcher.js</span><br><span class="line">Watcher.prototype = &#123;</span><br><span class="line">	get: function(key) &#123;</span><br><span class="line">		Dep.target = this;</span><br><span class="line">		this.value = data[key];	// 这里会触发属性的getter，从而添加订阅者</span><br><span class="line">		Dep.target = null;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里已经实现了一个<code>Observer</code>了，已经具备了监听数据和数据变化通知订阅者的功能。那么接下来就是实现<code>Compile</code>了</li>
+</ul>
+<h3 id="2-2-实现Compile"><a href="#2-2-实现Compile" class="headerlink" title="2.2 实现Compile"></a>2.2 实现<code>Compile</code></h3><ul>
+<li><code>compile</code>主要做的事情是解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图</li>
+<li>并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图，如图所示</li>
+</ul>
+<p><img src="https://github.com/honeydlp/mvvm/raw/master/defineProperty/img/3.png" alt="img"></p>
+<ul>
+<li>因为遍历解析的过程有多次操作<code>dom</code>节点，为提高性能和效率，会先将跟节点<code>el</code>转换成文档碎片<code>fragment</code>进行解析编译操作</li>
+<li>解析完成，再将<code>fragment</code>添加回原来的真实<code>dom</code>节点中</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function Compile(el) &#123;</span><br><span class="line">    this.$el = this.isElementNode(el) ? el : document.querySelector(el);</span><br><span class="line">    if (this.$el) &#123;</span><br><span class="line">        this.$fragment = this.node2Fragment(this.$el);</span><br><span class="line">        this.init();</span><br><span class="line">        this.$el.appendChild(this.$fragment);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Compile.prototype = &#123;</span><br><span class="line">	init: function() &#123; this.compileElement(this.$fragment); &#125;,</span><br><span class="line">    node2Fragment: function(el) &#123;</span><br><span class="line">        var fragment = document.createDocumentFragment(), child;</span><br><span class="line">        // 将原生节点拷贝到fragment</span><br><span class="line">        while (child = el.firstChild) &#123;</span><br><span class="line">            fragment.appendChild(child);</span><br><span class="line">        &#125;</span><br><span class="line">        return fragment;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>compileElement</code>方法将遍历所有节点及其子节点，进行扫描解析编译，调用对应的指令渲染函数进行数据渲染，并调用对应的指令更新函数进行绑定，详看代码及注释说明</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">Compile.prototype = &#123;</span><br><span class="line">	// ... 省略</span><br><span class="line">	compileElement: function(el) &#123;</span><br><span class="line">        var childNodes = el.childNodes, me = this;</span><br><span class="line">        [].slice.call(childNodes).forEach(function(node) &#123;</span><br><span class="line">            var text = node.textContent;</span><br><span class="line">            var reg = /\&#123;\&#123;(.*)\&#125;\&#125;/;	// 表达式文本</span><br><span class="line">            // 按元素节点方式编译</span><br><span class="line">            if (me.isElementNode(node)) &#123;</span><br><span class="line">                me.compile(node);</span><br><span class="line">            &#125; else if (me.isTextNode(node) &amp;&amp; reg.test(text)) &#123;</span><br><span class="line">                me.compileText(node, RegExp.$1);</span><br><span class="line">            &#125;</span><br><span class="line">            // 遍历编译子节点</span><br><span class="line">            if (node.childNodes &amp;&amp; node.childNodes.length) &#123;</span><br><span class="line">                me.compileElement(node);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    compile: function(node) &#123;</span><br><span class="line">        var nodeAttrs = node.attributes, me = this;</span><br><span class="line">        [].slice.call(nodeAttrs).forEach(function(attr) &#123;</span><br><span class="line">            // 规定：指令以 v-xxx 命名</span><br><span class="line">            // 如 &lt;span v-text=&quot;content&quot;&gt;&lt;/span&gt; 中指令为 v-text</span><br><span class="line">            var attrName = attr.name;	// v-text</span><br><span class="line">            if (me.isDirective(attrName)) &#123;</span><br><span class="line">                var exp = attr.value; // content</span><br><span class="line">                var dir = attrName.substring(2);	// text</span><br><span class="line">                if (me.isEventDirective(dir)) &#123;</span><br><span class="line">                	// 事件指令, 如 v-on:click</span><br><span class="line">                    compileUtil.eventHandler(node, me.$vm, exp, dir);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                	// 普通指令</span><br><span class="line">                    compileUtil[dir] &amp;&amp; compileUtil[dir](node, me.$vm, exp);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 指令处理集合</span><br><span class="line">var compileUtil = &#123;</span><br><span class="line">    text: function(node, vm, exp) &#123;</span><br><span class="line">        this.bind(node, vm, exp, &#x27;text&#x27;);</span><br><span class="line">    &#125;,</span><br><span class="line">    // ...省略</span><br><span class="line">    bind: function(node, vm, exp, dir) &#123;</span><br><span class="line">        var updaterFn = updater[dir + &#x27;Updater&#x27;];</span><br><span class="line">        // 第一次初始化视图</span><br><span class="line">        updaterFn &amp;&amp; updaterFn(node, vm[exp]);</span><br><span class="line">        // 实例化订阅者，此操作会在对应的属性消息订阅器中添加了该订阅者watcher</span><br><span class="line">        new Watcher(vm, exp, function(value, oldValue) &#123;</span><br><span class="line">        	// 一旦属性值有变化，会收到通知执行此更新函数，更新视图</span><br><span class="line">            updaterFn &amp;&amp; updaterFn(node, value, oldValue);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 更新函数</span><br><span class="line">var updater = &#123;</span><br><span class="line">    textUpdater: function(node, value) &#123;</span><br><span class="line">        node.textContent = typeof value == &#x27;undefined&#x27; ? &#x27;&#x27; : value;</span><br><span class="line">    &#125;</span><br><span class="line">    // ...省略</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>完整代码 <a target="_blank" rel="noopener" href="https://github.com/poetries/mvvm/blob/master/compile.js">https://github.com/poetries/mvvm/blob/master/compile.js</a></p>
+</blockquote>
+<ul>
+<li>这里通过递归遍历保证了每个节点及子节点都会解析编译到</li>
+<li>指令的声明规定是通过特定前缀的节点属性来标记，如<code>中</code>v-text&#96;便是指令</li>
+<li>监听数据、绑定更新函数的处理是在<code>compileUtil.bind()</code>这个方法中，通过<code>new Watcher()</code>添加回调来接收数据变化的通知</li>
+<li>至此，一个简单的<code>Compile</code>就完成了。接下来要看看<code>Watcher</code>这个订阅者的具体实现了</li>
+</ul>
+<h3 id="2-3-实现Watcher"><a href="#2-3-实现Watcher" class="headerlink" title="2.3 实现Watcher"></a>2.3 实现Watcher</h3><blockquote>
+<p><code>Watcher</code>订阅者作为<code>Observer</code>和<code>Compile</code>之间通信的桥梁，主要做的事情是</p>
+</blockquote>
+<ul>
+<li>在自身实例化时往属性订阅器<code>dep</code>里面添加自己</li>
+<li>自身必须有一个<code>update()</code>方法</li>
+<li>待属性变动<code>dep.notice()</code>通知时，能调用自身的<code>update()</code>方法，并触发<code>Compile</code>中绑定的回调，则功成身退。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">function Watcher(vm, exp, cb) &#123;</span><br><span class="line">    this.cb = cb;</span><br><span class="line">    this.vm = vm;</span><br><span class="line">    this.exp = exp;</span><br><span class="line">    // 此处为了触发属性的getter，从而在dep添加自己，结合Observer更易理解</span><br><span class="line">    this.value = this.get(); </span><br><span class="line">&#125;</span><br><span class="line">Watcher.prototype = &#123;</span><br><span class="line">    update: function() &#123;</span><br><span class="line">        this.run();	// 属性值变化收到通知</span><br><span class="line">    &#125;,</span><br><span class="line">    run: function() &#123;</span><br><span class="line">        var value = this.get(); // 取到最新值</span><br><span class="line">        var oldVal = this.value;</span><br><span class="line">        if (value !== oldVal) &#123;</span><br><span class="line">            this.value = value;</span><br><span class="line">            this.cb.call(this.vm, value, oldVal); // 执行Compile中绑定的回调，更新视图</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    get: function() &#123;</span><br><span class="line">        Dep.target = this;	// 将当前订阅者指向自己</span><br><span class="line">        var value = this.vm[exp];	// 触发getter，添加自己到属性订阅器中</span><br><span class="line">        Dep.target = null;	// 添加完毕，重置</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">// 这里再次列出Observer和Dep，方便理解</span><br><span class="line">Object.defineProperty(data, key, &#123;</span><br><span class="line">	get: function() &#123;</span><br><span class="line">		// 由于需要在闭包内添加watcher，所以可以在Dep定义一个全局target属性，暂存watcher, 添加完移除</span><br><span class="line">		Dep.target &amp;&amp; dep.addDep(Dep.target);</span><br><span class="line">		return val;</span><br><span class="line">	&#125;</span><br><span class="line">    // ... 省略</span><br><span class="line">&#125;);</span><br><span class="line">Dep.prototype = &#123;</span><br><span class="line">    notify: function() &#123;</span><br><span class="line">        this.subs.forEach(function(sub) &#123;</span><br><span class="line">            sub.update(); // 调用订阅者的update方法，通知变化</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>完整代码 <a target="_blank" rel="noopener" href="https://github.com/poetries/mvvm/blob/master/watcher.js">https://github.com/poetries/mvvm/blob/master/watcher.js</a></p>
+</blockquote>
+<ul>
+<li>实例化<code>Watcher</code>的时候，调用<code>get()</code>方法，通过<code>Dep.target = watcherInstance</code>标记订阅者是当前<code>watcher</code>实例，强行触发属性定义的<code>getter</code>方法，<code>getter</code>方法执行的时候，就会在属性的订阅器<code>dep</code>添加当前<code>watcher</code>实例，从而在属性值有变化的时候，<code>watcherInstance</code>就能收到更新通知。</li>
+<li>基本上<code>vue</code>中数据绑定相关比较核心的几个模块也是这几个，猛戳<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue">这里</a> , 在<code>src</code> 目录可找到<code>vue</code>源码。</li>
+</ul>
+<blockquote>
+<p>最后来讲讲<code>MVVM</code>入口文件的相关逻辑和实现吧，相对就比较简单了</p>
+</blockquote>
+<h2 id="三、实现MVVM"><a href="#三、实现MVVM" class="headerlink" title="三、实现MVVM"></a>三、实现MVVM</h2><blockquote>
+<p><code>MVVM</code>作为数据绑定的入口，整合<code>Observer</code>、<code>Compile</code>和<code>Watcher</code>三者，通过<code>Observer</code>来监听自己的<code>model</code>数据变化，通过<code>Compile</code>来解析编译模板指令，最终利用<code>Watcher</code>搭起<code>Observer</code>和<code>Compile</code>之间的通信桥梁，达到数据变化 -&gt; 视图更新；视图交互变化(<code>input</code>) -&gt; 数据<code>model</code>变更的双向绑定效果。</p>
+</blockquote>
+<ul>
+<li>一个简单的<code>MVVM</code>构造器是这样子：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function MVVM(options) &#123;</span><br><span class="line">    this.$options = options;</span><br><span class="line">    var data = this._data = this.$options.data;</span><br><span class="line">    observe(data, this);</span><br><span class="line">    this.$compile = new Compile(options.el || document.body, this)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>但是这里有个问题，从代码中可看出监听的数据对象是<code>options.data</code>，每次需要更新视图，则必须通过<code>var vm = new MVVM(&#123;data:&#123;name: &#39;kindeng&#39;&#125;&#125;); vm._data.name = &#39;dmq&#39;;</code>这样的方式来改变数据。</li>
+<li>显然不符合我们一开始的期望，我们所期望的调用方式应该是这样的：<br><code>var vm = new MVVM(&#123;data: &#123;name: &#39;kindeng&#39;&#125;&#125;); vm.name = &#39;dmq&#39;;</code></li>
+<li>所以这里需要给<code>MVVM</code>实例添加一个属性代理的方法，使访问<code>vm</code>的属性代理为访问<code>vm._data</code>的属性，改造后的代码如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function MVVM(options) &#123;</span><br><span class="line">    this.$options = options;</span><br><span class="line">    var data = this._data = this.$options.data, me = this;</span><br><span class="line">    // 属性代理，实现 vm.xxx -&gt; vm._data.xxx</span><br><span class="line">    Object.keys(data).forEach(function(key) &#123;</span><br><span class="line">        me._proxy(key);</span><br><span class="line">    &#125;);</span><br><span class="line">    observe(data, this);</span><br><span class="line">    this.$compile = new Compile(options.el || document.body, this)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MVVM.prototype = &#123;</span><br><span class="line">	_proxy: function(key) &#123;</span><br><span class="line">		var me = this;</span><br><span class="line">        Object.defineProperty(me, key, &#123;</span><br><span class="line">            configurable: false,</span><br><span class="line">            enumerable: true,</span><br><span class="line">            get: function proxyGetter() &#123;</span><br><span class="line">                return me._data[key];</span><br><span class="line">            &#125;,</span><br><span class="line">            set: function proxySetter(newVal) &#123;</span><br><span class="line">                me._data[key] = newVal;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完整代码 <a target="_blank" rel="noopener" href="https://github.com/poetries/mvvm/blob/master/mvvm.js">https://github.com/poetries/mvvm/blob/master/mvvm.js</a></p>
+<ul>
+<li>这里主要还是利用了<code>Object.defineProperty()</code>这个方法来劫持了<code>vm</code>实例对象的属性的读写权，使读写<code>vm</code>实例的属性转成读写了<code>vm._data</code>的属性值，达到鱼目混珠的效果</li>
+</ul>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/09/21/Vue/%E8%99%9A%E6%8B%9Fdom/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">vue-虚拟DOM</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/09/15/Vue/vue-%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">vue-组件通信</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

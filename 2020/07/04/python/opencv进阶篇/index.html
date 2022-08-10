@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>opencv进阶 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">opencv进阶</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2020-07-04T06:31:08.000Z" itemprop="datePublished">2020-07-04</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E5%90%8E%E7%AB%AF/">📒 后端</a></li>
+  
+    <li><a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">📒 算法</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/python/">🏷️ python</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h1 id="OpenCV进阶篇"><a href="#OpenCV进阶篇" class="headerlink" title="OpenCV进阶篇"></a>OpenCV进阶篇</h1><h1 id="第10章-模板匹配"><a href="#第10章-模板匹配" class="headerlink" title="第10章　模板匹配"></a>第10章　模板匹配</h1><p>模板匹配是一种最原始、最基本的识别方法，可以在原始图像中寻找特定图像的位置。模板匹配经常应用于简单的图像查找场景中，例如，在集体合照中找到某个人的位置。本章将介绍如何利用OpenCV实现模板匹配。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122082012339.png" alt="image-20211122082012339"></p>
+<h2 id="10-1-模板匹配方法"><a href="#10-1-模板匹配方法" class="headerlink" title="10.1　模板匹配方法"></a>10.1　模板匹配方法</h2><p>模板是被查找目标的图像，查找模板在原始图像中的哪个位置的过程就叫模板匹配。OpenCV提供的matchTemplate()方法就是模板匹配方法，其语法如下：</p>
+<pre><code> result = cv2.matchTemplate(image, templ, method, mask)
+</code></pre>
+<p>参数说明：　</p>
+<p>image：原始图像。　</p>
+<p>templ：模板图像，尺寸必须小于或等于原始图像。　</p>
+<p>method：匹配的方法，可用参数值如表10.1所示。</p>
+<p>表10.1　</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122082047351.png" alt="image-20211122082047351"></p>
+<p>匹配方法的参数值　</p>
+<p>mask：可选参数。掩模，只有cv2.TM_SQDIFF和cv2.TM_CCORR_NORMED支持此参数，建议采用默认值。</p>
+<p>返回值说明：　</p>
+<p>result：计算得出的匹配结果。如果原始图像的宽、高分别为W、H，模板图像的宽、高分别为w、h，result就是一个W-w+1列、H-h+1行的32位浮点型数组。数组中每一个浮点数都是原始图像中对应像素位置的匹配结果，其含义需要根据method参数来解读。<br>在模板匹配的计算过程中，模板会在原始图像中移动。模板与重叠区域内的像素逐个对比，最后将对比的结果保存在模板左上角像素点索引位置对应的数组位置中。计算过程如图10.1所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122082229394.png" alt="image-20211122082229394"></p>
+<pre><code>                                                                     图10.1　模板在原始图像中移动并逐个匹配
+</code></pre>
+<p>使用cv2.TM_SQDIFF（平方差匹配）方法计算出的数组格式如下（其他方法计算出的数组格式相同，仅数值不同）：</p>
+<pre><code> [[0.10165964 0.10123613 0.1008469  ... 0.10471864 0.10471849 0.10471849]
+  [0.10131165 0.10087635 0.10047968 ... 0.10471849 0.10471834 0.10471849]
+  [0.10089004 0.10045089 0.10006084 ... 0.10471849 0.10471819 0.10471849]
+  ...
+  [0.16168603 0.16291814 0.16366465 ... 0.12178455 0.12198001 0.12187888]
+  [0.15859096 0.16000605 0.16096526 ... 0.12245651 0.12261643 0.12248362]
+  [0.15512456 0.15672517 0.15791312 ... 0.12315679 0.1232616  0.12308815]]
+</code></pre>
+<p>模板将原始图像中每一块区域都覆盖一遍，但结果数组的行、列数并不等于原始图像的像素的行、列数。假设模板的宽为w，高为h，原始图像的宽为W，高为H，如图10.2所示。<br>模板移动到原始图像的边缘之后就不会继续移动了，所以模板的移动区域如图10.3所示，该区域的边长为“原始图像边长-模板边长+1”，最后加1是因为移动区域内的上下、左右的2个边都被模板覆盖到了，如果不加1会丢失数据。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122085327267.png" alt="image-20211122085327267"></p>
+<pre><code>                                                                                    图10.2　模板和原始图像的宽、高
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122085350483.png" alt="image-20211122085350483"></p>
+<pre><code>                                                                                            图10.3　模板移动的范围
+</code></pre>
+<h2 id="10-2-单模板匹配"><a href="#10-2-单模板匹配" class="headerlink" title="10.2　单模板匹配"></a>10.2　单模板匹配</h2><p>匹配过程中只用到一个模板场景叫单模板匹配。原始图像中可能只有一个和模板相似的图像，也可能有多个。如果只获取匹配程度最高的那一个结果，这种操作叫作单目标匹配。如果需要同时获取所有匹配程度较高的结果，这种操作叫作多目标匹配。</p>
+<h3 id="10-2-1-单目标匹配"><a href="#10-2-1-单目标匹配" class="headerlink" title="10.2.1　单目标匹配"></a>10.2.1　单目标匹配</h3><p>单目标匹配只获取一个结果即可，就是匹配程度最高的结果（如果使用平方差匹配，则为计算出的最小结果；如果使用相关匹配或相关系数匹配，则为计算出的最大结果）。本节以平方差匹配为例介绍。<br>matchTemplate()方法的计算结果是一个二维数组，OpenCV提供了一个minMaxLoc()方法专门用来解析这个二维数组中的最大值、最小值以及这2个值对应的坐标，minMaxLoc()方法的语法如下：</p>
+<pre><code> minValue, maxValue, minLoc, maxLoc = cv2.minMaxLoc(src, mask)
+</code></pre>
+<p>参数说明：　</p>
+<p>src：matchTemplate()方法计算得出的数组。　</p>
+<p>mask：可选参数，掩模，建议使用默认值。</p>
+<p>返回值说明：　</p>
+<p>minValue：数组中的最小值。</p>
+<p>maxValue：数组中的最大值。　</p>
+<p>minLoc：最小值的坐标，格式为(x, y)。　</p>
+<p>maxLoc：最大值的坐标，格式为(x, y)。<br>平方差匹配的计算结果越小，匹配程度越高。minMaxLoc()方法返回的minValue值就是模板匹配的最优结果，minLoc就是最优结果区域左上角的点坐标，区域大小与模板大小一致。</p>
+<p>【实例10.1】　为原始图片中匹配成功的区域绘制红框。<br>将图10.4作为模板，将图10.5作为原始图像，使用cv2.TM_SQDIFF_NORMED方式进行模板匹配，在原始图像中找到与模板一样的图案，并在该图案上绘制红色方框。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122085451979.png" alt="image-20211122085451979"></p>
+<pre><code>                                                                                                              图10.4　模板
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122085539068.png" alt="image-20211122085539068"></p>
+<pre><code>                                                                           图10.5　原始图片
+</code></pre>
+<p>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122085602382.png" alt="image-20211122085602382"></p>
+<p>上述代码的运行结果如图10.6所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122085749850.png" alt="image-20211122085749850"></p>
+<pre><code>                                                                                    图10.6　模板匹配的效果
+</code></pre>
+<p>在许多综艺节目里，导演组给选手们一幅图像，让选手在指定区域内寻找图像中的某一静物。为了增加游戏难度，导演组可能会让选手们从2个或者多个相似的场景中选择最佳的匹配结果。接下来，使用模板匹配的相应方法模拟这个游戏。</p>
+<p>【实例10.2】　从2幅图像中选择最佳的匹配结果。<br>将图10.7作为模板，将图10.8和图10.9作为原始图像，使用cv2.TM_SQDIFF_NORMED方式进行模板匹配，在2幅原始图像中找到与模板匹配结果最好的图像，并在窗口中显示出来。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122085811909.png" alt="image-20211122085811909">		</p>
+<pre><code>                                                                                                      图10.7　模板
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122085837681.png" alt="image-20211122085837681"></p>
+<pre><code>                                                                                              图10.8　原始图像221
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122085907444.png" alt="image-20211122085907444"></p>
+<pre><code>                                                                                         图10.9　原始图像222
+</code></pre>
+<p>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122085934422.png" alt="image-20211122085934422"></p>
+<p>上述代码的运行结果如图10.10所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122090014973.png" alt="image-20211122090014973"></p>
+<pre><code>                                                                        图10.10　从2幅图像中选择最佳的匹配结果
+</code></pre>
+<p>网速的提升让容量较大的文件更容易在互联网上传播，最明显结果就是现在用户计算机里被堆满了各种各样的图像文件。<br>图像文件与其他文件不同，相同内容的图像可能保存在不同大小、不同格式的文件中，这些文件的二进制字节码差别较大，很难用简单的程序识别。在没有高级识别软件的情况下想要找出内容相同的图像就只能一个一个打开用肉眼识别了。<br>OpenCV能够打破图像文件规格、格式的限制来识别图像内容。</p>
+<p>【实例10.3】　查找重复的图像。<br>图10.11所示的文件夹中有10幅图像，这些图像不仅有JPG格式的，还有PNG格式的，而且这些图像的分辨率也各不相同。接下来将编写一个程序，在该文件夹中找出哪些是重复的照片。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122090116485.png" alt="image-20211122090116485"></p>
+<pre><code>                                                                          图10.11　文件夹中的所有照片文件
+</code></pre>
+<p>想要解决这个问题，可以使用OpenCV提供的matchTemplate()方法来判断2幅图像的相似度，如果相似度大于0.9，就认为这2幅图像是相同的。<br>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122090219888.png" alt="image-20211122090219888"></p>
+<p>上述代码的运行结果如下：</p>
+<pre><code> 相同的照片：10.png, 4.jpg,
+ 相同的照片：2.jpg, 5.jpg, 9.png,
+</code></pre>
+<h3 id="10-2-2-多目标匹配"><a href="#10-2-2-多目标匹配" class="headerlink" title="10.2.2　多目标匹配"></a>10.2.2　多目标匹配</h3><p>多目标匹配需要将原始图像中所有与模板相似的图像都找出来，使用相关匹配或相关系数匹配可以很好地实现这个功能。如果计算结果大于某值（例如0.999），则认为匹配区域的图案和模板是相同的。</p>
+<p>【实例10.4】　为原始图片中所有匹配成功的图案绘制红框。<br>将图10.12作为模板，将图10.13作为原始图像。原始图像中有很多重复的图案，每一个与模板相似的图案都需要被标记出来。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122090300666.png" alt="image-20211122090300666"></p>
+<pre><code>                                                                                                 图10.12　模板
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122090321173.png" alt="image-20211122090321173"></p>
+<pre><code>                                                                                   图10.13　包含重复内容的原始图像
+</code></pre>
+<p>使用cv2.TM_CCOEFF_NORMED方法进行模板匹配，使用for循环遍历matchTemplate()方法返回的结果，找到所有大于0.99的计算结果，在这些结果的对应区域位置绘制红色矩形边框。编写代码时要注意：数组的列数在图像坐标系中为横坐标，数组的行数在图像坐标系中为纵坐标。<br>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122090346039.png" alt="image-20211122090346039"></p>
+<p>上述代码的运行结果如图10.14所示，程序找到了3处与模板相似的图案。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122090426271.png" alt="image-20211122090426271"></p>
+<pre><code>                                                                                                图10.14　匹配结果
+</code></pre>
+<p>多目标匹配在实际生活中有很多应用场景。例如，统计一条快轨线路的站台总数；同一地点附近有2个地铁站，优先选择直线距离最短的地铁站等。</p>
+<p>【实例10.5】　统计一条快轨线路的站台总数。<br>将图10.15作为模板，图10.16作为原始图像，在原始图像中标记快轨线路各个站台，统计这条快轨线路的站台总数。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122090450906.png" alt="image-20211122090450906"></p>
+<pre><code>                                                                                                   图10.15　模板
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122090516424.png" alt="image-20211122090516424"></p>
+<pre><code>                                                                                             图10.16　原始图像
+</code></pre>
+<p>使用cv2.TM_CCOEFF_NORMED方法进行模板匹配，使用for循环遍历matchTemplate()方法返回的结果，找到所有大于0.99的计算结果，在这些结果的对应区域位置绘制蓝色矩形边框，代码如下：       </p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122090545588.png" alt="image-20211122090545588"></p>
+<p>上述代码的运行结果如图10.17所示。<br>实例10.5第6行中的results包含所有蓝色矩形边框左上角的横、纵坐标。利用这一特点，还可以模拟“同一地点附近有2个地铁站，优先选择直线距离最短的地铁站”这一生活场景，模板如图10.18所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122090628716.png" alt="image-20211122090628716"></p>
+<pre><code>                                                                               图10.17　统计一条快轨线路的站台总数
+</code></pre>
+<p>【实例10.6】　优先选择直线距离最短的地铁站。<br>如图10.19所示，坐标为(62, 150)的地点附近有人民广场和解放大路两个地铁站，如何优先选择直线距离最短的地铁站呢？首先将图10.18作为模板，将图10.19作为原始图像，然后在原始图像中标记出这两个地铁站，最后计算并比较坐标为(62, 150)这个地点与这两个地铁站的直线距离。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122090830746.png" alt="image-20211122090830746"></p>
+<pre><code>                                                                                                  图10.18　模板
+
+
+
+                                                                                             图10.19　原始图像
+</code></pre>
+<p>使用cv2.TM_CCOEFF_NORMED方法进行模板匹配，使用for循环遍历matchTemplate()方法返回的结果，找到所有大于0.99的计算结果，在这些结果的对应区域位置绘制蓝色矩形边框，分别计算(62,150)到蓝色矩形边框左上角的距离，用绿色线段标记出直线距离最短的地铁站，代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091313117.png" alt="image-20211122091313117"></p>
+<p>上述代码的运行结果如图10.20所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091347963.png" alt="image-20211122091347963"></p>
+<pre><code>                                                                        图10.20　优先选择直线距离最短的地铁站
+</code></pre>
+<h2 id="10-3-多模板匹配"><a href="#10-3-多模板匹配" class="headerlink" title="10.3　多模板匹配"></a>10.3　多模板匹配</h2><p>匹配过程中同时查找多个模板的操作叫多模板匹配。多模板匹配实际上就是进行了n次“单模板多目标匹配”操作，n的数量为模板总数。【实例10.7】　同时匹配3个不同的模板。<br>将图10.21～图10.23作为模板，将图10.24（a）作为原始图像。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091419764.png" alt="image-20211122091419764"></p>
+<pre><code>                                                                                                   图10.21　模板1
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091440162.png" alt="image-20211122091440162"></p>
+<pre><code>                                                                                              图10.22　模板2
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091458891.png" alt="image-20211122091458891"></p>
+<pre><code>                                                                                                     图10.23　模板3
+</code></pre>
+<p>每一个模板都要做一次“单模板多目标匹配”，最后把所有模板的匹配结果汇总到一起。“单模板多目标匹配”的过程可以封装成一个方法，方法参数为模板和原始图像，方法内部将计算结果再加工一下，直接返回所有红框左上角和右下角两点横纵坐标的列表。在方法之外，将所有模板计算得出的坐标汇总到一个列表中，按照这些汇总的坐标一次性将所有红框都绘制出来。<br>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091539261.png" alt="image-20211122091539261"></p>
+<p>上述代码的运行效果如图10.24（b）所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091621151.png" alt="image-20211122091621151"></p>
+<pre><code>                                                                                            图10.24　多模板匹配效果
+</code></pre>
+<p>使用多模板匹配能够解决很多生活中的实际问题。例如，一个收费停车场有4个车位，车位上陆续地停放了4辆车，通过多模板匹配，能够知晓这4辆车分别停在了哪个车位上。接下来将模拟这一生活场景。</p>
+<p>【实例10.8】　使用多模板匹配让控制台判断4辆车分别停在了哪个车位上。<br>有4辆车按图10.25～图10.28的顺序陆续驶入停车场，这4辆车停在4个车位上的效果如图10.29所示。将图10.25～图10.28作为模板，将图10.29作为原始图像，使用cv2. TM_CCOEFF_NORMED方式进行模板匹配，在原始图像中找到与4个模板一样的图像后，在控制台上输出这4辆车分别停在了哪个车位上。</p>
+<p>说明<br>在图10.29中，1号车位水平像素的取值范围是0<del>200，2号车位水平像素的取值范围是200</del>433，3号车位水平像素的取值范围是433<del>656，4号车位水平像素的取值范围是656</del>871。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091712450.png" alt="image-20211122091712450"></p>
+<pre><code>                                                                                                  图10.25　模板1
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091731718.png" alt="image-20211122091731718"></p>
+<pre><code>                                                                                                 图10.26　模板2
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091750330.png" alt="image-20211122091750330"></p>
+<pre><code>                                                                                                   图10.27　模板3
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091808719.png" alt="image-20211122091808719"></p>
+<pre><code>                                                                                                    图10.28　模板4
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091825529.png" alt="image-20211122091825529"></p>
+<pre><code>                                                                                                   图10.29　原始图像
+</code></pre>
+<p>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122091850011.png" alt="image-20211122091850011"></p>
+<p>上述代码的运行结果如下：</p>
+<pre><code> 车位编号: 4
+ 车位编号: 3
+ 车位编号: 2
+ 车位编号: 1
+</code></pre>
+<p>上面的结果可以得出以下结论：图10.25所示的车辆停在了4号车位上，图10.26所示的车辆停在了3号车位上，图10.27所示的车辆停在了2号车位上，图10.28所示的车辆停在了1号车位上。</p>
+<h2 id="10-4-小结"><a href="#10-4-小结" class="headerlink" title="10.4　小结"></a>10.4　小结</h2><p>模板匹配包括单模板匹配和多模板匹配，单模板匹配又包括单目标匹配和多目标匹配。实现这些内容的基础方法就是模板匹配方法，即matchTemplate()方法。其中，重点掌握模板匹配方法的6个参数值。此外，为了实现单目标匹配，除了需要使用模板匹配方法matchTemplate()外，还要使用minMaxLoc()方法，这个方法返回的就是单目标匹配的最优结果。对于多目标匹配，要将它和多模板匹配区分开：多目标匹配只有一个模板，而多模板匹配则有多个模板。</p>
+<h1 id="第11章-滤波器"><a href="#第11章-滤波器" class="headerlink" title="第11章　滤波器"></a>第11章　滤波器</h1><p>在尽量保留原图像信息的情况下，去除图像内噪声、降低细节层次信息等一系列过程，叫作图像的平滑处理（或图像的模糊处理）。实现平滑处理最常用的工具就是滤波器。通过调节滤波器的参数，可以控制图像的平滑程度。OpenCV提供了种类丰富的滤波器，每种滤波器使用的算法均不同，但都能对图像中的像素值进行微调，让图像呈现平滑效果。本章将介绍均值滤波器、中值滤波器、高斯滤波器和双边滤波器的使用方法。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122092213657.png" alt="image-20211122092213657"></p>
+<h2 id="11-1-均值滤波器"><a href="#11-1-均值滤波器" class="headerlink" title="11.1　均值滤波器"></a>11.1　均值滤波器</h2><p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122092621030.png" alt="image-20211122092621030"></p>
+<pre><code>                                                                                           图11.1　噪声图像
+</code></pre>
+<p>图像中可能会出现这样一种像素，该像素与周围像素的差别非常大，导致从视觉上就能看出该像素无法与周围像素组成可识别的图像信息，降低了整个图像的质量。这种“格格不入”的像素就是图像的噪声。如果图像中的噪声都是随机的纯黑像素或者纯白像素，这样的噪声称作“<strong>椒盐噪声”或“盐噪声</strong>”。例如如图7.1所示的就是一幅只有噪声的图像，常称为“雪花点”。<br>以一个像素为核心，其周围像素可以组成一个n行n列（简称n×n）的矩阵，这样的矩阵结构在滤波操作中被称为“滤波核”。矩阵的行、列数决定了滤波核的大小，如图11.2所示的滤波核大小为3×3，包含9个像素；图11.3所示的滤波核大小为5×5，包含25个像素。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122092605201.png" alt="image-20211122092605201"></p>
+<pre><code>                                                                                             图11.2　3×3的滤波核
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122092712502.png" alt="image-20211122092712502"></p>
+<pre><code>                                                                                               图11.3　5×5的滤波核
+</code></pre>
+<p>均值滤波器（也称为低通滤波器）可以把图像中的每一个像素都当成滤波核的核心，然后计算核内所有像素的平均值，最后让核心像素值等于这个平均值。<br>例如，图11.4就是均值滤波的计算过程。滤波核大小为3×3，核心像素值是35，颜色较深，周围像素值都为110～150，因此可以认为核心像素是噪声。将滤波核中的所有像素值相加，然后除以像素个数，就得出了平均值123（四舍五入取整）。将核心像素的值改成123，其颜色就与周围颜色差别不大，图像就变得平滑了。这就是均值滤波去噪的原理。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122092745945.png" alt="image-20211122092745945"></p>
+<pre><code>                                                                           图11.4　均值滤波的计算过程
+</code></pre>
+<p>OpenCV将均值滤波器封装成blur()方法，其语法如下：</p>
+<pre><code> dst = cv2.blur(src, ksize, anchor, borderType)
+</code></pre>
+<p>参数说明：　</p>
+<p>src：被处理的图像。　</p>
+<p>ksize：滤波核大小，其格式为(高度，宽度)，建议使用如(3, 3)、(5, 5)、(7, 7)等宽、高相等的奇数边长。滤波核越大，处理之后的图像就越模糊。　</p>
+<p>anchor：可选参数，滤波核的锚点，建议采用默认值，可以自动计算锚点。</p>
+<p>borderType：可选参数，边界样式，建议采用默认值。</p>
+<p>返回值说明：　</p>
+<p>dst：经过均值滤波处理之后的图像。</p>
+<p>【实例11.1】　对花朵图像进行均值滤波操作。<br>分别使用大小为3×3、5×5和9×9的滤波核对花朵图像进行均值滤波操</p>
+<p>作，具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122094217442.png" alt="image-20211122094217442"></p>
+<p>上述代码的运行结果如图11.5所示，从这个结果可以看出，滤波核越大，处理之后的图像就越模糊。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122092914325.png" alt="image-20211122092914325"></p>
+<pre><code>                                                                                      图11.5　图像均值滤波效果
+</code></pre>
+<h2 id="11-2-中值滤波器"><a href="#11-2-中值滤波器" class="headerlink" title="11.2　中值滤波器"></a>11.2　中值滤波器</h2><p>中值滤波器的原理与均值滤波器非常相似，唯一的不同就是不计算像素的平均值，而是将所有像素值排序，把最中间的像素值取出，赋值给核心像素。</p>
+<p>例如，图11.6就是中值滤波的计算过程。滤波核大小为3×3，核心像素值是35，周围像素值都为110～150。将核内所有像素值按升序排列，9个像素值排成一行，最中间位置为第5个位置，这个位置的像素值为131。不需再做任何计算，直接把131赋值给核心像素，其颜色就与周围颜色差别不大，图像就变得平滑了。这就是中值滤波去噪的原理。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122095233594.png" alt="image-20211122095233594"></p>
+<p>图11.6　中值滤波的计算过程<br>OpenCV将中值滤波器封装成medianBlur()方法，其语法如下：</p>
+<pre><code> dst = cv2.medianBlur(src, ksize)
+</code></pre>
+<p>参数说明：　</p>
+<p>src：被处理的图像。　</p>
+<p>ksize：滤波核的边长，必须是大于1的奇数，如3、5、7等。该方法根据此边长自动创建一个正方形的滤波核。</p>
+<p>返回值说明：　</p>
+<p>dst：经过中值滤波处理之后的图像。</p>
+<p>注意<br>中值滤波器的ksize参数是边长，而其他滤波器的ksize参数通常为（高，宽）。</p>
+<p>【实例11.2】　对花朵图像进行中值滤波操作.<br>分别使用边长为3、5、9的滤波核对花朵图像进行中值滤波操作，具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122095347319.png" alt="image-20211122095347319"></p>
+<p>上述代码的运行结果如图11.7所示，滤波核的边长越长，处理之后的图像就越模糊。中值滤波处理的图像会比均值滤波处理的图像丢失更多细节。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122095440078.png" alt="image-20211122095440078"></p>
+<pre><code>                                                                                  图11.7　图像中值滤波效果
+</code></pre>
+<h2 id="11-3-高斯滤波器"><a href="#11-3-高斯滤波器" class="headerlink" title="11.3　高斯滤波器"></a>11.3　高斯滤波器</h2><p>高斯滤波也被称为高斯模糊或高斯平滑，是目前应用最广泛的平滑处理算法。高斯滤波可以很好地在降低图片噪声、细节层次的同时保留更多的图像信息，经过处理的图像呈现“磨砂玻璃”的滤镜效果。<br>进行均值滤波处理时，核心周围每个像素的权重都是均等的，也就是每个像素都同样重要，所以计算平均值即可。但在高斯滤波中，越靠近核心的像素权重越大，越远离核心的像素权重越小，例如5×5大小的高斯滤波卷积核的权重示意图如图11.8所示。像素权重不同不能取平均值，要从权重大的像素中取较多的信息，从权重小的像素中取较少的信息。简单概括就是“离谁更近，跟谁更像”。<br>高斯滤波的计算过程涉及卷积运算，会有一个与滤波核大小相等的卷积核。本节仅以3×3的滤波核为例，简单地描述一下高斯滤波的计算过程。<br>卷积核中保存的值就是核所覆盖区域的权重值，其遵循图11.8的规律。卷积核中所有权重值相加的结果为1。例如，3×3的卷积核可以是如图11.9所示的值。随着核大小、σ标准差的变化，卷积核中的值也会发生较大变化，图11.9仅是一种最简单的情况。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122095530857.png" alt="image-20211122095530857"></p>
+<pre><code>                                                             图11.8　5×5的高斯滤波卷积核的权重示意图
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122095559972.png" alt="image-20211122095559972"></p>
+<pre><code>                                                                               图11.9　简化的3×3的卷积核
+</code></pre>
+<p>进行高斯滤波的过程中，滤波核中像素与卷积核进行卷积计算，最后将计算结果赋值给滤波核的核心像素。其计算过程如图11.10所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122095620790.png" alt="image-20211122095620790"></p>
+<pre><code>                                                                                       图11.10　像素与卷积核进行卷积计算
+</code></pre>
+<p>OpenCV将高斯滤波器封装成了GaussianBlur()方法，其语法如下：</p>
+<pre><code> dst = cv2.GaussianBlur(src, ksize, sigmaX, sigmaY, borderType)
+</code></pre>
+<p>参数说明：　</p>
+<p>src：被处理的图像。</p>
+<p>ksize：滤波核的大小，宽高必须是奇数，如(3, 3)、(5, 5)等。　</p>
+<p>sigmaX：卷积核水平方向的标准差。　</p>
+<p>sigmaY：卷积核垂直方向的标准差。　修改sigmaX或sigmaY的值都可以改变卷积核中的权重比例。如果不知道如何设计这2个参数值，就直接把这2个参数的值写成0，该方法就会根据滤波核的大小自动计算合适的权重比例。　</p>
+<p>borderType：可选参数，边界样式，建议使用默认值。</p>
+<p>返回值说明：　</p>
+<p>dst：经过高斯滤波处理之后的图像。</p>
+<p>【实例11.3】　对花朵图像进行高斯滤波操作。<br>分别使用大小为5×5、9×9和15×15的滤波核对花朵图像进行高斯滤波操作，水平方向和垂直方向的标准差参数值全部为0，具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122095728517.png" alt="image-20211122095728517"></p>
+<p>上述代码的运行结果如图11.11所示，滤波核越大，处理之后的图像就越模糊。和均值滤波、中值滤波处理的图像相比，高斯滤波处理的图像更加平滑，保留的图像信息更多，更容易辨认。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122095747712.png" alt="image-20211122095747712"></p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122095856218.png" alt="image-20211122095856218"></p>
+<pre><code>                                                                                图11.11　图像的高斯滤波效果
+</code></pre>
+<h2 id="11-4-双边滤波器"><a href="#11-4-双边滤波器" class="headerlink" title="11.4　双边滤波器"></a>11.4　双边滤波器</h2><p>不管是均值滤波、中值滤波还是高斯滤波，都会使整幅图像变得平滑，图像中的边界会变得模糊不清。双边滤波是一种在平滑处理过程中可以有效保护边界信息的滤波操作方法。<br>双边滤波器自动判断滤波核处于“平坦”区域还是“边缘”区域：如果滤波核处于“平坦”区域，则会使用类似高斯滤波的算法进行滤波；如果滤波核处于“边缘”区域，则加大“边缘”像素的权重，尽可能地让这些像素值保持不变。<br>例如，图11.12是一幅黑白拼接图像，对这幅图像进行高斯滤波，黑白交界处就会变得模糊不清，效果如图11.13所示，但如果对这幅图像进行双边滤波，黑白交界处的边界则可以很好地保留下来，效果如图11.14所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122095927108.png" alt="image-20211122095927108"></p>
+<pre><code>                                                                                         图11.12　原图
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122095943849.png" alt="image-20211122095943849"></p>
+<pre><code>                                                                                  图11.13　高斯滤波效果
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122100141070.png" alt="image-20211122100141070"></p>
+<pre><code>                                                                                  图11.14　双边滤波效果
+</code></pre>
+<p>OpenCV将双边滤波器封装成bilateralFilter()方法，其语法如下：</p>
+<pre><code> dst = cv2.bilateralFilter(src, d, sigmaColor, sigmaSpace, borderType)
+</code></pre>
+<p>参数说明：　</p>
+<p>src：被处理的图像。　</p>
+<p>d：以当前像素为中心的整个滤波区域的直径。如果d&lt;0，则自动根据sigmaSpace参数计算得到。该值与保留的边缘信息数量成正比，与方法运行效率成反比。　</p>
+<p>sigmaColor：参与计算的颜色范围，这个值是像素颜色值与周围颜色值的最大差值，只有颜色值之差小于这个值时，周围的像素才进行滤波计算。值为255时，表示所有颜色都参与计算。　</p>
+<p>sigmaSpace：坐标空间的σ（sigma）值，该值越大，参与计算的像素数量就越多。　</p>
+<p>borderType：可选参数，边界样式，建议默认。<br>返回值说明：　</p>
+<p>dst：经过双边滤波处理之后的图像。</p>
+<p>【实例11.4】　对比高斯滤波和双边滤波的处理效果。</p>
+<p>使用大小为(15, 15)的滤波核对花朵图像进行高斯滤波处理，同样使用15作为范围直径对花朵图像进行双边滤波处理，观察两种滤波处理之后的图像边缘有什么差别，具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122100239643.png" alt="image-20211122100239643"></p>
+<p>上述代码的运行结果如图11.15所示，可以看出高斯滤波模糊了整个画面，但双边滤波保留了较清晰的边缘信息。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211122100319332.png" alt="image-20211122100319332"></p>
+<pre><code>                                                                       图11.15　两种滤波方法效果对比
+</code></pre>
+<h2 id="11-5-小结"><a href="#11-5-小结" class="headerlink" title="11.5　小结"></a>11.5　小结</h2><p>噪声指的是一幅图像内部的、高亮度的像素点。图像平滑处理是指在尽量保留原图像信息的情况下，去除图像内部的这些高亮度的像素点（也就是“噪声”）。为了实现图像平滑处理，需要的工具就是滤波器。本章主要讲解了OpenCV中的4种滤波器，虽然每种滤波器的实现原理都不同，但是每种滤波器都能对图像进行图像平滑处理。读者朋友在掌握这4种滤波器的实现方法的同时，也要熟悉这4种滤波器的实现原理。</p>
+<h1 id="第12章-腐蚀与膨胀"><a href="#第12章-腐蚀与膨胀" class="headerlink" title="第12章　腐蚀与膨胀"></a>第12章　腐蚀与膨胀</h1><p>腐蚀和膨胀是图像形态学中的两种核心操作，通过这两种操作可以清除或强化图像中的细节。合理使用腐蚀和膨胀，还可以实现图像开运算、闭运算、梯度运算、顶帽运算和黑帽运算等极具特点的操作。下面将对腐蚀、膨胀以及其他形态学操作进行详细的介绍。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125193906728.png" alt="image-20211125193906728"></p>
+<h2 id="12-1-腐蚀"><a href="#12-1-腐蚀" class="headerlink" title="12.1　腐蚀"></a>12.1　腐蚀</h2><p>腐蚀操作可以让图像沿着自己的边界向内收缩。OpenCV通过“核”来实现收缩计算。“核”的英文名为kernel，在形态学中可以理解为“由n个像素组成的像素块”，像素块包含一个核心（核心通常在中央位置，也可以定义在其他位置）。像素块在图像的边缘移动，在移动过程中，核会将图像边缘那些与核重合但又没有越过核心的像素点都抹除，效果类似图12.1所示的过程，就像削土豆皮一样，将图像一层一层地“削薄”。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125193959328.png" alt="image-20211125193959328"></p>
+<pre><code>                                                                                   图12.1　核腐蚀图像中的像素
+</code></pre>
+<p>OpenCV将腐蚀操作封装成erode()方法，该方法的语法如下：</p>
+<pre><code> dst = cv2.erode(src, kernel, anchor, iterations, borderType, borderValue)
+</code></pre>
+<p>参数说明：</p>
+<p>src：原始图像。</p>
+<p>kernel：腐蚀使用的核。　</p>
+<p>anchor：可选参数，核的锚点位置。　</p>
+<p>iterations：可选参数，腐蚀操作的迭代次数，默认值为1。　</p>
+<p>borderType：可选参数，边界样式，建议默认。　</p>
+<p>borderValue：可选参数，边界值，建议默认。</p>
+<p>返回值说明：　</p>
+<p>dst：经过腐蚀之后的图像。<br>图像经过腐蚀操作之后，可以抹除一些外部的细节，如图12.2所示是一个卡通小蜘蛛，如果用一个5×5的像素块作为核对小蜘蛛进行腐蚀操作，可以得到如图12.3所示的结果。小蜘蛛的腿被当成外部细节抹除了，同时小蜘蛛的眼睛变大了，因为核从内部也“削”了一圈。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194100364.png" alt="image-20211125194100364"></p>
+<pre><code>                                                                                           图12.2　原图
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194124001.png" alt="image-20211125194124001"></p>
+<pre><code>                                                                                     图12.3　腐蚀之后的图像
+</code></pre>
+<p>在OpenCV做腐蚀或其他形态学操作时，通常使用numpy模块来创建核数组，例如：</p>
+<pre><code> import numpy as np
+ k = np.ones((5, 5), np.uint8)
+</code></pre>
+<p>这两行代码就是通过numpy模块的ones()方法创建了一个5行5列（简称5×5）、数字类型为无符号8位整数、每一个数字的值都是1的数组，这个数组作为erode()方法的核参数。除了5×5的结构，还可以使用3×3、9×9、11×11等结构，行列数越大，计算出的效果就越粗糙，行列数越小，计算出的效果就越精细。</p>
+<p>【实例12.1】　将仙人球图像中的刺抹除。<br>仙人球的叶子呈针状，茎呈深绿色，如图12.4所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194225098.png" alt="image-20211125194225098"></p>
+<pre><code>                                                                                           图12.4　仙人球
+</code></pre>
+<p>使用3×3的核对仙人球图像进行腐蚀操作，可以将图像里的刺抹除，具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194308740.png" alt="image-20211125194308740"></p>
+<p>上述代码的运行结果如图12.5所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194341145.png" alt="image-20211125194341145"></p>
+<pre><code>                                                                          图12.5　图像腐蚀操作效果
+</code></pre>
+<h2 id="12-2-膨胀"><a href="#12-2-膨胀" class="headerlink" title="12.2　膨胀"></a>12.2　膨胀</h2><p>膨胀操作与腐蚀操作相反，膨胀操作可以让图像沿着自己的边界向内扩张。同样是通过核来计算，当核在图像的边缘移动时，核会将图像边缘填补新的像素，效果类似图12.6所示的过程，就像在一面墙上反反复复地涂水泥，让墙变得越来越厚。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194443041.png" alt="image-20211125194443041"></p>
+<pre><code>                                                                                  图12.6　核填补图像中的像素
+</code></pre>
+<p>OpenCV将膨胀操作封装成dilate()方法，该方法的语法如下：</p>
+<pre><code> dst = cv2.dilate(src, kernel, anchor, iterations, borderType, borderValue)
+</code></pre>
+<p>参数说明：　</p>
+<p>src：原始图像。　</p>
+<p>kernel：膨胀使用的核。　</p>
+<p>anchor：可选参数，核的锚点位置。　</p>
+<p>iterations：可选参数，腐蚀操作的迭代次数，默认值为1。　</p>
+<p>borderType：可选参数，边界样式，建议默认。　</p>
+<p>borderValue：可选参数，边界值，建议默认。<br>返回值说明：　</p>
+<p>dst：经过膨胀之后的图像。<br>图像经过膨胀操作之后，可以放大一些外部的细节，如图12.7（a）所示的卡通小蜘蛛，如果用一个5×5的像素块作为核对小蜘蛛进行膨胀操作，可以得到如图12.7（b）所示的结果，小蜘蛛不仅腿变粗了，而且连眼睛都胖没了。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194535307.png" alt="image-20211125194535307"></p>
+<pre><code>                                                                            图12.7　图像膨胀操作效果
+</code></pre>
+<p>【实例12.2】　将图像加工成“近视眼”效果。<br>近视眼由于聚焦不准，看东西都需要放大并且模模糊糊的，利用膨胀操作可以将正常画面处理成近视眼看到的画面。采用9×9的数组作为核，对图12.8（a）进行膨胀操作。<br>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194619331.png" alt="image-20211125194619331"></p>
+<p>上述代码的运行结果如图12.8所示</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194637143.png" alt="image-20211125194637143"></p>
+<pre><code>                                                               图12.8　图像膨胀操作“近视眼”效果
+</code></pre>
+<h2 id="12-3-开运算"><a href="#12-3-开运算" class="headerlink" title="12.3　开运算"></a>12.3　开运算</h2><p>开运算是将图像<strong>先进行腐蚀操作，再进行膨胀操作</strong>。开运算可以用来抹除图像外部的细节（或者噪声）。<br>例如，图12.9是一个简单的二叉树，父子节点之间都有线连接。如果对此图像进行腐蚀操作，可以得出如图12.10所示的图像，连接线消失了，节点也比原图节点小一圈。此时再执行膨胀操作，让缩小的节点恢复到原来的大小，就得到了如图12.11所示的效果。<br>这3幅图就是开运算的过程，从结果中可以明显地看出：经过开运算之后，二叉树中的连接线消失了，只剩下光秃秃的节点。因为连接线被核当成“细节”抹除了，所以利用检测轮廓的方法可以统计二叉树节点数量，也就是说在某些情况下，开运算的结果还可以用来做数量统计。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194659165.png" alt="image-20211125194659165"></p>
+<pre><code>                                                                                    图12.9　简单的二叉树
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194754294.png" alt="image-20211125194754294"></p>
+<pre><code>                                                                  图12.10　二叉树图像腐蚀之后的效果
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194813564.png" alt="image-20211125194813564"></p>
+<pre><code>                                                                     图12.11　对腐蚀的图像做膨胀操作
+</code></pre>
+<p>【实例12.3】　抹除黑种草图像中的针状叶子。<br>黑种草如图12.12（a）所示，花呈蓝色，叶子像针一样又细又长，呈羽毛状。要抹除黑种草图像中的叶子，可以使用5×5的核对图像进行开运算。<br>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194832293.png" alt="image-20211125194832293"></p>
+<p>上述代码的运行结果如图12.12（b）所示，经过开运算后黑种草图像虽然略为模糊，但叶子都不见了。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194853964.png" alt="image-20211125194853964"></p>
+<pre><code>                                                                                               图12.12　图像开运算效果
+</code></pre>
+<h2 id="12-4-闭运算"><a href="#12-4-闭运算" class="headerlink" title="12.4　闭运算"></a>12.4　闭运算</h2><p>闭运算是将图像先进行膨胀操作，再进行腐蚀操作。闭运算可以抹除图像内部的细节（或者噪声）。<br>例如，图12.13（a）是一个身上布满斑点的小蜘蛛，这些斑点就是图像的内部细节。先将图像进行膨胀操作，小蜘蛛身上的斑点（包括眼睛）被抹除，效果如图12.13（b）所示。然后再将图像进行腐蚀操作，膨胀的小蜘蛛恢复到原来的大小，效果如图12.13（c）所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125194952165.png" alt="image-20211125194952165"></p>
+<pre><code>                                                                              图12.13　图像闭运算效果
+</code></pre>
+<p>这3幅图就是闭运算的过程，从结果中可以明显地看出：经过闭运算后，小蜘蛛身上的花纹都被抹除了，就连眼睛也被当成“细节”抹除了。<br>闭运算除了会抹除图像内部的细节，还会让一些离得较近的区域合并成一块区域。</p>
+<p>【实例12.4】　对汉字图片进行闭运算。<br>使用15×15的核对图12.14（a）做闭运算。因为使用的核比较大，很容易导致一些间隔较近的区域合并到一起，观察闭运算对汉字图片造成了哪些影响。<br>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195012305.png" alt="image-20211125195012305"></p>
+<p>上述代码的运行结果如图12.14（b）所示，“田”字经过闭运算之后没有多大变化，但是“野”字经过闭运算之后，许多独立的区域因膨胀操作合并到一起，导致文字很难辨认。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195103765.png" alt="image-20211125195103765"></p>
+<pre><code>                                                                                    图12.14　汉字图片闭运算效果
+</code></pre>
+<h2 id="12-5-形态学运算"><a href="#12-5-形态学运算" class="headerlink" title="12.5　形态学运算"></a>12.5　形态学运算</h2><p>腐蚀和膨胀是形态学的基础操作，除了开运算和闭运算以外，形态学中还有几种比较有特点的运算。OpenCV提供了一个morphologyEx()形态学方法，包含所有常用的运算，其语法如下：</p>
+<pre><code> dst = cv2.morphologyEx(src, op, kernel, anchor, iterations, borderType, borderValue)
+</code></pre>
+<p>参数说明：　</p>
+<p>src：原始图像。　</p>
+<p>op：操作类型，具体值如表12.1所示。</p>
+<pre><code>                                                                       表12.1　形态学函数的操作类型参数　
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195140684.png" alt="image-20211125195140684"></p>
+<p>kernel：操作过程中使用的核。　</p>
+<p>anchor：可选参数，核的锚点位置。　</p>
+<p>iterations：可选参数，迭代次数，默认值为1。　</p>
+<p>borderType：可选参数，边界样式，建议默认。　</p>
+<p>borderValue：可选参数，边界值，建议默认。</p>
+<p>返回值说明：　</p>
+<p>dst：操作之后得到的图像。<br>morphologyEx()方法实现的腐蚀、膨胀、开运算和闭运算效果与前文中介绍的效果完全一致，本节不再赘述，下面将介绍3个特点鲜明的操作：梯度运算、顶帽运算和黑帽运算。</p>
+<h3 id="12-5-1-梯度运算"><a href="#12-5-1-梯度运算" class="headerlink" title="12.5.1　梯度运算"></a>12.5.1　梯度运算</h3><p>这里的梯度是指图像梯度，可以简单地理解为像素的变化程度。如果几个连续的像素，其像素值跨度越大，则梯度值越大。<br>梯度运算的运算过程如图12.15所示，让原图的膨胀图减原图的腐蚀图。因为膨胀图比原图大，腐蚀图比原图小，利用腐蚀图将膨胀图掏空，就得到了原图的轮廓图。说明<br>梯度运算中得到的轮廓图只是一个大概轮廓，不精准。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195234243.png" alt="image-20211125195234243"></p>
+<pre><code>                                                                             图12.15　梯度运算过程
+</code></pre>
+<p>梯度运算的参数为cv2.MORPH_GRADIENT，下面通过一段代码实现图12.15的效果。</p>
+<p>【实例12.5】　通过梯度运算画出小蜘蛛的轮廓。<br>使用5×5的核对小蜘蛛图像进行形态学梯度运算，具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195253240.png" alt="image-20211125195253240"></p>
+<p>上述代码的运行结果如图12.16所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195322974.png" alt="image-20211125195322974"></p>
+<pre><code>                                                                                       图12.16　图像梯度运算效果
+</code></pre>
+<h3 id="12-5-2-顶帽运算"><a href="#12-5-2-顶帽运算" class="headerlink" title="12.5.2　顶帽运算"></a>12.5.2　顶帽运算</h3><p>顶帽运算的运算过程如图12.17所示，让原图减原图的开运算图。因为开运算抹除图像的外部细节，“有外部细节”的图像减去“无外部细节”的图像，得到的结果就只剩外部细节了，所以经过顶帽运算之后，小蜘蛛就只剩蜘蛛腿了。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195410644.png" alt="image-20211125195410644"></p>
+<pre><code>                                                                                  图12.17　顶帽运算过程
+</code></pre>
+<p>顶帽运算的参数为cv2.MORPH_TOPHAT，下面通过一段代码实现图12.18的效果。</p>
+<p>【实例12.6】　通过顶帽运算画出小蜘蛛的腿。<br>使用5×5的核对小蜘蛛图像进行顶帽运算，具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195435250.png" alt="image-20211125195435250"></p>
+<p>上述代码的运算结果如图12.18所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195455237.png" alt="image-20211125195455237"></p>
+<pre><code>                                                                                            图12.18　图像开运算效果
+</code></pre>
+<h3 id="12-5-3-黑帽运算"><a href="#12-5-3-黑帽运算" class="headerlink" title="12.5.3　黑帽运算"></a>12.5.3　黑帽运算</h3><p>黑帽运算的运算过程如图12.19所示，让原图的闭运算图减去原图。因为闭运算抹除图像的内部细节，“无内部细节”的图像减去“有内部细节”的图像，得到的结果就只剩内部细节了，所以经过黑帽运算之后，小蜘蛛就只剩下斑点、花纹和眼睛了。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195549507.png" alt="image-20211125195549507"></p>
+<pre><code>                                                                              图12.19　黑帽运算过程
+</code></pre>
+<p>黑帽运算的参数为cv2.MORPH_BLACKHAT，下面通过一段代码实现图12.19的效果。</p>
+<p>【实例12.7】　通过黑帽运算画出小蜘蛛身上的花纹。<br>使用5×5的核对小蜘蛛图像进行黑帽运算，具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195624673.png" alt="image-20211125195624673"></p>
+<p>上述代码的运行结果如图20所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195644815.png" alt="image-20211125195644815"></p>
+<pre><code>                                                                                图12.20　图像黑帽运算效果
+</code></pre>
+<h2 id="12-6-小结"><a href="#12-6-小结" class="headerlink" title="12.6　小结"></a>12.6　小结</h2><p>本章介绍的基础内容是腐蚀和膨胀。读者掌握了其用法，就能轻而易举地实现开运算和闭运算。其中，开运算是对图像先进行腐蚀操作，再进行膨胀操作，其作用是抹除图像外部的细节；而闭运算是对图像先进行膨胀操作，再进行腐蚀操作，其作用是抹除图像内部的细节。此外，形态学运算也是构建在腐蚀和膨胀的基础上的。其中，梯度运算是让原图的膨胀图减原图的腐蚀图，得到的结果是原图的轮廓；顶帽运算是让原图减原图的开运算图，得到的结果是图像的外部细节；黑帽运算是让原图的闭运算图减去原图，得到的结果是图像的内部细节。</p>
+<h1 id="第13章-图形检测"><a href="#第13章-图形检测" class="headerlink" title="第13章　图形检测"></a>第13章　图形检测</h1><p>图形检测是计算机视觉的一项重要功能。通过图形检测可以分析图像中可能存在的形状，然后对这些形状进行描绘，如搜索并绘制图像的边缘，定位图像的位置，判断图像中有没有直线、圆形等。虽然图形检测涉及非常深奥的数学算法，但OpenCV已经将这些算法封装成简单的方法，开发者只要学会如何调用方法、调整参数即可很好地实现检测功能。<br>本章将介绍如何检测图像的形状、图像所占的区域，以及如何查找图像中出现的几何图形等。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195758972.png" alt="image-20211125195758972"></p>
+<h2 id="13-1-图像的轮廓"><a href="#13-1-图像的轮廓" class="headerlink" title="13.1　图像的轮廓"></a>13.1　图像的轮廓</h2><p>轮廓是指<strong>图像中图形或物体的外边缘线条</strong>。简单的几何图形轮廓是由平滑的线构成的，容易识别，但不规则图形的轮廓可能由许多个点构成，识别起来比较困难。<br>OpenCV提供的findContours()方法可以<strong>通过计算图像梯度来判断图像的边缘，然后将边缘的点封装成数组返回。</strong>findContours()方法的语法如下：</p>
+<pre><code> contours, hierarchy = cv2.findContours(image, mode, methode)
+</code></pre>
+<p>参数说明：　</p>
+<p>image：被检测的图像，必须是8位单通道二值图像。如果原始图像是彩色图像，必须转为灰度图像，并经过二值化处理。　</p>
+<p>mode：轮廓的检索模式，具体值如表13.1所示。</p>
+<pre><code>                                                                                          表13.1　轮廓的检索模式参数值
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125195942347.png" alt="image-20211125195942347"></p>
+<p>methode：</p>
+<p>检测轮廓时使用的方法，具体值如表13.2所示。</p>
+<pre><code>                                                                                        表13.2　检测轮廓时使用的方法
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200003759.png" alt="image-20211125200003759"></p>
+<p>返回值说明：　</p>
+<p>contours：检测出的所有轮廓，list类型，每一个元素都是某个轮廓的像素坐标数组。　</p>
+<p>hierarchy：轮廓之间的层次关系。<br>通过findContours()方法找到图像轮廓后，为了方便开发人员观测，最好能把轮廓画出来，于是OpenCV提供了drawContours()方法用来绘制这些轮廓。drawContours()方法的语法如下：</p>
+<pre><code> image = cv2.drawContours(image, contours, contourIdx, color, thickness, lineTypee, hierarchy, maxLevel, offse)
+</code></pre>
+<p>参数说明：</p>
+<p>image：被绘制轮廓的原始图像，可以是多通道图像。　</p>
+<p>contours：findContours()方法得出的轮廓列表。　</p>
+<p>contourIdx：绘制轮廓的索引，如果为-1则绘制所有轮廓。　</p>
+<p>color：绘制颜色，使用BGR格式。　</p>
+<p>thickness：可选参数，画笔的粗细程度，如果该值为-1则绘制实心轮廓。　</p>
+<p>lineTypee：可选参数，绘制轮廓的线型。　</p>
+<p>hierarchy：可选参数，findContours()方法得出的层次关系。　</p>
+<p>maxLevel：可选参数，绘制轮廓的层次深度，最深绘制第maxLevel层。　</p>
+<p>offse：可选参数，偏移量，可以改变绘制结果的位置。</p>
+<p>返回值说明：</p>
+<p>image：同参数中的image，执行后原始图中就包含绘制的轮廓了，可以不使用此返回值保存结果。</p>
+<p>【实例13.1】　绘制几何图像的轮廓。<br>将如图13.1所示的几何图像转换成二值灰度图像，然后通过findContours()方法找到出现的所有轮廓，再通过drawContours()方法将这些轮廓绘制成红色。轮廓的检索模式采用cv2.RETR_LIST，检测方法采用cv2.CHAIN_APPROX_NONE。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200104772.png" alt="image-20211125200104772"></p>
+<pre><code>                                                                             图13.1　简单的几何图像
+</code></pre>
+<p>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200222796.png" alt="image-20211125200222796"></p>
+<p>上述代码的运行结果如图13.2所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200313470.png" alt="image-20211125200313470"></p>
+<pre><code>                                                                                       图13.2　绘制全部轮廓
+</code></pre>
+<p>如果使用cv2.RETR_EXTERNAL做参数则只绘制外轮廓，关键代码如下：</p>
+<pre><code> contours, hierarchy = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+ cv2.drawContours(img, contours, -1, (0, 0, 255), 5)
+</code></pre>
+<p>绘制轮廓的效果如图13.3所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200347818.png" alt="image-20211125200347818"></p>
+<pre><code>                                                                           图13.3　只绘制外轮廓的效果
+</code></pre>
+<p>drawContours()方法的第3个参数可以指定绘制哪个索引的轮廓。索引的顺序由轮廓的检索模式决定，例如cv2.RETR_CCOMP模式下绘制索引为0的轮廓的关键代码如下：</p>
+<pre><code> contours, hierarchy = cv2.findContours(binary, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)
+ cv2.drawContours(img, contours, 0, (0, 0, 255), 5)
+</code></pre>
+<p>在同样的检索模式下，绘制索引为1的轮廓的关键代码如下：</p>
+<pre><code> cv2.drawContours(img, contours, 1, (0, 0, 255), 5)
+</code></pre>
+<p>绘制索引为2的轮廓的关键代码如下：</p>
+<pre><code> cv2.drawContours(img, contours, 2, (0, 0, 255), 5)
+</code></pre>
+<p>绘制索引为3的轮廓的关键代码如下：</p>
+<pre><code> cv2.drawContours(img, contours, 3, (0, 0, 255), 5)
+</code></pre>
+<p>绘制的效果如图13.4～图13.7所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200419734.png" alt="image-20211125200419734"></p>
+<pre><code>                                                                             图13.4　绘制索引为0的轮廓
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200519831.png" alt="image-20211125200519831"></p>
+<pre><code>                                                                      图13.5　绘制索引为1的轮廓
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200538416.png" alt="image-20211125200538416"></p>
+<pre><code>                                                                        图13.6　绘制索引为2的轮廓
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200557884.png" alt="image-20211125200557884"></p>
+<pre><code>                                                                               图13.7　绘制索引为3的轮廓
+</code></pre>
+<p>【实例13.2】　绘制花朵的轮廓。<br>为图13.8（a）所示的花朵图像绘制轮廓，首先要降低图像中的噪声干扰，进行滤波处理，然后将图像处理成二值灰度图像，并检测出轮廓，最后利用绘制轮廓的方法在原始图像中绘制轮廓。<br>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200623625.png" alt="image-20211125200623625"></p>
+<p>上述代码的运行结果如图13.8（b）和图13.8（c）所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200704091.png" alt="image-20211125200704091"></p>
+<pre><code>                                                                              图12.8　绘制花朵轮廓效果
+</code></pre>
+<h2 id="13-2-轮廓拟合"><a href="#13-2-轮廓拟合" class="headerlink" title="13.2　轮廓拟合"></a>13.2　轮廓拟合</h2><p>拟合是指将平面上的一系列点，用一条光滑的曲线连接起来。轮廓的拟合就是将凹凸不平的轮廓用平整的几何图形体现出来。本节将介绍如何按照轮廓绘制矩形包围框和圆形包围框。</p>
+<h3 id="13-2-1-矩形包围框"><a href="#13-2-1-矩形包围框" class="headerlink" title="13.2.1　矩形包围框"></a>13.2.1　矩形包围框</h3><p>矩形包围框是指图像轮廓的最小矩形边界。OpenCV提供的boundingRect()方法可以自动计算轮廓最小矩形边界的坐标、宽和高。boundingRect()方法的语法如下：</p>
+<pre><code> retval = cv2.boundingRect (array)
+</code></pre>
+<p>参数说明：　</p>
+<p>array：轮廓数组。</p>
+<p>返回值说明：</p>
+<p>retval：元组类型，包含4个整数值，分别是最小矩形包围框的：左上角顶点的横坐标、左上角顶点的纵坐标、矩形的宽和高。所以也可以写成x, y, w, h &#x3D; cv2.boundingRect (array)的形式。</p>
+<p>【实例13.3】　为爆炸图形绘制矩形包围框。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200758268.png" alt="image-20211125200758268"></p>
+<pre><code>                                                                                    图13.9　爆炸图形
+</code></pre>
+<p>为图13.9所示的爆炸图形绘制矩形包围框，首先判断图形的轮廓，使用cv2.RETR_LIST检索所有轮廓，使用cv2.CHAIN_APPROX_SIMPLE检索图形所有的端点，然后利用cv2.boundingRect()方法计算最小矩形包围框，并通过cv2.rectangle()方法将这个矩形绘制出来，具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200901021.png" alt="image-20211125200901021"></p>
+<p>上述代码的运行结果如图13.10所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125200917139.png" alt="image-20211125200917139"></p>
+<pre><code>                                                                            图13.10　爆炸图形的最小矩形包围框
+</code></pre>
+<h3 id="13-2-2-圆形包围框"><a href="#13-2-2-圆形包围框" class="headerlink" title="13.2.2　圆形包围框"></a>13.2.2　圆形包围框</h3><p>圆形包围框与矩形包围框一样，是图像轮廓的最小圆形边界。OpenCV提供的minEnclosingCircle ()方法可以自动计算轮廓最小圆形边界的圆心和半径。minEnclosingCircle()方法的语法如下：</p>
+<pre><code> center, radius = cv2.minEnclosingCircle(points)
+</code></pre>
+<p>参数说明：　</p>
+<p>points：轮廓数组。</p>
+<p>返回值说明：　</p>
+<p>center：元组类型，包含2个浮点值，是最小圆形包围框圆心的横坐标和纵坐标。　</p>
+<p>radius：浮点类型，最小圆形包围框的半径。</p>
+<p>【实例13.4】　为爆炸图形绘制圆形包围框。<br>为图13.9所示的爆炸图形绘制矩形包围框，首先判断图形的轮廓，使用cv2.RETR_LIST检索所有轮廓，使用cv2.CHAIN_APPROX_SIMPLE检索图形所有的端点，然后利用cv2. minEnclosingCircle()方法计算最小圆形包围框，并通过cv2.circle()方法将这个矩形绘制出来。绘制过程中要注意：圆心坐标和圆半径都是浮点数，在绘制之前要将浮点数转换成整数。<br>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125201112737.png" alt="image-20211125201112737"></p>
+<p>上述代码的运行结果如图13.11所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125201129231.png" alt="image-20211125201129231"></p>
+<pre><code>                                                                            图13.11　爆炸图形的最小圆形包围框
+</code></pre>
+<h2 id="13-3-凸包"><a href="#13-3-凸包" class="headerlink" title="13.3　凸包"></a>13.3　凸包</h2><p>之前介绍了矩形包围框和圆形包围框，这2种包围框虽然已经逼近了图形的边缘，但这种包围框为了保持几何形状，<strong>与图形的真实轮廓贴合度较差</strong>。<strong>如果能找出图形最外层的端点，将这些端点连接起来，就可以围出一个包围图形的最小包围框，这种包围框叫凸包。</strong><br>凸包是最逼近轮廓的多边形，凸包的每一处都是凸出来的，也就是<strong>任意3个点组成的内角均小于180°。</strong>例如，图13.12就是凸包，而图13.13就不是凸包。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125205558522.png" alt="image-20211125205558522"></p>
+<pre><code>                                                                                                图13.12　凸包
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125205619316.png" alt="image-20211125205619316"></p>
+<pre><code>                                                                                              图13.13　不是凸包
+</code></pre>
+<p>OpenCV提供的convexHull()方法可以自动找出轮廓的凸包，该方法的语法如下：</p>
+<pre><code> hull = cv2.convexHull(points, clockwise, returnPoints)
+</code></pre>
+<p>参数说明：　</p>
+<p>points：轮廓数组。　</p>
+<p>clockwise：可选参数，布尔类型。当该值为True时，凸包中的点按顺时针排列，为False时按逆时针排列。　</p>
+<p>returnPoints：可选参数，布尔类型。当该值为True时返回点坐标，为False时返回点索引。默认值为True。</p>
+<p>返回值说明：　</p>
+<p>hull：凸包的点阵数组。<br>下面通过一个例子演示如何绘制凸包。</p>
+<p>【实例13.5】　为爆炸图形绘制凸包。<br>为图13.9所示的爆炸图形绘制凸包，首先要先判断图形的轮廓，使用cv2.RETR_LIST检索出图形的轮廓，然后使用convexHull()方法找到轮廓的凸包，最后通过polylines()方法将凸包中各点连接起来，具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125205730374.png" alt="image-20211125205730374"></p>
+<p>上述代码的运行结果如图13.14所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125205746309.png" alt="image-20211125205746309"></p>
+<pre><code>                                                                                      图13.14　爆炸图形的凸包
+</code></pre>
+<h2 id="13-4-Canny边缘检测"><a href="#13-4-Canny边缘检测" class="headerlink" title="13.4　Canny边缘检测"></a>13.4　Canny边缘检测</h2><p>Canny边缘检测算法是John F. Canny于1986年开发的一个多级边缘检测算法，该算法根据像素的梯度变化寻找图像边缘，最终可以绘制十分精细的二值边缘图像。<br>OpenCV将Canny边缘检测算法封装在Canny()方法中，该方法的语法如下：</p>
+<pre><code> edges = cv2.Canny(image, threshold1, threshold2, apertureSize, L2gradient)
+</code></pre>
+<p>参数说明：　</p>
+<p>image：检测的原始图像。　</p>
+<p>threshold1：计算过程中使用的第一个阈值，可以是最小阈值，也可以是最大阈值，通常用来设置最小阈值。　</p>
+<p>threshold2：计算过程中使用的第二个阈值，通常用来设置最大阈值。　</p>
+<p>apertureSize：可选参数，Sobel算子的孔径大小。　</p>
+<p>L2gradient：可选参数，计算图像梯度的标识，默认值为False。值为True时采用更精准的算法进行计算。</p>
+<p>返回值说明：　</p>
+<p>edges：计算后得出的边缘图像，是一个二值灰度图像。</p>
+<p>在开发过程中可以通过调整最小阈值和最大阈值控制边缘检测的精细程度。当2个阈值都较小时，检测出较多的细节；当2个阈值都较大时，忽略较多的细节。</p>
+<p>【实例13.6】　使用Canny算法检测花朵边缘。<br>利用Canny()方法检测图13.15（a）所示的花朵图像，分别使用10和50、100和200、400和600作为最低阈值和最高阈值检测3次，具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125205855069.png" alt="image-20211125205855069"></p>
+<p>上述代码的运行结果如图13.15所示，阈值越小，检测出的边缘越多；阈值越大，检测出的边缘越少，只能检测出一些较明显的边缘。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125205918990.png" alt="image-20211125205918990"></p>
+<pre><code>                                                                               图13.15　图像Canny检测效果
+</code></pre>
+<h2 id="13-5-霍夫变换"><a href="#13-5-霍夫变换" class="headerlink" title="13.5　霍夫变换"></a>13.5　霍夫变换</h2><p>霍夫变换是一种特征检测，通过算法识别图像的特征，从而判断图像中的特殊形状，例如直线和圆。本节将介绍如何检测图像中的直线和圆。</p>
+<h3 id="13-5-1-直线检测"><a href="#13-5-1-直线检测" class="headerlink" title="13.5.1　直线检测"></a>13.5.1　直线检测</h3><p>霍夫直线变换是通过霍夫坐标系的直线与笛卡儿坐标系的点之间的映射关系来判断图像中的点是否构成直线。OpenCV将此算法封装成两个方法，分别是cv2.HoughLines()和cv2.HoughLinesP()，前者用于检测无限延长的直线，后者用于检测线段。本节仅介绍比较常用的HoughLinesP()方法。<br>HoughLinesP()方法名称最后有一个大写的P，该方法只能检测二值灰度图像，也就是只有两种像素值的黑白图像。该方法最后把找出的所有线段的两个端点坐标保存成一个数组。<br>HoughLinesP()方法的语法如下：</p>
+<pre><code> lines = cv2.HoughLinesP(image, rho, theta, threshold, minLineLength, maxLineGap)
+</code></pre>
+<p>参数说明：　</p>
+<p>image：检测的原始图像。　</p>
+<p>rho：检测直线使用的半径步长，值为1时，表示检测所有可能的半径步长。　</p>
+<p>theta：搜索直线的角度，值为π&#x2F;180°时，表示检测所有角度。　</p>
+<p>threshold：阈值，该值越小，检测出的直线就越多。　</p>
+<p>minLineLength：线段的最小长度，小于该长度的线段不记录到结果中。　</p>
+<p>maxLineGap：线段之间的最小距离。</p>
+<p>返回值说明：</p>
+<p>lines：一个数组，元素为所有检测出的线段，每条线段是一个数组，代表线段两个端点的横、纵坐标，格式为[[[x1, y1, x2, y2], [x1, y1, x2, y2]]]。注意<br>使用该方法前应该为原始图像进行降噪处理，否则会影响检测结果。</p>
+<p>【实例13.7】　检测笔图像中出现的直线。</p>
+<p>检测如图13.16所示的中性笔照片，先将图像降噪，再对图像进行边缘检测，然后利用HoughLinesP()方法找出边缘图像中的直线线段，最后用cv2.line()方法将找出的线段绘制成红色。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211125210047560.png" alt="image-20211125210047560"></p>
+<pre><code>                                                                                            图13.16　笔图像
+</code></pre>
+<p>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211126130401949.png" alt="image-20211126130401949"></p>
+<p>上述代码的运行结果如图13.17和图13.18所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211126130420890.png" alt="image-20211126130420890"></p>
+<pre><code>                                                                               图13.17　笔图像的边缘检测结果
+</code></pre>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211126130515954.png" alt="image-20211126130515954"></p>
+<pre><code>                                                                     图13.18　将笔图像中检测出的线段描红
+</code></pre>
+<h3 id="13-5-2-圆环检测"><a href="#13-5-2-圆环检测" class="headerlink" title="13.5.2　圆环检测"></a>13.5.2　圆环检测</h3><p>霍夫圆环变换的原理与霍夫直线变换类似。OpenCV提供的HoughCircles()方法用于检测图像中的圆环，该方法在检测过程中进行两轮筛选：第一轮筛选找出可能是圆的圆心坐标，第二轮筛选计算这些圆心坐标可能对应的半径长度。该方法最后将圆心坐标和半径封装成一个浮点型数组。<br>HoughCircles()方法的语法如下：</p>
+<pre><code> circles = cv2.HoughCircles(image, method, dp, minDist, param1, param2, minRadius, maxRadius)
+</code></pre>
+<p>参数说明：　</p>
+<p>image：检测的原始图像。　</p>
+<p>method：检测方法，OpenCV 4.0.0及以前版本仅提供了cv2.HOUGH_GRADIENT作为唯一可用方法。　</p>
+<p>dp：累加器分辨率与原始图像分辨率之比的倒数。值为1时，累加器与原始图像具有相同的分辨率；值为2时，累加器的分辨率为原始图像的1&#x2F;2。通常使用1作为参数。　</p>
+<p>minDist：圆心之间的最小距离。　</p>
+<p>param1：可选参数，Canny边缘检测使用的最大阈值。　</p>
+<p>param2：可选参数，检测圆环结果的投票数。第一轮筛选时投票数超过该值的圆环才会进入第二轮筛选。值越大，检测出的圆环越少，但越精准。　</p>
+<p>minRadius：可选参数，圆环的最小半径。　</p>
+<p>maxRadius：可选参数，圆环的最大半径。</p>
+<p>返回值说明：　</p>
+<p>circles：一个数组，元素为所有检测出的圆环，每个圆环也是一个数组，内容为圆心的横、纵坐标和半径长度，格式为：[[[x1 ,y1, r1], [x2 ,y2, r2]]]。</p>
+<p>注意<br>使用该方法前应该为原始图像进行降噪处理，否则会影响检测结果。</p>
+<p>【实例13.8】　检测硬币图像中出现的圆环。<br>检测如图13.19所示的硬币照片，先将图像降噪，再将图像变成单通道灰度图像，然后利用HoughCircles()方法检测图像中可能是圆环的位置，最后通过cv2.circle()方法在这些位置上绘制圆环和对应的圆心。在绘制圆环之前，要将HoughCircles()方法返回的浮点数组元素转换成整数。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211126130634358.png" alt="image-20211126130634358"></p>
+<pre><code>                                                                                                   图13.19　硬币图像
+</code></pre>
+<p>具体代码如下：</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211126130715358.png" alt="image-20211126130715358"></p>
+<p>上述代码的运行结果如图13.20所示。</p>
+<p><img src="http://127.0.0.1:8000/static/stu/OpenCV%E8%BF%9B%E9%98%B6%E7%AF%87.assets/image-20211126130658457.png" alt="image-20211126130658457"></p>
+<pre><code>                                                                                               图13.20　检测出的圆环位置
+</code></pre>
+<h2 id="13-6-小结"><a href="#13-6-小结" class="headerlink" title="13.6　小结"></a>13.6　小结</h2><p>图像轮廓指的是将图像的边缘连接起来形成的一个整体，它是图像的一个重要的特征信息，通过对图像的轮廓进行操作，能够得到这幅图像的大小、位置和方向等信息，用于后续的计算。为此，OpenCV提供了findContours()方法，通过计算图像的梯度，判断图像的轮廓。为了绘制图像的轮廓，OpenCV又提供了drawContours()方法。但需要注意的是，Canny()方法虽然能够检测出图像的边缘，但这个边缘是不连续的。</p>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2021/02/26/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/01%E9%A1%B9%E7%9B%AE%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%A6%82%E8%BF%B0/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">前端性能优化-01</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2020/06/28/%E7%AE%97%E6%B3%95+%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/7%E7%A7%8D%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">图解前端性能优化</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

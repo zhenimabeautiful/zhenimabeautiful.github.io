@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>React dva总结 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">React dva总结</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2019-12-12T02:50:48.000Z" itemprop="datePublished">2019-12-12</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E6%A1%86%E6%9E%B6/">📒 框架</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/React/">🏷️ React</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h1 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ npm install dva-cli -g</span><br><span class="line"></span><br><span class="line"># 创建应用</span><br><span class="line">$ dva new dva-quickstart</span><br><span class="line"></span><br><span class="line"># 启动</span><br><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>react项目的推荐目录结构（如果使用dva脚手架创建，则自动生成如下）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">|── /mock/             # 数据mock的接口文件  </span><br><span class="line">|── /src/              # 项目源码目录（我们开发的主要工作区域）   </span><br><span class="line">|   |── /components/   # 项目组件（用于路由组件内引用的可复用组件）   </span><br><span class="line">|   |── /routes/       # 路由组件（页面维度） </span><br><span class="line">|   |  |── route1.js  </span><br><span class="line">|   |  |── route2.js   # 根据router.js中的映射，在不同的url下，挂载不同的路由组件</span><br><span class="line">|   |  └── route3.js    </span><br><span class="line">|   |── /models/       # 数据模型（可以理解为store，用于存储数据与方法）  </span><br><span class="line">|   |  |── model1.js  </span><br><span class="line">|   |  |── model2.js   # 选择分离为多个model模型，是根据业务实体进行划分</span><br><span class="line">|   |  └── model3.js  </span><br><span class="line">|   |── /services/     # 数据接口（处理前台页面的ajax请求，转发到后台）   </span><br><span class="line">|   |── /utils/        # 工具函数（工具库，存储通用函数与配置参数）     </span><br><span class="line">|   |── router.js       # 路由配置（定义路由与对应的路由组件）  </span><br><span class="line">|   |── index.js       # 入口文件  </span><br><span class="line">|   |── index.less      </span><br><span class="line">|   └── index.html     </span><br><span class="line">|── package.json       # 项目信息  </span><br><span class="line">└── proxy.config.js    # 数据mock配置</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用 antd</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i babel-plugin-import --save</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>babel-plugin-import</code> 是用来按需加载 <code>antd</code> 的脚本和样式的</p>
+</blockquote>
+<ul>
+<li>编辑 <code>.webpackrc</code>，使 <code>babel-plugin-import</code> 插件生效</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">+  &quot;extraBabelPlugins&quot;: [</span><br><span class="line">+    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;antd&quot;, &quot;libraryDirectory&quot;: &quot;es&quot;, &quot;style&quot;: &quot;css&quot; &#125;]</span><br><span class="line">+  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、初识Dva"><a href="#二、初识Dva" class="headerlink" title="二、初识Dva"></a>二、初识Dva</h1><h2 id="2-1-Dva的特性"><a href="#2-1-Dva的特性" class="headerlink" title="2.1 Dva的特性"></a>2.1 Dva的特性</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dva = React-Router + Redux + Redux-saga</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>仅有 5 个<code>API</code>，仅有5个主要的<code>api</code></li>
+<li>支持 <code>HMR</code>，支持模块的热更新</li>
+<li>支持 <code>SSR (ServerSideRender)</code>，支持服务器端渲染</li>
+<li>支持 <code>Mobile/ReactNative</code>，支持移动手机端的代码编写</li>
+<li>支持<code>TypeScript</code></li>
+<li>支持路由和 <code>Model</code> 的动态加载</li>
+</ul>
+<h2 id="2-2-Dva的五个API"><a href="#2-2-Dva的五个API" class="headerlink" title="2.2 Dva的五个API"></a>2.2 Dva的五个API</h2><p><img src="https://poetries1.gitee.io/img-repo/20191001/43.png" alt="img"></p>
+<h3 id="2-2-1-app-x3D-dva-Opts"><a href="#2-2-1-app-x3D-dva-Opts" class="headerlink" title="2.2.1 app &#x3D; dva(Opts)"></a>2.2.1 app &#x3D; dva(Opts)</h3><blockquote>
+<p><code>app = dva(Opts)</code>：创建应用，返回 <code>dva</code> 实例。(注：dva 支持多实例)**</p>
+</blockquote>
+<p>在<code>opts</code>可以配置所有的<code>hooks</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const app = dva(&#123;</span><br><span class="line">     history,</span><br><span class="line">     initialState,</span><br><span class="line">     onError,</span><br><span class="line">     onAction,</span><br><span class="line">     onStateChange,</span><br><span class="line">     onReducer,</span><br><span class="line">     onEffect,</span><br><span class="line">     onHmr,</span><br><span class="line">     extraReducers,</span><br><span class="line">     extraEnhancers,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>hooks包含如下配置项</p>
+</blockquote>
+<p>1、 <code>onError((err, dispatch) =&gt; &#123;&#125;)</code></p>
+<ul>
+<li><code>effect</code> 执行错误或 <code>subscription</code> 通过<code>done</code> 主动抛错时触发，可用于管理全局出错状态</li>
+<li>注意：<code>subscription</code> 并没有加 <code>try...catch</code>，所以有错误时需通过第二个参数 <code>done</code> 主动抛错</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.model(&#123;</span><br><span class="line">  subscriptions: &#123;</span><br><span class="line">    setup(&#123; dispatch &#125;, done) &#123;</span><br><span class="line">      done(e)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>2、 <code>onAction(fn | fn[])</code></p>
+<blockquote>
+<p>在<code>action</code>被<code>dispatch</code>时触发，用于注册 <code>redux</code> 中间件。支持函数或函数数组格式</p>
+</blockquote>
+<ul>
+<li>例如我们要通过 <code>redux-logger</code> 打印日志</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import createLogger from &#x27;redux-logger&#x27;;</span><br><span class="line">const app = dva(&#123;</span><br><span class="line">  onAction: createLogger(opts),</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>3、 <code>onStateChange(fn)</code></p>
+<blockquote>
+<p><code>state</code> 改变时触发，可用于同步 state 到 <code>localStorage</code>，服务器端等</p>
+</blockquote>
+<p>4、 <code>onReducer(fn)</code></p>
+<blockquote>
+<p>封装 <code>reducer</code> 执行，比如借助 <code>redux-undo</code> 实现 <code>redo/undo</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import undoable from &#x27;redux-undo&#x27;;</span><br><span class="line">const app = dva(&#123;</span><br><span class="line">  onReducer: reducer =&gt; &#123;</span><br><span class="line">    return (state, action) =&gt; &#123;</span><br><span class="line">      const undoOpts = &#123;&#125;;</span><br><span class="line">      const newState = undoable(reducer, undoOpts)(state, action);</span><br><span class="line">      // 由于 dva 同步了 routing 数据，所以需要把这部分还原</span><br><span class="line">      return &#123; ...newState, routing: newState.present.routing &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>5、 <code>onEffect(fn)</code></p>
+<blockquote>
+<p>封装 <code>effect</code> 执行。比如 <code>dva-loading</code> 基于此实现了自动处理 <code>loading</code> 状态</p>
+</blockquote>
+<p>6、 <code>onHmr(fn)</code></p>
+<blockquote>
+<p>热替换相关，目前用于 <code>babel-plugin-dva-hmr</code></p>
+</blockquote>
+<p>7、 <code>extraReducers</code></p>
+<blockquote>
+<p>指定额外的 <code>reducer</code>，比如 <code>redux-form</code> 需要指定额外的 <code>form reducer</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123; reducer as formReducer &#125; from &#x27;redux-form&#x27;</span><br><span class="line">const app = dva(&#123;</span><br><span class="line">  extraReducers: &#123;</span><br><span class="line">    form: formReducer,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里比较常用的是，<code>history</code>的配置，一般默认的是<code>hashHistory</code>，如果要配置 <code>history</code>为 <code>browserHistory</code>，可以这样</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import createHistory from &#x27;history/createBrowserHistory&#x27;;</span><br><span class="line">const app = dva(&#123;</span><br><span class="line">  history: createHistory(),</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">initialState`：指定初始数据，优先级高于 `model` 中的 `state`，默认是 `&#123;&#125;`，但是基本上都在`modal`里面设置相应的`state</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="2-2-2-app-use-Hooks"><a href="#2-2-2-app-use-Hooks" class="headerlink" title="2.2.2 app.use(Hooks)"></a>2.2.2 app.use(Hooks)</h3><blockquote>
+<p>app.use(Hooks)：配置 hooks 或者注册插件</p>
+</blockquote>
+<p>这里最常见的就是<code>dva-loading</code>插件的配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import createLoading from &#x27;dva-loading&#x27;;</span><br><span class="line">...</span><br><span class="line">app.use(createLoading(opts));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>但是一般对于全局的<code>loading</code>我们会根据业务的不同来显示相应不同的<code>loading</code>图标，我们可以根据自己的需要来选择注册相应的插件</p>
+</blockquote>
+<h3 id="2-2-3-app-model-ModelObject"><a href="#2-2-3-app-model-ModelObject" class="headerlink" title="2.2.3 app.model(ModelObject)"></a>2.2.3 app.model(ModelObject)</h3><blockquote>
+<p><code>app.model(ModelObject)</code>：这个是你数据逻辑处理，数据流动的地方</p>
+</blockquote>
+<p><img src="https://poetries1.gitee.io/img-repo/20191001/44.png" alt="img"></p>
+<h3 id="2-2-4-app-unmodel-namespace"><a href="#2-2-4-app-unmodel-namespace" class="headerlink" title="2.2.4 app.unmodel(namespace)"></a>2.2.4 app.unmodel(namespace)</h3><blockquote>
+<p>取消 <code>model</code> 注册，清理 <code>reducers</code>,<code>effects</code> 和 <code>subscriptions</code>。<code>subscription</code> 如果没有返回 <code>unlisten</code> 函数，使用 <code>app.unmodel</code> 会给予警告</p>
+</blockquote>
+<h3 id="2-2-5-app-router-Function"><a href="#2-2-5-app-router-Function" class="headerlink" title="2.2.5 app.router(Function)"></a>2.2.5 app.router(Function)</h3><blockquote>
+<p>注册路由表，这一操作步骤在dva中也很重要</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 注册路由</span><br><span class="line">app.router(require(&#x27;./router&#x27;))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 路由文件</span><br><span class="line">import &#123; Router, Route &#125; from &#x27;dva/router&#x27;;</span><br><span class="line">import IndexPage from &#x27;./routes/IndexPage&#x27;</span><br><span class="line">import TodoList from &#x27;./routes/TodoList&#x27;</span><br><span class="line"></span><br><span class="line">function RouterConfig(&#123; history &#125;) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Router history=&#123;history&#125;&gt;</span><br><span class="line">        &lt;Route path=&quot;/&quot; component=&#123;IndexPage&#125; /&gt;</span><br><span class="line">        &lt;Route path=&#x27;/todoList&#x27; components=&#123;TodoList&#125;/&gt;</span><br><span class="line">    &lt;/Router&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">export default RouterConfig</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果我们想解决组件动态加载问题，我们的路由文件也可以按照下面的写法来写</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Router, Switch, Route &#125; from &#x27;dva/router&#x27;</span><br><span class="line">import dynamic from &#x27;dva/dynamic&#x27;</span><br><span class="line"></span><br><span class="line">function RouterConfig(&#123; history, app &#125;) &#123;</span><br><span class="line">  const IndexPage = dynamic(&#123;</span><br><span class="line">    app,</span><br><span class="line">    component: () =&gt; import(&#x27;./routes/IndexPage&#x27;),</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  const Users = dynamic(&#123;</span><br><span class="line">    app,</span><br><span class="line">    models: () =&gt; [import(&#x27;./models/users&#x27;)],</span><br><span class="line">    component: () =&gt; import(&#x27;./routes/Users&#x27;),</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;Router history=&#123;history&#125;&gt;</span><br><span class="line">      &lt;Switch&gt;</span><br><span class="line">        &lt;Route exact path=&quot;/&quot; component=&#123;IndexPage&#125; /&gt;</span><br><span class="line">        &lt;Route exact path=&quot;/users&quot; component=&#123;Users&#125; /&gt;</span><br><span class="line">      &lt;/Switch&gt;</span><br><span class="line">    &lt;/Router&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default RouterConfig</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其中<code>dynamic(opts)</code> 中<code>opt</code>包含三个配置项：</p>
+</blockquote>
+<ul>
+<li><code>app</code>: <code>dva</code> 实例，加载 <code>models</code> 时需要</li>
+<li><code>models</code>: 返回 <code>Promise</code> 数组的函数，<code>Promise</code>返回 dva model&#96;</li>
+<li><code>component</code>：返回 <code>Promise</code>的函数，<code>Promise</code>返回 <code>React Component</code></li>
+</ul>
+<h3 id="2-2-6-app-start"><a href="#2-2-6-app-start" class="headerlink" title="2.2.6 app.start"></a>2.2.6 app.start</h3><blockquote>
+<p>启动应用，即将我们的应用跑起来</p>
+</blockquote>
+<h2 id="2-3-Dva九个概念"><a href="#2-3-Dva九个概念" class="headerlink" title="2.3 Dva九个概念"></a>2.3 Dva九个概念</h2><h3 id="2-3-1-State"><a href="#2-3-1-State" class="headerlink" title="2.3.1 State"></a>2.3.1 State</h3><blockquote>
+<p>初始值，我们在 <code>dva()</code> 初始化的时候和在 modal 里面的 <code>state</code> 对其两处进行定义，其中 modal 中的优先级低于传给 <code>dva()</code> 的 <code>opts.initialState</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// dva()初始化</span><br><span class="line">const app = dva(&#123;</span><br><span class="line">  initialState: &#123; count: 1 &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// modal()定义事件</span><br><span class="line">app.model(&#123;</span><br><span class="line">  namespace: &#x27;count&#x27;,</span><br><span class="line">  state: 0,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-2-Action"><a href="#2-3-2-Action" class="headerlink" title="2.3.2 Action"></a>2.3.2 Action</h3><blockquote>
+<p>表示操作事件，可以是同步，也可以是异步</p>
+</blockquote>
+<ul>
+<li><code>action</code> 的格式如下，它需要有一个 <code>type</code>，表示这个 <code>action</code> 要触发什么操作；<code>payload</code> 则表示这个 <code>action</code> 将要传递的数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  type: String,</span><br><span class="line">  payload: data,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我们通过 dispatch 方法来发送一个 action</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch(&#123; type: &#x27;todos/add&#x27;, payload: &#x27;Learn Dva&#x27; &#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其实我们可以构建一个Action 创建函数，如下</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function addTodo(text) &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    type: ADD_TODO,</span><br><span class="line">    text</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//我们直接dispatch(addTodo()),就发送了一个action。</span><br><span class="line">dispatch(addTodo())</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-3-Model"><a href="#2-3-3-Model" class="headerlink" title="2.3.3 Model"></a>2.3.3 Model</h3><blockquote>
+<p><code>model</code> 是 <code>dva</code> 中最重要的概念，<code>Model</code> 非 <code>MVC</code> 中的 <code>M</code>，而是领域模型，用于把数据相关的逻辑聚合到一起，几乎所有的数据，逻辑都在这边进行处理分发</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">import queryString from &#x27;query-string&#x27;</span><br><span class="line">import * as todoService from &#x27;../services/todo&#x27;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  namespace: &#x27;todo&#x27;,</span><br><span class="line">  state: &#123;</span><br><span class="line">    list: []</span><br><span class="line">  &#125;,</span><br><span class="line">  reducers: &#123;</span><br><span class="line">    save(state, &#123; payload: &#123; list &#125; &#125;) &#123;</span><br><span class="line">      return &#123; ...state, list &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  effects: &#123;</span><br><span class="line">    *addTodo(&#123; payload: value &#125;, &#123; call, put, select &#125;) &#123;</span><br><span class="line">      // 模拟网络请求</span><br><span class="line">      const data = yield call(todoService.query, value)</span><br><span class="line">      console.log(data)</span><br><span class="line">      let tempList = yield select(state =&gt; state.todo.list)</span><br><span class="line">      let list = []</span><br><span class="line">      list = list.concat(tempList)</span><br><span class="line">      const tempObj = &#123;&#125;</span><br><span class="line">      tempObj.title = value</span><br><span class="line">      tempObj.id = list.length</span><br><span class="line">      tempObj.finished = false</span><br><span class="line">      list.push(tempObj)</span><br><span class="line">      yield put(&#123; type: &#x27;save&#x27;, payload: &#123; list &#125;&#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    *toggle(&#123; payload: index &#125;, &#123; call, put, select &#125;) &#123;</span><br><span class="line">      // 模拟网络请求</span><br><span class="line">      const data = yield call(todoService.query, index)</span><br><span class="line">      let tempList = yield select(state =&gt; state.todo.list)</span><br><span class="line">      let list = []</span><br><span class="line">      list = list.concat(tempList)</span><br><span class="line">      let obj = list[index]</span><br><span class="line">      obj.finished = !obj.finished</span><br><span class="line">      yield put(&#123; type: &#x27;save&#x27;, payload: &#123; list &#125; &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    *delete(&#123; payload: index &#125;, &#123; call, put, select &#125;) &#123;</span><br><span class="line">      const data = yield call(todoService.query, index)</span><br><span class="line">      let tempList = yield select(state =&gt; state.todo.list)</span><br><span class="line">      let list = []</span><br><span class="line">      list = list.concat(tempList)</span><br><span class="line">      list.splice(index, 1)</span><br><span class="line">      yield put(&#123; type: &#x27;save&#x27;, payload: &#123; list &#125; &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    *modify(&#123; payload: &#123; value, index &#125; &#125;, &#123; call, put, select &#125;) &#123;</span><br><span class="line">      const data = yield call(todoService.query, value)</span><br><span class="line">      let tempList = yield select(state =&gt; state.todo.list)</span><br><span class="line">      let list = []</span><br><span class="line">      list = list.concat(tempList)</span><br><span class="line">      let obj = list[index]</span><br><span class="line">      obj.title = value</span><br><span class="line">      yield put(&#123; type: &#x27;save&#x27;, payload: &#123; list &#125; &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  subscriptions: &#123;</span><br><span class="line">    setup(&#123; dispatch, history &#125;) &#123;</span><br><span class="line">      // 监听路由的变化，请求页面数据</span><br><span class="line">      return history.listen((&#123; pathname, search &#125;) =&gt; &#123;</span><br><span class="line">        const query = queryString.parse(search)</span><br><span class="line">        let list = []</span><br><span class="line">        if (pathname === &#x27;todoList&#x27;) &#123;</span><br><span class="line">          dispatch(&#123; type: &#x27;save&#x27;, payload: &#123;list&#125; &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>model</code>对象中包含5个重要的属性</p>
+</blockquote>
+<p><strong>state</strong></p>
+<blockquote>
+<p>这里的 state 跟我们刚刚讲的 state 的概念是一样的，只不过她的优先级比初始化的低，但是基本上项目中的 state 都是在这里定义的</p>
+</blockquote>
+<p><strong>namespace</strong></p>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model` 的命名空间，同时也是他在全局 `state` 上的属性，只能用字符串，我们发送在发送 `action` 到相应的 `reducer` 时，就会需要用到 `namespace</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>Reducer</strong></p>
+<blockquote>
+<p>以<code>key/value</code> 格式定义 <code>reducer</code>，用于处理同步操作，唯一可以修改 <code>state</code> 的地方。由 <code>action</code> 触发。其实一个纯函数</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">namespace: &#x27;todo&#x27;,</span><br><span class="line">  state: &#123;</span><br><span class="line">    list: []</span><br><span class="line">  &#125;,</span><br><span class="line">  // reducers 写法</span><br><span class="line">  reducers: &#123;</span><br><span class="line">    save(state, &#123; payload: &#123; list &#125; &#125;) &#123;</span><br><span class="line">      return &#123; ...state, list &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Effect</strong></p>
+<blockquote>
+<p>用于处理异步操作和业务逻辑，不直接修改 <code>state</code>，简单的来说，就是获取从服务端获取数据，并且发起一个 <code>action</code>交给<code>reducer</code> 的地方</p>
+</blockquote>
+<p>其中它用到了<code>redux-saga</code>，里面有几个常用的函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">// effects 写法</span><br><span class="line">effects: &#123;</span><br><span class="line">    *addTodo(&#123; payload: value &#125;, &#123; call, put, select &#125;) &#123;</span><br><span class="line">      // 模拟网络请求</span><br><span class="line">      const data = yield call(todoService.query, value)</span><br><span class="line">      console.log(data)</span><br><span class="line">      let tempList = yield select(state =&gt; state.todo.list)</span><br><span class="line">      let list = []</span><br><span class="line">      list = list.concat(tempList)</span><br><span class="line">      const tempObj = &#123;&#125;</span><br><span class="line">      tempObj.title = value</span><br><span class="line">      tempObj.id = list.length</span><br><span class="line">      tempObj.finished = false</span><br><span class="line">      list.push(tempObj)</span><br><span class="line">      yield put(&#123; type: &#x27;save&#x27;, payload: &#123; list &#125;&#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    *toggle(&#123; payload: index &#125;, &#123; call, put, select &#125;) &#123;</span><br><span class="line">      // 模拟网络请求</span><br><span class="line">      const data = yield call(todoService.query, index)</span><br><span class="line">      let tempList = yield select(state =&gt; state.todo.list)</span><br><span class="line">      let list = []</span><br><span class="line">      list = list.concat(tempList)</span><br><span class="line">      let obj = list[index]</span><br><span class="line">      obj.finished = !obj.finished</span><br><span class="line">      yield put(&#123; type: &#x27;save&#x27;, payload: &#123; list &#125; &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    *delete(&#123; payload: index &#125;, &#123; call, put, select &#125;) &#123;</span><br><span class="line">      const data = yield call(todoService.query, index)</span><br><span class="line">      let tempList = yield select(state =&gt; state.todo.list)</span><br><span class="line">      let list = []</span><br><span class="line">      list = list.concat(tempList)</span><br><span class="line">      list.splice(index, 1)</span><br><span class="line">      yield put(&#123; type: &#x27;save&#x27;, payload: &#123; list &#125; &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    *modify(&#123; payload: &#123; value, index &#125; &#125;, &#123; call, put, select &#125;) &#123;</span><br><span class="line">      const data = yield call(todoService.query, value)</span><br><span class="line">      let tempList = yield select(state =&gt; state.todo.list)</span><br><span class="line">      let list = []</span><br><span class="line">      list = list.concat(tempList)</span><br><span class="line">      let obj = list[index]</span><br><span class="line">      obj.title = value</span><br><span class="line">      yield put(&#123; type: &#x27;save&#x27;, payload: &#123; list &#125; &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/1505342-9ecb8ba2d8fd3ec2.png" alt="img"></p>
+<blockquote>
+<p>在项目中最主要的会用到的是 <code>put</code> 与 <code>call</code></p>
+</blockquote>
+<p><strong>Subscription</strong></p>
+<blockquote>
+<ul>
+<li>以 <code>key/value</code> 格式定义 <code>subscription</code>，<code>subscription</code> 是订阅，用于订阅一个数据源，然后根据需要 dispatch 相应的 action</li>
+<li><code>subscription</code> 是订阅，用于订阅一个数据源，然后根据需要 <code>dispatch</code> 相应的<code>action</code>。在 <code>app.start()</code> 时被执行，数据源可以是当前的时间、当前页面的<code>url</code>、服务器的 <code>websocket</code> 连接、<code>history</code>路由变化等等。</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>注意</strong>：如果要使用 <code>app.unmodel()</code>，<code>subscription</code> 必须返回 <code>unlisten</code> 方法，用于取消数据订阅</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// subscriptions 写法</span><br><span class="line">subscriptions: &#123;</span><br><span class="line">    setup(&#123; dispatch, history &#125;) &#123;</span><br><span class="line">      // 监听路由的变化，请求页面数据</span><br><span class="line">      return history.listen((&#123; pathname, search &#125;) =&gt; &#123;</span><br><span class="line">        const query = queryString.parse(search)</span><br><span class="line">        let list = []</span><br><span class="line">        if (pathname === &#x27;todoList&#x27;) &#123;</span><br><span class="line">          dispatch(&#123; type: &#x27;save&#x27;, payload: &#123;list&#125; &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-4-Router"><a href="#2-3-4-Router" class="headerlink" title="2.3.4 Router"></a>2.3.4 Router</h3><blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router` 表示路由配置信息，项目中的 `router.js</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export default function(&#123; history &#125;)&#123;</span><br><span class="line">  return(</span><br><span class="line">    &lt;Router history=&#123;history&#125;&gt;</span><br><span class="line">      &lt;Route path=&quot;/&quot; component=&#123;App&#125; /&gt;</span><br><span class="line">    &lt;/Router&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>RouteComponent</strong></p>
+<blockquote>
+<p><code>RouteComponent</code> 表示<code>Router</code> 里匹配路径的 <code>Component</code>，通常会绑定<code>model</code>的数据。如下:</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import &#123; connect &#125; from &#x27;dva&#x27;;</span><br><span class="line"></span><br><span class="line">function App() &#123;</span><br><span class="line">  return &lt;div&gt;App&lt;/div&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mapStateToProps(state) &#123;</span><br><span class="line">  return &#123; todos: state.todos &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default connect(mapStateToProps)(App);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-整体架构"><a href="#2-4-整体架构" class="headerlink" title="2.4 整体架构"></a>2.4 整体架构</h2><p><img src="https://poetries1.gitee.io/img-repo/20191001/45.png" alt="img"></p>
+<ul>
+<li>首先我们根据 <code>url</code> 访问相关的 <code>Route-Component</code>，在组件中我们通过 <code>dispatch</code>发送 <code>action</code> 到 <code>model</code>里面的 <code>effect</code> 或者直接 <code>Reducer</code></li>
+<li>当我们将<code>action</code>发送给<code>Effect</code>，基本上是取服务器上面请求数据的，服务器返回数据之后，<code>effect</code> 会发送相应的 <code>action</code>给 <code>reducer</code>，由唯一能改变 <code>state</code>的 <code>reducer</code> 改变 <code>state</code> ，然后通过<code>connect</code>重新渲染组件。</li>
+<li>当我们将<code>action</code>发送给<code>reducer</code>，那直接由 <code>reducer</code> 改变 <code>state</code>，然后通过<code>connect</code>重新渲染组件</li>
+</ul>
+<h2 id="2-5-Dva图解"><a href="#2-5-Dva图解" class="headerlink" title="2.5 Dva图解"></a>2.5 Dva图解</h2><p><strong>图解一：加入Saga</strong></p>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">React` 只负责页面渲染, 而不负责页面逻辑, 页面逻辑可以从中单独抽取出来, 变成 `store</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://poetries1.gitee.io/img-repo/20191001/46.png" alt="img"></p>
+<blockquote>
+<p>使用 <code>Middleware</code> 拦截 <code>action</code>, 这样一来异步的网络操作也就很方便了, 做成一个 <code>Middleware</code>就行了, 这里使用<code>redux-saga</code> 这个类库</p>
+</blockquote>
+<ul>
+<li>点击创建 <code>Todo</code>的按钮, 发起一个 <code>type == addTodo</code> 的 <code>action</code></li>
+<li><code>saga</code> 拦截这个 <code>action</code>, 发起 <code>http</code> 请求, 如果请求成功, 则继续向 <code>reducer</code> 发一个 <code>type == addTodoSucc</code> 的 <code>action</code>, 提示创建成功, 反之则发送 <code>type == addTodoFail</code> 的<code>action</code> 即可</li>
+</ul>
+<p><strong>图解二：Dva表示法</strong></p>
+<p><img src="https://poetries1.gitee.io/img-repo/20191001/47.png" alt="img"></p>
+<blockquote>
+<p>dva做了 3 件很重要的事情</p>
+</blockquote>
+<ul>
+<li>把 <code>store</code>及 <code>saga</code> 统一为一个 <code>model</code> 的概念, 写在一个 js 文件里面</li>
+<li>增加了一个 <code>Subscriptions</code>, 用于收集其他来源的 <code>action</code>, eg: 键盘操作</li>
+<li><code>model</code> 写法很简约, 类似于 <code>DSL</code> 或者 <code>RoR</code></li>
+</ul>
+<h1 id="三、计数器例子"><a href="#三、计数器例子" class="headerlink" title="三、计数器例子"></a>三、计数器例子</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dva new myapp</span><br></pre></td></tr></table></figure>
+
+<p><strong>目录结构介绍</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── mock    // mock数据文件夹</span><br><span class="line">├── node_modules // 第三方的依赖</span><br><span class="line">├── public  // 存放公共public文件的文件夹</span><br><span class="line">├── src  // 最重要的文件夹，编写代码都在这个文件夹下</span><br><span class="line">│   ├── assets // 可以放图片等公共资源</span><br><span class="line">│   ├── components // 就是react中的木偶组件</span><br><span class="line">│   ├── models // dva最重要的文件夹，所有的数据交互及逻辑都写在这里</span><br><span class="line">│   ├── routes // 就是react中的智能组件，不要被文件夹名字误导。</span><br><span class="line">│   ├── services // 放请求借口方法的文件夹</span><br><span class="line">│   ├── utils // 自己的工具方法可以放在这边</span><br><span class="line">│   ├── index.css // 入口文件样式</span><br><span class="line">│   ├── index.ejs // ejs模板引擎</span><br><span class="line">│   ├── index.js // 入口文件</span><br><span class="line">│   └── router.js // 项目的路由文件</span><br><span class="line">├── .eslintrc // bower安装目录的配置</span><br><span class="line">├── .editorconfig // 保证代码在不同编辑器可视化的工具</span><br><span class="line">├── .gitignore // git上传时忽略的文件</span><br><span class="line">├── .roadhogrc.js // 项目的配置文件，配置接口转发，css_module等都在这边。</span><br><span class="line">├── .roadhogrc.mock.js // 项目的配置文件</span><br><span class="line">└── package.json // 当前整一个项目的依赖</span><br></pre></td></tr></table></figure>
+
+<p><strong>首先是前端的页面，我们使用 class 形式来创建组件，原例子中是使用无状态来创建的。react 创建组件的各种方式，大家可以看<a target="_blank" rel="noopener" href="http://www.cnblogs.com/wonyun/p/5930333.html">React创建组件的三种方式及其区别</a></strong></p>
+<blockquote>
+<p>我们先修改<code>route/IndexPage.js</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line">import &#123; connect &#125; from &#x27;dva&#x27;;</span><br><span class="line">import styles from &#x27;./IndexPage.css&#x27;;</span><br><span class="line"></span><br><span class="line">class IndexPage extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const &#123; dispatch &#125; = this.props;</span><br><span class="line"></span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&#123;styles.normal&#125;&gt;</span><br><span class="line">        &lt;div className=&#123;styles.record&#125;&gt;Highest Record: 1&lt;/div&gt;</span><br><span class="line">        &lt;div className=&#123;styles.current&#125;&gt;2&lt;/div&gt;</span><br><span class="line">        &lt;div className=&#123;styles.button&#125;&gt;</span><br><span class="line">          &lt;button onClick=&#123;() =&gt; &#123;&#125;&#125;&gt;+&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default connect()(IndexPage);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>同时修改样式<code>routes/IndexPage.css</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">.normal &#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  margin: 100px auto;</span><br><span class="line">  padding: 20px;</span><br><span class="line">  border: 1px solid #ccc;</span><br><span class="line">  box-shadow: 0 0 20px #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.record &#123;</span><br><span class="line">  border-bottom: 1px solid #ccc;</span><br><span class="line">  padding-bottom: 8px;</span><br><span class="line">  color: #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.current &#123;</span><br><span class="line">  text-align: center;</span><br><span class="line">  font-size: 40px;</span><br><span class="line">  padding: 40px 0;</span><br><span class="line">&#125;</span><br><span class="line">.button &#123;</span><br><span class="line">  text-align: center;</span><br><span class="line">  button &#123;</span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 40px;</span><br><span class="line">    background: #aaa;</span><br><span class="line">    color: #fff;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在 <code>model</code> 处理<code>state</code>，在页面里面输出 <code>model</code> 中的 <code>state</code></p>
+</blockquote>
+<ul>
+<li>首先我们在index.js中将<code>models/example.js</code>，即将model下一行的的注释打开</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import dva from &#x27;dva&#x27;;</span><br><span class="line">import &#x27;./index.css&#x27;;</span><br><span class="line"></span><br><span class="line">// 1. Initialize</span><br><span class="line">const app = dva();</span><br><span class="line"></span><br><span class="line">// 2. Plugins</span><br><span class="line">// app.use(&#123;&#125;);</span><br><span class="line"></span><br><span class="line">// 3. Model</span><br><span class="line">app.model(require(&#x27;./models/example&#x27;)); // 打开注释</span><br><span class="line"></span><br><span class="line">// 4. Router</span><br><span class="line">app.router(require(&#x27;./router&#x27;));</span><br><span class="line"></span><br><span class="line">// 5. Start</span><br><span class="line">app.start(&#x27;#root&#x27;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>接下来我们进入 <code>models/example.js</code>，将<code>namespace</code> 名字改为 <code>count</code>，<code>state</code>对象加上 <code>record</code> 与 <code>current</code> 属性。如下</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  namespace: &#x27;count&#x27;,</span><br><span class="line">  state: &#123;</span><br><span class="line">    record: 0,</span><br><span class="line">    current: 0,</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>接着我们来到 <code>routes/indexpage.js</code> 页面，通过的 <code>mapStateToProps</code>引入相关的 <code>state</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line">import &#123; connect &#125; from &#x27;dva&#x27;;</span><br><span class="line">import styles from &#x27;./IndexPage.css&#x27;;</span><br><span class="line"></span><br><span class="line">class IndexPage extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const &#123; dispatch, count &#125; = this.props;</span><br><span class="line">    </span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&#123;styles.normal&#125;&gt;</span><br><span class="line">        &lt;div className=&#123;styles.record&#125;&gt;</span><br><span class="line">         Highest Record: &#123;count.record&#125; // 将count的record输出</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div className=&#123;styles.current&#125;&gt;</span><br><span class="line">         &#123;count.current&#125;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div className=&#123;styles.button&#125;&gt;</span><br><span class="line">          &lt;button onClick=&#123;() =&gt; &#123;&#125; &#125; &gt;</span><br><span class="line">                 +</span><br><span class="line">          &lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mapStateToProps(state) &#123;</span><br><span class="line">  return &#123; count: state.count &#125;;</span><br><span class="line">&#125; // 获取state</span><br><span class="line"></span><br><span class="line">export default connect(mapStateToProps)(IndexPage);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>通过 <code>+</code> 发送 <code>action</code>，通过 <code>reducer</code> 改变相应的 <code>state</code></p>
+</blockquote>
+<ul>
+<li>首先我们在 <code>models/example.js</code>，写相应的 <code>reducer</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  ...</span><br><span class="line">  reducers: &#123;</span><br><span class="line">    add1(state) &#123;</span><br><span class="line">      const newCurrent = state.current + 1;</span><br><span class="line">      return &#123; ...state,</span><br><span class="line">        record: newCurrent &gt; state.record ? newCurrent : state.record,</span><br><span class="line">        current: newCurrent,</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    minus(state) &#123;</span><br><span class="line">      return &#123; ...state, current: state.current - 1 &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在页面的模板 <code>routes/IndexPage.js</code> 中 <code>+</code> 号点击的时候，<code>dispatch</code>一个 <code>action</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line">import &#123; connect &#125; from &#x27;dva&#x27;;</span><br><span class="line">import styles from &#x27;./IndexPage.css&#x27;;</span><br><span class="line"></span><br><span class="line">class IndexPage extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const &#123; dispatch, count &#125; = this.props;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&#123;styles.normal&#125;&gt;</span><br><span class="line">        &lt;div className=&#123;styles.record&#125;&gt;Highest Record: &#123;count.record&#125;&lt;/div&gt;</span><br><span class="line">        &lt;div className=&#123;styles.current&#125;&gt;&#123;count.current&#125;&lt;/div&gt;</span><br><span class="line">        &lt;div className=&#123;styles.button&#125;&gt;</span><br><span class="line">          &lt;button </span><br><span class="line">+            onClick=&#123;() =&gt; &#123; dispatch(&#123; type: &#x27;count/add1&#x27; &#125;);&#125;</span><br><span class="line">          &#125;&gt;+&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">function mapStateToProps(state) &#123;</span><br><span class="line">  return &#123; count: state.count &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default connect(mapStateToProps)(IndexPage);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>接下来我们来使用 <code>effect</code> 模拟一个数据接口请求，返回之后，通过 <code>yield put()</code> 改变相应的 <code>state</code></p>
+</blockquote>
+<ul>
+<li>首先我们替换相应的 <code>models/example.js</code> 的 <code>effect</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">effects: &#123;</span><br><span class="line">    *add(action, &#123; call, put &#125;) &#123;</span><br><span class="line">      yield call(delay, 1000);</span><br><span class="line">      yield put(&#123; type: &#x27;minus&#x27; &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里的 <code>delay</code>，是我这边写的一个延时的函数，我们在 <code>utils</code> 里面编写一个 <code>utils.js</code> ，一般请求接口的函数都会写在 <code>servers</code> 文件夹中</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export function delay(timeout) &#123;</span><br><span class="line">  return new Promise((resolve) =&gt; &#123;</span><br><span class="line">    setTimeout(resolve, timeout);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>订阅订阅键盘事件，使用 <code>subscriptions</code>，当用户按住 <code>command+up</code> 时候触发添加数字的 <code>action</code></p>
+</blockquote>
+<ul>
+<li>在 <code>models/example.js</code> 中作如下修改</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+import key from &#x27;keymaster&#x27;;</span><br><span class="line">...</span><br><span class="line">app.model(&#123;</span><br><span class="line">  namespace: &#x27;count&#x27;,</span><br><span class="line">+ subscriptions: &#123;</span><br><span class="line">+   keyboardWatcher(&#123; dispatch &#125;) &#123;</span><br><span class="line">+     key(&#x27;⌘+up, ctrl+up&#x27;, () =&gt; &#123; dispatch(&#123;type:&#x27;add&#x27;&#125;) &#125;);</span><br><span class="line">+   &#125;,</span><br><span class="line">+ &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在这里你需要安装 <code>keymaster</code> 这个依赖</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install keymaster --save</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>现在你可以按住 <code>command+up</code> 就可以使 <code>current</code> 加1</li>
+</ul>
+<h1 id="四、Dva实践"><a href="#四、Dva实践" class="headerlink" title="四、Dva实践"></a>四、Dva实践</h1><h2 id="4-1-抽离Model"><a href="#4-1-抽离Model" class="headerlink" title="4.1 抽离Model"></a>4.1 抽离Model</h2><blockquote>
+<p>抽离<code>Model</code>，根据设计页面需求，设计相应的<code>Model</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// models/users.js</span><br><span class="line">// version1: 从数据维度抽取，更适用于无状态的数据</span><br><span class="line">// version2: 从业务状态抽取，将数据与组件的业务状态统一抽离成一个model</span><br><span class="line">// 新增部分为在数据维度基础上，改为从业务状态抽取而添加的代码</span><br><span class="line">export default &#123;</span><br><span class="line">  namespace: &#x27;users&#x27;,</span><br><span class="line">  state: &#123;</span><br><span class="line">    list: [],</span><br><span class="line">    total: null,</span><br><span class="line">+   loading: false, // 控制加载状态</span><br><span class="line">+   current: null, // 当前分页信息</span><br><span class="line">+   currentItem: &#123;&#125;, // 当前操作的用户对象</span><br><span class="line">+   modalVisible: false, // 弹出窗的显示状态</span><br><span class="line">+   modalType: &#x27;create&#x27;, // 弹出窗的类型（添加用户，编辑用户）</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">    // 异步操作</span><br><span class="line">    effects: &#123;</span><br><span class="line">        *query()&#123;&#125;,</span><br><span class="line">        *create()&#123;&#125;,</span><br><span class="line">        *&#x27;delete&#x27;()&#123;&#125;,   // 因为delete是关键字，特殊处理</span><br><span class="line">        *update()&#123;&#125;,</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    // 替换状态树</span><br><span class="line">    reducers: &#123;</span><br><span class="line">+       showLoading()&#123;&#125;, // 控制加载状态的 reducer</span><br><span class="line">+       showModel()&#123;&#125;, // 控制 Model 显示状态的 reducer</span><br><span class="line">+       hideModel()&#123;&#125;,</span><br><span class="line">        querySuccess()&#123;&#125;,</span><br><span class="line">        createSuccess()&#123;&#125;,</span><br><span class="line">        deleteSuccess()&#123;&#125;,</span><br><span class="line">        updateSuccess()&#123;&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-2-设计组件"><a href="#4-2-设计组件" class="headerlink" title="4.2 设计组件"></a>4.2 设计组件</h2><blockquote>
+<p>先设置容器组件的访问路径，再创建组件文件</p>
+</blockquote>
+<h3 id="4-2-1-容器组件"><a href="#4-2-1-容器组件" class="headerlink" title="4.2.1 容器组件"></a>4.2.1 容器组件</h3><blockquote>
+<p>具有监听数据行为的组件，职责是绑定相关联的 model 数据，包含子组件；传入的数据来源于model</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component, PropTypes &#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">// dva 的 connect 方法可以将组件和数据关联在一起</span><br><span class="line">import &#123; connect &#125; from &#x27;dva&#x27;;</span><br><span class="line"></span><br><span class="line">// 组件本身</span><br><span class="line">const MyComponent = (props)=&gt;&#123;&#125;;</span><br><span class="line"></span><br><span class="line">// propTypes属性，用于限制props的传入数据类型</span><br><span class="line">MyComponent.propTypes = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">// 声明模型传递函数，用于建立组件和数据的映射关系</span><br><span class="line">// 实际表示 将ModelA这一个数据模型，绑定到当前的组件中，则在当前组件中，随时可以取到ModelA的最新值</span><br><span class="line">// 可以绑定多个Model</span><br><span class="line">function mapStateToProps(&#123;ModelA&#125;) &#123;</span><br><span class="line">  return &#123;ModelA&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 关联 model</span><br><span class="line">// 正式调用模型传递函数，完成模型绑定</span><br><span class="line">export default connect(mapStateToProps)(MyComponent);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-2-展示组件"><a href="#4-2-2-展示组件" class="headerlink" title="4.2.2 展示组件"></a>4.2.2 展示组件</h3><blockquote>
+<p>展示通过 <code>props</code> 传递到组件内部数据；传入的数据来源于容器组件向展示组件的<code>props</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component, PropTypes &#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">// 组件本身</span><br><span class="line">// 所需要的数据通过 Container Component 通过 props 传递下来</span><br><span class="line">const MyComponent = (props)=&gt;&#123;&#125;</span><br><span class="line">MyComponent.propTypes = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">// 并不会监听数据</span><br><span class="line">export default MyComponent;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-3-设置路由"><a href="#4-2-3-设置路由" class="headerlink" title="4.2.3 设置路由"></a>4.2.3 设置路由</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// .src/router.js</span><br><span class="line">import React, &#123; PropTypes &#125; from &#x27;react&#x27;;</span><br><span class="line">import &#123; Router, Route &#125; from &#x27;dva/router&#x27;;</span><br><span class="line">import Users from &#x27;./routes/Users&#x27;;</span><br><span class="line"></span><br><span class="line">export default function(&#123; history &#125;) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;Router history=&#123;history&#125;&gt;</span><br><span class="line">      &lt;Route path=&quot;/users&quot; component=&#123;Users&#125; /&gt;</span><br><span class="line">    &lt;/Router&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>容器组件雏形</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// .src/routes/Users.jsx</span><br><span class="line">import React, &#123; PropTypes &#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">function Users() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;User Router Component&lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Users;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-4-设计容器组件"><a href="#4-2-4-设计容器组件" class="headerlink" title="4.2.4 设计容器组件"></a>4.2.4 设计容器组件</h3><blockquote>
+<p>自顶向下的设计方法：先设计容器组件，再逐步细化内部的展示容器</p>
+</blockquote>
+<p>组件的定义方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 方法一： es6 的写法，当组件设计react生命周期时，可采用这种写法</span><br><span class="line">// 具有生命周期的组件，可以在接收到传入数据变化时，自定义执行方法，有自己的行为模式</span><br><span class="line">// 比如在组件生成后调用xx请求(componentDidMount)、可以自己决定要不要更新渲染(shouldComponentUpdate)等</span><br><span class="line">class App extends React.Component(&#123;&#125;);</span><br><span class="line"></span><br><span class="line">// 方法二： stateless 的写法，定义无状态组件</span><br><span class="line">// 无状态组件，仅仅根据传入的数据更新，修改自己的渲染内容</span><br><span class="line">const App = (props) =&gt; (&#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>容器组件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">// ./src/routes/Users.jsx</span><br><span class="line">import React, &#123; Component, PropTypes &#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">// 引入展示组件 （暂时都没实现）</span><br><span class="line">import UserList from &#x27;../components/Users/UserList&#x27;;</span><br><span class="line">import UserSearch from &#x27;../components/Users/UserSearch&#x27;;</span><br><span class="line">import UserModal from &#x27;../components/Users/UserModal&#x27;;</span><br><span class="line"></span><br><span class="line">// 引入css样式表</span><br><span class="line">import styles from &#x27;./style.less&#x27;</span><br><span class="line"></span><br><span class="line">function Users() &#123;</span><br><span class="line"></span><br><span class="line">  // 向userListProps中传入静态数据</span><br><span class="line">  const userSearchProps = &#123;&#125;;</span><br><span class="line">  const userListProps = &#123;</span><br><span class="line">    total: 3,</span><br><span class="line">    current: 1,</span><br><span class="line">    loading: false,</span><br><span class="line">    dataSource: [</span><br><span class="line">      &#123;</span><br><span class="line">        name: &#x27;张三&#x27;,</span><br><span class="line">        age: 23,</span><br><span class="line">        address: &#x27;成都&#x27;,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        name: &#x27;李四&#x27;,</span><br><span class="line">        age: 24,</span><br><span class="line">        address: &#x27;杭州&#x27;,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        name: &#x27;王五&#x27;,</span><br><span class="line">        age: 25,</span><br><span class="line">        address: &#x27;上海&#x27;,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;;</span><br><span class="line">  const userModalProps = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&#123;styles.normal&#125;&gt;</span><br><span class="line">      &#123;/* 用户筛选搜索框 */&#125;</span><br><span class="line">      &lt;UserSearch &#123;...userSearchProps&#125; /&gt;</span><br><span class="line">      &#123;/* 用户信息展示列表 */&#125;</span><br><span class="line">      &lt;UserList &#123;...userListProps&#125; /&gt;</span><br><span class="line">      &#123;/* 添加用户 &amp; 修改用户弹出的浮层 */&#125;</span><br><span class="line">      &lt;UserModal &#123;...userModalProps&#125; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 很关键的对外输出export；使外部可通过import引用使用此组件</span><br><span class="line">export default Users;</span><br></pre></td></tr></table></figure>
+
+<p>展示组件UserList</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">// ./src/components/Users/UserList.jsx</span><br><span class="line">import React, &#123; Component, PropTypes &#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">// 采用antd的UI组件</span><br><span class="line">import &#123; Table, message, Popconfirm &#125; from &#x27;antd&#x27;;</span><br><span class="line"></span><br><span class="line">// 采用 stateless 的写法</span><br><span class="line">const UserList = (&#123;</span><br><span class="line">    total,</span><br><span class="line">    current,</span><br><span class="line">    loading,</span><br><span class="line">    dataSource,</span><br><span class="line">&#125;) =&gt; &#123;</span><br><span class="line">  const columns = [&#123;</span><br><span class="line">    title: &#x27;姓名&#x27;,</span><br><span class="line">    dataIndex: &#x27;name&#x27;,</span><br><span class="line">    key: &#x27;name&#x27;,</span><br><span class="line">    render: (text) =&gt; &lt;a href=&quot;#&quot;&gt;&#123;text&#125;&lt;/a&gt;,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    title: &#x27;年龄&#x27;,</span><br><span class="line">    dataIndex: &#x27;age&#x27;,</span><br><span class="line">    key: &#x27;age&#x27;,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    title: &#x27;住址&#x27;,</span><br><span class="line">    dataIndex: &#x27;address&#x27;,</span><br><span class="line">    key: &#x27;address&#x27;,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    title: &#x27;操作&#x27;,</span><br><span class="line">    key: &#x27;operation&#x27;,</span><br><span class="line">    render: (text, record) =&gt; (</span><br><span class="line">      &lt;p&gt;</span><br><span class="line">        &lt;a onClick=&#123;()=&gt;&#123;&#125;&#125;&gt;编辑&lt;/a&gt;</span><br><span class="line">         </span><br><span class="line">        &lt;Popconfirm title=&quot;确定要删除吗？&quot; onConfirm=&#123;()=&gt;&#123;&#125;&#125;&gt;</span><br><span class="line">          &lt;a&gt;删除&lt;/a&gt;</span><br><span class="line">        &lt;/Popconfirm&gt;</span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">    ),</span><br><span class="line">  &#125;];</span><br><span class="line"></span><br><span class="line">  // 定义分页对象</span><br><span class="line">  const pagination = &#123;</span><br><span class="line">    total,</span><br><span class="line">    current,</span><br><span class="line">    pageSize: 10,</span><br><span class="line">    onChange: ()=&gt;&#123;&#125;,</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  // 此处的Table标签使用了antd组件，传入的参数格式是由antd组件库本身决定的</span><br><span class="line">  // 此外还需要在index.js中引入antd  import &#x27;antd/dist/antd.css&#x27;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;Table</span><br><span class="line">        columns=&#123;columns&#125;</span><br><span class="line">        dataSource=&#123;dataSource&#125;</span><br><span class="line">        loading=&#123;loading&#125;</span><br><span class="line">        rowKey=&#123;record =&gt; record.id&#125;</span><br><span class="line">        pagination=&#123;pagination&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default UserList;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-3-添加Reducer"><a href="#4-3-添加Reducer" class="headerlink" title="4.3 添加Reducer"></a>4.3 添加Reducer</h2><blockquote>
+<p>在整个应用中，只有<code>model</code>中的<code>reducer</code>函数可以直接修改自己所在<code>model</code>的<code>state</code>参数，其余都是非法操作；<br>并且必须使用<code>return &#123;...state&#125;</code>的形式进行修改</p>
+</blockquote>
+<h3 id="4-3-1-第一步：实现reducer函数"><a href="#4-3-1-第一步：实现reducer函数" class="headerlink" title="4.3.1 第一步：实现reducer函数"></a>4.3.1 第一步：实现reducer函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">// models/users.js</span><br><span class="line">// 使用静态数据返回，把userList中的静态数据移到此处</span><br><span class="line">// querySuccess这个action的作用在于，修改了model的数据</span><br><span class="line">export default &#123;</span><br><span class="line">  namespace: &#x27;users&#x27;,</span><br><span class="line">  state： &#123;&#125;，</span><br><span class="line">  subscriptions: &#123;&#125;,</span><br><span class="line">  effects: &#123;&#125;,</span><br><span class="line">  reducers: &#123;</span><br><span class="line">    querySuccess(state)&#123;</span><br><span class="line">        const mock = &#123;</span><br><span class="line">          total: 3,</span><br><span class="line">          current: 1,</span><br><span class="line">          loading: false,</span><br><span class="line">          list: [</span><br><span class="line">            &#123;</span><br><span class="line">              id: 1,</span><br><span class="line">              name: &#x27;张三&#x27;,</span><br><span class="line">              age: 23,</span><br><span class="line">              address: &#x27;成都&#x27;,</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              id: 2,</span><br><span class="line">              name: &#x27;李四&#x27;,</span><br><span class="line">              age: 24,</span><br><span class="line">              address: &#x27;杭州&#x27;,</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              id: 3,</span><br><span class="line">              name: &#x27;王五&#x27;,</span><br><span class="line">              age: 25,</span><br><span class="line">              address: &#x27;上海&#x27;,</span><br><span class="line">            &#125;,</span><br><span class="line">          ]</span><br><span class="line">        &#125;;</span><br><span class="line">        // return 的内容是一个对象，涵盖原state中的所有属性，以实现“更新替换”的效果</span><br><span class="line">        return &#123;...state, ...mock, loading: false&#125;;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-2-第二步：关联Model中的数据源"><a href="#4-3-2-第二步：关联Model中的数据源" class="headerlink" title="4.3.2 第二步：关联Model中的数据源"></a>4.3.2 第二步：关联Model中的数据源</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">// routes/Users.jsx</span><br><span class="line"></span><br><span class="line">import React, &#123; PropTypes &#125; from &#x27;react&#x27;;</span><br><span class="line"></span><br><span class="line">// 最后用到了connect函数，需要在头部预先引入connect</span><br><span class="line">import &#123; connect &#125; from &#x27;dva&#x27;;</span><br><span class="line"></span><br><span class="line">function Users(&#123; location, dispatch, users &#125;) &#123;</span><br><span class="line"></span><br><span class="line">  const &#123;</span><br><span class="line">    loading, list, total, current,</span><br><span class="line">    currentItem, modalVisible, modalType</span><br><span class="line">    &#125; = users;</span><br><span class="line"></span><br><span class="line">  const userSearchProps=&#123;&#125;;</span><br><span class="line"></span><br><span class="line">  // 使用传入的数据源，进行数据渲染</span><br><span class="line">  const userListProps=&#123;</span><br><span class="line">    dataSource: list,</span><br><span class="line">    total,</span><br><span class="line">    loading,</span><br><span class="line">    current,</span><br><span class="line">  &#125;;</span><br><span class="line">  const userModalProps=&#123;&#125;;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&#123;styles.normal&#125;&gt;</span><br><span class="line">      &#123;/* 用户筛选搜索框 */&#125;</span><br><span class="line">      &lt;UserSearch &#123;...userSearchProps&#125; /&gt;</span><br><span class="line">      &#123;/* 用户信息展示列表 */&#125;</span><br><span class="line">      &lt;UserList &#123;...userListProps&#125; /&gt;</span><br><span class="line">      &#123;/* 添加用户 &amp; 修改用户弹出的浮层 */&#125;</span><br><span class="line">      &lt;UserModal &#123;...userModalProps&#125; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 声明组件的props类型</span><br><span class="line">Users.propTypes = &#123;</span><br><span class="line">  users: PropTypes.object,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 指定订阅数据，并且关联到users中</span><br><span class="line">function mapStateToProps(&#123; users &#125;) &#123;</span><br><span class="line">  return &#123;users&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 建立数据关联关系</span><br><span class="line">export default connect(mapStateToProps)(Users);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-3-第三步：通过发起Action，在组件中获取Model中的数据"><a href="#4-3-3-第三步：通过发起Action，在组件中获取Model中的数据" class="headerlink" title="4.3.3 第三步：通过发起Action，在组件中获取Model中的数据"></a>4.3.3 第三步：通过发起Action，在组件中获取Model中的数据</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// models/users.js</span><br><span class="line">// 在组件生成后发出action，示例：</span><br><span class="line">componentDidMount() &#123;</span><br><span class="line">  this.props.dispatch(&#123;</span><br><span class="line">    type: &#x27;model/action&#x27;,     // type对应action的名字</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 在本次实践中，在访问/users/路由时，就是我们获取用户数据的时机</span><br><span class="line">// 因此把dispatch移至subscription中</span><br><span class="line">// subcription，订阅(或是监听)一个数据源，然后根据条件dispatch对应的action</span><br><span class="line">// 数据源可以是当前的时间、服务器的 websocket 连接、keyboard 输入、geolocation 变化、history 路由变化等等  </span><br><span class="line">// 此处订阅的数据源就是路由信息，当路由为/users，则派发&#x27;querySuccess&#x27;这个effects方法</span><br><span class="line">subscriptions: &#123;</span><br><span class="line">    setup(&#123; dispatch, history &#125;) &#123;</span><br><span class="line">      history.listen(location =&gt; &#123;</span><br><span class="line">        if (location.pathname === &#x27;/users&#x27;) &#123;</span><br><span class="line">          dispatch(&#123;</span><br><span class="line">            type: &#x27;querySuccess&#x27;,</span><br><span class="line">            payload: &#123;&#125;</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-4-第四步：-在index-js中添加models"><a href="#4-3-4-第四步：-在index-js中添加models" class="headerlink" title="4.3.4 第四步： 在index.js中添加models"></a>4.3.4 第四步： 在index.js中添加models</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// model必须在此完成注册，才能全局有效</span><br><span class="line">// index.js</span><br><span class="line">app.model(require(&#x27;./models/users.js&#x27;));</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4-添加Effects"><a href="#4-4-添加Effects" class="headerlink" title="4.4 添加Effects"></a>4.4 添加Effects</h3><blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Effects`的作用在于处理异步函数，控制数据流程。</span><br><span class="line">因为在真实场景中，数据都来自服务器，需要在发起异步请求获得返回值后再设置数据，更新`state`。</span><br><span class="line">因此我们往往在`Effects`中调用`reducer</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  namespace: &#x27;users&#x27;,</span><br><span class="line">  state： &#123;&#125;，</span><br><span class="line">  subscriptions: &#123;&#125;,</span><br><span class="line">  effects: &#123;</span><br><span class="line">    // 添加effects函数</span><br><span class="line">    // call与put是dva的函数</span><br><span class="line">    // call调用执行一个函数</span><br><span class="line">    // put则是dispatch执行一个action</span><br><span class="line">    // select用于访问其他model</span><br><span class="line">    *query(&#123; payload &#125;, &#123; select, call, put &#125;) &#123;</span><br><span class="line">        yield put(&#123; type: &#x27;showLoading&#x27; &#125;);</span><br><span class="line">        const &#123; data &#125; = yield call(query);</span><br><span class="line">        if (data) &#123;</span><br><span class="line">          yield put(&#123;</span><br><span class="line">            type: &#x27;querySuccess&#x27;,</span><br><span class="line">            payload: &#123;</span><br><span class="line">              list: data.data,</span><br><span class="line">              total: data.page.total,</span><br><span class="line">              current: data.page.current</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  reducers: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 添加请求处理   包含了一个ajax请求</span><br><span class="line">// models/users.js</span><br><span class="line">import request from &#x27;../utils/request&#x27;;</span><br><span class="line">import qs from &#x27;qs&#x27;;</span><br><span class="line">async function query(params) &#123;</span><br><span class="line">  return request(`/api/users?$&#123;qs.stringify(params)&#125;`);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-5-把请求处理分离到service中"><a href="#4-5-把请求处理分离到service中" class="headerlink" title="4.5 把请求处理分离到service中"></a>4.5 把请求处理分离到service中</h3><blockquote>
+<p>用意在于分离(可复用的)ajax请求</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// services/users.js</span><br><span class="line">import request from &#x27;../utils/request&#x27;;</span><br><span class="line">import qs from &#x27;qs&#x27;;</span><br><span class="line">export async function query(params) &#123;</span><br><span class="line">  return request(`/api/users?$&#123;qs.stringify(params)&#125;`);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 在models中引用</span><br><span class="line">// models/users.js</span><br><span class="line">import &#123;query&#125; from &#x27;../services/users&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、使用dva框架和直接使用redux写法的区别"><a href="#五、使用dva框架和直接使用redux写法的区别" class="headerlink" title="五、使用dva框架和直接使用redux写法的区别"></a>五、使用dva框架和直接使用redux写法的区别</h2><h3 id="5-1-使用-redux"><a href="#5-1-使用-redux" class="headerlink" title="5.1 使用 redux"></a>5.1 使用 redux</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">// action.js</span><br><span class="line"></span><br><span class="line">export const REQUEST_TODO = &#x27;REQUEST_TODO&#x27;;</span><br><span class="line">export const RESPONSE_TODO = &#x27;RESPONSE_TODO&#x27;;</span><br><span class="line"></span><br><span class="line">const request = count =&gt; (&#123;type: REQUEST_TODO, payload: &#123;loading: true, count&#125;&#125;);</span><br><span class="line"></span><br><span class="line">const response = count =&gt; (&#123;type: RESPONSE_TODO, payload: &#123;loading: false, count&#125;&#125;);</span><br><span class="line"></span><br><span class="line">export const fetch = count =&gt; &#123;</span><br><span class="line">  return (dispatch) =&gt; &#123;</span><br><span class="line">    dispatch(request(count));</span><br><span class="line"></span><br><span class="line">    return new Promise(resolve =&gt; &#123;</span><br><span class="line">      setTimeout(() =&gt; &#123;</span><br><span class="line">        resolve(count + 1);</span><br><span class="line">      &#125;, 1000)</span><br><span class="line">    &#125;).then(data =&gt; &#123;</span><br><span class="line">      dispatch(response(data))</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">//reducer.js</span><br><span class="line">import &#123; REQUEST_TODO, RESPONSE_TODO &#125; from &#x27;./actions&#x27;;</span><br><span class="line"></span><br><span class="line">export default (state = &#123;</span><br><span class="line">  loading: false,</span><br><span class="line">  count: 0</span><br><span class="line">&#125;, action) =&gt; &#123;</span><br><span class="line">  switch (action.type) &#123;</span><br><span class="line">    case REQUEST_TODO:</span><br><span class="line">      return &#123;...state, ...action.payload&#125;;</span><br><span class="line">    case RESPONSE_TODO:</span><br><span class="line">      return &#123;...state, ...action.payload&#125;;</span><br><span class="line">    default:</span><br><span class="line">      return state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">// app.js</span><br><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line">import &#123; bindActionCreators &#125; from &#x27;redux&#x27;;</span><br><span class="line">import &#123; connect &#125; from &#x27;react-redux&#x27;;</span><br><span class="line"></span><br><span class="line">import * as actions from &#x27;./actions&#x27;;</span><br><span class="line"></span><br><span class="line">const App = (&#123;fetch, count, loading&#125;) =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &#123;loading ? &lt;div&gt;loading...&lt;/div&gt; : &lt;div&gt;&#123;count&#125;&lt;/div&gt;&#125;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; fetch(count)&#125;&gt;add&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mapStateToProps(state) &#123;</span><br><span class="line">  return state;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mapDispatchToProps(dispatch) &#123;</span><br><span class="line">  return bindActionCreators(actions, dispatch)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default connect(mapStateToProps, mapDispatchToProps)(App)</span><br><span class="line">//index.js</span><br><span class="line">import &#123; render &#125; from &#x27;react-dom&#x27;;</span><br><span class="line">import &#123; createStore, applyMiddleware &#125; from &#x27;redux&#x27;;</span><br><span class="line">import &#123; Provider &#125; from &#x27;react-redux&#x27;</span><br><span class="line">import thunkMiddleware from &#x27;redux-thunk&#x27;;</span><br><span class="line"></span><br><span class="line">import reducer from &#x27;./app/reducer&#x27;;</span><br><span class="line">import App from &#x27;./app/app&#x27;;</span><br><span class="line"></span><br><span class="line">const store = createStore(reducer, applyMiddleware(thunkMiddleware));</span><br><span class="line"></span><br><span class="line">render(</span><br><span class="line">  &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    &lt;App/&gt;</span><br><span class="line">  &lt;/Provider&gt;</span><br><span class="line">  ,</span><br><span class="line">  document.getElementById(&#x27;app&#x27;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-使用dva"><a href="#5-2-使用dva" class="headerlink" title="5.2 使用dva"></a>5.2 使用dva</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">// model.js</span><br><span class="line">export default &#123;</span><br><span class="line">  namespace: &#x27;demo&#x27;,</span><br><span class="line">  state: &#123;</span><br><span class="line">    loading: false,</span><br><span class="line">    count: 0</span><br><span class="line">  &#125;,</span><br><span class="line">  reducers: &#123;</span><br><span class="line">    request(state, payload) &#123;</span><br><span class="line">      return &#123;...state, ...payload&#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    response(state, payload) &#123;</span><br><span class="line">      return &#123;...state, ...payload&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  effects: &#123;</span><br><span class="line">    *&#x27;fetch&#x27;(action, &#123;put, call&#125;) &#123;</span><br><span class="line">      yield put(&#123;type: &#x27;request&#x27;, loading: true&#125;);</span><br><span class="line"></span><br><span class="line">      let count = yield call((count) =&gt; &#123;</span><br><span class="line">        return new Promise(resolve =&gt; &#123;</span><br><span class="line">          setTimeout(() =&gt; &#123;</span><br><span class="line">            resolve(count + 1);</span><br><span class="line">          &#125;, 1000);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;, action.count);</span><br><span class="line"></span><br><span class="line">      yield put(&#123;</span><br><span class="line">        type: &#x27;response&#x27;,</span><br><span class="line">        loading: false,</span><br><span class="line">        count</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">//app.js</span><br><span class="line"></span><br><span class="line">import React from &#x27;react&#x27;</span><br><span class="line">import &#123; connect &#125; from &#x27;dva&#x27;;</span><br><span class="line"></span><br><span class="line">const App = (&#123;fetch, count, loading&#125;) =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &#123;loading ? &lt;div&gt;loading...&lt;/div&gt; : &lt;div&gt;&#123;count&#125;&lt;/div&gt;&#125;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; fetch(count)&#125;&gt;add&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mapStateToProps(state) &#123;</span><br><span class="line">  return state.demo;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mapDispatchToProps(dispatch) &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    fetch(count)&#123;</span><br><span class="line">      dispatch(&#123;type: &#x27;demo/fetch&#x27;, count&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default connect(mapStateToProps, mapDispatchToProps)(App)</span><br><span class="line">// index.js</span><br><span class="line">import dva from &#x27;dva&#x27;;</span><br><span class="line">import model from &#x27;./model&#x27;;</span><br><span class="line">import App from &#x27;./app&#x27;;</span><br><span class="line"></span><br><span class="line">const app = dva();</span><br><span class="line"></span><br><span class="line">app.use(&#123;&#125;);</span><br><span class="line"></span><br><span class="line">app.model(model);</span><br><span class="line"></span><br><span class="line">app.router(() =&gt; &lt;App /&gt;);</span><br><span class="line"></span><br><span class="line">app.start();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 <code>redux</code> 需要拆分出<code>action</code>模块和<code>reducer</code>模块</li>
+<li><code>dva</code>将<code>action</code>和<code>reducer</code>封装到<code>model</code>中，异步流程采用<code>Generator</code>处理</li>
+</ul>
+<h1 id="六、使用axios统一处理"><a href="#六、使用axios统一处理" class="headerlink" title="六、使用axios统一处理"></a>六、使用axios统一处理</h1><h2 id="6-1-示例代码"><a href="#6-1-示例代码" class="headerlink" title="6.1 示例代码"></a>6.1 示例代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">// request.js</span><br><span class="line">import axios from &#x27;axios&#x27;;</span><br><span class="line">import NProgress from &#x27;nprogress&#x27;;</span><br><span class="line">import &#123; notification, message &#125; from &#x27;antd&#x27;;</span><br><span class="line">import &#123; routerRedux &#125; from &#x27;dva/router&#x27;;</span><br><span class="line">import store from &#x27;../index&#x27;;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 一、功能：</span><br><span class="line"> * 1. 统一拦截http错误请求码；</span><br><span class="line"> * 2. 统一拦截业务错误代码；</span><br><span class="line"> * 3. 统一设置请求前缀</span><br><span class="line"> * |-- 每个 http 加前缀 baseURL = /api/v1，从配置文件中获取 apiPrefix</span><br><span class="line"> * 4. 配置异步请求过渡状态：显示蓝色加载条表示正在请求中，避免给用户页面假死的不好体验。</span><br><span class="line"> * |-- 使用 NProgress 工具库。</span><br><span class="line"> * </span><br><span class="line"> * 二、引包：</span><br><span class="line"> * |-- axios：http 请求工具库</span><br><span class="line"> * |-- NProgress：异步请求过度条，在浏览器主体部分顶部显示蓝色小条</span><br><span class="line"> * |-- notification：Antd组件 &gt; 处理错误响应码提示信息</span><br><span class="line"> * |-- routerRedux：dva/router对象，用于路由跳转，错误响应码跳转相应页面</span><br><span class="line"> * |-- store：dva中对象，使用里面的 dispatch 对象，用于触发路由跳转</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">// 设置全局参数，如响应超市时间，请求前缀等。</span><br><span class="line">axios.defaults.timeout = 5000</span><br><span class="line">axios.defaults.baseURL = &#x27;/api/v1&#x27;;</span><br><span class="line">axios.defaults.withCredentials = true;</span><br><span class="line"></span><br><span class="line">// 状态码错误信息</span><br><span class="line">const codeMessage = &#123;</span><br><span class="line">  200: &#x27;服务器成功返回请求的数据。&#x27;,</span><br><span class="line">  201: &#x27;新建或修改数据成功。&#x27;,</span><br><span class="line">  202: &#x27;一个请求已经进入后台排队（异步任务）。&#x27;,</span><br><span class="line">  204: &#x27;删除数据成功。&#x27;,</span><br><span class="line">  400: &#x27;发出的请求有错误，服务器没有进行新建或修改数据的操作。&#x27;,</span><br><span class="line">  401: &#x27;用户没有权限（令牌、用户名、密码错误）。&#x27;,</span><br><span class="line">  403: &#x27;用户得到授权，但是访问是被禁止的。&#x27;,</span><br><span class="line">  404: &#x27;发出的请求针对的是不存在的记录，服务器没有进行操作。&#x27;,</span><br><span class="line">  406: &#x27;请求的格式不可得。&#x27;,</span><br><span class="line">  410: &#x27;请求的资源被永久删除，且不会再得到的。&#x27;,</span><br><span class="line">  422: &#x27;当创建一个对象时，发生一个验证错误。&#x27;,</span><br><span class="line">  500: &#x27;服务器发生错误，请检查服务器。&#x27;,</span><br><span class="line">  502: &#x27;网关错误。&#x27;,</span><br><span class="line">  503: &#x27;服务不可用，服务器暂时过载或维护。&#x27;,</span><br><span class="line">  504: &#x27;网关超时。&#x27;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 添加一个请求拦截器，用于设置请求过渡状态</span><br><span class="line">axios.interceptors.request.use((config) =&gt; &#123;</span><br><span class="line">  // 请求开始，蓝色过渡滚动条开始出现</span><br><span class="line">  NProgress.start();</span><br><span class="line">  return config;</span><br><span class="line">&#125;, (error) =&gt; &#123;</span><br><span class="line">  return Promise.reject(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 添加一个返回拦截器</span><br><span class="line">axios.interceptors.response.use((response) =&gt; &#123;</span><br><span class="line">  // 请求结束，蓝色过渡滚动条消失</span><br><span class="line">  NProgress.done();</span><br><span class="line">  return response;</span><br><span class="line">&#125;, (error) =&gt; &#123;</span><br><span class="line">  // 请求结束，蓝色过渡滚动条消失</span><br><span class="line">  // 即使出现异常，也要调用关闭方法，否则一直处于加载状态很奇怪</span><br><span class="line">  NProgress.done();</span><br><span class="line">  return Promise.reject(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default function request (opt) &#123;</span><br><span class="line">  // 调用 axios api，统一拦截</span><br><span class="line">  return axios(opt)</span><br><span class="line">    .then((response) =&gt; </span><br><span class="line">      // &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 请求成功 &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span><br><span class="line">      console.log(`【$&#123;opt.method&#125; $&#123;opt.url&#125;】请求成功，响应数据：%o`, response);</span><br><span class="line"></span><br><span class="line">      // 打印业务错误提示</span><br><span class="line">      if (response.data &amp;&amp; response.data.code != &#x27;0000&#x27;) &#123;</span><br><span class="line">        message.error(response.data.message);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      return &#123; ...response.data &#125;;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch((error) =&gt; &#123;</span><br><span class="line">      // &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 请求失败 &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span><br><span class="line">      // 请求配置发生的错误</span><br><span class="line">      if (!error.response) &#123;</span><br><span class="line">        return console.log(&#x27;Error&#x27;, error.message);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      // 响应时状态码处理 </span><br><span class="line">      const status = error.response.status;</span><br><span class="line">      const errortext = codeMessage[status] || error.response.statusText;</span><br><span class="line">      </span><br><span class="line">      notification.error(&#123;</span><br><span class="line">        message: `请求错误 $&#123;status&#125;`,</span><br><span class="line">        description: errortext,</span><br><span class="line">      &#125;);</span><br><span class="line">      </span><br><span class="line">      // 存在请求，但是服务器的返回一个状态码，它们都在2xx之外</span><br><span class="line">      const &#123; dispatch &#125; = store;</span><br><span class="line"></span><br><span class="line">      if (status === 401) &#123;</span><br><span class="line">        dispatch(routerRedux.push(&#x27;/user/login&#x27;));</span><br><span class="line">      &#125; else if (status === 403) &#123;</span><br><span class="line">        dispatch(routerRedux.push(&#x27;/exception/403&#x27;));</span><br><span class="line">      &#125; else if (status &lt;= 504 &amp;&amp; status &gt;= 500) &#123;</span><br><span class="line">        dispatch(routerRedux.push(&#x27;/exception/500&#x27;));</span><br><span class="line">      &#125; else if (status &gt;= 404 &amp;&amp; status &lt; 422) &#123;</span><br><span class="line">        dispatch(routerRedux.push(&#x27;/exception/404&#x27;));</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      // 开发时使用，上线时删除</span><br><span class="line">      console.log(`【$&#123;opt.method&#125; $&#123;opt.url&#125;】请求失败，响应数据：%o`, error.response);</span><br><span class="line"></span><br><span class="line">      return &#123; code: status, message: errortext &#125;; </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-2-明确响应体"><a href="#6-2-明确响应体" class="headerlink" title="6.2 明确响应体"></a>6.2 明确响应体</h2><blockquote>
+<p>以微信小程序为例，请求响应数据分为两部分：</p>
+</blockquote>
+<ul>
+<li>网络请求是否成功；</li>
+<li>业务场景值。即便网络请求成功了，业务处理上可能有时也会出错，比如校验不通过</li>
+</ul>
+<p>我们在拦截响应时要分别对这两部分进行处理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">response = &#123;</span><br><span class="line">  status: 200,                // 网络请求状态。</span><br><span class="line">  statusText: &#x27;xxx&#x27;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    code: &#x27;1001&#x27;,             // 业务请求状态。这里 &#x27;0000&#x27; 表示业务没问题，其它都有问题</span><br><span class="line">    message: &#x27;yyy&#x27;,</span><br><span class="line">    data: &#123;  &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-3-依赖包分析"><a href="#6-3-依赖包分析" class="headerlink" title="6.3 依赖包分析"></a>6.3 依赖包分析</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import axios from &#x27;axios&#x27;;</span><br><span class="line">import NProgress from &#x27;nprogress&#x27;;</span><br><span class="line">import &#123; notification, message &#125; from &#x27;antd&#x27;;</span><br><span class="line">import &#123; routerRedux &#125; from &#x27;dva/router&#x27;;</span><br><span class="line">import store from &#x27;../index&#x27;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>import store from &#39;../index&#39;;</code>这是 <code>dva</code> 中导出的对象。即下面代码最终导出的 <code>app._store</code>，引入它是因为 <code>dispatch</code> 对象在里面，我们需要 dispatch 对象进行路由跳转</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// index.js</span><br><span class="line">import dva from &#x27;dva&#x27;;</span><br><span class="line">import &#123; message &#125; from &#x27;antd&#x27;;</span><br><span class="line">import &#123; createBrowserHistory as createHistory &#125; from &#x27;history&#x27;;</span><br><span class="line"></span><br><span class="line">// 1. Initialize</span><br><span class="line">const app = dva(&#123;</span><br><span class="line">  history: createHistory(),</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 2. Plugins</span><br><span class="line">app.use(createLoading());</span><br><span class="line"></span><br><span class="line">// 3. Model</span><br><span class="line">app.model(require(&#x27;./models/app/global&#x27;).default);</span><br><span class="line"></span><br><span class="line">// 4. Router</span><br><span class="line">app.router(require(&#x27;./router&#x27;).default);</span><br><span class="line"></span><br><span class="line">// 5. Start</span><br><span class="line">app.start(&#x27;#root&#x27;);</span><br><span class="line"></span><br><span class="line">export default app._store;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-4-axios-全局配置"><a href="#6-4-axios-全局配置" class="headerlink" title="6.4 axios 全局配置"></a>6.4 axios 全局配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 设置全局参数，如响应超市时间，请求前缀等。</span><br><span class="line">axios.defaults.timeout = 5000</span><br><span class="line">axios.defaults.baseURL = &#x27;/api/v1&#x27;;</span><br><span class="line">axios.defaults.withCredentials = true;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>axios 可以设置很多全局配置，具体可参阅 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000008470355">https://segmentfault.com/a/1190000008470355</a></p>
+</blockquote>
+<h2 id="6-5-加载-NProgress-过渡组件"><a href="#6-5-加载-NProgress-过渡组件" class="headerlink" title="6.5 加载 NProgress 过渡组件"></a>6.5 加载 NProgress 过渡组件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/ 添加一个请求拦截器，用于设置请求过渡状态</span><br><span class="line">axios.interceptors.request.use((config) =&gt; &#123;</span><br><span class="line">  // 请求开始，蓝色过渡滚动条开始出现</span><br><span class="line">  NProgress.start();</span><br><span class="line">  return config;</span><br><span class="line">&#125;, (error) =&gt; &#123;</span><br><span class="line">  return Promise.reject(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 添加一个返回拦截器</span><br><span class="line">axios.interceptors.response.use((response) =&gt; &#123;</span><br><span class="line">  // 请求结束，蓝色过渡滚动条消失</span><br><span class="line">  NProgress.done();</span><br><span class="line">  return response;</span><br><span class="line">&#125;, (error) =&gt; &#123;</span><br><span class="line">  // 请求结束，蓝色过渡滚动条消失</span><br><span class="line">  // 即使出现异常，也要调用关闭方法，否则一直处于加载状态很奇怪</span><br><span class="line">  NProgress.done();</span><br><span class="line">  return Promise.reject(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>NProgress</code> 的使用主要有两个方法，当调用 <code>NProgress.start();</code> 时在浏览器顶部就会出现蓝色小条，当调用 <code>NProgress.done();</code> 蓝色小条就会消失。我们分别在请求开始和接收到响应调用这两个方法</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/6693922-948c3efcfeeaf4fd.gif" alt="img"></p>
+<h2 id="6-6-网络请求成功处理"><a href="#6-6-网络请求成功处理" class="headerlink" title="6.6 网络请求成功处理"></a>6.6 网络请求成功处理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.then((response) =&gt; </span><br><span class="line">      // &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 请求成功 &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span><br><span class="line">      console.log(`【$&#123;opt.method&#125; $&#123;opt.url&#125;】请求成功，响应数据：%o`, response);</span><br><span class="line"></span><br><span class="line">      // 打印业务错误提示</span><br><span class="line">      if (response.data &amp;&amp; response.data.code != &#x27;0000&#x27;) &#123;</span><br><span class="line">        message.error(response.data.message);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      return &#123; ...response.data &#125;;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>网络请求状态码为 <code>200-300</code> 表示成功，此时还应该判断业务处理是否成功。这个根据具体项目具体规定，比如微信小程序有一套场景值。在实际项目中可以自行规定 <code>code = &#39;0000&#39;</code> 业务处理完全没问题，<code>code = &#39;1111&#39;</code>校验不通过，<code>code = &#39;2222&#39;</code> 数据库出错等等。</p>
+</blockquote>
+<ul>
+<li>最后别忘了要返回具体对象 <code>&#123; ...response.data &#125;</code></li>
+</ul>
+<h2 id="6-7-网络请求失败处理"><a href="#6-7-网络请求失败处理" class="headerlink" title="6.7 网络请求失败处理"></a>6.7 网络请求失败处理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">// 状态码错误信息</span><br><span class="line">const codeMessage = &#123;</span><br><span class="line">  200: &#x27;服务器成功返回请求的数据。&#x27;,</span><br><span class="line">  201: &#x27;新建或修改数据成功。&#x27;,</span><br><span class="line">  202: &#x27;一个请求已经进入后台排队（异步任务）。&#x27;,</span><br><span class="line">  204: &#x27;删除数据成功。&#x27;,</span><br><span class="line">  400: &#x27;发出的请求有错误，服务器没有进行新建或修改数据的操作。&#x27;,</span><br><span class="line">  401: &#x27;用户没有权限（令牌、用户名、密码错误）。&#x27;,</span><br><span class="line">  403: &#x27;用户得到授权，但是访问是被禁止的。&#x27;,</span><br><span class="line">  404: &#x27;发出的请求针对的是不存在的记录，服务器没有进行操作。&#x27;,</span><br><span class="line">  406: &#x27;请求的格式不可得。&#x27;,</span><br><span class="line">  410: &#x27;请求的资源被永久删除，且不会再得到的。&#x27;,</span><br><span class="line">  422: &#x27;当创建一个对象时，发生一个验证错误。&#x27;,</span><br><span class="line">  500: &#x27;服务器发生错误，请检查服务器。&#x27;,</span><br><span class="line">  502: &#x27;网关错误。&#x27;,</span><br><span class="line">  503: &#x27;服务不可用，服务器暂时过载或维护。&#x27;,</span><br><span class="line">  504: &#x27;网关超时。&#x27;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// ...........</span><br><span class="line"></span><br><span class="line">.catch((error) =&gt; &#123;</span><br><span class="line">      // &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 请求失败 &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span><br><span class="line">      // 请求配置发生的错误</span><br><span class="line">      if (!error.response) &#123;</span><br><span class="line">        return console.log(&#x27;Error&#x27;, error.message);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      // 响应时状态码处理 </span><br><span class="line">      const status = error.response.status;</span><br><span class="line">      const errortext = codeMessage[status] || error.response.statusText;</span><br><span class="line">      </span><br><span class="line">      notification.error(&#123;</span><br><span class="line">        message: `请求错误 $&#123;status&#125;`,</span><br><span class="line">        description: errortext,</span><br><span class="line">      &#125;);</span><br><span class="line">      </span><br><span class="line">      // 存在请求，但是服务器的返回一个状态码，它们都在2xx之外</span><br><span class="line">      const &#123; dispatch &#125; = store;</span><br><span class="line"></span><br><span class="line">      if (status === 401) &#123;</span><br><span class="line">        dispatch(routerRedux.push(&#x27;/user/login&#x27;));</span><br><span class="line">      &#125; else if (status === 403) &#123;</span><br><span class="line">        dispatch(routerRedux.push(&#x27;/exception/403&#x27;));</span><br><span class="line">      &#125; else if (status &lt;= 504 &amp;&amp; status &gt;= 500) &#123;</span><br><span class="line">        dispatch(routerRedux.push(&#x27;/exception/500&#x27;));</span><br><span class="line">      &#125; else if (status &gt;= 404 &amp;&amp; status &lt; 422) &#123;</span><br><span class="line">        dispatch(routerRedux.push(&#x27;/exception/404&#x27;));</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      // 开发时使用，上线时删除</span><br><span class="line">      console.log(`【$&#123;opt.method&#125; $&#123;opt.url&#125;】请求失败，响应数据：%o`, error.response);</span><br><span class="line"></span><br><span class="line">      return &#123; code: status, message: errortext &#125;; </span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>网络请求失败，首先需要根据 <code>status</code> 打印提示消息，告诉用户为什么请求失败。如响应码为 <code>401</code>，那么提示用户的文字就会是 用户没有权限（令牌、用户名、密码错误）</li>
+<li>如果是 <code>401</code> 错误，表示用户没有权限访问或者用户名密码输入错误，应该跳转到登录页面：<code>dispatch(routerRedux.push(&#39;/user/login&#39;));</code></li>
+</ul>
+<h1 id="七、更多参考"><a href="#七、更多参考" class="headerlink" title="七、更多参考"></a>七、更多参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/dvajs/dva-docs/blob/master/v1/zh-cn/tutorial/01-%E6%A6%82%E8%A6%81.md">dva官方教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dvajs/dva/blob/master/README_zh-CN.md">官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dvajs/dva-knowledgemap">使用Dva的所有知识点</a></li>
+<li><a target="_blank" rel="noopener" href="http://slides.com/sorrycc/dva#/">Dva-React 应用框架在蚂蚁金服的实践</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/sorrycc/roadhog#%E9%85%8D%E7%BD%AE">roadhog介绍</a></li>
+<li><a target="_blank" rel="noopener" href="https://my.oschina.net/dkvirus/blog/1057996">创建一个 dva 脚手架工程</a></li>
+<li><a target="_blank" rel="noopener" href="https://my.oschina.net/dkvirus/blog/1058203">dva 脚手架目录分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/sorrycc/blog/issues/18">12 步 30 分钟，完成用户管理的 CURD 应用 (react+dva+antd)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c5ec9ffa29be">dva router4.0 使用实践总结</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7de59752b8a8">dva 2.0中如何使用代码进行路由跳转</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2e9e45e9a880">dva 配置 browserHistory 实践总结</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/61fe7a57fad4">dva-loading 实践用法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/649e97ff4354">dva 升级2.0版本遇到的问题小结</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e0a220906301">dva 中进行页面复用实践总结</a></li>
+<li><a target="_blank" rel="noopener" href="https://dvajs.com/knowledgemap/#javascript-%E8%AF%AD%E8%A8%80">Dva知识地图</a></li>
+<li><a target="_blank" rel="noopener" href="https://dvajs.com/api/">dva-API文档</a></li>
+</ul>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2019/12/16/React/React-%E5%BC%95%E5%85%A5css/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">React引入css</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2019/12/05/React/React-diff%E5%8E%9F%E7%90%86/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">React-diff原理</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>

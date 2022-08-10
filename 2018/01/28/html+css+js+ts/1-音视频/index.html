@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>html-原生音视频 | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">html-原生音视频</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2018-01-28T07:53:12.000Z" itemprop="datePublished">2018-01-28</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF/">📒 前端</a></li>
+  
+    <li><a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">📒 音视频</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/html/">🏷️ html</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h2 id="一、video"><a href="#一、video" class="headerlink" title="一、video"></a>一、video</h2><hr>
+<h3 id="1-1-video支持视频格式"><a href="#1-1-video支持视频格式" class="headerlink" title="1.1 video支持视频格式"></a>1.1 video支持视频格式</h3><hr>
+<ul>
+<li><p>常见的视频格式</p>
+<ul>
+<li>视频的组成部分：画面、音频、编码格式</li>
+<li>视频编码：<code>H.264</code>、<code>Theora</code>、<code>VP8(google开源)</code></li>
+</ul>
+</li>
+<li><p><code>HTML5</code>支持的视频格式：</p>
+<ul>
+<li><pre><code>Ogg
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 带有</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  Theora
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">视频编码+</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  Vorbis
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">音频编码的</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  Ogg
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    文件</span><br><span class="line"></span><br><span class="line">    - 支持的浏览器:`F`、`C`、`O`</span><br><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  MEPG4</span><br></pre></td></tr></table></figure>
+
+- 带有`H.264`视频编码+`AAC`音频编码的`MPEG4`文件
+- 支持的浏览器: `S`、`C`
+</code></pre>
+</li>
+<li><p>&#96;&#96;&#96;<br>WebM</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    - 带有`VP8`视频编码+`Vorbis`音频编码的`WebM`格式</span><br><span class="line">    - 支持的浏览器: `I`、`F`、`C`、`O`</span><br><span class="line">    - 劣势：视频少、转码器几乎没有，不好转码</span><br><span class="line"></span><br><span class="line">- 想要`video`能自动填充慢父div的大小，只要给`video`标签加上`style=&quot;width= 100%; height=100%; object-fit: fill&quot;`即可</span><br><span class="line"></span><br><span class="line">### 1.2 标签原型</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- 指定一种视频格式，不能播就提示</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p><video id="media" src="examp.mp4" width="500" 
+poster="examp1.jpg" >您的浏览器不支持video</video></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 给定多种视频格式，浏览器根据自身支持程度选择播放哪一种</span><br><span class="line">- 注意：多个`source`标签，浏览器会从第一个开始识别，如果第一个不被识别，则会继续识别第二个；如果第一个识别成功，则会直接播放第一种格式视频</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<video controls = “controls”>
+
+   <source src=”1.mp4” type=”video/mp4” />  //src属性写到source标签中，要指定视频的type类型，例如MP4的即为type=“video/mp4”
+
+   <source src = “2.ogg” type=”video/ogg” />  //ogg格式
+
+   <source src=”3.webm” type=”video/webm” />   //webm格式
+
+</video>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 1.3 重要的video标签属性</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">| 属性(常用)     | 值            | 功能描述                                       |</span><br><span class="line">| :------------- | :------------ | :--------------------------------------------- |</span><br><span class="line">| **controls**   | controls      | 是否显示播放控件                               |</span><br><span class="line">| **autoplay**   | autoplay      | 设置是否打开浏览器后自动播放                   |</span><br><span class="line">| **width**      | Pilex（像素） | 设置播放器的宽度                               |</span><br><span class="line">| **height**     | Pilex（像素） | 设置播放器的高度                               |</span><br><span class="line">| **loop**       | loop          | 设置视频是否循环播放（即播放完后继续重新播放） |</span><br><span class="line">| **preload**    | preload       | 设置是否等加载完再播放                         |</span><br><span class="line">| **src**        | url           | 设置要播放视频的url地址                        |</span><br><span class="line">| **poster**     | imgurl        | 设置播放器初始默认显示图片                     |</span><br><span class="line">| **autobuffer** | autobuffer    | 设置为浏览器缓冲方式，不设置autoply才有效      |</span><br><span class="line"></span><br><span class="line">- API 属性</span><br><span class="line"></span><br><span class="line">| 属性                | 描述                                                       |</span><br><span class="line">| :------------------ | :--------------------------------------------------------- |</span><br><span class="line">| audioTracks         | 返回表示可用音轨的 AudioTrackList 对象                     |</span><br><span class="line">| buffered            | 返回表示音频/视频已缓冲部分的 TimeRanges 对象              |</span><br><span class="line">| controller          | 返回表示音频/视频当前媒体控制器的 MediaController 对象     |</span><br><span class="line">| crossOrigin         | 设置或返回音频/视频的 CORS 设置                            |</span><br><span class="line">| currentSrc          | 返回当前音频/视频的 URL                                    |</span><br><span class="line">| currentTime         | 设置或返回音频/视频中的当前播放位置（以秒计）              |</span><br><span class="line">| defaultMuted        | 设置或返回音频/视频默认是否静音                            |</span><br><span class="line">| defaultPlaybackRate | 设置或返回音频/视频的默认播放速度                          |</span><br><span class="line">| duration            | 返回当前音频/视频的长度（以秒计）                          |</span><br><span class="line">| ended               | 返回音频/视频的播放是否已结束                              |</span><br><span class="line">| error               | 返回表示音频/视频错误状态的 MediaError 对象                |</span><br><span class="line">| mediaGroup          | 设置或返回音频/视频所属的组合（用于连接多个音频/视频元素） |</span><br><span class="line">| muted               | 设置或返回音频/视频是否静音                                |</span><br><span class="line">| networkState        | 返回音频/视频的当前网络状态                                |</span><br><span class="line">| paused              | 设置或返回音频/视频是否暂停                                |</span><br><span class="line">| playbackRate        | 设置或返回音频/视频播放的速度                              |</span><br><span class="line">| played              | 返回表示音频/视频已播放部分的 TimeRanges 对象              |</span><br><span class="line">| readyState          | 返回音频/视频当前的就绪状态                                |</span><br><span class="line">| seekable            | 返回表示音频/视频可寻址部分的 TimeRanges 对象              |</span><br><span class="line">| seeking             | 返回用户是否正在音频/视频中进行查找                        |</span><br><span class="line">| startDate           | 返回表示当前时间偏移的 Date 对象                           |</span><br><span class="line">| textTracks          | 返回表示可用文本轨道的 TextTrackList 对象                  |</span><br><span class="line">| videoTracks         | 返回表示可用视频轨道的 VideoTrackList 对象                 |</span><br><span class="line">| volume              | 设置或返回音频/视频的音量                                  |</span><br><span class="line"></span><br><span class="line">- 常用API属性</span><br><span class="line"></span><br><span class="line">  - `duration`：返回当前音频/视频的长度（以秒计）</span><br><span class="line">  - `paused`：设置或返回音频/视频是否暂停</span><br><span class="line">  - `currentTime`：设置或返回音频/视频中的当前播放位置（以秒计）</span><br><span class="line">  - `ended`：返回音频/视频的播放是否已结束</span><br><span class="line"></span><br><span class="line">  ### 1.4 Video API</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">#### 1.4.1 Video 方法</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">| API             | 事件说明                                                     |</span><br><span class="line">| :-------------- | :----------------------------------------------------------- |</span><br><span class="line">| **play**        | video.play(); 播放视频                                       |</span><br><span class="line">| **pause**       | video.pause(); 暂停播放视频                                  |</span><br><span class="line">| **load**        | video.load(); 将全部属性回复默认值，视频恢复重新开始状态     |</span><br><span class="line">| **canPlayType** | var support = videoid.canPlayType(‘video/mp4′);   判断浏览器是否支持当前类型的视频格式  返回值：     空字符串：不支持Maybe：可能支持Probably：完全支持 |</span><br><span class="line"></span><br><span class="line">- 常用方法</span><br><span class="line">  - `play()`：开始播放音频/视频</span><br><span class="line">  - `pause()`：暂停当前播放的音频/视频</span><br><span class="line"></span><br><span class="line">#### 1.4.2网络状态</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- 获取video对象</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  Media = document.getElementById("media");
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- Media.currentSrc</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 返回当前资源的URL</span><br><span class="line"></span><br><span class="line">- Media.src = value</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 返回或设置当前资源的URL</span><br><span class="line"></span><br><span class="line">- Media.canPlayType(type)</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 是否能播放某种格式的资源</span><br><span class="line"></span><br><span class="line">- Media.networkState</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 0.此元素未初始化</span><br><span class="line">  - 1.正常但没有使用网络</span><br><span class="line">  - 2.正在下载数据</span><br><span class="line">  - 3.没有找到资源</span><br><span class="line"></span><br><span class="line">- Media.load()</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 重新加载src指定的资源</span><br><span class="line"></span><br><span class="line">- Media.buffered</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 返回已缓冲区域，TimeRanges</span><br><span class="line"></span><br><span class="line">- Media.preload</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - none:不预载</span><br><span class="line">  - metadata:预载资源信息</span><br><span class="line">  - auto:</span><br><span class="line"></span><br><span class="line">#### 1.4.3 准备状态</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- **Media.readyState**</span><br><span class="line"></span><br><span class="line">- Media.seeking</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 是否正在seeking</span><br><span class="line"></span><br><span class="line">#### 1.4.4 回放状态</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- Media.currentTime = value</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 当前播放的位置，赋值可改变位置</span><br><span class="line"></span><br><span class="line">- Media.startTime;</span><br><span class="line"></span><br><span class="line">  - 一般为0，如果为流媒体或者不从0开始的资源，则不为0</span><br><span class="line"></span><br><span class="line">- Media.duration</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 当前资源长度 流返回无限</span><br><span class="line"></span><br><span class="line">- Media.paused</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 是否暂停</span><br><span class="line"></span><br><span class="line">- Media.defaultPlaybackRate = value</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 默认的回放速度，可以设置</span><br><span class="line"></span><br><span class="line">- Media.playbackRate = value</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 当前播放速度，设置后马上改变</span><br><span class="line"></span><br><span class="line">- Media.played</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 返回已经播放的区域，TimeRanges，关于此对象见下文</span><br><span class="line"></span><br><span class="line">- Media.seekable</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 返回可以seek的区域 TimeRanges</span><br><span class="line"></span><br><span class="line">- Media.ended</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 是否结束</span><br><span class="line"></span><br><span class="line">- Media.autoPlay</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 是否自动播放</span><br><span class="line"></span><br><span class="line">- Media.loop</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 是否循环播放</span><br><span class="line"></span><br><span class="line">- Media.play()</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 播放</span><br><span class="line"></span><br><span class="line">- Media.pause()</span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line"></span><br><span class="line">  - 暂停</span><br><span class="line"></span><br><span class="line">#### 1.4.5 视频控制</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- Media.controls;//是否有默认控制条</span><br><span class="line">- Media.volume = value; //音量</span><br><span class="line">- Media.muted = value; //静音</span><br><span class="line">- TimeRanges(区域)对象</span><br><span class="line">- TimeRanges.length; //区域段数</span><br><span class="line">- TimeRanges.start(index) //第index段区域的开始位置</span><br><span class="line">- TimeRanges.end(index) //第index段区域的结束位置</span><br><span class="line"></span><br><span class="line">#### 1.4.6 相关事件</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- 首先绑定事件的话可以通过js中的addEventListener方法来绑定事件</span><br><span class="line"></span><br><span class="line">| 事件               | 说明                                   |</span><br><span class="line">| :----------------- | :------------------------------------- |</span><br><span class="line">| **loadstart**      | 客户端开始请求数据                     |</span><br><span class="line">| **progress**       | 客户端正在请求数据                     |</span><br><span class="line">| **suspend**        | 延迟下载                               |</span><br><span class="line">| **abort**          | 客户端主动终止下载（不是因为错误引起） |</span><br><span class="line">| **loadstart**      | 客户端开始请求数据                     |</span><br><span class="line">| **progress**       | 客户端正在请求数据                     |</span><br><span class="line">| **error**          | 请求数据时遇到错误                     |</span><br><span class="line">| **stalled**        | 网速失速                               |</span><br><span class="line">| **play**           | play()和autoplay开始播放时触发         |</span><br><span class="line">| **pause**          | pause()触发                            |</span><br><span class="line">| **loadedmetadata** | 成功获取资源长度                       |</span><br><span class="line">| **loadeddata**     | -                                      |</span><br><span class="line">| **waiting**        | 等待数据，并非错误                     |</span><br><span class="line">| **playing**        | 开始回放                               |</span><br><span class="line">| **canplay**        | 可以播放，但中途可能因为加载而暂停     |</span><br><span class="line">| **canplaythrough** | 可以播放，歌曲全部加载完毕             |</span><br><span class="line">| **seeking**        | 寻找中                                 |</span><br><span class="line">| **seeked**         | 寻找完毕                               |</span><br><span class="line">| **timeupdate**     | 播放时间改变                           |</span><br><span class="line">| **ended**          | 播放结束                               |</span><br><span class="line">| **ratechange**     | 播放速率改变                           |</span><br><span class="line">| **durationchange** | 资源长度改变                           |</span><br><span class="line">| **volumechange**   | 音量改变                               |</span><br><span class="line"></span><br><span class="line">- 常用事件</span><br><span class="line">  - `oncanplay`：当文件就绪可以开始播放时运行的脚本（缓冲已足够开始时）。</span><br><span class="line">  - `ontimeupdate`： 当播放位置改变时（比如当用户快进到媒介中一个不同的位置时）运行的脚本。</span><br><span class="line">  - `onended`：当媒介已到达结尾时运行的脚本（可发送类似“感谢观看”之类的消息）。</span><br><span class="line"></span><br><span class="line">#### 1.4.7 其他</span><br><span class="line"></span><br><span class="line">- 全屏:</span><br><span class="line">  - `element.webkitRequestFullScreen();`( webkit)</span><br><span class="line">  - `element.mozRequestFullScreen();` (Firefox )</span><br><span class="line">  - `element.requestFullscreen();` (W3C )</span><br><span class="line">- 退出全屏：</span><br><span class="line">  - `document.webkitCancelFullScreen()`; (webkit )</span><br><span class="line">  - `document.mozCancelFullScreen()`; (Firefox)</span><br><span class="line">  - `document.exitFullscreen();` (W3C)</span><br><span class="line"></span><br><span class="line">## 二、audio</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">### 2.1 audio格式</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">- 常见的音频格式</span><br><span class="line">  - 音频编码：`ACC`、`MP3`、`Vorbis`</span><br><span class="line">- HTML5支持的音频格式：</span><br><span class="line">  - `Ogg` 免费 支持的浏览器:`C`、`F`、`O`</span><br><span class="line">  - `MP3` 收费 支持的浏览器: `I`、`C`、`S`</span><br><span class="line">  - `Wav` 收费 支持的浏览器: `F`、`O`、`S`</span><br><span class="line"></span><br><span class="line">### 2.2 audio标签中的一些常用属性</span><br><span class="line"></span><br><span class="line">| 属性         | 属性值   | 注释                                                         |</span><br><span class="line">| :----------- | :------- | :----------------------------------------------------------- |</span><br><span class="line">| **src**      | url      | 播放的音乐的url地址（火狐只支持ogg的音乐，而IE9只支持MP3格式的音乐。chrome貌似全支持） |</span><br><span class="line">| **preload**  | preload  | 预加载（在页面被加载时进行加载或者说缓冲音频），如果使用了autoplay的话那么该属性失效。 |</span><br><span class="line">| **loop**     | loop     | 循环播放                                                     |</span><br><span class="line">| **controls** | controls | 是否显示默认控制条（控制按钮）                               |</span><br><span class="line">| **autoplay** | autoplay | 自动播放                                                     |</span><br><span class="line"></span><br><span class="line">- 对于音乐格式的支持</span><br><span class="line"></span><br><span class="line">| 音频格式 | Chrome | Firefox | IE9    | Opera  | Safari |</span><br><span class="line">| :------- | :----- | :------ | :----- | :----- | :----- |</span><br><span class="line">| OGG      | 支持   | 支持    | 支持   | 不支持 | 不支持 |</span><br><span class="line">| MP3      | 支持   | 不支持  | 支持   | 不支持 | 支持   |</span><br><span class="line">| WAV      | 不支持 | 支持    | 不支持 | 支持   | 不支持 |</span><br><span class="line"></span><br><span class="line">- audio可通过new来创建。也可以通过用document来获取</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+//通过new关键字来创建Audio对象
+var Music = new Audio("test.mp3");
+
+<p>&#x2F;&#x2F;通过document来获取已经存在的Audio对象<br>var Music &#x3D; document.getElementById(“audio”);<br>&#x2F;&#x2F;当然这里也可以使用document.getElementsByClassName(‘className’)等其他的方法来获取。</p>
+<p>&#96;&#96;&#96;</p>
+<h3 id="2-3-api所提供的对audio标签操作的一些属性和方法"><a href="#2-3-api所提供的对audio标签操作的一些属性和方法" class="headerlink" title="2.3 api所提供的对audio标签操作的一些属性和方法"></a>2.3 api所提供的对audio标签操作的一些属性和方法</h3><hr>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>duration</strong></td>
+<td align="left">获取媒体文件的总时长，以s为单位，如果无法获取，返回NaN</td>
+</tr>
+<tr>
+<td align="left"><strong>paused</strong></td>
+<td align="left">如果媒体文件被暂停，那么paused属性返回true，反之则返回false</td>
+</tr>
+<tr>
+<td align="left"><strong>ended</strong></td>
+<td align="left">如果媒体文件播放完毕返回true</td>
+</tr>
+<tr>
+<td align="left"><strong>muted</strong></td>
+<td align="left">用来获取或设置静音状态。值为boolean</td>
+</tr>
+<tr>
+<td align="left"><strong>volume</strong></td>
+<td align="left">控制音量的属性值为0-1;0为音量最小，1为音量最大</td>
+</tr>
+<tr>
+<td align="left"><strong>startTime</strong></td>
+<td align="left">返回起始播放时间</td>
+</tr>
+<tr>
+<td align="left"><strong>error</strong></td>
+<td align="left">返回错误代码，为uull的时候为正常。否则可以通过Music.error.code来获取</td>
+</tr>
+<tr>
+<td align="left"><strong>currentTime</strong></td>
+<td align="left">用来获取或控制当前播放的时间，单位为s。</td>
+</tr>
+<tr>
+<td align="left"><strong>currentSrc</strong></td>
+<td align="left">以字符串形式返回正在播放或已加载的文件</td>
+</tr>
+</tbody></table>
+<h3 id="2-4-常用的控制用的函数"><a href="#2-4-常用的控制用的函数" class="headerlink" title="2.4 常用的控制用的函数"></a>2.4 常用的控制用的函数</h3><hr>
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>load()</strong></td>
+<td align="left">加载音频、视频软件</td>
+</tr>
+<tr>
+<td align="left"><strong>play()</strong></td>
+<td align="left">加载并播放音频、视频文件或重新播放暂停的的音频、视频</td>
+</tr>
+<tr>
+<td align="left"><strong>pause()</strong></td>
+<td align="left">暂停出于播放状态的音频、视频文件</td>
+</tr>
+<tr>
+<td align="left"><strong>canPlayType(obj)</strong></td>
+<td align="left">测试是否支持给定的Mini类型的文件</td>
+</tr>
+</tbody></table>
+<h3 id="2-5-audio标签API中的常用事件"><a href="#2-5-audio标签API中的常用事件" class="headerlink" title="2.5 audio标签API中的常用事件"></a>2.5 audio标签API中的常用事件</h3><hr>
+<ul>
+<li>首先绑定事件的话可以通过js中的addEventListener方法来绑定事件</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">事件名称</th>
+<th align="left">事件作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>loadstart</strong></td>
+<td align="left">客户端开始请求数据</td>
+</tr>
+<tr>
+<td align="left"><strong>progress</strong></td>
+<td align="left">客户端正在请求数据（或者说正在缓冲）</td>
+</tr>
+<tr>
+<td align="left"><strong>play</strong></td>
+<td align="left">play()和autoplay播放时</td>
+</tr>
+<tr>
+<td align="left"><strong>pause</strong></td>
+<td align="left">pause()方法促发时</td>
+</tr>
+<tr>
+<td align="left"><strong>ended</strong></td>
+<td align="left">当前播放结束</td>
+</tr>
+<tr>
+<td align="left"><strong>timeupdate</strong></td>
+<td align="left">当前播放时间发生改变的时候。播放中常用的时间处理</td>
+</tr>
+<tr>
+<td align="left"><strong>canplaythrough</strong></td>
+<td align="left">歌曲已经载入完全完成</td>
+</tr>
+<tr>
+<td align="left"><strong>canplay</strong></td>
+<td align="left">缓冲至目前可播放状态。</td>
+</tr>
+</tbody></table>
+<p>其实<code>video</code>的<code>api</code>和<code>audio</code>几乎一致。稍稍有点不同。所以基本上会了一个其他的也就都会了s</p>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/02/02/html+css+js+ts/1-flex/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">flex布局</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2018/01/26/html+css+js+ts/1-h5-api/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">html-api</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>223</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        29
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        37
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/React/">
+            React (4)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/React/">
+            React (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/">
+            原理 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%8E%9F%E7%90%86/React/">
+            React (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
+            架构模式 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+            移动端 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%9F%B3%E8%A7%86%E9%A2%91/">
+            音视频 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/css/">
+            css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/javascript/">
+            javascript (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/">
+            问题 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/">
+            后端 (9)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">
+            框架 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/">
+            工具 (15)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+            正则表达式 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+            前端性能优化 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            数据库 (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+            浏览器 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/liunx/">
+            liunx (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Event-Loop/" style="font-size: 10px;" class="tags-cloud-0">Event Loop</a> <a href="/tags/Graphviz/" style="font-size: 10px;" class="tags-cloud-0">Graphviz</a> <a href="/tags/Mock/" style="font-size: 10px;" class="tags-cloud-0">Mock</a> <a href="/tags/Promise/" style="font-size: 10px;" class="tags-cloud-0">Promise</a> <a href="/tags/RESTful/" style="font-size: 10px;" class="tags-cloud-0">RESTful</a> <a href="/tags/React/" style="font-size: 19.23px;" class="tags-cloud-9">React</a> <a href="/tags/Redux/" style="font-size: 11.54px;" class="tags-cloud-2">Redux</a> <a href="/tags/async-await/" style="font-size: 10px;" class="tags-cloud-0">async/await</a> <a href="/tags/css/" style="font-size: 13.85px;" class="tags-cloud-4">css</a> <a href="/tags/echart/" style="font-size: 10px;" class="tags-cloud-0">echart</a> <a href="/tags/es6/" style="font-size: 16.92px;" class="tags-cloud-7">es6</a> <a href="/tags/eslint/" style="font-size: 10px;" class="tags-cloud-0">eslint</a> <a href="/tags/git/" style="font-size: 16.15px;" class="tags-cloud-6">git</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/html/" style="font-size: 14.62px;" class="tags-cloud-5">html</a> <a href="/tags/http/" style="font-size: 17.69px;" class="tags-cloud-8">http</a> <a href="/tags/javascript/" style="font-size: 18.46px;" class="tags-cloud-8">javascript</a> <a href="/tags/mongodb/" style="font-size: 10px;" class="tags-cloud-0">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;" class="tags-cloud-0">mysql</a> <a href="/tags/nginx/" style="font-size: 10.77px;" class="tags-cloud-1">nginx</a> <a href="/tags/nodejs/" style="font-size: 13.08px;" class="tags-cloud-3">nodejs</a> <a href="/tags/python/" style="font-size: 10.77px;" class="tags-cloud-1">python</a> <a href="/tags/react/" style="font-size: 10px;" class="tags-cloud-0">react</a> <a href="/tags/typescript/" style="font-size: 12.31px;" class="tags-cloud-2">typescript</a> <a href="/tags/vs-code/" style="font-size: 11.54px;" class="tags-cloud-2">vs code</a> <a href="/tags/vue/" style="font-size: 20px;" class="tags-cloud-10">vue</a> <a href="/tags/vue3/" style="font-size: 10px;" class="tags-cloud-0">vue3</a> <a href="/tags/xml/" style="font-size: 10px;" class="tags-cloud-0">xml</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13.85px;" class="tags-cloud-4">优化</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15.38px;" class="tags-cloud-5">小程序</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 10px;" class="tags-cloud-0">抓包</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;" class="tags-cloud-0">操作系统</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;" class="tags-cloud-0">正则表达式</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 13.08px;" class="tags-cloud-3">浏览器</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 10.77px;" class="tags-cloud-1">移动端</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;" class="tags-cloud-0">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13.85px;" class="tags-cloud-4">设计模式</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2022 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>
