@@ -25,7 +25,7 @@
 
   
 
-  <title>Mock | sb</title>
+  <title>Mock | Hexo</title>
 
   
 
@@ -41,7 +41,7 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<link rel="alternate" href="/atom.xml" title="sb" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
 </head>
 <body>
   <div class="root-container">
@@ -316,7 +316,7 @@
 <h4 id="3-4-4-Mock-setup"><a href="#3-4-4-Mock-setup" class="headerlink" title="3.4.4 Mock.setup()"></a>3.4.4 Mock.setup()</h4><ul>
 <li>&#96;&#96;&#96;<br>Mock.setup( settings )<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 配置拦截 `Ajax` 请求时的行为。支持的配置项有：`timeout`</span><br><span class="line"></span><br><span class="line">&gt; 指定被拦截的 `Ajax` 请求的响应时间，单位是毫秒。值可以是正整数，例如 `400`，表示 `400` 毫秒 后才会返回响应内容；也可以是横杠 `&#x27;-&#x27;` 风格的字符串，例如 `&#x27;200-600&#x27;`，表示响应时间介于 `200` 和 `600` 毫秒之间。默认值是`&#x27;10-100&#x27;`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 Mock.setup({<br>  timeout: 400<br>})<br>Mock.setup({<br>  timeout: ‘200-600’<br>})<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 目前，接口 `Mock.setup( settings )`仅用于配置 `Ajax` 请求</span><br><span class="line"></span><br><span class="line">#### 3.4.5 Mock.Random</span><br><span class="line"></span><br><span class="line">- `Mock.Random` 是一个工具类，用于生成各种随机数据</span><br><span class="line">- `Mock.Random`的方法在数据模板中称为『占位符』，书写格式为 `@`占位符(参数 [, 参数])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-var Random &#x3D; Mock.Random<br>Random.email()<br>&#x2F;&#x2F; &#x3D;&gt; “<a href="mailto:&#x6e;&#x2e;&#x63;&#x6c;&#x61;&#x72;&#107;&#64;&#x6d;&#105;&#x6c;&#x6c;&#x65;&#x72;&#46;&#x69;&#111;">&#x6e;&#x2e;&#x63;&#x6c;&#x61;&#x72;&#107;&#64;&#x6d;&#105;&#x6c;&#x6c;&#x65;&#x72;&#46;&#x69;&#111;</a>“<br>Mock.mock(‘@email’)<br>&#x2F;&#x2F; &#x3D;&gt; “<a href="mailto:&#x79;&#x2e;&#108;&#101;&#x65;&#x40;&#108;&#x65;&#119;&#105;&#x73;&#x2e;&#x6f;&#x72;&#x67;">&#x79;&#x2e;&#108;&#101;&#x65;&#x40;&#108;&#x65;&#119;&#105;&#x73;&#x2e;&#x6f;&#x72;&#x67;</a>“<br>Mock.mock( { email: ‘@email’ } )<br>&#x2F;&#x2F; &#x3D;&gt; { email: “<a href="mailto:&#x76;&#46;&#108;&#101;&#x77;&#x69;&#x73;&#x40;&#104;&#97;&#108;&#x6c;&#x2e;&#x67;&#x6f;&#x76;">&#x76;&#46;&#108;&#101;&#x77;&#x69;&#x73;&#x40;&#104;&#97;&#108;&#x6c;&#x2e;&#x67;&#x6f;&#x76;</a>“ }<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 四、简单构建一套mock-server</span><br><span class="line"></span><br><span class="line">&gt; 为了更好的分工合作，让前端能在不依赖后端环境的情况下进行开发，其中一种手段就是为前端开发者提供一个 web 容器，这个本地环境就是 mock-server</span><br><span class="line"></span><br><span class="line">**一个比较好的 mock-server 该有的能力**</span><br><span class="line"></span><br><span class="line">- 与线上环境一致的接口地址，每次构建前端代码时不需要修改调用接口的代码</span><br><span class="line">- 所改即所得，具有热更新的能力，每次增加修改 `mock` 接口时不需要重启 `mock` 服务，更不用重启前端构建服务</span><br><span class="line">- 能配合 `Webpack`</span><br><span class="line">- `mock` 数据可以由工具生成不需要自己手动写</span><br><span class="line">- 能模拟 `POST`、`GET` 请求</span><br><span class="line"></span><br><span class="line">**搭建主要思路**</span><br><span class="line"></span><br><span class="line">&gt; 以 `json-server` 作为 `mock` 服务器， `mock.js` 生成`mock` 数据，利用 `gulp + nodemon + browser-sync` 监听`mock`文件的改动重启 `node` 服务，刷新浏览器，以此达到一种相对完美的 `mock-server`要求</span><br><span class="line"></span><br><span class="line">### 4.1 json-server 搭配 mock.js</span><br><span class="line"></span><br><span class="line">- 这里以`Webpack` 的前端工程为例</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+var Random &#x3D; Mock.Random<br>Random.email()<br>&#x2F;&#x2F; &#x3D;&gt; “<a href="mailto:&#110;&#x2e;&#x63;&#x6c;&#x61;&#x72;&#107;&#64;&#109;&#105;&#108;&#108;&#101;&#x72;&#46;&#x69;&#x6f;">&#110;&#x2e;&#x63;&#x6c;&#x61;&#x72;&#107;&#64;&#109;&#105;&#108;&#108;&#101;&#x72;&#46;&#x69;&#x6f;</a>“<br>Mock.mock(‘@email’)<br>&#x2F;&#x2F; &#x3D;&gt; “<a href="mailto:&#121;&#x2e;&#x6c;&#x65;&#x65;&#64;&#x6c;&#x65;&#119;&#105;&#x73;&#46;&#111;&#x72;&#x67;">&#121;&#x2e;&#x6c;&#x65;&#x65;&#64;&#x6c;&#x65;&#119;&#105;&#x73;&#46;&#111;&#x72;&#x67;</a>“<br>Mock.mock( { email: ‘@email’ } )<br>&#x2F;&#x2F; &#x3D;&gt; { email: “<a href="mailto:&#118;&#46;&#108;&#101;&#x77;&#105;&#115;&#x40;&#104;&#97;&#108;&#x6c;&#46;&#103;&#111;&#x76;">&#118;&#46;&#108;&#101;&#x77;&#105;&#115;&#x40;&#104;&#97;&#108;&#x6c;&#46;&#103;&#111;&#x76;</a>“ }<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 四、简单构建一套mock-server</span><br><span class="line"></span><br><span class="line">&gt; 为了更好的分工合作，让前端能在不依赖后端环境的情况下进行开发，其中一种手段就是为前端开发者提供一个 web 容器，这个本地环境就是 mock-server</span><br><span class="line"></span><br><span class="line">**一个比较好的 mock-server 该有的能力**</span><br><span class="line"></span><br><span class="line">- 与线上环境一致的接口地址，每次构建前端代码时不需要修改调用接口的代码</span><br><span class="line">- 所改即所得，具有热更新的能力，每次增加修改 `mock` 接口时不需要重启 `mock` 服务，更不用重启前端构建服务</span><br><span class="line">- 能配合 `Webpack`</span><br><span class="line">- `mock` 数据可以由工具生成不需要自己手动写</span><br><span class="line">- 能模拟 `POST`、`GET` 请求</span><br><span class="line"></span><br><span class="line">**搭建主要思路**</span><br><span class="line"></span><br><span class="line">&gt; 以 `json-server` 作为 `mock` 服务器， `mock.js` 生成`mock` 数据，利用 `gulp + nodemon + browser-sync` 监听`mock`文件的改动重启 `node` 服务，刷新浏览器，以此达到一种相对完美的 `mock-server`要求</span><br><span class="line"></span><br><span class="line">### 4.1 json-server 搭配 mock.js</span><br><span class="line"></span><br><span class="line">- 这里以`Webpack` 的前端工程为例</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 cnpm install json-server mockjs –save<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 在项目根目录新建 `mock`文件夹，新建 `mock/db.js` 作为 `mock` 数据源，`mock/server.js`作为 `mock`服务，`mock/routes.js`重写路由表</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 var Mock &#x3D; require(‘mockjs’);</li>
 </ul>
@@ -474,14 +474,14 @@ var Mock &#x3D; require(‘mockjs’);</li>
     <ul class="categorys-list">
       
         <li class="categorys-list-item">
-          <a href="/categories/React/">
-            React (4)
+          <a href="/categories/%E6%A1%86%E6%9E%B6/">
+            框架 (77)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/%E6%A1%86%E6%9E%B6/">
-            框架 (77)
+          <a href="/categories/React/">
+            React (4)
           </a>
         </li>
       
@@ -504,26 +504,20 @@ var Mock &#x3D; require(‘mockjs’);</li>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/http/">
-            http (14)
-          </a>
-        </li>
-      
-        <li class="categorys-list-item">
           <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/">
             架构模式 (2)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/%E5%89%8D%E7%AB%AF/">
-            前端 (61)
+          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
+            框架 (1)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/%E6%A1%86%E6%9E%B6/">
-            框架 (1)
+          <a href="/categories/%E5%89%8D%E7%AB%AF/">
+            前端 (61)
           </a>
         </li>
       
@@ -558,6 +552,12 @@ var Mock &#x3D; require(‘mockjs’);</li>
         </li>
       
         <li class="categorys-list-item">
+          <a href="/categories/http/">
+            http (14)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
           <a href="/categories/%E5%90%8E%E7%AB%AF/">
             后端 (9)
           </a>
@@ -570,8 +570,8 @@ var Mock &#x3D; require(‘mockjs’);</li>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
-            算法 (1)
+          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            小程序 (8)
           </a>
         </li>
       
@@ -582,8 +582,8 @@ var Mock &#x3D; require(‘mockjs’);</li>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
-            小程序 (8)
+          <a href="/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/">
+            算法 (1)
           </a>
         </li>
       
@@ -600,14 +600,14 @@ var Mock &#x3D; require(‘mockjs’);</li>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
-            数据可视化 (2)
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            操作系统 (1)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-            操作系统 (1)
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            数据可视化 (2)
           </a>
         </li>
       
@@ -630,14 +630,14 @@ var Mock &#x3D; require(‘mockjs’);</li>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-            设计模式 (6)
+          <a href="/categories/%E7%88%AC%E8%99%AB/">
+            爬虫 (1)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/%E7%88%AC%E8%99%AB/">
-            爬虫 (1)
+          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式 (6)
           </a>
         </li>
       
